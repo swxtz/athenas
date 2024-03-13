@@ -1,3 +1,10 @@
+import { server } from "./server";
 import { env } from "./utils/env";
 
-console.log(env.teste);
+async function start() {
+    await server().listen({ port: env.port }).then((address) => {
+        console.log(`Server listening on ${address} || http://localhost:${env.port}`);
+    });
+}
+
+start();
