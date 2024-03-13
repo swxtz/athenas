@@ -1,0 +1,53 @@
+name: Run Tests CI
+
+on:
+  push:
+    branches: [ "dev" ]
+    paths:
+      - "apps/server/**"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "apps/server/**"
+
+jobs: 
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20]
+        
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - name: pnpm install
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm lint:fix
+        working-directory: ./apps/backend
+
+
+  test:
+  runs-on: ubuntu-latest
+  steps: 
+    - uses: actions/checkout@v3
+    - name: Test with vitest
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: "pnpm"
+    - run: pnpm install
+    - run: pnpm test
