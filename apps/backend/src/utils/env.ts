@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const schema = z.object({
-    teste: z.string()
+    port: z.coerce.number()
 });
 
 export const env = schema.parse(process.env);

@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch --env-file=.env ./src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +16,14 @@
   "packageManager": "pnpm@8.15.4+sha1.c85a4305534f76d461407b59277b954bac97b5c4",
   "devDependencies": {
     "@types/node": "^20.11.26",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
     "tsx": "^4.7.1",
     "typescript": "^5.4.2"
   },
   "dependencies": {
+    "fastify": "^4.26.2",
     "zod": "^3.22.4"
   }
 }
