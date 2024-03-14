@@ -1,24 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Super app do tcc 😎😋😊😙🙄😍</Text>
-      <StatusBar style="light" />
+    <View className="flex bg-black items-center justify-center h-full">
+      <Text className="text-red-600 text-lg">Super app do tcc 😎😋😊😙🙄😍</Text>
+      <StatusBar style="light" translucent />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0A0A0A',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  text: {
-    color: '#fff'
-  }
-});
