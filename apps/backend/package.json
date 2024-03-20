@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
+    "test:cov": "vitest run --coverage",
     "dev": "tsx watch --env-file=.env ./src/index.ts",
     "build": "tsc",
     "lint": "eslint ./src",
@@ -18,6 +19,8 @@
     "@types/node": "^20.11.26",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "@vitest/coverage-istanbul": "^1.4.0",
+    "@vitest/coverage-v8": "^1.4.0",
     "eslint": "^8.57.0",
     "prisma": "^5.11.0",
     "tsx": "^4.7.1",
