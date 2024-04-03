@@ -14,7 +14,24 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id               String   @id @unique @default(cuid())
+  name             String   @unique
+  email            String   @unique
+  emailVerified    Boolean  @default(false)
+  password         String
+  document         String
+  documentVerified Boolean  @default(false)
+  birthdate        DateTime
+  userType         UserType @default(User)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("users")
+}
+
+enum UserType {
+  User
+  Admin
+  Merchant
+  Employee
 }
