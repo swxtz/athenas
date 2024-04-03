@@ -2,6 +2,7 @@ import { prisma } from "@/utils/prisma";
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { createUserSchema } from "./schema/create-user";
 import { z } from "zod";
+import { argon } from "@/utils/argon";
 
 export async function usersRoutes(app: FastifyInstance) {
     app.get("/users", async (request: FastifyRequest, reply: FastifyReply) => {
@@ -12,12 +13,17 @@ export async function usersRoutes(app: FastifyInstance) {
 
     app.post("/users", async (request: FastifyRequest, reply: FastifyReply) => {
         try {
-            const { email, name } = createUserSchema.parse(request.body);
+            const { email, name, birthdate, document, password } = createUserSchema.parse(request.body);
+
+            const hash = await argon.hash(password);
 
             await prisma.user.create({
                 data: {
+                    birthdate,
+                    document,
                     email,
-                    name
+                    name,
+                    password: hash
                 }
             });
 

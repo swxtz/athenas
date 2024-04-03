@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
+    "argon2": "^0.40.1",
     "fastify": "^4.26.2",
     "prisma-erd-generator": "^1.11.2",
     "zod": "^3.22.4"
