@@ -5,6 +5,7 @@ import { z } from "zod";
 import { argon } from "@/utils/argon";
 
 export async function usersRoutes(app: FastifyInstance) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     app.get("/users", async (request: FastifyRequest, reply: FastifyReply) => {
         const users = await prisma.user.findMany();
 
@@ -15,6 +16,20 @@ export async function usersRoutes(app: FastifyInstance) {
         try {
             const { email, name, birthdate, document, password } = createUserSchema.parse(request.body);
 
+            const verifyUser = await prisma.user.findUnique({
+                where: {
+                    email
+                },
+                select: {
+                    email: true
+                }
+            });
+            
+            if (verifyUser) {
+                return reply.status(400).send({
+                    message: "E-mail já cadastrado"
+                });
+            }
             const hash = await argon.hash(password);
 
             await prisma.user.create({

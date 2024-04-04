@@ -1,4 +1,5 @@
 // vitest.config.ts
+import path from "path";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -6,6 +7,11 @@ export default defineConfig({
         coverage: {
             provider: "v8", // or 'v8'
         },
-        exclude: ["**/node_modules/**", "**/dist/**", "**/.docker/**"]
+        exclude: ["**/node_modules/**", "**/dist/**", "**/.docker/**"],
+    },
+    resolve: {
+        alias: {
+            "@": path.resolve(__dirname, "./src"),
+        },
     },
 });
