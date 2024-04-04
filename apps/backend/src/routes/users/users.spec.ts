@@ -1,7 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { afterAll, describe, expect, it, afterEach } from "vitest";
 import request from "supertest";
 import { server } from "@/server";
 import { CreateUserDto } from "./schema/create-user";
+import { cleanDB, sleep } from "@/tests/helpers";
 
 const users: CreateUserDto[] = [
     {
@@ -83,9 +84,18 @@ describe("Users", () => {
         const app = server();
         await app.ready();
         const response = await request(app.server);
+
+        afterEach(async () => {
+            await cleanDB();
+        });
+
+        afterAll(async () => {
+            await cleanDB();
+            await app.close();
+        });
         it("should create a new user", async () => {
             const res = await response.post("/users").send(users[0]);
-            expect(res.status).toBe(400);
+            expect(res.status).toBe(201);
         });
 
         it("should not be possible to create a user without email", async () => {
@@ -94,7 +104,9 @@ describe("Users", () => {
         });
 
         it("should not be possible to create a user with an existing email", async () => {
+            sleep(1000);
             await response.post("/users").send(users[0]);
+            sleep(1000);
             const res = await response.post("/users").send(users[0]);
             expect(res.status).toBe(400);
         });
