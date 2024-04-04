@@ -139,4 +139,15 @@ describe("Users", () => {
             expect(res.status).toBe(400);
         });
     });
+
+    describe("GET /users", async () => {
+        const app = server();
+        await app.ready();
+        const response = await request(app.server);
+        
+        it("should return a list of users", async () => {
+            const res = await response.get("/users");
+            expect(res.status).toBe(200);
+        });
+    });
 });
