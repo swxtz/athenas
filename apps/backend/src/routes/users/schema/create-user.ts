@@ -7,3 +7,5 @@ export const createUserSchema = z.object({
     birthdate: z.string().datetime({ message: "A idade tem que ser datetime" }),
     document: z.string().min(11, "O documento deve conter minimo de 11 caracteres").max(12, "O documento deve conter apenas 12 caracteres ")
 });
+
+export type CreateUserDto = z.infer<typeof createUserSchema>;
