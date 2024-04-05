@@ -1,3 +1,4 @@
+/* v8 ignore start */
 import { server } from "./server";
 import { env } from "./utils/env";
 
@@ -8,3 +9,4 @@ async function start() {
 }
 
 start();
+/* v8 ignore stop */
