@@ -6,6 +6,7 @@
   "scripts": {
     "test": "vitest",
     "test:cov": "vitest run --coverage",
+    "test:ui": "vitest --ui",
     "dev": "tsx watch --env-file=.env ./src/index.ts",
     "build": "tsc",
     "lint": "eslint ./src",
@@ -22,6 +23,7 @@
     "@typescript-eslint/parser": "^7.2.0",
     "@vitest/coverage-istanbul": "^1.4.0",
     "@vitest/coverage-v8": "^1.4.0",
+    "@vitest/ui": "^1.4.0",
     "eslint": "^8.57.0",
     "prisma": "^5.11.0",
     "supertest": "^6.3.4",
@@ -31,6 +33,7 @@
   },
   "dependencies": {
     "@fastify/jwt": "^8.0.0",
+    "@fastify/swagger": "^8.14.0",
     "@prisma/client": "^5.11.0",
     "argon2": "^0.40.1",
     "fastify": "^4.26.2",
