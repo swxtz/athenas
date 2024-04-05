@@ -14,20 +14,21 @@ export async function usersRoutes(app: FastifyInstance) {
 
     app.post("/users", async (request: FastifyRequest, reply: FastifyReply) => {
         try {
-            const { email, name, birthdate, document, password } = createUserSchema.parse(request.body);
+            const { email, name, birthdate, document, password } =
+                createUserSchema.parse(request.body);
 
             const verifyUser = await prisma.user.findUnique({
                 where: {
-                    email
+                    email,
                 },
                 select: {
-                    email: true
-                }
+                    email: true,
+                },
             });
-            
+
             if (verifyUser) {
                 return reply.status(400).send({
-                    message: "E-mail já cadastrado"
+                    message: "E-mail já cadastrado",
                 });
             }
             const hash = await argon.hash(password);
@@ -38,13 +39,14 @@ export async function usersRoutes(app: FastifyInstance) {
                     document,
                     email,
                     name,
-                    password: hash
-                }
+                    password: hash,
+                },
             });
 
             return reply.code(201).send({
-                message: "Criado com sucesso"
+                message: "Criado com sucesso",
             });
+            /* v8 ignore next 20 */
         } catch (err) {
             if (err instanceof z.ZodError) {
                 reply.status(400).send({ message: err });

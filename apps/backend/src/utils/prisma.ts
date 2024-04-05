@@ -7,9 +7,10 @@ if (env.dev) {
     prisma = new PrismaClient({
         log: ["query", "info", "warn", "error"],
     });
-} else {
+
+    /* v8 ignore next 3 */
+} else { 
     prisma = new PrismaClient();
 }
 
 export { prisma };
-
