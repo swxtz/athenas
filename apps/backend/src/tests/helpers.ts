@@ -23,6 +23,6 @@ export async function cleanDB() {
     console.timeEnd("delete users 🗑️");
 }
 
-export async function sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+export function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
