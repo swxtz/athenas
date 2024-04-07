@@ -1,7 +1,7 @@
 import { afterAll, describe, expect, it, afterEach } from "vitest";
 import request from "supertest";
 import { server } from "@/server";
-import { CreateUserDto } from "./schema/create-user";
+import type { CreateUserDto } from "./schema/create-user";
 import { cleanDB, sleep } from "@/tests/helpers";
 
 const users: CreateUserDto[] = [
@@ -104,9 +104,9 @@ describe("Users", () => {
         });
 
         it("should not be possible to create a user with an existing email", async () => {
-            sleep(1000);
-            await response.post("/users").send(users[0]);
-            sleep(1000);
+            
+            const tmp = await response.post("/users").send(users[0]);
+            console.log(tmp);
             const res = await response.post("/users").send(users[0]);
             expect(res.status).toBe(400);
         });
