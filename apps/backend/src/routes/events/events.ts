@@ -46,4 +46,18 @@ export async function eventsRoutes(app: FastifyInstance) {
     });
 
 
+    app.get("/", async (req: FastifyRequest, reply: FastifyReply) => {
+        try {
+            const events = await prisma.event.findMany();
+
+            return reply.code(200).send({ date: { ...events } });
+        } catch (err) {
+            if (err instanceof z.ZodError) {
+                reply.status(400).send({ message: err });
+                return;
+            }
+
+            console.log(`Erro no servidor: ${err}`);
+        }
+    });
 }
