@@ -14,17 +14,25 @@ datasource db {
 }
 
 model User {
-    id               String   @id @unique @default(cuid())
-    name             String   @unique
-    email            String   @unique
-    emailVerified    Boolean  @default(false)
-    password         String
+    id String @id @unique @default(cuid())
+
+    name          String  @unique
+    gender        Gender?
+    email         String  @unique
+    emailVerified Boolean @default(false)
+    password      String
+
     document         String
-    documentVerified Boolean  @default(false)
-    birthdate        DateTime
-    userType         UserType @default(User)
-    createdAt        DateTime @default(now())
-    updatedAt        DateTime @updatedAt
+    documentVerified Boolean @default(false)
+
+    birthdate DateTime
+    userType  UserType @default(User)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    usedTicket      usedTicket[]
+    purchasedTicket purchasedTicket[]
 
     @@map("users")
 }
@@ -34,4 +42,66 @@ enum UserType {
     Admin
     Merchant
     Employee
+}
+
+enum Gender {
+    Female
+    Male
+    Other
+}
+
+model usedTicket {
+    id      String @id @unique @default(uuid())
+    ownerId String @map("owner_id")
+
+    owner User @relation(fields: [ownerId], references: [id])
+
+    name           String
+    mainAttraction String   @map("main_attraction")
+    date           DateTime
+
+    visitedAt DateTime @map("visited_at")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+    @@map("used_tickets")
+}
+
+model purchasedTicket {
+    id      String @id @unique @default(uuid())
+    ownerId String
+
+    name           String
+    location       String
+    mainAttraction String   @map("main_attraction")
+    date           DateTime
+
+    ownerName   String   @map("owner_name")
+    ticketType  String   @map("ticket_type")
+    purchasedAt DateTime @map("purchased_at")
+
+    qrCode String @map("qr_code")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+    owner User @relation(fields: [ownerId], references: [id])
+
+    @@map("purchased_tickets")
+}
+
+model Event {
+    id String @id @unique @default(cuid())
+
+    name           String
+    price          Int
+    mainAttraction String   @map("main_attraction")
+    location       String
+    date           DateTime
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+    @@map("events")
 }
