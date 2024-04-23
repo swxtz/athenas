@@ -2,7 +2,7 @@ import { afterAll, describe, expect, it, afterEach } from "vitest";
 import request from "supertest";
 import { server } from "@/server";
 import type { CreateUserDto } from "./schema/create-user";
-import { cleanDB, sleep } from "@/tests/helpers";
+import { cleanDB } from "@/tests/helpers";
 
 const users: CreateUserDto[] = [
     {
