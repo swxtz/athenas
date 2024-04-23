@@ -11,9 +11,9 @@ export function server() {
     app.register(fastifyJWT, { secret: env.jwtSecret });
 
     // Routes
-    app.register(usersRoutes); 
+    app.register(usersRoutes);
     app.register(eventsRoutes, { prefix: "/events" });
-    
+
 
     return app;
 }
