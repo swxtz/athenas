@@ -13,14 +13,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { InputError } from "@/components/ui/input-error";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+// import { useState } from "react";
 // import { Eye, EyeOff } from "lucide-react";
 // import { InputWithIcon } from "@/components/ui/input-with-icon";
 
 export function RegisterPage() {
   useDocumentTitle("invite.me | Crie sua conta");
 
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
 
   const createAccountSchema = z.object({
     name: z.string().min(2).max(255),
@@ -43,9 +43,9 @@ export function RegisterPage() {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function tooglePassword() {
-    setShowPassword(!showPassword);
-  }
+  // function tooglePassword() {
+  //   setShowPassword(!showPassword);
+  // }
   return (
     <main>
       <div className="h-screen my-24 flex items-center justify-center">
