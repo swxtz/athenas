@@ -111,7 +111,7 @@ export function RegisterPage() {
                           <div className="flex flex-row">
                             <FormControl {...field}>
                               <Input
-                                type={showPassword ? "text" : "password"}
+                                // type={showPassword ? "text" : "password"}
                                 placeholder="********"
                               />
                             </FormControl>
@@ -134,7 +134,7 @@ export function RegisterPage() {
                           <div className="flex flex-row">
                             <FormControl {...field}>
                               <Input
-                                type={showPassword ? "text" : "password"}
+                                // type={showPassword ? "text" : "password"}
                                 placeholder="********"
                               />
                             </FormControl>
