@@ -9,3 +9,5 @@ export const postEventSchema = z.object({
     date: z.string().datetime({ message: "A data precisa ser DateTime" }),
 
 });
+
+export type PostEventDTO = z.infer<typeof postEventSchema>;
