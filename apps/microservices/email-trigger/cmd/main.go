@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/swxtz/athenas/apps/microservices/email-trigger/internal/env"
+	"github.com/swxtz/athenas/apps/microservices/email-trigger/internal/trigger"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -12,6 +13,7 @@ func main() {
 
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
+		go trigger.SendSimpleEmail()
 		c.JSON(http.StatusOK, gin.H{
 			"message": "pong",
 		})
