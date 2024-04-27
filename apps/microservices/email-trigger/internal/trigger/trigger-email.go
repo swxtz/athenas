@@ -6,9 +6,10 @@ import (
 	"github.com/swxtz/athenas/apps/microservices/email-trigger/internal/env"
 )
 
-var apiKey = env.GetEnv("RESEND_API_KEY")
-
 func SendSimpleEmail() {
+
+	apiKey := env.GetEnv("RESEND_API_KEY")
+
 	client := resend.NewClient(apiKey)
 
 	params := &resend.SendEmailRequest{
