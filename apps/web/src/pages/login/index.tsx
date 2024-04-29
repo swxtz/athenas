@@ -11,7 +11,7 @@ export function LoginPage() {
         <div className="bg-zinc-900/40 py-12 w-[500px] rounded-2xl">
           <div>
             <h2 className="text-2xl text-center">Crie sua conta</h2>
-              <LoginForm />
+            <LoginForm />
             <div className="flex justify-center mt-4">
               <Separator className="w-3/5 " />
             </div>
