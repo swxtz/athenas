@@ -237,7 +237,7 @@ export function RegisterForm() {
               </div>
 
               <Button type="submit" className="w-full">
-                Crir conta
+                Criar conta
               </Button>
             </div>
           </form>
