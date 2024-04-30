@@ -105,8 +105,7 @@ describe("Users", () => {
 
         it("should not be possible to create a user with an existing email", async () => {
             
-            const tmp = await response.post("/users").send(users[0]);
-            console.log(tmp);
+            await response.post("/users").send(users[0]);
             const res = await response.post("/users").send(users[0]);
             expect(res.status).toBe(400);
         });

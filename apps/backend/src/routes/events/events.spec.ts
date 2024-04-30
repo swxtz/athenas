@@ -1,8 +1,8 @@
-import { afterAll, describe, expect, it, afterEach } from "node:test";
 import { PostEventDTO } from "./schemas/post-event";
-import { afterAll, afterEach } from "vitest";
+import { afterAll, describe, expect, it, afterEach } from "vitest";
 import { cleanDB } from "@/tests/helpers";
 import request from "supertest";
+import { server } from "@/server";
 
 
 const events: PostEventDTO[] = [
@@ -118,6 +118,20 @@ describe("Events", () => {
         afterAll(async () => {
             await cleanDB();
             await app.close();
+        });
+        it("should create a new event", async () => {
+            const res = await response.post("/users").send(events[0]);
+            expect(res.status).toBe(201);
+        });
+        it("should not be possible to create a event with", async () => {
+            
+            await response.post("/users").send(events[0]);
+            const res = await response.post("/users").send(events[0]);
+            expect(res.status).toBe(400);
+        });
+        it("should ", async () => {
+            const res = await response.post("/users").send(events[1]);
+            expect(res.status).toBe(400);
         });
 
     });
