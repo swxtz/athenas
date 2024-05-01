@@ -145,16 +145,40 @@ describe("Events", () => {
             const res = await response.post("/events").send(events[4]);
             expect(res.status).toBe(400);
         });
-        it("should not be possible to create a event with an negative price", async () => {
+        it("should not be possible to create a event with an non-integer number", async () => {
             
             await response.post("/events").send(events[5]);
             const res = await response.post("/events").send(events[5]);
             expect(res.status).toBe(400);
         });
-        it("should not be possible to create a event with an non-integer number", async () => {
+        it("should not be possible to create a event with an negative price", async () => {
             
             await response.post("/events").send(events[6]);
             const res = await response.post("/events").send(events[6]);
+            expect(res.status).toBe(400);
+        });
+        it("should not be possible to create a event without a main attraction", async () => {
+            
+            await response.post("/events").send(events[7]);
+            const res = await response.post("/events").send(events[7]);
+            expect(res.status).toBe(400);
+        });
+        it("should not be possible to create a event without location", async () => {
+            
+            await response.post("/events").send(events[8]);
+            const res = await response.post("/events").send(events[8]);
+            expect(res.status).toBe(400);
+        });
+        it("should not be possible to create a event without date", async () => {
+            
+            await response.post("/events").send(events[9]);
+            const res = await response.post("/events").send(events[9]);
+            expect(res.status).toBe(400);
+        });
+        it("should not be possible to create a event with an invalid date", async () => {
+            
+            await response.post("/events").send(events[10]);
+            const res = await response.post("/events").send(events[10]);
             expect(res.status).toBe(400);
         });
     });
