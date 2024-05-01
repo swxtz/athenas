@@ -120,19 +120,42 @@ describe("Events", () => {
             await app.close();
         });
         it("should create a new event", async () => {
-            const res = await response.post("/users").send(events[0]);
+            const res = await response.post("/events").send(events[0]);
             expect(res.status).toBe(201);
         });
-        it("should not be possible to create a event with", async () => {
+        it("should not be possible to create a event without name ", async () => {
+            const res = await response.post("/events").send(events[1]);
+            expect(res.status).toBe(400);
+        });
+        it("should not be possible to create an event with a name longer than 403 characters", async () => {
             
-            await response.post("/users").send(events[0]);
-            const res = await response.post("/users").send(events[0]);
+            await response.post("/events").send(events[2]);
+            const res = await response.post("/events").send(events[2]);
             expect(res.status).toBe(400);
         });
-        it("should ", async () => {
-            const res = await response.post("/users").send(events[1]);
+        it("should not be possible to create a event without a url", async () => {
+            
+            await response.post("/events").send(events[3]);
+            const res = await response.post("/events").send(events[3]);
             expect(res.status).toBe(400);
         });
-
+        it("should not be possible to create a event with an invalid url", async () => {
+            
+            await response.post("/events").send(events[4]);
+            const res = await response.post("/events").send(events[4]);
+            expect(res.status).toBe(400);
+        });
+        it("should not be possible to create a event with an negative price", async () => {
+            
+            await response.post("/events").send(events[5]);
+            const res = await response.post("/events").send(events[5]);
+            expect(res.status).toBe(400);
+        });
+        it("should not be possible to create a event with an non-integer number", async () => {
+            
+            await response.post("/events").send(events[6]);
+            const res = await response.post("/events").send(events[6]);
+            expect(res.status).toBe(400);
+        });
     });
 });
