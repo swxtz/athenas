@@ -182,4 +182,15 @@ describe("Events", () => {
             expect(res.status).toBe(400);
         });
     });
+
+    describe("GET /events", async () => {
+        const app = server();
+        await app.ready();
+        const response = await request(app.server);
+        
+        it("should return a list of events", async () => {
+            const res = await response.get("/events");
+            expect(res.status).toBe(200);
+        });
+    });
 });

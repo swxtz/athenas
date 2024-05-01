@@ -5,6 +5,13 @@ import { prisma } from "@/utils/prisma";
 
 
 export async function eventsRoutes(app: FastifyInstance) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    app.get("/all", async (request: FastifyRequest, reply: FastifyReply) => {
+        const event = await prisma.event.findMany();
+
+        return event;
+    });
+
     app.post("/", async (req: FastifyRequest, reply: FastifyReply) => {
         //autenticação
 
@@ -23,7 +30,7 @@ export async function eventsRoutes(app: FastifyInstance) {
             if (price < 0) {
                 return reply.code(400).send({ message: "O preço não pode ser negativo" });
             }
-            
+
             const event = await prisma.event.create({
                 data: {
                     date,
