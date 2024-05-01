@@ -20,6 +20,10 @@ export async function eventsRoutes(app: FastifyInstance) {
 
             }
 
+            if (price < 0) {
+                return reply.code(400).send({ message: "O preço não pode ser negativo" });
+            }
+            
             const event = await prisma.event.create({
                 data: {
                     date,
