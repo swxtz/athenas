@@ -9,14 +9,14 @@ const user:CreateUserDto[]=[
     {
         name: "Jonh Doe",
         email: "john.doe@exemple.com",
-        password: "12345678",
+        password: "jorge123",
         birthdate: "2024-04-04T22:18:05.629Z",
         document: "12345678901",
     }
 ];
 const auth: AuthUserDTO[] = [
     {
-        email: "jorge1@gmail.com",
+        email: "john.doe@exemple.com",
         password: "jorge123"
     },
     {
@@ -52,28 +52,29 @@ describe("Users", () => {
             await app.close();
         });
         it("should create a new user", async () => {
-            const res = await response.post("/auth").send(user[0]);
-            expect(res.status).toBe(201);
+            await response.post("/users").send(user[0]);
+            const res = await response.post("/auth").send(auth[0]);
+            expect(res.status).toBe(200);
         });
         it("should no possible create a email without password", async() =>{
-            const res = await response.post("/auth").send(user[1]);
+            const res = await response.post("/auth").send(auth[1]);
             expect(res.status).toBe(400);
         });
         it("should no possible create a user with an invalid email", async() =>{
-            const res = await response.post("/auth").send(user[2]);
+            const res = await response.post("/auth").send(auth[2]);
             expect(res.status).toBe(400);
         });
         it("should no possible create a user without a email", async() =>{
-            const res = await response.post("/auth").send(user[3]);
+            const res = await response.post("/auth").send(auth[3]);
             expect(res.status).toBe(400);
         });
         it("should no possible create a password shorter than 8 characters", async() =>{
-            const res = await response.post("/auth").send(user[4]);
+            const res = await response.post("/auth").send(auth[4]);
             expect(res.status).toBe(400);
         });
         it("should not be possible to create a user with an existing email", async () => {
-            await response.post("/auth").send(user[5]);
-            const res = await response.post("/auth").send(user[5]);
+            await response.post("/auth").send(auth[5]);
+            const res = await response.post("/auth").send(auth[5]);
             expect(res.status).toBe(400);
         });
     });
