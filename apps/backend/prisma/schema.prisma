@@ -94,7 +94,7 @@ model purchasedTicket {
 model Event {
     id String @id @unique @default(cuid())
 
-    name           String   
+    name           String   @unique
     imageUrl       String
     price          Int
     mainAttraction String   @map("main_attraction")
