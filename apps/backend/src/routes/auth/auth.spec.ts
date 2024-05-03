@@ -51,28 +51,28 @@ describe("Users", () => {
             await cleanDB();
             await app.close();
         });
-        it("should create a new user", async () => {
+        it("should successfully authenticate ", async () => {
             await response.post("/users").send(user[0]);
             const res = await response.post("/auth").send(auth[0]);
             expect(res.status).toBe(200);
         });
-        it("should no possible create a email without password", async() =>{
+        it("should no be possible to authenticate email without password", async() =>{
             const res = await response.post("/auth").send(auth[1]);
             expect(res.status).toBe(400);
         });
-        it("should no possible create a user with an invalid email", async() =>{
+        it("should no be possible to authenticate with an invalid email", async() =>{
             const res = await response.post("/auth").send(auth[2]);
             expect(res.status).toBe(400);
         });
-        it("should no possible create a user without a email", async() =>{
+        it("should no be possible to authenticate without a email", async() =>{
             const res = await response.post("/auth").send(auth[3]);
             expect(res.status).toBe(400);
         });
-        it("should no possible create a password shorter than 8 characters", async() =>{
+        it("should no be possible to authenticate with a password shorter than 8 characters", async() =>{
             const res = await response.post("/auth").send(auth[4]);
             expect(res.status).toBe(400);
         });
-        it("should not be possible to create a user with an existing email", async () => {
+        it("should no be possible to authenticate with an existing email", async () => {
             await response.post("/auth").send(auth[5]);
             const res = await response.post("/auth").send(auth[5]);
             expect(res.status).toBe(400);

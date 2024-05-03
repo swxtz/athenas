@@ -2,6 +2,7 @@ import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { postEventSchema } from "./schemas/post-event";
 import { z } from "zod";
 import { prisma } from "@/utils/prisma";
+import { getEventByNameSchema } from "./schemas/get-event-by-name";
 
 
 export async function eventsRoutes(app: FastifyInstance) {
@@ -71,4 +72,31 @@ export async function eventsRoutes(app: FastifyInstance) {
             console.log(`Erro no servidor: ${err}`);
         }
     });
+
+    app.get(
+        "/:name",
+        async (request: FastifyRequest, reply: FastifyReply) => {
+            try {
+                const { name } = getEventByNameSchema.parse(request.params);
+
+                const names = await prisma.event.findFirst({ 
+                    where: { name: name }
+                });  
+                
+                if (!names) {
+                    return reply.status(404).send({ message: "Evento não encontrado" });
+                }
+
+                return reply.status(200).send({ message: "Evento encontrado" });
+            }
+            catch (err) {
+                if (err instanceof z.ZodError) {
+                    reply.status(400).send({ message: err });
+                    return;
+                }
+    
+                console.log(`Erro no servidor: ${err}`);
+            }
+        },
+    );
 }
