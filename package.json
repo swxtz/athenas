@@ -1,0 +1,13 @@
+{
+  "name": "athenas",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:swxtz/athenas.git",
+  "author": "Gustavo Mendonça <dev.gustavomendonca@protonmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "apps/backend"
+  ]
+}
