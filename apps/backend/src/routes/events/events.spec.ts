@@ -3,8 +3,22 @@ import { afterAll, describe, expect, it, afterEach } from "vitest";
 import { cleanDB } from "@/tests/helpers";
 import request from "supertest";
 import { server } from "@/server";
+import { GetEventByNameSchema } from "./schemas/get-event-by-name";
 
-
+const searchurl: GetEventByNameSchema[] = [
+    {
+        name: "TERRA"
+    },
+    {
+        name: ""
+    },
+    {
+        name: "T"
+    },
+    {
+        name: "TERRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+];
 const events: PostEventDTO[] = [
     {
         name: "TERRA",
@@ -191,6 +205,51 @@ describe("Events", () => {
         it("should return a list of events", async () => {
             const res = await response.get("/events");
             expect(res.status).toBe(200);
+        });
+    });
+});
+
+describe("Searchs", () => {
+    describe("POST /events", async () => {
+        const app = server();
+        await app.ready();
+        const response= await request(app.server);
+
+        afterEach(async () => {
+            await cleanDB();
+        });
+
+        afterAll(async () => {
+            await cleanDB();
+            await app.close();
+        });
+
+        it("should return an event", async () => {
+            
+            await response.post("/events").send(searchurl[0]);
+            const res = await response.post("/events").send(searchurl[0]);
+            expect(res.status).toBe(200);
+        });
+
+        it("should not be possible to search an event without a name", async () => {
+            
+            await response.post("/events").send(searchurl[1]);
+            const res = await response.post("/events").send(searchurl[1]);
+            expect(res.status).toBe(400);
+        });
+
+        it("should not be possible to search an event with a name smaller than 2 characters", async () => {
+            
+            await response.post("/events").send(searchurl[2]);
+            const res = await response.post("/events").send(searchurl[2]);
+            expect(res.status).toBe(400);
+        });
+
+        it("should not be possible to search an event with a name longer than 255 characters", async () => {
+            
+            await response.post("/events").send(searchurl[3]);
+            const res = await response.post("/events").send(searchurl[3]);
+            expect(res.status).toBe(400);
         });
     });
 });
