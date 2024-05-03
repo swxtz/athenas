@@ -1,5 +1,14 @@
-/** @type {import("eslint").Linter.Config} */
 module.exports = {
-  root: true,
-  extends: ["@repo/eslint-config/index.js"],
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "@swxtz/eslint-config/react"
+  ],
+
+  "react/react-in-jsx-scope": "off",
 };
