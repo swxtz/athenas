@@ -18,6 +18,7 @@
   "license": "MIT",
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^10.8.0",
+    "@swxtz/eslint-config": "^1.0.0",
     "@types/node": "^20.11.26",
     "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

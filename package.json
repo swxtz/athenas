@@ -5,9 +5,5 @@
   "repository": "git@github.com:swxtz/athenas.git",
   "author": "Gustavo Mendonça <dev.gustavomendonca@protonmail.com>",
   "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "apps/web",
-    "apps/backend"
-  ]
+  "private": true
 }
