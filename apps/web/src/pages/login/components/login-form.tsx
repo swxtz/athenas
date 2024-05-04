@@ -2,32 +2,39 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { InputError } from "@/components/ui/input-error";
+import { useMutationCreateUser } from "@/hooks/queries/mutation/create-user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import cookies from "js-cookie";
+
+const loginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8).max(255),
+});
+
+export type Login = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-
-  const loginSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(8).max(255),
-  });
-
-  type Login = z.infer<typeof loginSchema>;
+  const { mutate, data, isSuccess } = useMutationCreateUser();
 
   const form = useForm<Login>({
     resolver: zodResolver(loginSchema)
   });
 
   function handleLogin(data: Login) {
-    console.log(data);
+    mutate(data);
   }
 
   function tooglePassword() {
     setShowPassword(!showPassword);
+  }
+
+  if (isSuccess) {
+    cookies.set("user-jwt", data.data.token, { expires: 30 });
   }
 
   return (
