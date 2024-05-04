@@ -1,6 +1,8 @@
 import Fastify from "fastify";
-import { usersRoutes } from "@/routes/users/users";
 import fastifyJWT from "@fastify/jwt";
+import fastifyCORS from "@fastify/cors";
+
+import { usersRoutes } from "@/routes/users/users";
 import { env } from "./utils/env";
 import { eventsRoutes } from "./routes/events/events";
 import { authRoutes } from "./routes/auth/auth";
@@ -10,6 +12,7 @@ export function server() {
 
     // Modules
     app.register(fastifyJWT, { secret: env.jwtSecret });
+    app.register(fastifyCORS, { origin: "*" });
 
     // Routes
     app.register(usersRoutes);
