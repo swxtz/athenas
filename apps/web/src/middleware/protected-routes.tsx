@@ -1,16 +1,19 @@
-import { useAuth } from "@/hooks/use-auth";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import cookies from "js-cookie";
 
 export function ProtectedRoutes() {
-  const { isAuthenticated } = useAuth();
+  const token = cookies.get("user-jwt");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!isAuthenticated) {
+    if(token) {
+      return navigate("/dashboard");
+      
+    } else {
       return navigate("/login");
     }
-  }, [isAuthenticated, navigate]);
+  }, [token, navigate]);
 
   return (
     <>

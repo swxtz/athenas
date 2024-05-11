@@ -28,7 +28,7 @@ export function signOut() {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
-  const isAuthenticated = !!user;
+  const isAuthenticated = true;
 
   useEffect(() => {
     const token = cookies.get("user-jwt");
@@ -38,8 +38,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const { email } = response.data;
 
         setUser({ email });
-      }).catch(() => {
-        signOut();
       });
     }
   }, []);
