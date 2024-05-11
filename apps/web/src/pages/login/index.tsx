@@ -4,7 +4,7 @@ import { LoginForm } from "./components/login-form";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 export function LoginPage() {
-  useDocumentTitle("invite.me | Entre com sua conta");
+  useDocumentTitle("Entre com sua conta");
 
   const navigate = useNavigate();
 

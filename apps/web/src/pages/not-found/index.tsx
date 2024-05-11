@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export function NotFound() {
   const navigate = useNavigate();
 
-  useDocumentTitle("Pagína não encontrada | invite.me");
+  useDocumentTitle("Pagína não encontrada");
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   function handleGoBack(event: any) {
