@@ -17,16 +17,18 @@ const queryClient = new QueryClient();
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <BrowserRouter>
-        <AuthProvider>
-          <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-            <Toaster />
-            <ReactQueryDevtools initialIsOpen={false} />
-          </ThemeProvider>
-        </AuthProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+    <div className="font-poppins">
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <BrowserRouter>
+          <AuthProvider>
+            <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+              <Toaster />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </ThemeProvider>
+          </AuthProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </div>
   </React.StrictMode>
 );
