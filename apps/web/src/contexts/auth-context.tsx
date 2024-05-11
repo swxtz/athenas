@@ -1,31 +1,51 @@
 import { type ReactNode, createContext, useState, useEffect } from "react";
 import cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
+import { api } from "@/lib/axios";
 
-const AuthContext = createContext({});
+interface User {
+  email: string
+  // resto
+}
+
+interface AuthContextData {
+  isAuthenticated: boolean
+  user: User | undefined
+}
 
 interface AuthProviderProps {
   children: ReactNode
 }
 
+export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+
+export function signOut() {
+  cookies.remove("user-jwt");
+
+  return redirect("/login");
+}
+
+
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [userJWT, setUserJWT] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const [user, setUser] = useState<User>();
+  const isAuthenticated = !!user;
 
   useEffect(() => {
-    const jwt = cookies.get("user-jwt");
+    const token = cookies.get("user-jwt");
 
-    if (!jwt) {
-      return navigate("/login")
+    if (token) {
+      api.get("/users/get").then((response) => {
+        const { email } = response.data;
+
+        setUser({ email });
+      }).catch(() => {
+        signOut();
+      });
     }
-
-    setUserJWT(jwt);
-  });
-
+  }, []);
   return (
-    <AuthContext.Provider value={{ userJWT }}>
+    <AuthContext.Provider value={{ user, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );       
-  
 }
