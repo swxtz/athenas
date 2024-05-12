@@ -3,9 +3,8 @@ import { Separator } from "@/components/ui/separator";
 import { LoginForm } from "./components/login-form";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-
 export function LoginPage() {
-  useDocumentTitle("invite.me | Entre com sua conta");
+  useDocumentTitle("Entre com sua conta");
 
   const navigate = useNavigate();
 
@@ -32,7 +31,11 @@ export function LoginPage() {
           </div>
 
           <div className="flex items-center justify-center mt-4">
-            <Button variant={"link"} className="mx-auto" onClick={redirectToRegister}>
+            <Button
+              variant={"link"}
+              className="mx-auto"
+              onClick={redirectToRegister}
+            >
               Crie sua conta
             </Button>
           </div>

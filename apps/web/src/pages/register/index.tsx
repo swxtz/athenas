@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 export function RegisterPage() {
-  useDocumentTitle("invite.me | Crie sua conta");
+  useDocumentTitle("Crie sua conta");
   const navigate = useNavigate();
 
   function redirectToLogin() {
