@@ -43,7 +43,7 @@ export function Navbar() {
   const token = cookies.get("user-jwt");
 
   return (
-    <motion.nav className="container bg-zinc-900/50" initial={{ y: -200 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
+    <motion.nav className="bg-zinc-900/50" initial={{ y: -200 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
       <div className="hidden md:flex">
         <div className="container py-7 flex flex-row items-center justify-between">
           <div className="">
