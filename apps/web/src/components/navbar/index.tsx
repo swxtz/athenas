@@ -9,6 +9,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { Separator } from "../ui/separator";
 import { signOut } from "@/contexts/auth-context";
+import { AvatarPopover } from "../avatar-popover";
 
 interface LinkType {
   to: string;
@@ -60,8 +61,7 @@ export function Navbar() {
           <div className="flex flex-row gap-4">
             {token ? (<AvatarNavbar token={token} />) : (
               <>
-                <Button className="font-medium" variant={"secondary"} asChild><Link to="/register">Crie sua conta</Link></Button>
-                <Button className="font-medium" variant={"secondary"} asChild><Link to="login">Entre</Link></Button>
+                <AvatarPopover />
               </>
             )}
           </div>
