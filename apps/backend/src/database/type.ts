@@ -1,3 +1,5 @@
 import type { CreateUserDto } from "@/routes/users/schema/create-user";
 
-export type User = CreateUserDto;
+export interface User extends CreateUserDto {
+    emailVerifiedToken: string;
+}

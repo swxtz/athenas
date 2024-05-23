@@ -8,10 +8,11 @@ const schema = z.object({
     DATABASE_URL: z.string(),
     DEV_ENV: z.coerce.boolean(),
     JWT_SECRET: z.string(),
-    RABBITMQ_URL: z.string()
+    RABBITMQ_URL: z.string(),
+    FRONTEND_URL: z.string()
 });
 
-const { DATABASE_URL, PORT, DEV_ENV, JWT_SECRET, RABBITMQ_URL } = schema.parse(process.env);
+const { DATABASE_URL, PORT, DEV_ENV, JWT_SECRET, RABBITMQ_URL, FRONTEND_URL } = schema.parse(process.env);
 
 export const env = {
     port: PORT,
@@ -19,4 +20,5 @@ export const env = {
     dev: DEV_ENV,
     jwtSecret: JWT_SECRET,
     rabbitmqUrl: RABBITMQ_URL,
+    frontendUrl: FRONTEND_URL,
 };

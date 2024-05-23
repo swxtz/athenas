@@ -3,6 +3,7 @@ import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { createUserSchema } from "./schema/create-user";
 import { z } from "zod";
 import { argon } from "@/utils/argon";
+import { env } from "@/utils/env";
 
 export async function usersRoutes(app: FastifyInstance) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -33,6 +34,21 @@ export async function usersRoutes(app: FastifyInstance) {
             }
             const hash = await argon.hash(password);
 
+            const emailJwt = await app.jwt.sign({
+                email, 
+            }, {
+                expiresIn: 1800 //30 minutos
+            });
+
+            // rabbit aqui
+            
+            const verifyUrl = `${env.frontendUrl}/verify-email?code=${emailJwt}`;
+
+            console.log(verifyUrl);
+
+            // final do rabbit
+
+
             await prisma.user.create({
                 data: {
                     birthdate,
@@ -40,6 +56,7 @@ export async function usersRoutes(app: FastifyInstance) {
                     email,
                     name,
                     password: hash,
+                    emailVerifiedToken: emailJwt
                 },
             });
 

@@ -9,6 +9,7 @@ const users: User[] = [
         birthdate: "1970-01-01T00:00:00.000Z",
         document: "12312312333",
         password: "password",
+        emailVerifiedToken: "token"
     },
 
     {
@@ -17,6 +18,7 @@ const users: User[] = [
         birthdate: "1970-01-01T00:00:00.000Z",
         document: "12312312334",
         password: "supersenha",
+        emailVerifiedToken: "token"
     },
 ];
 
