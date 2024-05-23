@@ -1,12 +1,12 @@
-
 import { emailChannel } from "@/utils/rabbitmq";
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 
 export async function testRoutes(app: FastifyInstance) {
     app.get("/", async (req: FastifyRequest, reply: FastifyReply) => {
         const channel = await emailChannel();
-        await channel.assertQueue("teste");
-        await channel.sendToQueue("teste", Buffer.from("Hello World!"));
+        channel.assertQueue("teste");
+        channel.sendToQueue("teste", Buffer.from("Hello World!"));
+        
         
     });
 

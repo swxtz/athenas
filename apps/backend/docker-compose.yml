@@ -12,3 +12,9 @@ services:
       POSTGRES_DB: athenas
     volumes:
       - .docker/athenas-db-data:/var/lib/postgresql/data
+  rabbitmq: 
+    image: rabbitmq:3.13.2-management-alpine 
+    container_name: athenas-rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"  
