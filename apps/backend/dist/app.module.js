@@ -9,10 +9,8 @@ Object.defineProperty(exports, "AppModule", {
     }
 });
 const _common = require("@nestjs/common");
-const _appcontroller = require("./app.controller");
-const _appservice = require("./app.service");
-const _prismaservice = require("./prisma/prisma.service");
 const _prismamodule = require("./prisma/prisma.module");
+const _config = require("@nestjs/config");
 function _ts_decorate(decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -24,15 +22,13 @@ let AppModule = class AppModule {
 AppModule = _ts_decorate([
     (0, _common.Module)({
         imports: [
-            _prismamodule.PrismaModule
+            _prismamodule.PrismaModule,
+            _config.ConfigModule.forRoot({
+                isGlobal: true
+            })
         ],
-        controllers: [
-            _appcontroller.AppController
-        ],
-        providers: [
-            _appservice.AppService,
-            _prismaservice.PrismaService
-        ]
+        controllers: [],
+        providers: []
     })
 ], AppModule);
 
