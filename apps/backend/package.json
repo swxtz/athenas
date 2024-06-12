@@ -29,8 +29,11 @@
     "@swc/cli": "^0.3.12",
     "@swc/core": "^1.5.28",
     "@swc/jest": "^0.2.36",
+    "argon2": "^0.40.3",
+    "nestjs-zod": "^3.0.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

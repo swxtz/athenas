@@ -3,18 +3,18 @@ import { AppModule } from "./app.module";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule);
 
-  const swaggerConfig = new DocumentBuilder()
-    .setTitle("Athenas")
-    .setDescription("API do ecommerce da RN Distriuidora")
-    .setVersion("0.0.0")
-    .addTag("e-commerce")
-    .build();
+    const swaggerConfig = new DocumentBuilder()
+        .setTitle("Athenas")
+        .setDescription("API do ecommerce da RN Distriuidora")
+        .setVersion("0.0.0")
+        .addTag("e-commerce")
+        .build();
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup("api-docs", app, document);
+    const document = SwaggerModule.createDocument(app, swaggerConfig);
+    SwaggerModule.setup("api-docs", app, document);
 
-  await app.listen(3000);
+    await app.listen(3000);
 }
 bootstrap();
