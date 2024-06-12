@@ -18,7 +18,7 @@ export class UsersService {
         });
 
         if (verifyUser) {
-            throw new HttpException("Esse email ja esta cadastrado.", 400);
+            throw new HttpException("Esse email já está cadastrado.", 400);
         }
 
         try {
@@ -30,7 +30,7 @@ export class UsersService {
                 },
             });
 
-            return { message: "usuario criado com sucesso", data: { ...user } };
+            return { message: "Usuario criado com sucesso", data: { ...user } };
         } catch (err) {
             console.log(err);
             throw new HttpException(err, 500);

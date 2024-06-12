@@ -29,7 +29,7 @@ let UsersService = class UsersService {
             }
         });
         if (verifyUser) {
-            throw new _common.HttpException("Esse email ja esta cadastrado.", 400);
+            throw new _common.HttpException("Esse email já está cadastrado.", 400);
         }
         try {
             const user = await this.prisma.user.create({
@@ -40,7 +40,7 @@ let UsersService = class UsersService {
                 }
             });
             return {
-                message: "usuario criado com sucesso",
+                message: "Usuario criado com sucesso",
                 data: {
                     ...user
                 }
