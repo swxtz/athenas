@@ -16,5 +16,15 @@ model User {
     email    String @unique
     password String
 
+    userType UserType @default(consumer) @map("user_type")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
     @@map("users")
+}
+
+enum UserType {
+    consumer
+    admim
 }
