@@ -7,4 +7,9 @@ export class ArgonService {
         const hash = await argon.hash(raw);
         return hash;
     }
+
+    async verify(raw: string, hash: string): Promise<boolean> {
+        const hashIsValid = await argon.verify(hash, raw);
+        return hashIsValid;
+    }
 }
