@@ -36,4 +36,10 @@ export class UsersService {
             throw new HttpException(err, 500);
         }
     }
+
+    async getAllUsers() {
+        const users = await this.prisma.user.findMany();
+
+        return { data: { ...users } };
+    }
 }
