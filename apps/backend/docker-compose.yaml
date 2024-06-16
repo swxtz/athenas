@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  athenas-db:
+    image: postgres:16.2
+    container_name: athenas-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: athenas
+      POSTGRES_PASSWORD: athenas
+      POSTGRES_DB: athenas
+    volumes:
+      - .docker/athenas-db-data:/var/lib/postgresql/data
