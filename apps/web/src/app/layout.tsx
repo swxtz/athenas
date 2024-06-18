@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,13 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body
-        className={cn("antialiased bg-zinc-950 text-zinc-200", inter.className)}
-      >
-        {children}
+      <body className={cn("antialiased ", inter.className)}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>{children}</ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
-      <Analytics />
-      <SpeedInsights />
     </html>
   );
 }
