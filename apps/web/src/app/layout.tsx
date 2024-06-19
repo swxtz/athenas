@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { Navbar } from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={cn("antialiased ", inter.className)}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>{children}</ThemeProvider>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <div className="">
+            <Navbar />
+          </div>
+          {children}</ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>
