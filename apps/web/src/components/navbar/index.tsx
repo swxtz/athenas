@@ -7,7 +7,7 @@ import {
   Dialog,
   DialogPortal,
   DialogTrigger,
-  DialogContent,
+  DialogContent
 } from "@radix-ui/react-dialog";
 import { DialogOverlay } from "../ui/dialog";
 
@@ -31,7 +31,7 @@ export function Navbar() {
 
           <DialogPortal>
             <DialogOverlay className="fixed inset-0 bg-white/40" />
-            <DialogContent className="fixed p-10 right-0 top-0 bottom-0 h-screen w-3/4 md:w-1/2 lg:w-1/5 bg-slate-200 border-l border-zinc-900 container">
+            <DialogContent className="fixed p-10 m-0 right-0 top-0 bottom-0 h-screen w-3/4 md:w-1/2 lg:w-1/5 bg-slate-200 border-l border-zinc-900 container data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-right-1/2 data-[state=open]:slide-in-from-right-1/2">
               <p>conteudo...</p>
             </DialogContent>
           </DialogPortal>
