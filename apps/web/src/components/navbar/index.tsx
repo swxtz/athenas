@@ -13,7 +13,7 @@ import { DialogOverlay } from "../ui/dialog";
 
 export function Navbar() {
   return (
-    <nav className="py-4 bg-amber-600 flex justify-between items-center">
+    <nav className="py-4 bg-amber-600 flex justify-between items-center shadow">
       <div className="px-6 lg:px-24 w-full flex items-center justify-between">
         <Image
           src={logo}
