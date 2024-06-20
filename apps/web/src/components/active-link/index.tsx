@@ -18,7 +18,7 @@ export function ActiveLink({ children, href, icon }: ActiveLinkProps) {
   const isActive = link === href;
   return (
     <div className="">
-      <Button asChild variant={"link"} className="transition-all "><Link href={href} className={cn("flex gap-1 hover:text-zinc-600", isActive ? "font-bold text-lg" : "")}>{icon}{children}</Link></Button>
+      <Button asChild variant={"link"} className="transition-all px-0"><Link href={href} className={cn("flex gap-1 hover:text-zinc-600", isActive ? "font-bold text-lg" : "")}>{icon}{children}</Link></Button>
     </div>
   );
 }
