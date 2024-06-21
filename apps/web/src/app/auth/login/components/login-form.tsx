@@ -12,9 +12,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ErrorInputDisplay } from "@/components/ui/error-input-display";
 
 const formSchema = z.object({
-  email: z.string().email(),
+  email: z.string().email("Digite um e-mail válido"),
   password: z.string().min(8),
 });
 
@@ -41,6 +42,10 @@ export function LoginForm() {
                 <FormControl>
                   <Input type="email" placeholder="joãodetal@exemplo.com" />
                 </FormControl>
+
+                {form.formState.errors.email && (
+                  <ErrorInputDisplay>{form.formState.errors.email.message}</ErrorInputDisplay>
+                )}
               </FormItem>
             )}
           />
@@ -54,11 +59,15 @@ export function LoginForm() {
                 <FormControl>
                   <Input type="password" placeholder="********" />
                 </FormControl>
+
+                {form.formState.errors.password && (
+                  <ErrorInputDisplay>{form.formState.errors.password.message}</ErrorInputDisplay>
+                )}
               </FormItem>
             )}
           />
 
-          <Button type="submit" variant={"default"} className="">Logar</Button>
+          <Button type="submit" variant={"default"} className="">Entrar</Button>
         </div>
       </form>
     </Form>
