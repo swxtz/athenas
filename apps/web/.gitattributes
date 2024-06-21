@@ -15,3 +15,5 @@
 *.ico binary
 
 *.svg text
+
+*.lockb binary
