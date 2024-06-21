@@ -2,6 +2,12 @@ import { HttpException, Injectable } from "@nestjs/common";
 import { CreateUserDTO } from "./dtos/create-user.dto";
 import { PrismaService } from "src/prisma/prisma.service";
 import { ArgonService } from "src/argon/argon.service";
+import { UserEntity } from "./entity/user.entity";
+
+export interface CreateUserPromise {
+    message: string;
+    data: UserEntity;
+}
 
 @Injectable()
 export class UsersService {
@@ -10,7 +16,7 @@ export class UsersService {
         private argon: ArgonService,
     ) {}
 
-    async createUser(user: CreateUserDTO) {
+    async createUser(user: CreateUserDTO): Promise<CreateUserPromise> {
         const { email, name, password } = user;
 
         const verifyUser = await this.prisma.user.findFirst({
