@@ -4,8 +4,9 @@ export class UserEntity {
     id: string;
     name: string;
     email: string;
-    password: string;
-    userType: $Enums.UserType;
+    emailVerified: boolean;
+    emailVerificatedAt: Date;
+    userType: $Enums.UserType[];
     createdAt: Date;
     updatedAt: Date;
 

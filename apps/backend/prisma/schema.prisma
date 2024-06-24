@@ -18,11 +18,10 @@ model User {
     id   String @id @default(cuid())
     name String
 
-    email                  String    @unique
-    emailVerified          Boolean   @default(false) @map("email_verified")
-    emailVerificationToken String?   @map("email_verification_token")
-    emailVerifiedAt        DateTime? @map("email_verified_at")
-    password               String
+    email              String    @unique
+    emailVerified      Boolean   @default(false) @map("email_verified")
+    emailVerificatedAt DateTime? @map("email_verificated_at")
+    password           String
 
     userType UserType[] @default([consumer]) @map("user_type")
 
