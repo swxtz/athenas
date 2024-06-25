@@ -4,6 +4,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { ArgonService } from "src/argon/argon.service";
 import { UserEntity } from "./entity/user.entity";
 import { JwtService } from "@nestjs/jwt";
+import { CreateUserResponse } from "./response/create-user.response";
 //import { ResendService } from "src/resend/resend.service";
 
 export interface CreateUserPromise {
@@ -22,7 +23,7 @@ export class UsersService {
 
     private logger = new Logger(UsersService.name);
 
-    async createUser(user: CreateUserDTO): Promise<CreateUserPromise> {
+    async createUser(user: CreateUserDTO): Promise<CreateUserResponse> {
         const { email, name, password } = user;
 
         const verifyUser = await this.prisma.user.findFirst({
