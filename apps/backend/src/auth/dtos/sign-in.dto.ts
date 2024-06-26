@@ -12,11 +12,9 @@ const schema = z.object({
         .min(6, "deve ter no minimo 6 caracteres"),
 });
 
-export class SignInDTO extends createZodDto(schema) {
+export class LoginDTO extends createZodDto(schema) {
     @ApiProperty()
     email: string;
     @ApiProperty()
     password: string;
 }
-
-export type LoginDTO = z.infer<typeof schema>;

@@ -6,6 +6,7 @@ import { ArgonModule } from "./argon/argon.module";
 import { JwtModule } from "./jwt/jwt.module";
 import { AuthModule } from "./auth/auth.module";
 import { ResendModule } from "./resend/resend.module";
+import { UtilsModule } from "./utils/utils.module";
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import { ResendModule } from "./resend/resend.module";
         JwtModule,
         AuthModule,
         ResendModule,
+        UtilsModule,
     ],
     controllers: [],
     providers: [],

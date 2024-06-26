@@ -5,11 +5,22 @@ import { ArgonService } from "src/argon/argon.service";
 import { UserEntity } from "./entity/user.entity";
 import { JwtService } from "@nestjs/jwt";
 import { CreateUserResponse } from "./response/create-user.response";
+import { UtilsService } from "src/utils/utils.service";
 //import { ResendService } from "src/resend/resend.service";
 
 export interface CreateUserPromise {
     message: string;
     data: UserEntity;
+}
+
+interface JWTBearerTokenPayload {
+    id: string;
+    name: string;
+    email: string;
+    creatredAt: Date;
+    updatedAt: Date;
+    iat: number;
+    exp: number;
 }
 
 @Injectable()
@@ -19,6 +30,7 @@ export class UsersService {
         private argon: ArgonService,
         private jwt: JwtService,
         //private resendService: ResendService,
+        private utils: UtilsService,
     ) {}
 
     private logger = new Logger(UsersService.name);
@@ -79,5 +91,38 @@ export class UsersService {
         const users = await this.prisma.user.findMany();
 
         return { data: { ...users } };
+    }
+
+    async getPersonalInfo(rawToken: string) {
+        const token = this.utils.removeBearer(rawToken);
+
+        try {
+            const payload: JWTBearerTokenPayload =
+                await this.jwt.verifyAsync(token);
+
+            const user = await this.prisma.user.findFirst({
+                where: { id: payload.id },
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                    emailVerified: true,
+                    emailVerificatedAt: true,
+                    createdAt: true,
+                    updatedAt: true,
+                    userType: true,
+                },
+            });
+
+            return { data: { ...user } };
+        } catch (err) {
+            if (err.message === "invalid signature") {
+                throw new HttpException("Token expirado", 401);
+            }
+
+            this.logger.error(err.message);
+        }
+
+        return { message: "Em desenvolvimento", token };
     }
 }

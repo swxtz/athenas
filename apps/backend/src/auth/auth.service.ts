@@ -99,6 +99,7 @@ export class AuthService {
             where: { email: payload.email },
             data: {
                 emailVerified: true,
+                emailVerificatedAt: new Date(),
             },
             select: {
                 emailVerified: true,
