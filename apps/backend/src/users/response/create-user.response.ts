@@ -1,6 +1,6 @@
 import { $Enums } from "@prisma/client";
 
-export class UserEntity {
+interface PrismaResponse {
     id: string;
     name: string;
     email: string;
@@ -9,8 +9,9 @@ export class UserEntity {
     userType: $Enums.UserType[];
     createdAt: Date;
     updatedAt: Date;
+}
 
-    constructor(partial: Partial<UserEntity>) {
-        Object.assign(this, partial);
-    }
+export interface CreateUserResponse {
+    message: string | number | Buffer;
+    data: PrismaResponse | null;
 }

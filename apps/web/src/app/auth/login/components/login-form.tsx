@@ -15,8 +15,8 @@ import { Button } from "@/components/ui/button";
 import { ErrorInputDisplay } from "@/components/ui/error-input-display";
 
 const formSchema = z.object({
-  email: z.string().email("Digite um e-mail válido"),
-  password: z.string().min(8),
+  email: z.string({ message: "Esse campo é obrigatorio" }).email("Digite um e-mail válido"),
+  password: z.string({ message: "Esse campo é obrigatorio" }).min(8, "A senha deve ter no mínimo 8 caracteres"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -40,7 +40,7 @@ export function LoginForm() {
               <FormItem>
                 <FormLabel>E-mail</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="joãodetal@exemplo.com" />
+                  <Input type="email" placeholder="joãodetal@exemplo.com" {...field} />
                 </FormControl>
 
                 {form.formState.errors.email && (
@@ -57,7 +57,7 @@ export function LoginForm() {
               <FormItem>
                 <FormLabel>Senha</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="********" />
+                  <Input type="password" placeholder="********" {...field} autoComplete="password" />
                 </FormControl>
 
                 {form.formState.errors.password && (
