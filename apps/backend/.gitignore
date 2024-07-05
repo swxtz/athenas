@@ -1,5 +1,25 @@
 node_modules
 # Keep environment variables out of version control
 .env
+.env.prod
 dist
 .docker/
+
+# Local .terraform directories
+**/.terraform/*
+
+#  Ignore variables files
+*.auto.tfvars
+
+#  Ignore override files
+*.tfoverride
+
+#  Ignore environment-specific files
+.envrc
+
+#  Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+**/*.tfstate.*
+**/*.tfstate
