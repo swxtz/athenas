@@ -7,6 +7,7 @@ import { JwtModule } from "./jwt/jwt.module";
 import { AuthModule } from "./auth/auth.module";
 import { ResendModule } from "./resend/resend.module";
 import { UtilsModule } from "./utils/utils.module";
+import { ProductsModule } from "./products/products.module";
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import { UtilsModule } from "./utils/utils.module";
         AuthModule,
         ResendModule,
         UtilsModule,
+        ProductsModule,
     ],
     controllers: [],
     providers: [],

@@ -10,9 +10,9 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-// generator erd {
-//     provider = "prisma-erd-generator"
-// }
+generator erd {
+    provider = "prisma-erd-generator"
+}
 
 model User {
     id   String @id @default(cuid())
@@ -34,6 +34,59 @@ model User {
 enum UserType {
     consumer
     admim
+}
+
+model Product {
+    id String @id @default(uuid())
+
+    name        String
+    description String
+    buyPrice    Int     @map("buy_price")
+    price       Int
+    stock       Int
+    image       String
+    barcode     String
+    sku         String?
+    isAvailable Boolean @default(true) @map("is_available")
+    rating      Float?  @map("rating")
+
+    isPromotion        Boolean   @default(false) @map("is_promotion")
+    promotionPrice     Int?      @map("promotion_price")
+    promotionStart     DateTime? @map("promotion_start")
+    promotionEnd       DateTime? @map("promotion_end")
+    lastPromotion      DateTime? @map("last_promotion")
+    promotionCreatedAt DateTime? @map("promotion_created_at")
+    promotionCreatorId String?   @map("promotion_creator_id")
+    promotionOwner     String?
+
+    type ProductType @default(other)
+
+    state ProductState @default(available)
+
+    localPickup Boolean @default(true) @map("local_pickup")
+    //storeAvailables 
+
+    //metrics
+    numberOfSales           Int @default(0) @map("number_of_sales")
+    numberOfViews           Int @default(0) @map("number_of_views")
+    numberOfViewsInLastWeek Int @default(0) @map("number_of_views_in_last_week")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("products")
+}
+
+enum ProductType {
+    bread
+    hamburger
+    other
+}
+
+enum ProductState {
+    available
+    unavailable
+    outOfStock
 }
 
 // 
