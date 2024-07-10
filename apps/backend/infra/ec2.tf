@@ -20,8 +20,12 @@ resource "aws_instance" "server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
-  key_name = var.key_name
-
+  // http acess roles
+  vpc_security_group_ids = [aws_security_group.security_group.id]
+  
+  #user_data = file("./shell/ec2/user_data.sh")]]
+  
+  key_name = aws_key_pair.keypair.key_name
   tags = {
     Name        = var.name
     Environment = var.env

@@ -23,3 +23,5 @@ terraform.rc
 
 **/*.tfstate.*
 **/*.tfstate
+
+infra/keys/*
