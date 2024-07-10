@@ -15,7 +15,7 @@ variable "repo" {
 
 variable "ami" {
   description = "The AMI to use for the EC2 instance"
-  default     = "ami-080111c1449900431"
+  default     = "ami-06c68f701d8090592"
 }
 
 variable "instance_type" {
