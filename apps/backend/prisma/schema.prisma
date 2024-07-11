@@ -44,11 +44,13 @@ model Product {
     buyPrice    Int     @map("buy_price")
     price       Int
     stock       Int
-    image       String
-    barcode     String
+    barcode     String?
     sku         String?
     isAvailable Boolean @default(true) @map("is_available")
     rating      Float?  @map("rating")
+
+    coverImage String?  @map("cover_image")
+    images     String[]
 
     isPromotion        Boolean   @default(false) @map("is_promotion")
     promotionPrice     Int?      @map("promotion_price")
@@ -59,11 +61,11 @@ model Product {
     promotionCreatorId String?   @map("promotion_creator_id")
     promotionOwner     String?
 
-    type ProductType @default(other)
+    productType ProductType @default(others) @map("product_type")
 
     state ProductState @default(available)
 
-    localPickup Boolean @default(true) @map("local_pickup")
+    localPickup Boolean @default(false) @map("local_pickup")
     //storeAvailables 
 
     //metrics
@@ -80,7 +82,7 @@ model Product {
 enum ProductType {
     bread
     hamburger
-    other
+    others
 }
 
 enum ProductState {
