@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -48,7 +47,6 @@ const nextAuthOptions: NextAuthOptions = {
     },
 
     async session({ session, token }) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       session = token.user as any;
       return session;
     }
