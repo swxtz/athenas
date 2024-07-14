@@ -27,3 +27,14 @@ variable "key_name" {
   description = "The key pair to use for the EC2 instance"
   default     = "athenas-server"
 }
+
+variable "bucket_name" {
+  description = "The name of the S3 bucket"
+  default     = "athenas-backend-bucket"
+  
+}
+
+variable "bucket_env" {
+  description = "The environment of the S3 bucket"
+  default     = "dev"
+}
