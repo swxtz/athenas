@@ -53,4 +53,27 @@ export class ProductsService {
             throw new HttpException(err, 500);
         }
     }
+
+    async uploadCoverImage(id: string) {
+        const verifyIfProductExists = await this.prisma.product.findFirst({
+            where: { id },
+            select: {
+                id: true,
+                name: true,
+                description: true,
+                price: true,
+            },
+        });
+
+        if (!verifyIfProductExists) {
+            throw new HttpException(
+                {
+                    message: "Produto não encontrado",
+                },
+                404,
+            );
+        }
+
+        return verifyIfProductExists;
+    }
 }
