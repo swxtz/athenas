@@ -19,23 +19,27 @@ import { CreateProductDTO } from "./dtos/create-product.dto";
 import { ApiTags } from "@nestjs/swagger";
 import { UploadCoverImageParams } from "./dtos/upload-cover-image.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { SkipThrottle, Throttle } from "@nestjs/throttler";
 
 @ApiTags("Products")
 @Controller("products")
 export class ProductsController {
     constructor(private readonly productsService: ProductsService) {}
 
+    //@SkipThrottle()
     @Get("get-all")
     async getAllProducts() {
         return this.productsService.getAllProducts();
     }
 
     @Post("create-product")
+    
     @UsePipes(new ZodValidationPipe(CreateProductDTO))
     async createProduct(@Body() body: CreateProductDTO) {
         return this.productsService.createProduct(body);
     }
 
+    
     @Post("upload-cover-image/:id")
     @UseInterceptors(FileInterceptor("coverImage"))
     async uploadCoverImage(
