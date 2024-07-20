@@ -8,6 +8,7 @@ import { AuthModule } from "./auth/auth.module";
 import { ResendModule } from "./resend/resend.module";
 import { UtilsModule } from "./utils/utils.module";
 import { ProductsModule } from "./products/products.module";
+import { DayjsModule } from "./dayjs/dayjs.module";
 
 @Module({
     imports: [
@@ -22,6 +23,7 @@ import { ProductsModule } from "./products/products.module";
         ResendModule,
         UtilsModule,
         ProductsModule,
+        DayjsModule,
     ],
     controllers: [],
     providers: [],
