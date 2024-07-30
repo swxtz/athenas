@@ -1,5 +1,5 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "../../../components/ui/carousel";
 
 import hamburguerImage from "@/images/hamburguer.webp";
 import { ProductsCard } from "../product-card";
@@ -59,19 +59,21 @@ const products: IProducts[] = [
 
 export function ProductsCarousel() {
   return (
-    <Carousel className="mt-8">
-      <CarouselContent className="mx-auto">
-        {products.map((card) => (
-          <CarouselItem key={uuid()} className="basis-1/2">
-            <ProductsCard
-              name={card.name}
-              image={card.image}
-              description={card.description}
-              price={card.price}
-            />
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+    <div className="px-4 py-1 mt-4 rounded-md md:rounded-lg bg-gray-300 mx-auto">
+      <Carousel className="mt-8">
+        <CarouselContent className="mx-auto">
+          {products.map((card) => (
+            <CarouselItem key={uuid()} className="basis-1/2 md:basis-1/6">
+              <ProductsCard
+                name={card.name}
+                image={card.image}
+                description={card.description}
+                price={card.price}
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+    </div>
   );
 }

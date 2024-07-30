@@ -1,4 +1,4 @@
-import { ProductsCarousel } from "@/components/products-carousel";
+import { ProductsCarousel } from "@/app/components/products-carousel";
 import Image from "next/image";
 
 export default function Home() {
