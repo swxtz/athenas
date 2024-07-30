@@ -60,7 +60,7 @@ const products: IProducts[] = [
 export function ProductsCarousel() {
   return (
     <Carousel className="mt-8">
-      <CarouselContent className="">
+      <CarouselContent className="mx-auto">
         {products.map((card) => (
           <CarouselItem key={uuid()} className="basis-1/2">
             <ProductsCard
