@@ -1,5 +1,5 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "../../../components/ui/carousel";
 
 import hamburguerImage from "@/images/hamburguer.webp";
 import { ProductsCard } from "../product-card";
