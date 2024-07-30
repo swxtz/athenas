@@ -15,15 +15,16 @@ export function ProductsCard({
   price,
   description,
 }: ProductsCardProps) {
+  const convertedValue = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price);
+
   return (
-    <div className="flex flex-col items-center ">
-      <p className=" text-left w-32">{name}</p>
-      <Image src={image} alt={name} className="w-1/2 rounded-md"/>
-      <p>{description}</p>
-      <p className="flex gap-2">
-        <ShoppingBasket />
-        {price}
-      </p>
+    <div className="flex flex-col items-center w-fit">
+      <Image src={image} alt={name} className="w-[150px] rounded-md" />
+      <p className="text-left w-32 text-sm font-medium mt-4 mb-2">{name}</p>
+      <p className="flex gap-2 text-xl font-semibold">{convertedValue}</p>
     </div>
   );
 }

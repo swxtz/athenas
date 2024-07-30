@@ -3,6 +3,7 @@ import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 
 import hamburguerImage from "@/images/hamburguer.webp";
 import { ProductsCard } from "../product-card";
+import { uuid } from "@/utils/uuid";
 
 interface IProducts {
   name: string;
@@ -13,43 +14,55 @@ interface IProducts {
 
 const products: IProducts[] = [
   {
-    name: "Hamburguer",
+    name: "Pão Pita gergilim 320g",
     price: 12,
     image: hamburguerImage,
-    description: "Hamburguer gostoso",
+    description: "Pão Pita gergilim 320g gostoso",
   },
   {
-    name: "Hamburguer",
+    name: "Pão Pita gergilim 320g",
     price: 12,
     image: hamburguerImage,
-    description: "Hamburguer gostoso",
+    description: "Pão Pita gergilim 320g gostoso",
   },
   {
-    name: "Hamburguer",
+    name: "Pão Pita gergilim 320g",
     price: 12,
     image: hamburguerImage,
-    description: "Hamburguer gostoso",
+    description: "Pão Pita gergilim 320g gostoso",
   },
   {
-    name: "Hamburguer",
+    name: "Pão Pita gergilim 320g",
     price: 12,
     image: hamburguerImage,
-    description: "Hamburguer gostoso",
+    description: "Pão Pita gergilim 320g gostoso",
   },
   {
-    name: "Hamburguer",
+    name: "Pão Pita gergilim 320g",
     price: 12,
     image: hamburguerImage,
-    description: "Hamburguer gostoso",
+    description: "Pão Pita gergilim 320g gostoso",
+  },
+  {
+    name: "Pão Pita gergilim 320g",
+    price: 12,
+    image: hamburguerImage,
+    description: "Pão Pita gergilim 320g gostoso",
+  },
+  {
+    name: "Pão Pita gergilim 320g",
+    price: 12,
+    image: hamburguerImage,
+    description: "Pão Pita gergilim 320g gostoso",
   },
 ];
 
 export function ProductsCarousel() {
   return (
     <Carousel className="mt-8">
-      <CarouselContent>
+      <CarouselContent className="">
         {products.map((card) => (
-          <CarouselItem key={card.name} className="">
+          <CarouselItem key={uuid()} className="basis-1/2">
             <ProductsCard
               name={card.name}
               image={card.image}
