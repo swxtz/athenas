@@ -5,12 +5,27 @@ import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { ConfigService } from "@nestjs/config";
 import { DayjsService } from "src/dayjs/dayjs.service";
 import { createId as CUID } from "@paralleldrive/cuid2";
+import { UtilsService } from "src/utils/utils.service";
+import { JwtService } from "@nestjs/jwt";
+
+interface JWTBearerTokenPayload {
+    id: string;
+    name: string;
+    email: string;
+    creatredAt: Date;
+    updatedAt: Date;
+    iat: number;
+    exp: number;
+}
+
 @Injectable()
 export class ProductsService {
     constructor(
         private prisma: PrismaService,
         private readonly configService: ConfigService,
         private dayjsService: DayjsService,
+        private utils: UtilsService,
+        private jwt: JwtService,
     ) {}
 
     private readonly s3Client = new S3Client({
@@ -23,8 +38,41 @@ export class ProductsService {
         });
     }
 
-    async createProduct(data: CreateProductDTO) {
+    async createProduct(data: CreateProductDTO, rawToken: string) {
+        const token = this.utils.removeBearer(rawToken);
+
         try {
+            const jwtPayload: JWTBearerTokenPayload =
+                await this.jwt.verifyAsync(token);
+
+            if (!jwtPayload) {
+                throw new HttpException(
+                    {
+                        message: "Token inválido",
+                    },
+                    401,
+                );
+            }
+
+            const user = await this.prisma.user.findFirst({
+                where: { id: jwtPayload.id },
+                select: {
+                    id: true,
+                    email: true,
+                    name: true,
+                    userType: true,
+                },
+            });
+
+            if (user.userType != "admim") {
+                throw new HttpException(
+                    {
+                        message: "Usuário não autorizado",
+                    },
+                    401,
+                );
+            }
+
             const verifyIfProductExists = await this.prisma.product.findFirst({
                 where: { name: data.name },
                 select: {
@@ -61,7 +109,7 @@ export class ProductsService {
             return product;
         } catch (err) {
             console.log(err);
-            throw new HttpException(err, 500);
+            throw new HttpException(err, 404);
         }
     }
 
@@ -103,7 +151,7 @@ export class ProductsService {
         const updatedProduct = await this.prisma.product.update({
             where: { id },
             data: {
-                coverImage: coverImageUrl
+                coverImage: coverImageUrl,
             },
             select: {
                 name: true,
@@ -111,7 +159,7 @@ export class ProductsService {
                 price: true,
                 coverImage: true,
                 images: true,
-            }
+            },
         });
 
         return updatedProduct;

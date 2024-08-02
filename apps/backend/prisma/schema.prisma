@@ -23,7 +23,7 @@ model User {
     emailVerificatedAt DateTime? @map("email_verificated_at")
     password           String
 
-    userType UserType[] @default([consumer]) @map("user_type")
+    userType UserType @default(consumer) @map("user_type")
 
     createdAt DateTime @default(now()) @map("created_at")
     updatedAt DateTime @updatedAt @map("updated_at")
