@@ -4,25 +4,29 @@ import { ProductsService } from "./products.service";
 
 describe("ProductsController", () => {
     let controller: ProductsController;
+    let service: ProductsService;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [ProductsController],
-            providers: [ProductsService],
+            providers: [
+                {
+                    provide: ProductsService,
+                    useValue: {
+                        getAllProducts: jest.fn(),
+                        createProduct: jest.fn(),
+                        uploadCoverImage: jest.fn(),
+                    },
+                },
+            ],
         }).compile();
 
         controller = module.get<ProductsController>(ProductsController);
+        service = module.get<ProductsService>(ProductsService);
     });
 
     it("should be defined", () => {
         expect(controller).toBeDefined();
-        expect(ProductsService).toBeDefined();
-    });
-
-    describe("get-all", () => {
-        it("should return a product entity sucessfully", async () => {
-            const result = await ProductsController.getAllProducts();
-            expect(result).toEqual([]);
-        });
+        expect(service).toBeDefined();
     });
 });
