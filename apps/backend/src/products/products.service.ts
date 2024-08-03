@@ -1,7 +1,7 @@
 import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { CreateProductDTO } from "./dtos/create-product.dto";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 import sharp from "sharp";
 import { ConfigService } from "@nestjs/config";
 import { DayjsService } from "src/dayjs/dayjs.service";
@@ -138,8 +138,21 @@ export class ProductsService {
         }
 
         const product = verifyIfProductExists;
-        const key480 = this.createCoverImageKey(product.name, file, 480, 480);
-        const key720 = this.createCoverImageKey(product.name, file, 720, 720);
+
+        const key480 = this.createCoverImageKey(
+            product.name,
+            file,
+            true,
+            480,
+            480,
+        );
+        const key720 = this.createCoverImageKey(
+            product.name,
+            file,
+            true,
+            720,
+            720,
+        );
 
         const image480x480 = await this.convertImageSize(480, 480, file);
         const image720x720 = await this.convertImageSize(720, 720, file);
@@ -174,8 +187,15 @@ export class ProductsService {
         //     );
         // }
 
-        
-        // const coverImageUrl = `https://${this.configService.getOrThrow("AWS_BUCKET_NAME")}.s3.${this.configService.getOrThrow("AWS_REGION")}.amazonaws.com/${coverImageKey}`;
+        const coverImageKey = this.createCoverImageKey(
+            product.name,
+            file,
+            false,
+        );
+
+        const coverImageUrl = `https://${this.configService.getOrThrow("AWS_BUCKET_NAME")}.s3.${this.configService.getOrThrow("AWS_REGION")}.amazonaws.com/${coverImageKey}`;
+
+        this.logger.log(`Cover image uploaded to ${coverImageUrl}`);
 
         // const updatedProduct = await this.prisma.product.update({
         //     where: { id },
@@ -197,13 +217,20 @@ export class ProductsService {
     private createCoverImageKey(
         productName: string,
         file: Express.Multer.File,
-        width: number,
-        height: number,
+        isResized: boolean,
+        width?: number,
+        height?: number,
     ) {
         const formatedProductName = productName.replace(/\s/g, "-");
         const formattedDate = this.dayjsService.getFormmatedISODay();
 
-        const coverImageKey = `images/${CUID()}-${formatedProductName}-${formattedDate}-cover-image-${width}x${height}.${file.mimetype.split("/")[1]}`;
+        if (isResized) {
+            const coverImageKey = `images/${CUID()}-${formatedProductName}-${formattedDate}-cover-image-${width}x${height}.${file.mimetype.split("/")[1]}`;
+            return coverImageKey;
+        }
+
+        const coverImageKey = `images/${CUID()}-${formatedProductName}-${formattedDate}-cover-image.${file.mimetype.split("/")[1]}`;
+
         return coverImageKey;
     }
 

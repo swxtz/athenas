@@ -19,10 +19,10 @@ describe("ProductsController", () => {
         expect(ProductsService).toBeDefined();
     });
 
-    describe('get-all', () => {
-        it('should return a product entity sucessfully', async () =>{
+    describe("get-all", () => {
+        it("should return a product entity sucessfully", async () => {
             const result = await ProductsController.getAllProducts();
             expect(result).toEqual([]);
-        }); 
+        });
     });
 });
