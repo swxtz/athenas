@@ -33,16 +33,18 @@ export function Navbar() {
   return (
     <nav className="py-4 bg-amber-800 flex justify-between items-center shadow">
       <div className="px-6 lg:px-24 w-full flex items-center justify-between">
-        <Image
-          src={logo}
-          alt="logo RN Distribuidora"
-          quality={100}
-          className="w-20 md:w-28"
-        />
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="logo RN Distribuidora"
+            quality={100}
+            className="w-20 md:w-28"
+          />
+        </Link>
 
         <div className="flex justify-center gap-4">
           <button>
-            <PiShoppingCart   className="text-slate-50 size-9"/>
+            <PiShoppingCart className="text-slate-50 size-9" />
           </button>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
