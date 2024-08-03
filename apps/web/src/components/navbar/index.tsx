@@ -16,6 +16,7 @@ import Link from "next/link";
 import { Separator } from "../ui/separator";
 import { ActiveLink, ActiveLinkProps } from "../active-link";
 import { useState } from "react";
+import { Searchbar } from "@/app/components/searchbar";
 
 const links: ActiveLinkProps[] = [
   { href: "/", children: "Home", icon: <Home /> },
@@ -41,6 +42,8 @@ export function Navbar() {
             className="w-20 md:w-28"
           />
         </Link>
+
+        <Searchbar />
 
         <div className="flex justify-center gap-4">
           <button>
