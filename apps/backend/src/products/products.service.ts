@@ -1,12 +1,14 @@
-import { HttpException, Injectable } from "@nestjs/common";
+import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { CreateProductDTO } from "./dtos/create-product.dto";
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import sharp from "sharp";
 import { ConfigService } from "@nestjs/config";
 import { DayjsService } from "src/dayjs/dayjs.service";
 import { createId as CUID } from "@paralleldrive/cuid2";
 import { UtilsService } from "src/utils/utils.service";
 import { JwtService } from "@nestjs/jwt";
+import { ConvertedImage } from "./interfaces/converted-image.interface";
 
 interface JWTBearerTokenPayload {
     id: string;
@@ -31,6 +33,8 @@ export class ProductsService {
     private readonly s3Client = new S3Client({
         region: this.configService.getOrThrow("AWS_REGION"),
     });
+
+    private logger = new Logger();
 
     async getAllProducts() {
         return await this.prisma.product.findMany({
@@ -64,7 +68,7 @@ export class ProductsService {
                 },
             });
 
-            if (user.userType != "admim") {
+            if (user.userType != "consumer") {
                 throw new HttpException(
                     {
                         message: "Usuário não autorizado",
@@ -134,45 +138,83 @@ export class ProductsService {
         }
 
         const product = verifyIfProductExists;
+        const key480 = this.createCoverImageKey(product.name, file, 480, 480);
+        const key720 = this.createCoverImageKey(product.name, file, 720, 720);
 
-        const coverImageKey = this.createCoverImageKey(product.name, file);
+        const image480x480 = await this.convertImageSize(480, 480, file);
+        const image720x720 = await this.convertImageSize(720, 720, file);
 
-        await this.s3Client.send(
-            new PutObjectCommand({
-                Bucket: this.configService.getOrThrow("AWS_BUCKET_NAME"),
-                Key: coverImageKey,
-                Body: file.buffer,
-                ContentType: file.mimetype,
-            }),
-        );
+        const images: ConvertedImage[] = [];
 
-        const coverImageUrl = `https://${this.configService.getOrThrow("AWS_BUCKET_NAME")}.s3.${this.configService.getOrThrow("AWS_REGION")}.amazonaws.com/${coverImageKey}`;
-
-        const updatedProduct = await this.prisma.product.update({
-            where: { id },
-            data: {
-                coverImage: coverImageUrl,
-            },
-            select: {
-                name: true,
-                description: true,
-                price: true,
-                coverImage: true,
-                images: true,
-            },
+        images.push({
+            name: key480,
+            buffer: image480x480,
         });
 
-        return updatedProduct;
+        images.push({
+            name: key720,
+            buffer: image720x720,
+        });
+
+        console.log(images[0].name);
+        console.log(images[1].name);
+        console.log(images[0].buffer);
+        console.log(images[1].buffer);
+
+        // <!-- descomentear na produção -->
+
+        // for (const image of images) {
+        //     await this.s3Client.send(
+        //         new PutObjectCommand({
+        //             Bucket: this.configService.getOrThrow("AWS_BUCKET_NAME"),
+        //             Key: image.name,
+        //             Body: file.buffer,
+        //             ContentType: file.mimetype,
+        //         }),
+        //     );
+        // }
+
+        
+        // const coverImageUrl = `https://${this.configService.getOrThrow("AWS_BUCKET_NAME")}.s3.${this.configService.getOrThrow("AWS_REGION")}.amazonaws.com/${coverImageKey}`;
+
+        // const updatedProduct = await this.prisma.product.update({
+        //     where: { id },
+        //     data: {
+        //         coverImage: coverImageUrl,
+        //     },
+        //     select: {
+        //         name: true,
+        //         description: true,
+        //         price: true,
+        //         coverImage: true,
+        //         images: true,
+        //     },
+        // });
+
+        // return updatedProduct;
     }
 
     private createCoverImageKey(
         productName: string,
         file: Express.Multer.File,
+        width: number,
+        height: number,
     ) {
         const formatedProductName = productName.replace(/\s/g, "-");
         const formattedDate = this.dayjsService.getFormmatedISODay();
 
-        const coverImageKey = `${CUID()}-${formatedProductName}-${formattedDate}-cover-image.${file.mimetype.split("/")[1]}`;
+        const coverImageKey = `images/${CUID()}-${formatedProductName}-${formattedDate}-cover-image-${width}x${height}.${file.mimetype.split("/")[1]}`;
         return coverImageKey;
+    }
+
+    private async convertImageSize(
+        width: number,
+        height: number,
+        rawImage: Express.Multer.File,
+    ) {
+        const image = await sharp(rawImage.buffer)
+            .resize(width, height)
+            .toBuffer();
+        return image;
     }
 }
