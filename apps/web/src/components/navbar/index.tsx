@@ -42,7 +42,7 @@ export function Navbar() {
 
         <div className="flex justify-center gap-4">
           <button>
-            <PiShoppingCart size={36}  className="text-slate-50"/>
+            <PiShoppingCart   className="text-slate-50 size-9"/>
           </button>
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
