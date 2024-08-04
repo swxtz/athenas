@@ -10,3 +10,7 @@
 *.ico binary
 
 *.svg text eol=lf
+
+*.json text eof=lf
+
+*.md text eof=lf
