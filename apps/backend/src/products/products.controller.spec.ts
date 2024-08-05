@@ -1,5 +1,6 @@
 import { JwtService } from "@nestjs/jwt";
 import { Test, TestingModule } from "@nestjs/testing";
+import { ProductEntity } from "./entity/product.entity";
 import { ProductsController } from "./products.controller";
 import { ProductsService } from "./products.service";
 
@@ -14,7 +15,7 @@ describe("ProductsController", () => {
                 {
                     provide: ProductsService,
                     useValue: {
-                        getAllProducts: jest.fn(),
+                        getAllProducts: jest.fn().mockResolvedValue(ProductEntity),
                         createProduct: jest.fn(),
                         uploadCoverImage: jest.fn(),
                     },
@@ -31,5 +32,13 @@ describe("ProductsController", () => {
     it("should be defined", () => {
         expect(controller).toBeDefined();
         expect(service).toBeDefined();
+    });
+
+    describe("getAllProducts", () => {
+        it("should return a product entity successfully", async () =>{
+            const result = await controller.getAllProducts();
+            expect(result).toEqual([]);
+            
+        });
     });
 });
