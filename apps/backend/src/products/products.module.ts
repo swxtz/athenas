@@ -3,6 +3,7 @@ import { ProductsService } from "./products.service";
 import { ProductsController } from "./products.controller";
 import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { APP_GUARD } from "@nestjs/core";
+import { JwtService } from "@nestjs/jwt";
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import { APP_GUARD } from "@nestjs/core";
     providers: [
         ProductsService,
         { provide: APP_GUARD, useClass: ThrottlerGuard },
+        JwtService
     ],
 })
 export class ProductsModule {}

@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { UsersController } from "./users.controller";
 import { CreateUserPromise, UsersService } from "./users.service";
 import { UserEntity } from "./entity/user.entity";
+import { JwtService } from "@nestjs/jwt";
 
 const newUserList: CreateUserPromise[] = [
     {
@@ -45,6 +46,7 @@ describe("UsersController", () => {
                             .mockResolvedValue(personalAccountInfo),
                     },
                 },
+                JwtService
             ],
         }).compile();
 
