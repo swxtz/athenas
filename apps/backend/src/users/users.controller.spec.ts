@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { UsersController } from "./users.controller";
 import { CreateUserPromise, UsersService } from "./users.service";
 import { UserEntity } from "./entity/user.entity";
+import { JwtService } from "@nestjs/jwt";
 
 const newUserList: CreateUserPromise[] = [
     {
@@ -18,6 +19,16 @@ const newUserList: CreateUserPromise[] = [
     },
 ];
 
+const personalAccountInfo: UserEntity = new UserEntity({
+    id: "testeid",
+    name: "John Doe",
+    email: "john.joe@example.com",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    password: "test1234",
+    userType: "consumer",
+});
+
 describe("UsersController", () => {
     let controller: UsersController;
     let service: UsersService;
@@ -30,8 +41,12 @@ describe("UsersController", () => {
                     provide: UsersService,
                     useValue: {
                         createUser: jest.fn().mockResolvedValue(newUserList),
+                        getPersonalInfo: jest
+                            .fn()
+                            .mockResolvedValue(personalAccountInfo),
                     },
                 },
+                JwtService
             ],
         }).compile();
 
@@ -60,6 +75,14 @@ describe("UsersController", () => {
             expect(result[0].data).toBeInstanceOf(UserEntity);
             expect(result[0].data.id).toBe("testeid");
             expect(service.createUser).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe("getPersonalInfo", () => {
+        it("should call getPersonalInfo method successfully", async () => {
+            const result = await controller.getPersonalInfo();
+
+            expect(result).toBe(personalAccountInfo);
         });
     });
 });

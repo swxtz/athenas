@@ -1,5 +1,5 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { Carousel, CarouselContent, CarouselItem } from "../../../components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../../../components/ui/carousel";
 
 import hamburguerImage from "@/images/hamburguer.webp";
 import { ProductsCard } from "../product-card";
@@ -59,11 +59,11 @@ const products: IProducts[] = [
 
 export function ProductsCarousel() {
   return (
-    <div className="px-4 py-1 mt-4 rounded-md md:rounded-lg bg-gray-300 mx-auto">
+    <div className="px-4 py-1 mt-4 rounded-md md:rounded-lg bg-white/50 mx-auto">
       <Carousel className="mt-8">
-        <CarouselContent className="mx-auto">
+        <CarouselContent className="mx-auto flex gap-2">
           {products.map((card) => (
-            <CarouselItem key={uuid()} className="basis-1/2 md:basis-1/6">
+            <CarouselItem key={uuid()} className="basis-1/2 md:basis-1/4 lg:basis-1/5 xl:basis-1/6">
               <ProductsCard
                 name={card.name}
                 image={card.image}
@@ -73,6 +73,8 @@ export function ProductsCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
+        <CarouselPrevious className="hidden md:flex size-14 bg-white" />
+        <CarouselNext className="hidden md:flex size-14 bg-white" />
       </Carousel>
     </div>
   );
