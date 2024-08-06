@@ -8,14 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7bc7f1ef2a065124",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
-            }
-          },
-          {
             "id": "a208ac1ae0f77a2b",
             "type": "leaf",
             "state": {
@@ -34,6 +26,18 @@
               "type": "markdown",
               "state": {
                 "file": "Recomendation Engine/TODO.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4657128a48052ef7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Recomendation Engine/Score.md",
                 "mode": "source",
                 "source": false
               }
@@ -106,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Recomendation Engine/TODO.md",
+                "file": "Recomendation Engine/Score.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Recomendation Engine/TODO.md",
+                "file": "Recomendation Engine/Score.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Recomendation Engine/TODO.md"
+                "file": "Recomendation Engine/Score.md"
               }
             }
           }
@@ -170,10 +174,11 @@
       "obsidian-kanban:Criar um novo quadro": false
     }
   },
-  "active": "8708617f28dc7260",
+  "active": "6f47eee0393779c7",
   "lastOpenFiles": [
-    "README.md",
     "Recomendation Engine/TODO.md",
+    "Recomendation Engine/Score.md",
+    "README.md",
     "Recomendation Engine",
     "Welcome.md"
   ]

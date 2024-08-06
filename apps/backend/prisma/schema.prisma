@@ -102,13 +102,31 @@ enum ProductState {
 }
 
 // recomendation engine
-model Recomendation {
+model Recommendation {
   id String @id @default(uuid())
 
   // foremkey
   productId String @map("product_id")
 
-  @@map("recomendations")
+  //base values 
+  score             Float @default(500)
+  weekRecomendation Float @default(500)
+
+  // recomedation values
+
+  // views
+  views     Int @default(0)
+  weekViews Int @default(0) @map("week_views")
+
+  // likes
+  likes     Int @default(0)
+  weekLikes Int @default(0) @map("week_likes")
+
+  // sales 
+  sales     Int @default(0)
+  weekSales Int @default(0) @map("week_sales")
+
+  @@map("recommendations")
 }
 
 // 
