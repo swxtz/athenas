@@ -2,113 +2,113 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator erd {
-    provider = "prisma-erd-generator"
+  provider = "prisma-erd-generator"
 }
 
 model User {
-    id   String @id @default(cuid())
-    name String
+  id   String @id @default(cuid())
+  name String
 
-    email              String    @unique
-    emailVerified      Boolean   @default(false) @map("email_verified")
-    emailVerificatedAt DateTime? @map("email_verificated_at")
-    password           String
+  email              String    @unique
+  emailVerified      Boolean   @default(false) @map("email_verified")
+  emailVerificatedAt DateTime? @map("email_verificated_at")
+  password           String
 
-    userType UserType @default(consumer) @map("user_type")
+  userType UserType @default(consumer) @map("user_type")
 
-    createdAt DateTime @default(now()) @map("created_at")
-    updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-    @@map("users")
+  @@map("users")
 }
 
 enum UserType {
-    consumer
-    admim
+  consumer
+  admim
 }
 
 model Product {
-    id String @id @default(uuid())
+  id String @id @default(uuid())
 
-    name        String
-    description String
-    buyPrice    Int     @map("buy_price")
-    price       Int
-    stock       Int
-    barcode     String?
-    sku         String?
-    isAvailable Boolean @default(true) @map("is_available")
-    rating      Float?  @map("rating")
+  name        String
+  description String
+  buyPrice    Int     @map("buy_price")
+  price       Int
+  stock       Int
+  barcode     String?
+  sku         String?
+  isAvailable Boolean @default(true) @map("is_available")
+  rating      Float?  @map("rating")
 
-    coverImage String?  @map("cover_image")
-    images     String[]
+  coverImage String?  @map("cover_image")
+  images     String[]
 
-    productType ProductType @default(others) @map("product_type")
+  productType ProductType @default(others) @map("product_type")
 
-    state ProductState @default(available)
+  state ProductState @default(available)
 
-    localPickup Boolean @default(false) @map("local_pickup")
-    //storeAvailables 
+  localPickup Boolean @default(false) @map("local_pickup")
+  //storeAvailables 
 
-    //metrics
-    numberOfSales           Int @default(0) @map("number_of_sales")
-    numberOfViews           Int @default(0) @map("number_of_views")
-    numberOfViewsInLastWeek Int @default(0) @map("number_of_views_in_last_week")
+  //metrics
+  numberOfSales           Int @default(0) @map("number_of_sales")
+  numberOfViews           Int @default(0) @map("number_of_views")
+  numberOfViewsInLastWeek Int @default(0) @map("number_of_views_in_last_week")
 
-    createdAt DateTime    @default(now()) @map("created_at")
-    updatedAt DateTime    @updatedAt @map("updated_at")
-    Promotion Promotion[]
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
+  Promotion Promotion[]
 
-    @@map("products")
+  @@map("products")
 }
 
 model Promotion {
-    id        String @id @default(cuid())
-    productId String @map("product_id")
+  id        String @id @default(cuid())
+  productId String @map("product_id")
 
-    product Product @relation(fields: [productId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
 
-    isPromotion        Boolean   @default(false) @map("is_promotion")
-    promotionPrice     Int?      @map("promotion_price")
-    promotionStart     DateTime? @map("promotion_start")
-    promotionEnd       DateTime? @map("promotion_end")
-    lastPromotion      DateTime? @map("last_promotion")
-    promotionCreatedAt DateTime? @map("promotion_created_at")
-    promotionCreatorId String?   @map("promotion_creator_id")
-    promotionOwner     String?
+  isPromotion        Boolean   @default(false) @map("is_promotion")
+  promotionPrice     Int?      @map("promotion_price")
+  promotionStart     DateTime? @map("promotion_start")
+  promotionEnd       DateTime? @map("promotion_end")
+  lastPromotion      DateTime? @map("last_promotion")
+  promotionCreatedAt DateTime? @map("promotion_created_at")
+  promotionCreatorId String?   @map("promotion_creator_id")
+  promotionOwner     String?
 
-    @@map("promotions")
+  @@map("promotions")
 }
 
 enum ProductType {
-    bread
-    hamburger
-    others
+  bread
+  hamburger
+  others
 }
 
 enum ProductState {
-    available
-    unavailable
-    outOfStock
+  available
+  unavailable
+  outOfStock
 }
 
 // recomendation engine
 model Recomendation {
-    id String @id @default(uuid())
+  id String @id @default(uuid())
 
-    // foremkey
-    productId String @map("product_id")
+  // foremkey
+  productId String @map("product_id")
 
-    @@map("recomendations")
+  @@map("recomendations")
 }
 
 // 
