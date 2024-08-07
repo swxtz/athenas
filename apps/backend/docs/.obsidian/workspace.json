@@ -153,13 +153,21 @@
                 "file": "Recomendation Engine/Score.md"
               }
             }
+          },
+          {
+            "id": "0e605a214e584d12",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -174,11 +182,11 @@
       "obsidian-kanban:Criar um novo quadro": false
     }
   },
-  "active": "6f47eee0393779c7",
+  "active": "4657128a48052ef7",
   "lastOpenFiles": [
+    "README.md",
     "Recomendation Engine/TODO.md",
     "Recomendation Engine/Score.md",
-    "README.md",
     "Recomendation Engine",
     "Welcome.md"
   ]
