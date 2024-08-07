@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
-                "mode": "source",
+                "file": "Recomendation Engine/Score.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -38,13 +38,12 @@
               "type": "markdown",
               "state": {
                 "file": "Recomendation Engine/Score.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -182,11 +181,11 @@
       "obsidian-kanban:Criar um novo quadro": false
     }
   },
-  "active": "4657128a48052ef7",
+  "active": "a208ac1ae0f77a2b",
   "lastOpenFiles": [
     "README.md",
-    "Recomendation Engine/TODO.md",
     "Recomendation Engine/Score.md",
+    "Recomendation Engine/TODO.md",
     "Recomendation Engine",
     "Welcome.md"
   ]
