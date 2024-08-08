@@ -46,7 +46,7 @@ describe("UsersController", () => {
                             .mockResolvedValue(personalAccountInfo),
                     },
                 },
-                JwtService
+                JwtService,
             ],
         }).compile();
 

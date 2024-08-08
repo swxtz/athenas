@@ -18,7 +18,7 @@ import { JwtService } from "@nestjs/jwt";
     providers: [
         ProductsService,
         { provide: APP_GUARD, useClass: ThrottlerGuard },
-        JwtService
+        JwtService,
     ],
 })
 export class ProductsModule {}

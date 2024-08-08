@@ -9,6 +9,8 @@ import { ResendModule } from "./resend/resend.module";
 import { UtilsModule } from "./utils/utils.module";
 import { ProductsModule } from "./products/products.module";
 import { DayjsModule } from "./dayjs/dayjs.module";
+import { OdinModule } from "./odin/odin.module";
+import { RecommentationValuesModule } from "./recommentation-values/recommentation-values.module";
 
 @Module({
     imports: [
@@ -24,6 +26,8 @@ import { DayjsModule } from "./dayjs/dayjs.module";
         UtilsModule,
         ProductsModule,
         DayjsModule,
+        OdinModule,
+        RecommentationValuesModule,
     ],
     controllers: [],
     providers: [],
