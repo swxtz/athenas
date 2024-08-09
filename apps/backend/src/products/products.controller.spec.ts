@@ -4,6 +4,10 @@ import { ProductEntity } from "./entity/product.entity";
 import { ProductsController } from "./products.controller";
 import { ProductsService } from "./products.service";
 import { createId } from "@paralleldrive/cuid2";
+import { CreateProductDTO } from "./dtos/create-product.dto";
+import * as request from "supertest";
+import { createNestAppInstance } from "test/test.helpers";
+import { CreateUserDTO } from "src/users/dtos/create-user.dto";
 
 const productMockId = createId();
 
@@ -35,6 +39,12 @@ const returnedProduct: ProductEntity[] = [
 describe("ProductsController", () => {
     let controller: ProductsController;
     let service: ProductsService;
+    let app;
+
+    beforeAll(async () => {
+        app = await createNestAppInstance();
+        ("");
+    });
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -46,7 +56,9 @@ describe("ProductsController", () => {
                         getAllProducts: jest
                             .fn()
                             .mockResolvedValue(returnedProduct),
-                        createProduct: jest.fn(),
+                        createProduct: jest
+                            .fn()
+                            .mockResolvedValue(returnedProduct),
                         uploadCoverImage: jest.fn(),
                     },
                 },
@@ -93,6 +105,36 @@ describe("ProductsController", () => {
         it("should return a product entity successfully", async () => {
             const result = await controller.getAllProducts();
             expect(result).toEqual(product);
+            expect(service.getAllProducts).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe("create-product", () => {
+        it("should create a new product successfully", async () => {
+            const productBody: CreateProductDTO = {
+                name: "batata",
+                buyPrice: 5,
+                coverImage: "www.google.com",
+                description: "batata gostosa",
+                isAvailable: true,
+                price: 2,
+                productType: "others",
+                stockQuantity: 1000,
+                barcode: "123456789",
+            };
+
+            const userBody: CreateUserDTO = {
+                email: "google@gmail.com",
+                name: "Jose",
+                password: "123456789",
+            };
+            const createUser = await request(app.getHttpServer())
+                .post("/users")
+                .send(userBody);
+
+            // const result = await controller.createProduct(body);
+            // expect(result).toEqual(returnedProduct);
         });
     });
 });
+("");
