@@ -7,3 +7,4 @@
 		
 	- [ ] Regra de negócios
 		- [ ] Criar tabela de valores base para usar no algoritmo
+		- [x] Criar classe estática para retornar as pontuações de métrica

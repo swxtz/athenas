@@ -1,10 +1,9 @@
 import { Injectable } from "@nestjs/common";
+import { PrismaService } from "src/prisma/prisma.service";
 
 @Injectable()
 export class OdinService {
-    constructor() {}
+    constructor(private prisma: PrismaService) {}
 
-    test() {
-        console.log();
-    }
+    async incrementLikeValue(productId: string) {}
 }
