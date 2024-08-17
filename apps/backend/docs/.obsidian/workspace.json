@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "Recomendation Engine/Score.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               }
             }
@@ -177,8 +177,8 @@
       "templates:Inserir modelo": false,
       "command-palette:Abrir paleta de comandos": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false,
-      "obsidian-kanban:Criar um novo quadro": false
+      "obsidian-kanban:Criar um novo quadro": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
   "active": "a208ac1ae0f77a2b",

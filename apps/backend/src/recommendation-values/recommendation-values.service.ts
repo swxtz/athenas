@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class RecommentationValuesService {
+export class RecommendationValuesService {
     private static viewValue = 0.03;
     private static saleValue = 0.5;
     private static reBuy = 0.6;

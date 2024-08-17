@@ -10,7 +10,7 @@ import { UtilsModule } from "./utils/utils.module";
 import { ProductsModule } from "./products/products.module";
 import { DayjsModule } from "./dayjs/dayjs.module";
 import { OdinModule } from "./odin/odin.module";
-import { RecommentationValuesModule } from "./recommentation-values/recommentation-values.module";
+import { RecommendationValuesModule } from "./recommendation-values/recommendation-values.module";
 
 @Module({
     imports: [
@@ -27,7 +27,7 @@ import { RecommentationValuesModule } from "./recommentation-values/recommentati
         ProductsModule,
         DayjsModule,
         OdinModule,
-        RecommentationValuesModule,
+        RecommendationValuesModule,
     ],
     controllers: [],
     providers: [],

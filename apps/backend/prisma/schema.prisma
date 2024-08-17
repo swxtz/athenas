@@ -73,7 +73,7 @@ model Product {
 
 model Promotion {
   id        String @id @default(cuid())
-  productId String @map("product_id")
+  productId String @unique @map("product_id")
 
   product Product @relation(fields: [productId], references: [id])
 
@@ -106,7 +106,7 @@ model Recommendation {
   id String @id @default(uuid())
 
   // foremkey
-  productId String @map("product_id")
+  productId String @unique @map("product_id")
 
   //base values 
   score             Float @default(500)

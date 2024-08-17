@@ -20,6 +20,7 @@ para manter tal produto relevante no algoritmo de recomendação
 
 A tabela de pontos reseta para o valor base de 500 todo mês para manter um equilíbrio das recomendações
 
+## Valores positivos
 | Ação                         | Pontos |
 | ---------------------------- | ------ |
 | *Visualização*               | *0.03* |
@@ -27,5 +28,16 @@ A tabela de pontos reseta para o valor base de 500 todo mês para manter um equi
 | *Recompra*                   | *0.60* |
 | *Curtida*                    | *0.30* |
 | *Pesquisa por conta própria* | *0.75* |
-|                              |        |
+
+## Valores negativos
+| Ação                         | Pontos |
+| ---------------------------- | ------ |
+| *Visualização*               | *0.03* |
+| *Compra*                     | *0.50* |
+| *Recompra*                   | *0.60* |
+| *Curtida*                    | *0.30* |
+| *Pesquisa por conta própria* | *0.75* |
+
+---
+
 
