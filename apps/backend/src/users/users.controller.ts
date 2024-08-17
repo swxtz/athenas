@@ -4,6 +4,7 @@ import {
     Get,
     Headers,
     Post,
+    Query,
     UseGuards,
     UsePipes,
 } from "@nestjs/common";
@@ -12,6 +13,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { ZodValidationPipe } from "nestjs-zod";
 import { CreateUserDTO } from "./dtos/create-user.dto";
 import { AuthGuard } from "src/auth/auth.guard";
+import { CreateUserQueryDto } from "./dtos/create-user-query.dto";
 
 @Controller("users")
 @ApiTags("Users")
@@ -20,8 +22,11 @@ export class UsersController {
 
     @Post()
     @UsePipes(new ZodValidationPipe(CreateUserDTO))
-    async createUser(@Body() createUserDTO: CreateUserDTO) {
-        return this.usersService.createUser(createUserDTO);
+    async createUser(
+        @Body() createUserDTO: CreateUserDTO,
+        @Query() createUserQueryDto: CreateUserQueryDto,
+    ) {
+        return this.usersService.createUser(createUserDTO, createUserQueryDto);
     }
 
     @Get("/all")
