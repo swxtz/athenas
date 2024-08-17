@@ -14,4 +14,5 @@ interface PrismaResponse {
 export interface CreateUserResponse {
     message: string | number | Buffer;
     data: PrismaResponse | null;
+    token: string | null;
 }

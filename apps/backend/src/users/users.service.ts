@@ -38,7 +38,7 @@ export class UsersService {
 
     async createUser(
         user: CreateUserDTO,
-        createUserQueryDto?: CreateUserQueryDto,
+        isDevEnv?: boolean,
     ): Promise<CreateUserResponse> {
         const { email, name, password } = user;
 
@@ -84,7 +84,19 @@ export class UsersService {
             // );
             this.logger.debug(`Confirm email JWT: ${token}`);
 
-            return { message: "Usuario criado com sucesso", data: { ...user } };
+            if (isDevEnv) {
+                return {
+                    message: "Usuario criado com sucesso",
+                    data: { ...user },
+                    token,
+                };
+            }
+
+            return {
+                message: "Usuario criado com sucesso",
+                data: { ...user },
+                token,
+            };
         } catch (err) {
             console.log(err);
             throw new HttpException(err, 500);
