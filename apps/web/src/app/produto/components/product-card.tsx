@@ -43,7 +43,7 @@ export function ProductCard({
         <div className="flex flex-col gap-4">
           <span className="text-2xl font-medium font-montserrat">{name}</span>
           <span className="text-4xl">{convertToReal(price)}</span>
-          <span className="text-base text-gray-500">
+          <span className="text-base text-gray-500 -mt-2">
             {numberOfInstallments}x de {convertToReal(calculateTotalWithInterest(numberOfInstallments, fees, price))} sem juros
           </span>
         </div>
