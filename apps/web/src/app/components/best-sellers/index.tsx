@@ -16,6 +16,9 @@ const products: Product[] = [
       "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
+    isPayable: true,
+    numberOfInstallments: 3,
+    fees: 1,
   },
   {
     name: "Molho barbecue junior 380g",
@@ -23,20 +26,28 @@ const products: Product[] = [
       "https://http2.mlstatic.com/D_NQ_NP_636639-MLU77839654916_072024-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
+    isPayable: false,
+    fees: 5.5,
   },
   {
-    name: "Ketchup Heinz Squeeze Tradicional 397g",
+    name: "Molho ketchup junior 380g",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_679412-MLA45406459591_032021-O.webp",
+      "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
+    isPayable: true,
+    numberOfInstallments: 3,
+    fees: 5.5,
   },
   {
-    name: "Ketchup Sache Tradicional Cepera 154 Saches X 7g",
+    name: "Molho ketchup junior 380g",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_662445-MLU72013920699_092023-O.webp",
+      "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
+    isPayable: true,
+    numberOfInstallments: 3,
+    fees: 5.5,
   },
   {
     name: "Maionese Alho 190g - Cepêra",
@@ -44,6 +55,8 @@ const products: Product[] = [
       "https://http2.mlstatic.com/D_NQ_NP_733039-MLB77070535049_062024-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
+    isPayable: false,
+    fees: 5.5,
   },
   {
     name: "Pepinos Em Conserva - Tipo Picles 550g - Cepêra",
@@ -51,6 +64,8 @@ const products: Product[] = [
       "https://http2.mlstatic.com/D_NQ_NP_848410-MLB49232733922_022022-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
+    isPayable: false,
+    fees: 5.5,
   },
 ];
 
@@ -69,6 +84,9 @@ export function BestSellers() {
                 image={product.image}
                 price={product.price}
                 productLink={product.productLink}
+                isPayable={product.isPayable}
+                numberOfInstallments={product.numberOfInstallments}
+                fees={product.fees}
               />
             ))}
           </div>
