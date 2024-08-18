@@ -2,8 +2,9 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../../../components/ui/carousel";
 
 import hamburguerImage from "@/images/hamburguer.webp";
-import { ProductsCard } from "../product-card";
+
 import { uuid } from "@/utils/uuid";
+import { ProductsCard } from "./product-card";
 
 interface IProducts {
   name: string;
