@@ -1,6 +1,7 @@
 import { CategoryDivisor } from "@/components/category-divisor";
 import { IProductCard, ProductCard } from "../product-card";
 import { cuid } from "@/utils/cuid";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 type Product = IProductCard;
 
@@ -10,44 +11,44 @@ function createFakeLink() {
 
 const products: Product[] = [
   {
-    name: "Molho grill junior 380g",
+    name: "Molho ketchup junior 380g",
     image:
       "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
   },
   {
-    name: "Molho grill junior 380g",
+    name: "Molho barbecue junior 380g",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
+      "https://http2.mlstatic.com/D_NQ_NP_636639-MLU77839654916_072024-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
   },
   {
-    name: "Molho grill junior 380g",
+    name: "Ketchup Heinz Squeeze Tradicional 397g",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
+      "https://http2.mlstatic.com/D_NQ_NP_679412-MLA45406459591_032021-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
   },
   {
-    name: "Molho grill junior 380g",
+    name: "Ketchup Sache Tradicional Cepera 154 Saches X 7g",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
+      "https://http2.mlstatic.com/D_NQ_NP_662445-MLU72013920699_092023-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
   },
   {
-    name: "Molho grill junior 380g",
+    name: "Maionese Alho 190g - Cepêra",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
+      "https://http2.mlstatic.com/D_NQ_NP_733039-MLB77070535049_062024-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
   },
   {
-    name: "Molho grill junior 380g",
+    name: "Pepinos Em Conserva - Tipo Picles 550g - Cepêra",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
+      "https://http2.mlstatic.com/D_NQ_NP_848410-MLB49232733922_022022-O.webp",
     price: 16.5,
     productLink: createFakeLink(),
   },
