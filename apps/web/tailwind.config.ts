@@ -20,6 +20,8 @@ const config = {
     extend: {
       fontFamily: {
         rubik: "var(--font-rubik)",
+        lato: "var(--font-lato)",
+        montserrat: "var(--font-montserrat)",
       },
       colors: {
         border: "hsl(var(--border))",

@@ -28,6 +28,17 @@ const products: Products[] = [
     image: "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
     price: 16.5,
   },
+  {
+    name: "Molho grill junior 380g",
+    image: "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
+    price: 16.5,
+  },
+
+  {
+    name: "Molho grill junior 380g",
+    image: "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
+    price: 16.5,
+  },
 ];
 
 export function BestSellers() {
@@ -36,13 +47,15 @@ export function BestSellers() {
       <div className="">
         {/* Divisor */}
         <CategoryDivisor title="Mais vendidos" />
-        <div className="mt-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-1 lg:grid-cols-4 md:gap-4">
+        <div className="mt-6 mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1 lg:grid-cols-6 md:gap-4  mx-auto">
             {products.map((product, index) => (
               <ProductCard key={index} name={product.name} image={product.image} price={product.price} />
             ))}
           </div>
         </div>
+
+        <div className="mb-[500px]" />
       </div>
     </div>
   );
