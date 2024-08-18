@@ -3,7 +3,8 @@ import { SearchIcon } from "lucide-react";
 
 export function Searchbar() {
   return (
-    <div className="flex flex-row bg-white py-1 px-2 rounded-xl">
+    // Removendo searchbar
+    <div className="hidden flex-row bg-white py-1 px-2 rounded-xl">
       <SearchIcon />
       <input type="text" className="w-2/3" />
       <Separator orientation="vertical" />
