@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={cn("antialiased ", poppins.className, rubik.className, lato.className, montserrat.className)}>
+      <body className={cn("antialiased ", poppins.className, lato.variable, rubik.variable, montserrat.variable)}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <div className="">
             <Navbar />

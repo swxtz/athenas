@@ -19,9 +19,9 @@ const config = {
     },
     extend: {
       fontFamily: {
-        rubik: "var(--font-rubik)",
-        lato: "var(--font-lato)",
-        montserrat: "var(--font-montserrat)",
+        rubik: ["var(--font-rubik)", "sans-serif"],
+        lato: ["var(--font-lato)", "sans-serif"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
