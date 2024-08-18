@@ -4,7 +4,7 @@ import { BestSellers } from "./components/best-sellers";
 
 export default function Home() {
   return (
-    <main className="container">
+    <main className="container min-h-screen min-w-screen">
       <ProductsCarousel />
       <BestSellers />
     </main>

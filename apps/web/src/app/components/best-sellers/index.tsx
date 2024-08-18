@@ -3,7 +3,8 @@ import { IProductCard, ProductCard } from "../product-card";
 import { cuid } from "@/utils/cuid";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { products } from "@/data/best-sellers";
-
+import { format } from "path";
+import { formatTextToSlug } from "@/utils/format-text-to-slug";
 
 export function BestSellers() {
   return (
@@ -19,7 +20,7 @@ export function BestSellers() {
                 name={product.name}
                 image={product.image}
                 price={product.price}
-                productLink={product.productLink}
+                productLink={`/produto/${formatTextToSlug(product.name)}`}
                 isPayable={product.isPayable}
                 numberOfInstallments={product.numberOfInstallments}
                 fees={product.fees}
