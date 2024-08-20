@@ -60,7 +60,7 @@ const products: IProducts[] = [
 
 export function ProductsCarousel() {
   return (
-    <div className="px-4 py-1 mt-4 rounded-md md:rounded-lg bg-white/50 mx-auto">
+    <div className="px-4 py-1 mt-4 rounded-md md:rounded-lg bg-white mx-auto">
       <Carousel className="mt-8">
         <CarouselContent className="mx-auto flex gap-2">
           {products.map((card) => (
