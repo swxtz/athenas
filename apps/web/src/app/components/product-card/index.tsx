@@ -54,7 +54,7 @@ export function ProductCard({
         <motion.div whileHover={{ scale: 1.05 }}>
           <Link
             href={productLink}
-            className="bg-white/50 rounded-[10px] md:rounded shadow-md flex itens-center justify-center w-[150px] md:w-[200px] px-4 py-2 flex-col h-[350px]"
+            className="bg-white rounded-[10px] md:rounded shadow-md flex itens-center justify-center w-[150px] md:w-[200px] px-4 py-2 flex-col h-[350px]"
           >
             <div className="w-[75px] md:w-[100px] h-[180px] flex items-center justify-center mx-auto">
               <Image
