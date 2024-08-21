@@ -11,6 +11,8 @@ import { Heart, Share2, Star } from "lucide-react";
 import Image from "next/image";
 import { PriceDisplay } from "./price-display";
 import { Zipcode } from "./zipcode";
+import { SectionDivisor } from "./section-divisor";
+import nookies from "nookies";
 
 interface ProductCardProps {
   name: string;
@@ -19,6 +21,7 @@ interface ProductCardProps {
   isPayable: boolean;
   numberOfInstallments: number;
   fees: number;
+  description: string;
 }
 
 export function ProductCard({
@@ -28,8 +31,11 @@ export function ProductCard({
   isPayable,
   price,
   numberOfInstallments,
+  description,
 }: ProductCardProps) {
   const { toast } = useToast();
+  const zipcodeCookie = nookies.get(null).zipcode;
+  console.log(zipcodeCookie);
 
   function handleShare() {
     const url = window.location.href;
@@ -94,7 +100,7 @@ export function ProductCard({
         </div>
       </section>
 
-      <div className="w-full h-2.5 bg-zinc-100 mx-auto md:hidden my-10" />
+      <SectionDivisor />
 
       {/* Section do preço */}
       <section className="container flex flex-col gap-4">
@@ -111,9 +117,15 @@ export function ProductCard({
           <Button className="bg-green-700 hover:bg-green-800">Compre agora</Button>
           <Button variant={"outline"} className="">Adicionar ao carrinho</Button>
         </div>
+      </section>
 
+      <SectionDivisor />
+
+      <section className="container flex flex-col gap-4">
         <Zipcode />
       </section>
+
+      <SectionDivisor />
     </div>
   );
 }

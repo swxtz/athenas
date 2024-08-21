@@ -23,6 +23,9 @@ const config = {
         lato: ["var(--font-lato)", "sans-serif"],
         montserrat: ["var(--font-montserrat)", "sans-serif"],
       },
+      borderWidth: {
+        1: "1px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
