@@ -5,11 +5,21 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ReactNode, useState } from "react";
 
 interface ProvidersProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 export function ReactQueryProvider({ children }: ProvidersProps) {
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false,
+            staleTime: 60 * 1000,
+          },
+        },
+      })
+  );
 
   return (
     <QueryClientProvider client={queryClient}>
