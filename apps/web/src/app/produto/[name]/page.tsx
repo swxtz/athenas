@@ -10,6 +10,8 @@ const product = {
   isPayable: true,
   numberOfInstallments: 3,
   fees: 1,
+  discount: true,
+  discountAmount: 2,
 };
 
 interface ProductParams {
@@ -20,7 +22,7 @@ interface ProductParams {
 
 export default function ProductPage({ params }: ProductParams) {
   return (
-    <main className="-mt-8 container bg-white min-h-screen min-w-screen">
+    <main className="-mt-8 bg-white min-h-screen min-w-screen">
       <div className="">
         <ProductCard {...product} />
       </div>

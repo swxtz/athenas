@@ -8,9 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { ReactQueryProvider } from "@/providers/react-query-providers";
-
-
-
+import { Toaster } from "@/components/ui/toaster";
 
 // fonts
 const poppins = Poppins({
@@ -55,7 +53,6 @@ export default function RootLayout({
         )}
       >
         <ReactQueryProvider>
-          
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <div className="">
               <Navbar />
@@ -64,6 +61,7 @@ export default function RootLayout({
           </ThemeProvider>
           <Analytics />
           <SpeedInsights />
+          <Toaster />
         </ReactQueryProvider>
       </body>
     </html>
