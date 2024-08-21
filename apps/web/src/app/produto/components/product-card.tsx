@@ -13,6 +13,7 @@ import { PriceDisplay } from "./price-display";
 import { Zipcode } from "./zipcode";
 import { SectionDivisor } from "./section-divisor";
 import nookies from "nookies";
+import { ProductDescription } from "./product-description";
 
 interface ProductCardProps {
   name: string;
@@ -43,7 +44,7 @@ export function ProductCard({
       toast({
         description: "URL copiada para a área de transferência!",
       });
-    }); 
+    });
   }
 
   return (
@@ -114,8 +115,12 @@ export function ProductCard({
         />
         {/* Buy Button */}
         <div className="flex flex-col gap-2">
-          <Button className="bg-green-700 hover:bg-green-800">Compre agora</Button>
-          <Button variant={"outline"} className="">Adicionar ao carrinho</Button>
+          <Button className="bg-green-700 hover:bg-green-800">
+            Compre agora
+          </Button>
+          <Button variant={"outline"} className="">
+            Adicionar ao carrinho
+          </Button>
         </div>
       </section>
 
@@ -126,6 +131,10 @@ export function ProductCard({
       </section>
 
       <SectionDivisor />
+
+      <section className="container">
+        <ProductDescription>{description}</ProductDescription>
+      </section>
     </div>
   );
 }
