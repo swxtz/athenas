@@ -14,6 +14,7 @@ import { Zipcode } from "./zipcode";
 import { SectionDivisor } from "./section-divisor";
 import nookies from "nookies";
 import { ProductDescription } from "./product-description";
+import { RWebShare } from "react-web-share";
 
 interface ProductCardProps {
   name: string;
@@ -40,11 +41,14 @@ export function ProductCard({
 
   function handleShare() {
     const url = window.location.href;
-    navigator.clipboard.writeText(url).then(() => {
-      toast({
-        description: "URL copiada para a área de transferência!",
-      });
-    });
+    // navigator.clipboard.writeText(url).then(() => {
+    //   toast({
+    //     description: "URL copiada para a área de transferência!",
+    //   });
+    
+    //});
+
+
   }
 
   return (
@@ -87,11 +91,19 @@ export function ProductCard({
                 <div className="flex gap-2 md:gap-4">
                   <Button
                     className="w-fit h-fit p-3 rounded-full bg-black/70 hover:bg-black"
-                    onClick={handleShare}
+                    
                   >
-                    <Share2 />
+                    <RWebShare
+                      data={{
+                        text: "Compartilhe este produto!",
+                        url: window.location.href,
+                        title: "Compartilhe este produto!",
+                      }}
+                    >
+                      <Share2 />
+                    </RWebShare>
                   </Button>
-                  <Button className="w-fit h-fit p-3 rounded-full bg-black/70 hover:bg-black">
+                  <Button className="w-fit h-fit p-3 rounded-full bg-black/70 hover:bg-black" asChild>
                     <Heart />
                   </Button>
                 </div>
