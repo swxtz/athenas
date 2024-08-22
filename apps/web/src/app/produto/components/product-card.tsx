@@ -4,8 +4,6 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
-import { calculateTotalWithInterest } from "@/utils/calculate-total-with-interest";
-import { convertToReal } from "@/utils/convert-to-real";
 import { cuid } from "@/utils/cuid";
 import { Heart, Share2, Star } from "lucide-react";
 import Image from "next/image";
@@ -38,18 +36,6 @@ export function ProductCard({
   const { toast } = useToast();
   const zipcodeCookie = nookies.get(null).zipcode;
   console.log(zipcodeCookie);
-
-  function handleShare() {
-    const url = window.location.href;
-    // navigator.clipboard.writeText(url).then(() => {
-    //   toast({
-    //     description: "URL copiada para a área de transferência!",
-    //   });
-    
-    //});
-
-
-  }
 
   return (
     <div className="pb-[200px]">
