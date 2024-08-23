@@ -61,4 +61,9 @@ export class ProductsController {
     ) {
         return this.productsService.uploadCoverImage(param.id, file);
     }
+
+    @Get("get-best-sellers")
+    async getBestSellersProducts() {
+        return this.productsService.getBestSellersProducts();
+    }
 }

@@ -244,4 +244,17 @@ export class ProductsService {
             .toBuffer();
         return image;
     }
+
+    async getBestSellersProducts() {
+        const bestSellerProduct = await this.prisma.product.findMany({
+            take: 20,
+            orderBy: {
+                numberOfSales: "desc",
+            },
+        });
+        return {
+            message: "Produtos retornados com sucesso",
+            data: { ...bestSellerProduct },
+        };
+    }
 }

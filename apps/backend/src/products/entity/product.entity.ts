@@ -4,13 +4,13 @@ export class ProductEntity {
 
     name: string;
     description: string;
-    barcode: string;
-    images: string[];
-    coverImage: string;
+    barcode?: string;
+    images?: string[];
+    coverImage?: string;
     isAvailable: boolean;
-    rating: string;
+    rating?: string;
     productType: $Enums.ProductType;
-    state: string;
+    state: $Enums.ProductState;
     localPickup: boolean;
     numberOfSales: number;
     numberOfViews: number;
@@ -18,6 +18,7 @@ export class ProductEntity {
     buyPrice: number;
     price: number;
     stock: number;
+    sku?: string;
 
     createdAt?: Date;
     updatedAt?: Date;
