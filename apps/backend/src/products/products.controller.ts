@@ -66,7 +66,10 @@ export class ProductsController {
     }
 
     @Get("get-best-sellers")
-    async getBestSellersProducts(@Query(new ValidationPipe({ transform: true })) query: GetBestSellersDTO) {
+    async getBestSellersProducts(
+        @Query(new ValidationPipe({ transform: true }))
+        query: GetBestSellersDTO,
+    ) {
         return this.productsService.getBestSellersProducts(query);
     }
 }

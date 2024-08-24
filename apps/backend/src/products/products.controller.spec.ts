@@ -136,7 +136,4 @@ describe("ProductsController", () => {
             // expect(result).toEqual(returnedProduct);
         });
     });*/
-
-    
 });
-

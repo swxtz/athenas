@@ -20,7 +20,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "seed": "node dist/prisma/seed.js",
-    "seed:bun":"bun dist/prisma/seed.js",
+    "seed:bun": "bun dist/prisma/seed.js",
     "migrate": "bun prisma migrate dev"
   },
   "dependencies": {
@@ -39,6 +39,7 @@
     "@swc/core": "^1.7.6",
     "@swc/jest": "^0.2.36",
     "argon2": "^0.40.3",
+    "axios": "^1.7.5",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "dayjs": "^1.11.12",
