@@ -8,10 +8,12 @@ import {
     Param,
     ParseFilePipe,
     Post,
+    Query,
     UploadedFile,
     UseGuards,
     UseInterceptors,
     UsePipes,
+    ValidationPipe,
 } from "@nestjs/common";
 import { ProductsService } from "./products.service";
 import { ZodValidationPipe } from "nestjs-zod";
@@ -20,6 +22,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { UploadCoverImageParams } from "./dtos/upload-cover-image.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { AuthGuard } from "src/auth/auth.guard";
+import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
 
 @ApiTags("Products")
 @Controller("products")
@@ -63,7 +66,7 @@ export class ProductsController {
     }
 
     @Get("get-best-sellers")
-    async getBestSellersProducts() {
-        return this.productsService.getBestSellersProducts();
+    async getBestSellersProducts(@Query(new ValidationPipe({ transform: true })) query: GetBestSellersDTO) {
+        return this.productsService.getBestSellersProducts(query);
     }
 }

@@ -9,6 +9,7 @@ import { createId as CUID } from "@paralleldrive/cuid2";
 import { UtilsService } from "src/utils/utils.service";
 import { JwtService } from "@nestjs/jwt";
 import { ConvertedImage } from "./interfaces/converted-image.interface";
+import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
 
 interface JWTBearerTokenPayload {
     id: string;
@@ -245,9 +246,9 @@ export class ProductsService {
         return image;
     }
 
-    async getBestSellersProducts() {
+    async getBestSellersProducts(query: GetBestSellersDTO) {
         const bestSellerProduct = await this.prisma.product.findMany({
-            take: 20,
+            take: query.limit || 10,
             orderBy: {
                 numberOfSales: "desc",
             },
