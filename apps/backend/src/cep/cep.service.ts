@@ -1,6 +1,5 @@
 import { Injectable } from "@nestjs/common";
 import axios from "axios";
-import { copyFile } from "fs";
 import { ValidateCepDTO } from "./dtos/validate-cep.dto";
 
 @Injectable()
@@ -8,7 +7,6 @@ export class CepService {
     constructor() {}
 
     async validateCEP(param: ValidateCepDTO) {
-        console.log(param);
         const viacepResponse = await axios.get(
             `https://viacep.com.br/ws/${param.cep}/json/`,
         );
