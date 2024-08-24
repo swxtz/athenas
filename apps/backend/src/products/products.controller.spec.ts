@@ -8,8 +8,30 @@ import { CreateProductDTO } from "./dtos/create-product.dto";
 import * as request from "supertest";
 import { createNestAppInstance } from "test/test.helpers";
 import { CreateUserDTO } from "src/users/dtos/create-user.dto";
+import { query } from "express";
+import { Query } from "@nestjs/common";
 
 const productMockId = createId();
+
+const returnedBestSellersProduct: ProductEntity[] = [
+    {
+        name: "Pão para hamburguer",
+        description: "Pão para hamburguer",
+        barcode: "123456789",
+        price: 1425,
+        stock: 100,
+        coverImage:
+            "https://megag.com.br/v21/wp-content/uploads/2024/01/15060-PAO-DE-HAMBURGUER-TRADICIONAL-PITA-BREAD-48X80G.png",
+        buyPrice: 1000,
+        isAvailable: true,
+        localPickup: true,
+        numberOfSales: 1001,
+        numberOfViews: 1000,
+        numberOfViewsInLastWeek: 1000,
+        productType: "others",
+        state: "available",
+    },
+];
 
 const returnedProduct: ProductEntity[] = [
     new ProductEntity({
@@ -60,6 +82,10 @@ describe("ProductsController", () => {
                             .fn()
                             .mockResolvedValue(returnedProduct),
                         uploadCoverImage: jest.fn(),
+
+                        getBestSellersProducts: jest
+                            .fn()
+                            .mockResolvedValue(returnedBestSellersProduct),
                     },
                 },
 
@@ -136,4 +162,25 @@ describe("ProductsController", () => {
             // expect(result).toEqual(returnedProduct);
         });
     });*/
+
+    describe("get-best-sellers", () => {
+        it("should return all best sellers products successfully", async () => {
+            const result = await controller.getBestSellersProducts();
+
+            expect(result).toEqual(returnedBestSellersProduct);
+            expect(service.getBestSellersProducts);
+            //expect(result.data.length).toBeGreaterThan(1); 
+            //expect(result.data.length).toBeLessThan(11);
+
+        });
+        it("", async () => {
+            const query = {
+                limit: 10
+            }
+
+            const result = await controller.getBestSellersProducts(query);
+
+            expect(result)
+        });
+    });
 });
