@@ -246,7 +246,7 @@ export class ProductsService {
         return image;
     }
 
-    async getBestSellersProducts(query: GetBestSellersDTO) {
+    async getBestSellersProducts(query?: GetBestSellersDTO) {
         const bestSellerProduct = await this.prisma.product.findMany({
             take: query.limit || 10,
             orderBy: {
