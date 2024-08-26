@@ -28,7 +28,7 @@ export function ProductCard({
   fees,
   numberOfInstallments,
 }: IProductCard) {
-  const convertedPrice = convertToReal(price);
+  const convertedPrice = convertToReal(price / 100);
   const isDesktop = useMediaQuery(768);
 
   function calculateTotalWithInterest(numInstallments: number | undefined, interestRate: number, productValue: number) {
