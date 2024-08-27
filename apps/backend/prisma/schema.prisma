@@ -41,6 +41,7 @@ model Product {
 
   name        String
   description String
+  slug        String  @unique
   buyPrice    Int     @map("buy_price")
   price       Int
   stock       Int

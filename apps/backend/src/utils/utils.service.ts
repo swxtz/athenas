@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import slugify from "slugify";
 
 @Injectable()
 export class UtilsService {
@@ -25,5 +26,36 @@ export class UtilsService {
 
             this.logger.error(err.message);
         }
+    }
+
+    createProductSlug(productName: string): string {
+        let slug = slugify(productName, {
+            lower: true,
+            strict: true,
+        });
+
+        slug = slug + "-" + this.gereateRandomStringCode(5);
+        return slug;
+    }
+
+    private gereateRandomStringCode(length: number) {
+        if (length <= 0) {
+            throw new Error(
+                "O comprimento da string deve ser um valor positivo.",
+            );
+        }
+
+        const characters =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        const charactersLength = characters.length;
+
+        let result = "";
+
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * charactersLength);
+            result += characters[randomIndex];
+        }
+
+        return result;
     }
 }

@@ -108,6 +108,7 @@ export class ProductsService {
                     barcode: data.barcode,
                     isAvailable: false,
                     productType: data.productType,
+                    slug: this.utils.createProductSlug(data.name),
                 },
             });
 
@@ -255,7 +256,7 @@ export class ProductsService {
         });
         return {
             message: "Produtos retornados com sucesso",
-            data: [ ...bestSellerProduct ],
+            data: [...bestSellerProduct],
         };
     }
 }
