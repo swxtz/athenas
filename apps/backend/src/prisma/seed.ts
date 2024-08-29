@@ -8,23 +8,6 @@ const utils = new UtilsService();
 
 const products: ProductEntity[] = [
     {
-        name: "Pão para hamburguer",
-        description: "Pão para hamburguer",
-        barcode: "123456789",
-        price: 1425,
-        stock: 100,
-        coverImage:
-            "https://megag.com.br/v21/wp-content/uploads/2024/01/15060-PAO-DE-HAMBURGUER-TRADICIONAL-PITA-BREAD-48X80G.png",
-        buyPrice: 1000,
-        isAvailable: true,
-        localPickup: true,
-        numberOfSales: 1001,
-        numberOfViews: 1000,
-        numberOfViewsInLastWeek: 1000,
-        productType: "others",
-        state: "available",
-    },
-    {
         name: "Junior Ketchup Defumado",
         description:
             "Descubra um novo nível de sabor com o Junior Ketchup Defumado! Este ketchup artesanal combina o clássico molho de tomate com um toque sofisticado de defumado, oferecendo uma explosão de sabor que vai elevar suas refeições a um patamar gourmet. Feito com ingredientes selecionados e um processo de defumação especial, o Junior Ketchup Defumado proporciona uma textura suave e um gosto irresistível, perfeito para acompanhar hambúrgueres, batatas fritas, carnes grelhadas e muito mais. Experimente e transforme o simples em extraordinário com este ketchup inovador e cheio de personalidade!",
@@ -212,26 +195,7 @@ async function seed() {
             slug: utils.createProductSlug(products[4].name),
         },
     });
-    await prisma.product.create({
-        data: {
-            name: products[5].name,
-            description: products[5].description,
-            barcode: products[5].barcode,
-            price: products[5].price,
-            stock: products[5].stock,
-            coverImage: products[5].coverImage,
-            buyPrice: products[5].buyPrice,
-            isAvailable: products[5].isAvailable,
-            localPickup: products[5].localPickup,
-            numberOfSales: products[5].numberOfSales,
-            numberOfViews: products[5].numberOfViews,
-            numberOfViewsInLastWeek: products[5].numberOfViewsInLastWeek,
-            productType: products[5].productType,
-            state: products[5].state,
-            slug: utils.createProductSlug(products[5].name),
-        },
-    }),
-        console.log("Seed completed");
+    console.log("Seed completed");
 }
 
 seed().finally(async () => {

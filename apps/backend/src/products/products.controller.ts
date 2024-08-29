@@ -67,7 +67,6 @@ export class ProductsController {
         @Query(new ValidationPipe({ transform: true }))
         query?: GetBestSellersDTO,
     ) {
-        console.log("bateu na rota");
         return this.productsService.getBestSellersProducts(query);
     }
 
