@@ -3,14 +3,12 @@ import {
     Controller,
     FileTypeValidator,
     Get,
-    Headers,
     MaxFileSizeValidator,
     Param,
     ParseFilePipe,
     Post,
     Query,
     UploadedFile,
-    UseGuards,
     UseInterceptors,
     UsePipes,
     ValidationPipe,
@@ -21,7 +19,6 @@ import { CreateProductDTO } from "./dtos/create-product.dto";
 import { ApiTags } from "@nestjs/swagger";
 import { UploadCoverImageParams } from "./dtos/upload-cover-image.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { AuthGuard } from "src/auth/auth.guard";
 import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
 
 @ApiTags("Products")
@@ -36,13 +33,13 @@ export class ProductsController {
     }
 
     @Post("create-product")
-    @UseGuards(AuthGuard)
+    //@UseGuards(AuthGuard)
     @UsePipes(new ZodValidationPipe(CreateProductDTO))
     async createProduct(
         @Body() body: CreateProductDTO,
-        @Headers("authorization") token: string,
+        //@Headers("authorization") token: string,
     ) {
-        return this.productsService.createProduct(body, token);
+        return this.productsService.createProduct(body);
     }
 
     @Post("upload-cover-image/:id")
@@ -72,5 +69,10 @@ export class ProductsController {
     ) {
         console.log("bateu na rota");
         return this.productsService.getBestSellersProducts(query);
+    }
+
+    @Get("get-product-by-slug/:slug")
+    async getProductBySlug(@Param("slug") slug: string) {
+        return this.productsService.getProductBySlug(slug);
     }
 }

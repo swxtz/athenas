@@ -4,12 +4,8 @@ import { ProductEntity } from "./entity/product.entity";
 import { ProductsController } from "./products.controller";
 import { ProductsService } from "./products.service";
 import { createId } from "@paralleldrive/cuid2";
-import { CreateProductDTO } from "./dtos/create-product.dto";
-import * as request from "supertest";
+
 import { createNestAppInstance } from "test/test.helpers";
-import { CreateUserDTO } from "src/users/dtos/create-user.dto";
-import { query } from "express";
-import { Query } from "@nestjs/common";
 
 const productMockId = createId();
 
@@ -169,18 +165,17 @@ describe("ProductsController", () => {
 
             expect(result).toEqual(returnedBestSellersProduct);
             expect(service.getBestSellersProducts);
-            //expect(result.data.length).toBeGreaterThan(1); 
+            //expect(result.data.length).toBeGreaterThan(1);
             //expect(result.data.length).toBeLessThan(11);
-
         });
         it("", async () => {
             const query = {
-                limit: 10
-            }
+                limit: 10,
+            };
 
             const result = await controller.getBestSellersProducts(query);
 
-            expect(result)
+            expect(result);
         });
     });
 });

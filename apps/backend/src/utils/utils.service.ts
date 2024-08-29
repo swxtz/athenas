@@ -34,7 +34,7 @@ export class UtilsService {
             strict: true,
         });
 
-        slug = slug + "-" + this.gereateRandomStringCode(5);
+        slug = slug + "-" + this.gereateRandomStringCode(12);
         return slug;
     }
 
@@ -45,8 +45,7 @@ export class UtilsService {
             );
         }
 
-        const characters =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        const characters = "abcdefghijklmnopqrstuvwxyz";
         const charactersLength = characters.length;
 
         let result = "";

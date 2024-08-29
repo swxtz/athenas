@@ -4,6 +4,7 @@ export class ProductEntity {
 
     name: string;
     description: string;
+    slug?: string;
     barcode?: string;
     images?: string[];
     coverImage?: string;

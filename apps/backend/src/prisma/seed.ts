@@ -1,7 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import { ProductEntity } from "src/products/entity/product.entity";
+import { UtilsService } from "src/utils/utils.service";
 
 const prisma = new PrismaClient();
+
+const utils = new UtilsService();
 
 const products: ProductEntity[] = [
     {
@@ -130,6 +133,7 @@ async function seed() {
             numberOfViewsInLastWeek: products[0].numberOfViewsInLastWeek,
             productType: products[0].productType,
             state: products[0].state,
+            slug: utils.createProductSlug(products[0].name),
         },
     }),
         await prisma.product.create({
@@ -148,6 +152,7 @@ async function seed() {
                 numberOfViewsInLastWeek: products[1].numberOfViewsInLastWeek,
                 productType: products[1].productType,
                 state: products[1].state,
+                slug: utils.createProductSlug(products[1].name),
             },
         });
     await prisma.product.create({
@@ -166,6 +171,7 @@ async function seed() {
             numberOfViewsInLastWeek: products[2].numberOfViewsInLastWeek,
             productType: products[2].productType,
             state: products[2].state,
+            slug: utils.createProductSlug(products[2].name),
         },
     });
     await prisma.product.create({
@@ -184,6 +190,7 @@ async function seed() {
             numberOfViewsInLastWeek: products[3].numberOfViewsInLastWeek,
             productType: products[3].productType,
             state: products[3].state,
+            slug: utils.createProductSlug(products[3].name),
         },
     });
     await prisma.product.create({
@@ -202,6 +209,7 @@ async function seed() {
             numberOfViewsInLastWeek: products[4].numberOfViewsInLastWeek,
             productType: products[4].productType,
             state: products[4].state,
+            slug: utils.createProductSlug(products[4].name),
         },
     });
     await prisma.product.create({
@@ -220,6 +228,7 @@ async function seed() {
             numberOfViewsInLastWeek: products[5].numberOfViewsInLastWeek,
             productType: products[5].productType,
             state: products[5].state,
+            slug: utils.createProductSlug(products[5].name),
         },
     }),
         console.log("Seed completed");

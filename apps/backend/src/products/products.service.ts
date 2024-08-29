@@ -11,15 +11,15 @@ import { JwtService } from "@nestjs/jwt";
 import { ConvertedImage } from "./interfaces/converted-image.interface";
 import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
 
-interface JWTBearerTokenPayload {
-    id: string;
-    name: string;
-    email: string;
-    creatredAt: Date;
-    updatedAt: Date;
-    iat: number;
-    exp: number;
-}
+// interface JWTBearerTokenPayload {
+//     id: string;
+//     name: string;
+//     email: string;
+//     creatredAt: Date;
+//     updatedAt: Date;
+//     iat: number;
+//     exp: number;s
+// }
 
 @Injectable()
 export class ProductsService {
@@ -43,40 +43,40 @@ export class ProductsService {
         });
     }
 
-    async createProduct(data: CreateProductDTO, rawToken: string) {
-        const token = this.utils.removeBearer(rawToken);
+    async createProduct(data: CreateProductDTO) {
+        // const token = this.utils.removeBearer(rawToken);
 
         try {
-            const jwtPayload: JWTBearerTokenPayload =
-                await this.jwt.verifyAsync(token);
+            // const jwtPayload: JWTBearerTokenPayload =
+            //     await this.jwt.verifyAsync(token);
 
-            if (!jwtPayload) {
-                throw new HttpException(
-                    {
-                        message: "Token inválido",
-                    },
-                    401,
-                );
-            }
+            // if (!jwtPayload) {
+            //     throw new HttpException(
+            //         {
+            //             message: "Token inválido",
+            //         },
+            //         401,
+            //     );
+            // }
 
-            const user = await this.prisma.user.findFirst({
-                where: { id: jwtPayload.id },
-                select: {
-                    id: true,
-                    email: true,
-                    name: true,
-                    userType: true,
-                },
-            });
+            // const user = await this.prisma.user.findFirst({
+            //     where: { id: jwtPayload.id },
+            //     select: {
+            //         id: true,
+            //         email: true,
+            //         name: true,
+            //         userType: true,
+            //     },
+            // });
 
-            if (user.userType != "consumer") {
-                throw new HttpException(
-                    {
-                        message: "Usuário não autorizado",
-                    },
-                    401,
-                );
-            }
+            // if (user.userType != "consumer") {
+            //     throw new HttpException(
+            //         {
+            //             message: "Usuário não autorizado",
+            //         },
+            //         401,
+            //     );
+            // }
 
             const verifyIfProductExists = await this.prisma.product.findFirst({
                 where: { name: data.name },
@@ -258,5 +258,22 @@ export class ProductsService {
             message: "Produtos retornados com sucesso",
             data: [...bestSellerProduct],
         };
+    }
+
+    async getProductBySlug(slug: string) {
+        const product = await this.prisma.product.findFirst({
+            where: { slug },
+        });
+
+        if (!product) {
+            throw new HttpException(
+                {
+                    message: "Produto não encontrado",
+                },
+                404,
+            );
+        }
+
+        return product;
     }
 }
