@@ -64,9 +64,10 @@ model Product {
   numberOfViews           Int @default(0) @map("number_of_views")
   numberOfViewsInLastWeek Int @default(0) @map("number_of_views_in_last_week")
 
-  createdAt DateTime    @default(now()) @map("created_at")
-  updatedAt DateTime    @updatedAt @map("updated_at")
-  Promotion Promotion[]
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  Promotion     Promotion[]
+  UserPurchases UserPurchases?
 
   @@map("products")
 }
@@ -130,3 +131,18 @@ model Recommendation {
 }
 
 // 
+model UserPurchases {
+  id String @id @default(uuid())
+
+  productId String  @unique @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+
+  productLink String @map("product_link")
+  productSlug String @map("product_slug")
+  productValue Int @map("product_values")
+  productName String @map("product_name")
+
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  @@map("user_purchases")
+}
