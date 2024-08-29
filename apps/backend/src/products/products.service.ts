@@ -255,7 +255,7 @@ export class ProductsService {
         });
         return {
             message: "Produtos retornados com sucesso",
-            data: [ ...bestSellerProduct ],
+            data: [...bestSellerProduct],
         };
     }
 }

@@ -12,6 +12,7 @@ import { DayjsModule } from "./dayjs/dayjs.module";
 import { OdinModule } from "./odin/odin.module";
 import { RecommendationValuesModule } from "./recommendation-values/recommendation-values.module";
 import { CepModule } from "./cep/cep.module";
+import { PurchasedProductsModule } from "./purchased-products/purchased-products.module";
 
 @Module({
     imports: [
@@ -30,6 +31,7 @@ import { CepModule } from "./cep/cep.module";
         OdinModule,
         RecommendationValuesModule,
         CepModule,
+        PurchasedProductsModule,
     ],
     controllers: [],
     providers: [],

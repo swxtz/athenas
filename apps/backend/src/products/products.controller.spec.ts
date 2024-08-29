@@ -169,18 +169,17 @@ describe("ProductsController", () => {
 
             expect(result).toEqual(returnedBestSellersProduct);
             expect(service.getBestSellersProducts);
-            //expect(result.data.length).toBeGreaterThan(1); 
+            //expect(result.data.length).toBeGreaterThan(1);
             //expect(result.data.length).toBeLessThan(11);
-
         });
         it("", async () => {
             const query = {
-                limit: 10
-            }
+                limit: 10,
+            };
 
             const result = await controller.getBestSellersProducts(query);
 
-            expect(result)
+            expect(result);
         });
     });
 });
