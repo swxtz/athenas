@@ -77,7 +77,7 @@ export class UsersService {
                 expiresIn: 60 * 10,
             });
 
-            const url = `${webUrl}/auth/verify-email?token=${token}`;
+            const url = `${webUrl}/auth/verificar-email?token=${token}`;
 
             // await this.resendService.sendVerifyEmailToken(
             //     token,

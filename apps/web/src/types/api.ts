@@ -1,4 +1,4 @@
-export interface ApiError<T> extends Error {
+export interface ApiResponse<T> extends Error {
   response: {
     data: T;
     message: string;
