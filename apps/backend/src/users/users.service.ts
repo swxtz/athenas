@@ -4,9 +4,9 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { ArgonService } from "src/argon/argon.service";
 import { UserEntity } from "./entity/user.entity";
 import { JwtService } from "@nestjs/jwt";
-import { CreateUserResponse } from "./response/create-user.response";
 import { UtilsService } from "src/utils/utils.service";
-import { CreateUserQueryDto } from "./dtos/create-user-query.dto";
+import { ConfigService } from "@nestjs/config";
+
 //import { ResendService } from "src/resend/resend.service";
 
 export interface CreateUserPromise {
@@ -32,15 +32,14 @@ export class UsersService {
         private jwt: JwtService,
         //private resendService: ResendService,
         private utils: UtilsService,
+        private readonly configService: ConfigService,
     ) {}
 
     private logger = new Logger(UsersService.name);
 
-    async createUser(
-        user: CreateUserDTO,
-        isDevEnv?: boolean,
-    ): Promise<CreateUserResponse> {
+    async createUser(user: CreateUserDTO, isDevEnv?: boolean) {
         const { email, name, password } = user;
+        const webUrl = this.configService.getOrThrow("WEB_URL");
 
         const verifyUser = await this.prisma.user.findFirst({
             where: { email },
@@ -78,11 +77,13 @@ export class UsersService {
                 expiresIn: 60 * 10,
             });
 
+            const url = `${webUrl}/auth/verify-email?token=${token}`;
+
             // await this.resendService.sendVerifyEmailToken(
             //     token,
             //     "dev.gustavomendonca@protonmail.com"
             // );
-            this.logger.debug(`Confirm email JWT: ${token}`);
+            this.logger.debug(`Confirm email JWT: ${url}`);
 
             if (isDevEnv) {
                 return {
@@ -91,11 +92,9 @@ export class UsersService {
                     token,
                 };
             }
-
             return {
                 message: "Usuario criado com sucesso",
                 data: { ...user },
-                token,
             };
         } catch (err) {
             console.log(err);
