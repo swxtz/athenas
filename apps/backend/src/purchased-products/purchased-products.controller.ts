@@ -1,4 +1,4 @@
-import { Controller } from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 import { PurchasedProductsService } from "./purchased-products.service";
 import { ApiTags } from "@nestjs/swagger";
 
@@ -8,4 +8,10 @@ export class PurchasedProductsController {
     constructor(
         private readonly purchasedProductsService: PurchasedProductsService,
     ) {}
+
+    @Get("get-all")
+    async getAllPurchasedProducts(){
+        return await this.purchasedProductsService.getAllPurchasedProducts();    
+    } 
+
 }
