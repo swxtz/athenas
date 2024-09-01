@@ -14,9 +14,9 @@ async function verifyEmail(token: string) {
   return response;
 }
 
-export function useMutationVerifyEmail() {
+export function useMutationVerifyEmail(token: string) {
   return useMutation({
-    mutationFn: verifyEmail,
+    mutationFn: () => verifyEmail(token),
     mutationKey: ["verify-email"],
   });
 }
