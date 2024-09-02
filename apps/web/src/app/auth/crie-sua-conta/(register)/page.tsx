@@ -1,5 +1,11 @@
 import { Separator } from "@/components/ui/separator";
 import { RegisterForm } from "./components/register-form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "RN Distribuidora | Crie sua conta",
+  description: "Ecommerce da RN Distribuidora",
+};
 
 export default function RegisterPage() {
   return (

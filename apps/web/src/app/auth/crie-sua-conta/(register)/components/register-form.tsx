@@ -10,6 +10,7 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useMutationCreateUser } from "@/hooks/mutations/create-user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -26,15 +27,16 @@ const formSchema = z.object({
     .min(6, { message: "Senha deve ter no mínimo 6 caracteres" }),
 });
 
-type FormValues = z.infer<typeof formSchema>;
+export type FormValues = z.infer<typeof formSchema>;
 
 export function RegisterForm() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
   });
+  const { mutate } = useMutationCreateUser();
 
   function handleSubmit(values: FormValues) {
-    console.log(values);
+    mutate(values);
   }
 
   return (
