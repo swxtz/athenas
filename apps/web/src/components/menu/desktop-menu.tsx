@@ -9,7 +9,7 @@ export function DesktopMenu() {
     <div className="hidden md:flex gap-4">
       <div className="">
         <Popover>
-          <PopoverTrigger>
+          <PopoverTrigger asChild>
             <button className="text-white flex items-center gap-2">
               <div className="flex flex-row items-center gap-2">
                 <Avatar />
