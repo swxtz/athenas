@@ -32,7 +32,7 @@ export function LoginForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col container w-1/2 gap-4">
           <FormField
             control={form.control}
             name="email"
@@ -67,7 +67,7 @@ export function LoginForm() {
             )}
           />
 
-          <Button type="submit" variant={"default"} className="">Entrar</Button>
+          <Button type="submit" variant={"default"} className=""> Entrar </Button>
         </div>
       </form>
     </Form>
