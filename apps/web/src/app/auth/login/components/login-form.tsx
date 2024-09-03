@@ -33,7 +33,7 @@ export function LoginForm() {
     console.log(values);
     toast({
       title: "Usuário logado com sucesso!"
-    })
+    });
   }
   return (
     <Form {...form}>
