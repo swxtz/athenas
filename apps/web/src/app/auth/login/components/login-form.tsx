@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ErrorInputDisplay } from "@/components/ui/error-input-display";
+import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   email: z.string({ message: "Esse campo é obrigatorio" }).email("Digite um e-mail válido"),
@@ -26,8 +27,13 @@ export function LoginForm() {
     resolver: zodResolver(formSchema),
   });
 
+  const { toast } = useToast();
+
   function handleSubmit(values: FormValues) {
     console.log(values);
+    toast({
+      title: "Usuário logado com sucesso!"
+    })
   }
   return (
     <Form {...form}>
