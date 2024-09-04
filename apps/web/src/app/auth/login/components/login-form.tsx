@@ -14,10 +14,15 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ErrorInputDisplay } from "@/components/ui/error-input-display";
 import { useToast } from "@/components/ui/use-toast";
+import { setCookie } from "nookies";
 
 const formSchema = z.object({
-  email: z.string({ message: "Esse campo é obrigatorio" }).email("Digite um e-mail válido"),
-  password: z.string({ message: "Esse campo é obrigatorio" }).min(8, "A senha deve ter no mínimo 8 caracteres"),
+  email: z
+    .string({ message: "Esse campo é obrigatorio" })
+    .email("Digite um e-mail válido"),
+  password: z
+    .string({ message: "Esse campo é obrigatorio" })
+    .min(8, "A senha deve ter no mínimo 8 caracteres"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -31,8 +36,18 @@ export function LoginForm() {
 
   function handleSubmit(values: FormValues) {
     console.log(values);
+
+    setCookie(null, "login-token-email", values.email, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: "/",
+    });
+
+    setCookie(null, "login-token-password", values.password, {
+      maxAge: 30 * 24 * 60 * 60,
+      path: "/",
+    });
     toast({
-      title: "Usuário logado com sucesso!"
+      title: "Usuário logado com sucesso!",
     });
   }
   return (
@@ -46,11 +61,17 @@ export function LoginForm() {
               <FormItem>
                 <FormLabel>E-mail</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="joãodetal@exemplo.com" {...field} />
+                  <Input
+                    type="email"
+                    placeholder="joãodetal@exemplo.com"
+                    {...field}
+                  />
                 </FormControl>
 
                 {form.formState.errors.email && (
-                  <ErrorInputDisplay>{form.formState.errors.email.message}</ErrorInputDisplay>
+                  <ErrorInputDisplay>
+                    {form.formState.errors.email.message}
+                  </ErrorInputDisplay>
                 )}
               </FormItem>
             )}
@@ -63,17 +84,27 @@ export function LoginForm() {
               <FormItem>
                 <FormLabel>Senha</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="********" {...field} autoComplete="password" />
+                  <Input
+                    type="password"
+                    placeholder="********"
+                    {...field}
+                    autoComplete="password"
+                  />
                 </FormControl>
 
                 {form.formState.errors.password && (
-                  <ErrorInputDisplay>{form.formState.errors.password.message}</ErrorInputDisplay>
+                  <ErrorInputDisplay>
+                    {form.formState.errors.password.message}
+                  </ErrorInputDisplay>
                 )}
               </FormItem>
             )}
           />
 
-          <Button type="submit" variant={"default"} className=""> Entrar </Button>
+          <Button type="submit" variant={"default"} className="">
+            {" "}
+            Entrar{" "}
+          </Button>
         </div>
       </form>
     </Form>
