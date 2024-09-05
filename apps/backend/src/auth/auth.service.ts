@@ -67,7 +67,9 @@ export class AuthService {
             },
         });
 
-        const token = await this.jwtService.signAsync(dataToPayload);
+        const token = await this.jwtService.signAsync(dataToPayload, {
+            secret: this.configService.getOrThrow("JWT_SECRET"),
+        });
 
         return { data: { token } };
     }
@@ -78,19 +80,16 @@ export class AuthService {
         if (!jwtIsValid) {
             throw new HttpException("Token inválido", 401);
         }
-
         const payload: VerifyEmailJWTPayload =
             await this.jwtService.verifyAsync(token, {
                 secret: this.configService.getOrThrow("JWT_SECRET"),
             });
-
         const user = await this.prisma.user.findFirst({
             where: { email: payload.email },
             select: {
                 emailVerified: true,
             },
         });
-
         if (user.emailVerified) {
             throw new HttpException("Email já verificado", 401);
         }
