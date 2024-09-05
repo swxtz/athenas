@@ -28,6 +28,7 @@ model User {
   createdAt     DateTime       @default(now()) @map("created_at")
   updatedAt     DateTime       @updatedAt @map("updated_at")
   UserPurchases UserPurchases?
+  CartItem      CartItem[]
 
   @@map("users")
 }
@@ -70,6 +71,7 @@ model Product {
   updatedAt     DateTime       @updatedAt @map("updated_at")
   Promotion     Promotion[]
   UserPurchases UserPurchases?
+  CartItem      CartItem?
 
   @@map("products")
 }
@@ -150,4 +152,19 @@ model UserPurchases {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("user_purchases")
+}
+
+model CartItem {
+  id String @id @default(uuid())
+
+  productId String @unique @map("product_id")
+  userId    String @unique @map("user_id")
+
+  product Product @relation(fields: [productId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("update_at")
+
+  @@map("cart_item")
 }
