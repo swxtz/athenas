@@ -13,6 +13,7 @@ import { OdinModule } from "./odin/odin.module";
 import { RecommendationValuesModule } from "./recommendation-values/recommendation-values.module";
 import { CepModule } from "./cep/cep.module";
 import { PurchasedProductsModule } from "./purchased-products/purchased-products.module";
+import { CartsModule } from "./carts/carts.module";
 
 @Module({
     imports: [
@@ -32,6 +33,7 @@ import { PurchasedProductsModule } from "./purchased-products/purchased-products
         RecommendationValuesModule,
         CepModule,
         PurchasedProductsModule,
+        CartsModule,
     ],
     controllers: [],
     providers: [],
