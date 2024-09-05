@@ -1,7 +1,5 @@
 import { HttpException, Injectable } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
-import { DayjsService } from "src/dayjs/dayjs.service";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
 
@@ -28,7 +26,7 @@ export class PurchasedProductsService {
 
         try {
             const jwtpayload: JWTBearerTokenPayLoad =
-                await this.jwt.verifyAsync(rawtoken);
+                await this.jwt.verifyAsync(token);
 
             if (!jwtpayload) {
                 throw new HttpException(
@@ -57,6 +55,13 @@ export class PurchasedProductsService {
                     401,
                 );
             }
+
+            const userPurchasedProducts =
+                await this.prisma.userPurchases.findMany({
+                    where: { userId: jwtpayload.id },
+                });
+
+            return userPurchasedProducts;
         } catch (err) {
             console.log(err);
             throw new HttpException(err, 404);
