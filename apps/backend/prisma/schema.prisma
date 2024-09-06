@@ -67,11 +67,13 @@ model Product {
   numberOfViews           Int @default(0) @map("number_of_views")
   numberOfViewsInLastWeek Int @default(0) @map("number_of_views_in_last_week")
 
-  createdAt     DateTime       @default(now()) @map("created_at")
-  updatedAt     DateTime       @updatedAt @map("updated_at")
-  Promotion     Promotion[]
-  UserPurchases UserPurchases?
-  CartItem      CartItem?
+  createdAt        DateTime        @default(now()) @map("created_at")
+  updatedAt        DateTime        @updatedAt @map("updated_at")
+  Promotion        Promotion[]
+  UserPurchases    UserPurchases?
+  CartItem         CartItem?
+  Recommendation   Recommendation?
+  recommendationId String?
 
   @@map("products")
 }
@@ -111,25 +113,33 @@ model Recommendation {
   id String @id @default(uuid())
 
   // foremkey
-  productId String @unique @map("product_id")
+  productId String  @unique @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
 
   //base values 
-  score             Float @default(500)
-  weekRecomendation Float @default(500)
+  score              Float @default(500)
+  weekRecomendation  Float @default(500) @map("week_recomendation")
+  dailyRecomendation Float @default(500) @map("daily_recomendation")
 
   // recomedation values
 
   // views
-  views     Int @default(0)
-  weekViews Int @default(0) @map("week_views")
+  views      Int @default(0)
+  weekViews  Int @default(0) @map("week_views")
+  dailyViews Int @default(0) @map("daily_views")
 
   // likes
-  likes     Int @default(0)
-  weekLikes Int @default(0) @map("week_likes")
+  likes      Int @default(0)
+  weekLikes  Int @default(0) @map("week_likes")
+  dailyLikes Int @default(0) @map("daily_likes")
 
   // sales 
-  sales     Int @default(0)
-  weekSales Int @default(0) @map("week_sales")
+  sales      Int @default(0)
+  weekSales  Int @default(0) @map("week_sales")
+  dailySales Int @default(0) @map("daily_sales")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("recommendations")
 }

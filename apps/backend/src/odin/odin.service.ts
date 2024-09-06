@@ -1,4 +1,5 @@
 import { Injectable, Logger } from "@nestjs/common";
+import { Cron } from "@nestjs/schedule";
 import { PrismaService } from "src/prisma/prisma.service";
 import { RecommendationValuesService } from "src/recommendation-values/recommendation-values.service";
 
@@ -109,6 +110,20 @@ export class OdinService {
         await this.prisma.recommendation.update({
             where: { productId },
             data: { sales: product.sales - this.recommedationValues.sale },
+        });
+    }
+
+    @Cron("0 0 0 * * *")
+    async ResetDailyValues() {
+        this.logger.log("Resetting daily values");
+
+        await this.prisma.recommendation.updateMany({
+            data: {
+                dailyLikes: 0,
+                dailySales: 0,
+                dailyViews: 0,
+                dailyRecomendation: 500,
+            },
         });
     }
 }

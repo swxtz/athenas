@@ -112,10 +112,26 @@ export class ProductsService {
                 },
             });
 
+            await this.prisma.recommendation.create({
+                data: {
+                    productId: product.id,
+                },
+            });
+
             return product;
         } catch (err) {
-            console.log(err);
-            throw new HttpException(err, 404);
+            if (err instanceof HttpException) {
+                throw err;
+            } else {
+                this.logger.error(err);
+                throw new HttpException(
+                    {
+                        message: "Erro ao criar produto",
+                        error: err,
+                    },
+                    500,
+                );
+            }
         }
     }
 

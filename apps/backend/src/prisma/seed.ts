@@ -9,7 +9,7 @@ const utils = new UtilsService();
 const products = new PrismaMocks().products();
 
 async function seed() {
-    await prisma.product.create({
+    const p1 = await prisma.product.create({
         data: {
             name: products[0].name,
             description: products[0].description,
@@ -27,27 +27,41 @@ async function seed() {
             state: products[0].state,
             slug: utils.createProductSlug(products[0].name),
         },
-    }),
-        await prisma.product.create({
-            data: {
-                name: products[1].name,
-                description: products[1].description,
-                barcode: products[1].barcode,
-                price: products[1].price,
-                stock: products[1].stock,
-                coverImage: products[1].coverImage,
-                buyPrice: products[1].buyPrice,
-                isAvailable: products[1].isAvailable,
-                localPickup: products[1].localPickup,
-                numberOfSales: products[1].numberOfSales,
-                numberOfViews: products[1].numberOfViews,
-                numberOfViewsInLastWeek: products[1].numberOfViewsInLastWeek,
-                productType: products[1].productType,
-                state: products[1].state,
-                slug: utils.createProductSlug(products[1].name),
-            },
-        });
-    await prisma.product.create({
+    });
+
+    await prisma.recommendation.create({
+        data: {
+            productId: p1.id,
+        },
+    });
+
+    const p2 = await prisma.product.create({
+        data: {
+            name: products[1].name,
+            description: products[1].description,
+            barcode: products[1].barcode,
+            price: products[1].price,
+            stock: products[1].stock,
+            coverImage: products[1].coverImage,
+            buyPrice: products[1].buyPrice,
+            isAvailable: products[1].isAvailable,
+            localPickup: products[1].localPickup,
+            numberOfSales: products[1].numberOfSales,
+            numberOfViews: products[1].numberOfViews,
+            numberOfViewsInLastWeek: products[1].numberOfViewsInLastWeek,
+            productType: products[1].productType,
+            state: products[1].state,
+            slug: utils.createProductSlug(products[1].name),
+        },
+    });
+
+    await prisma.recommendation.create({
+        data: {
+            productId: p2.id,
+        },
+    });
+
+    const p3 = await prisma.product.create({
         data: {
             name: products[2].name,
             description: products[2].description,
@@ -66,7 +80,14 @@ async function seed() {
             slug: utils.createProductSlug(products[2].name),
         },
     });
-    await prisma.product.create({
+
+    await prisma.recommendation.create({
+        data: {
+            productId: p3.id,
+        },
+    });
+
+    const p4 = await prisma.product.create({
         data: {
             name: products[3].name,
             description: products[3].description,
@@ -85,7 +106,14 @@ async function seed() {
             slug: utils.createProductSlug(products[3].name),
         },
     });
-    await prisma.product.create({
+
+    await prisma.recommendation.create({
+        data: {
+            productId: p4.id,
+        },
+    });
+
+    const p5 = await prisma.product.create({
         data: {
             name: products[4].name,
             description: products[4].description,
@@ -102,6 +130,12 @@ async function seed() {
             productType: products[4].productType,
             state: products[4].state,
             slug: utils.createProductSlug(products[4].name),
+        },
+    });
+
+    await prisma.recommendation.create({
+        data: {
+            productId: p5.id,
         },
     });
     console.log("Seed completed");

@@ -14,6 +14,7 @@ import { RecommendationValuesModule } from "./recommendation-values/recommendati
 import { CepModule } from "./cep/cep.module";
 import { PurchasedProductsModule } from "./purchased-products/purchased-products.module";
 import { ShoppingCartModule } from "./shopping-cart/shopping-cart.module";
+import { ScheduleModule } from "@nestjs/schedule";
 
 @Module({
     imports: [
@@ -25,7 +26,6 @@ import { ShoppingCartModule } from "./shopping-cart/shopping-cart.module";
         ArgonModule,
         JwtModule,
         AuthModule,
-
         UtilsModule,
         ProductsModule,
         DayjsModule,
@@ -34,8 +34,9 @@ import { ShoppingCartModule } from "./shopping-cart/shopping-cart.module";
         CepModule,
         PurchasedProductsModule,
         ShoppingCartModule,
+        ScheduleModule.forRoot(),
     ],
     controllers: [],
     providers: [],
 })
-export class AppModule { }
+export class AppModule {}
