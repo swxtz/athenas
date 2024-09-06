@@ -117,26 +117,26 @@ model Recommendation {
   product   Product @relation(fields: [productId], references: [id])
 
   //base values 
-  score              Float @default(500)
-  weekRecomendation  Float @default(500) @map("week_recomendation")
-  dailyRecomendation Float @default(500) @map("daily_recomendation")
+  score               Float @default(500)
+  weeklyRecomendation Float @default(500) @map("weekly_recomendation")
+  dailyRecomendation  Float @default(500) @map("daily_recomendation")
 
   // recomedation values
 
   // views
-  views      Int @default(0)
-  weekViews  Int @default(0) @map("week_views")
-  dailyViews Int @default(0) @map("daily_views")
+  views       Int @default(0)
+  weeklyViews Int @default(0) @map("weekly_views")
+  dailyViews  Int @default(0) @map("daily_views")
 
   // likes
-  likes      Int @default(0)
-  weekLikes  Int @default(0) @map("week_likes")
-  dailyLikes Int @default(0) @map("daily_likes")
+  likes       Int @default(0)
+  weeklyLikes Int @default(0) @map("weekly_likes")
+  dailyLikes  Int @default(0) @map("daily_likes")
 
   // sales 
-  sales      Int @default(0)
-  weekSales  Int @default(0) @map("week_sales")
-  dailySales Int @default(0) @map("daily_sales")
+  sales       Int @default(0)
+  weeklySales Int @default(0) @map("weekly_sales")
+  dailySales  Int @default(0) @map("daily_sales")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

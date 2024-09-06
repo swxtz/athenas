@@ -126,4 +126,18 @@ export class OdinService {
             },
         });
     }
+
+    @Cron("0 0 0 * * 1")
+    async ResetWeeklyValues() {
+        this.logger.log("Resetting weekly values");
+
+        await this.prisma.recommendation.updateMany({
+            data: {
+                weeklyLikes: 0,
+                weeklySales: 0,
+                weeklyViews: 0,
+                weeklyRecomendation: 500,
+            },
+        });
+    }
 }
