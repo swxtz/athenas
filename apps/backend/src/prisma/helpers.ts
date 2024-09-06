@@ -20,9 +20,26 @@ export class PrismaHelpers {
                         name: product.name,
                     },
                     select: {
+                        id: true,
                         name: true,
                     },
                 });
+
+                const recommendationTable =
+                    await prisma.recommendation.findUnique({
+                        where: {
+                            productId: productExists.id,
+                        },
+                    });
+
+                if (recommendationTable) {
+                    await prisma.recommendation.delete({
+                        where: {
+                            productId: productExists.id,
+                        },
+                    });
+                    this.logger.log(`Deleted recommendation: ${product.name}`);
+                }
 
                 if (productExists) {
                     await prisma.product.delete({
