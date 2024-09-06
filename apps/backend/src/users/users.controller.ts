@@ -27,7 +27,6 @@ export class UsersController {
     @Post("/dev")
     @UsePipes(new ZodValidationPipe(CreateUserDTO))
     async createDevEnvUser(@Body() createUserDTO: CreateUserDTO) {
-        console.log();
         return this.usersService.createUser(createUserDTO, true);
     }
 

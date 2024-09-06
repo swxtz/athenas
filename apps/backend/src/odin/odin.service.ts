@@ -1,5 +1,7 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { Cron } from "@nestjs/schedule";
+import { Prisma } from "@prisma/client";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { PrismaService } from "src/prisma/prisma.service";
 import { RecommendationValuesService } from "src/recommendation-values/recommendation-values.service";
 
@@ -21,6 +23,32 @@ export class OdinService {
         }
 
         return product;
+    }
+
+    async getScoreBySlug(productSlug: string) {
+        try {
+            const product = await this.prisma.product.findUniqueOrThrow({
+                where: { slug: productSlug },
+                select: { id: true },
+            });
+
+            const score = await this.prisma.recommendation.findUniqueOrThrow({
+                where: { productId: product.id },
+                select: { score: true },
+            });
+
+            if (!score) {
+                this.logger.error(`Product with slug ${productSlug} not found`);
+            }
+        } catch (err) {
+            this.logger.error(err);
+            throw new HttpException(
+                {
+                    message: "Erro ao buscar score, tente mais tarde.",
+                },
+                500,
+            );
+        }
     }
 
     async incrementLikeValue(productId: string) {

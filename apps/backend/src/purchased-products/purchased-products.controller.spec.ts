@@ -29,6 +29,7 @@ describe("PurchasedProductsController", () => {
                     },
                 },
                 JwtService,
+                PrismaService,
             ],
         }).compile();
 
@@ -57,11 +58,9 @@ describe("PurchasedProductsController", () => {
                 .post("/users/dev")
                 .send(userBody);
 
-            console.log(createUser.body.token);
-
             //const verifyEmail = await request(app.getHttpServer())
-               // .post("/auth/verify-email")
-               // .send(createUser.token);
+            // .post("/auth/verify-email")
+            // .send(createUser.token);
         });
     });
 });
