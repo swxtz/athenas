@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Recomendation Engine/Score.md",
+                "file": "Recomendation Engine/TODO.md",
                 "mode": "source",
                 "source": false
               }
@@ -88,12 +88,22 @@
               "type": "bookmarks",
               "state": {}
             }
+          },
+          {
+            "id": "ae22f096cf008d8d",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 302.5
+    "width": 302.5,
+    "collapsed": true
   },
   "right": {
     "id": "6004fbe5dec77fff",
@@ -109,7 +119,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Recomendation Engine/Score.md",
+                "file": "Recomendation Engine/TODO.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,7 +136,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Recomendation Engine/Score.md",
+                "file": "Recomendation Engine/TODO.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -149,7 +159,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Recomendation Engine/Score.md"
+                "file": "Recomendation Engine/TODO.md"
               }
             }
           },
@@ -170,6 +180,8 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-kanban:Criar um novo quadro": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
       "switcher:Abrir a troca rápida": false,
       "graph:Abrir visualização em gráfico": false,
       "canvas:Criar novo canvas": false,
@@ -177,14 +189,15 @@
       "templates:Inserir modelo": false,
       "command-palette:Abrir paleta de comandos": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-kanban:Criar um novo quadro": false,
-      "obsidian-excalidraw-plugin:Create new drawing": false
+      "obsidian-livesync:Replicate": false,
+      "obsidian-livesync:Show log": false,
+      "obsidian-livesync:Show Customization sync": false
     }
   },
-  "active": "a208ac1ae0f77a2b",
+  "active": "ae22f096cf008d8d",
   "lastOpenFiles": [
-    "Recomendation Engine/TODO.md",
     "Recomendation Engine/Score.md",
+    "Recomendation Engine/TODO.md",
     "README.md",
     "Recomendation Engine",
     "Welcome.md"

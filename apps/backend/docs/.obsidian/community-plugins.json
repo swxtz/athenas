@@ -4,5 +4,8 @@
   "dataview",
   "obsidian-excalidraw-plugin",
   "obsidian-git",
-  "obsidian-kanban"
+  "obsidian-kanban",
+  "obsidian-minimal-settings",
+  "recent-files-obsidian",
+  "obsidian-livesync"
 ]
