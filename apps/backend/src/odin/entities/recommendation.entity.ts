@@ -5,11 +5,24 @@ export class RecommendationEntity {
     productId: string;
     product: ProductEntity;
     score: number;
-    weekRecommendation: number;
+
+    weeklyRecommendation: number;
+    dailyRecommendation: number;
+
     views: number;
-    weekViews: number;
+    dailyViews: number;
+    weeklyViews: number;
+
     sales: number;
-    weekSales: number;
+    dailySales: number;
+    weeklySales: number;
+
+    likes: number;
+    dailyLikes: number;
+    weeklyLikes: number;
+
+    createdAt: Date;
+    updatedAt: Date;
 
     constructor(partial: Partial<RecommendationEntity>) {
         Object.assign(this, partial);

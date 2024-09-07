@@ -1,7 +1,5 @@
 import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { Cron } from "@nestjs/schedule";
-import { Prisma } from "@prisma/client";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { PrismaService } from "src/prisma/prisma.service";
 import { RecommendationValuesService } from "src/recommendation-values/recommendation-values.service";
 
@@ -20,6 +18,12 @@ export class OdinService {
 
         if (!product) {
             this.logger.error(`Product with id ${productId} not found`);
+            throw new HttpException(
+                {
+                    message: "Produto não encontrado",
+                },
+                404,
+            );
         }
 
         return product;
