@@ -1,0 +1,45 @@
+name: "Suggestion"
+description: "Use este template para propor uma sugestão ou melhoria"
+title: "[SUGGESTION]: "
+labels: ["enhancement", "suggestion"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por sua sugestão! Preencha os detalhes abaixo.
+
+  - type: input
+    id: title
+    attributes:
+      label: "Título da Sugestão"
+      description: "Descreva brevemente sua sugestão. O título deve começar com '[SUGESTÃO]:'."
+      placeholder: "[SUGESTÃO]: Melhorar a interface de usuário"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Descrição da Sugestão"
+      description: "Descreva a sugestão ou melhoria que você gostaria de ver implementada."
+      placeholder: "Explique como sua sugestão pode melhorar o projeto."
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "Motivação"
+      description: "Explique por que essa sugestão seria útil ou qual problema ela resolve."
+      placeholder: "Descreva a motivação por trás dessa sugestão."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Contexto Adicional"
+      description: "Forneça qualquer contexto ou informação adicional que ajude a entender melhor a sugestão."
+    validations:
+      required: false
