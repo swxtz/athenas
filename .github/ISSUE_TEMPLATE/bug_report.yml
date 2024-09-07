@@ -1,0 +1,27 @@
+name: "Bug Report"
+description: "Use este template para reportar um bug"
+title: "[BUG]: "
+labels: ["bug"]
+
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reportar um bug! Por favor, preencha as informações abaixo.
+
+  - type: input
+    id: title
+    attributes:
+      label: "Título do Bug"
+      description: "Descreva brevemente o problema. O título deve começar com '[BUG]:'"
+      placeholder: "[BUG]: Erro no carregamento da página"
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Descrição do Problema"
+      description: "Descreva o comportamento esperado e o que está acontecendo de errado."
+      placeholder: "Por favor, forneça uma descrição detalhada do bug."
+      required: true

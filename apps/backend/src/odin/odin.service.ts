@@ -54,7 +54,7 @@ export class OdinService {
             return score;
         } catch (err) {
             this.logger.error(err);
-            
+
             throw new HttpException(
                 {
                     message: "Produto não encontrado",
