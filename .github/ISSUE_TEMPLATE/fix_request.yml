@@ -1,0 +1,49 @@
+name: "Fix Request"
+description: "Use este template para solicitar uma correção"
+title: "[FIX]: "
+labels: ["fix"]
+
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por sugerir uma correção! Preencha os detalhes abaixo.
+
+  - type: input
+    id: title
+    attributes:
+      label: "Título da Correção"
+      description: "Descreva brevemente o que precisa ser corrigido. O título deve começar com '[FIX]:'."
+      placeholder: "[FIX]: Correção no cálculo de impostos"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Descrição da Correção"
+      description: "Descreva o problema atual e o comportamento esperado após a correção."
+      placeholder: "Explique o erro atual e o que precisa ser feito para corrigir."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: "Passos para Reproduzir"
+      description: "Liste os passos para reproduzir o problema que precisa de correção."
+      placeholder: |
+        1. Vá até...
+        2. Clique em...
+        3. Veja o erro...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "Informações Adicionais"
+      description: "Forneça qualquer informação adicional ou contexto para a correção."
+    validations:
+      required: false
