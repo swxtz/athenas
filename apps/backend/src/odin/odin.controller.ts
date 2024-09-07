@@ -24,6 +24,6 @@ export class OdinController {
     @Get("get-score-by-slug/:slug")
     @UsePipes(new ValidationPipe({ transform: true }))
     async getScoreBySlug(@Param() param: GetScoreBySlugDTO) {
-        console.log(param);
+        return this.odinService.getScoreBySlug(param.slug);
     }
 }

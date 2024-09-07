@@ -43,14 +43,23 @@ export class OdinService {
 
             if (!score) {
                 this.logger.error(`Product with slug ${productSlug} not found`);
+                throw new HttpException(
+                    {
+                        message: "Produto não encontrado",
+                    },
+                    404,
+                );
             }
+
+            return score;
         } catch (err) {
             this.logger.error(err);
+            
             throw new HttpException(
                 {
-                    message: "Erro ao buscar score, tente mais tarde.",
+                    message: "Produto não encontrado",
                 },
-                500,
+                404,
             );
         }
     }
