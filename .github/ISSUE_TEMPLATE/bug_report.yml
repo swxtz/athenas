@@ -16,6 +16,7 @@ body:
       label: "Título do Bug"
       description: "Descreva brevemente o problema. O título deve começar com '[BUG]:'"
       placeholder: "[BUG]: Erro no carregamento da página"
+    validations:
       required: true
 
   - type: textarea
@@ -24,4 +25,5 @@ body:
       label: "Descrição do Problema"
       description: "Descreva o comportamento esperado e o que está acontecendo de errado."
       placeholder: "Por favor, forneça uma descrição detalhada do bug."
+    validations:
       required: true
