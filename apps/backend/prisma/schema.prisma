@@ -153,7 +153,6 @@ model UserPurchases {
   userId    String  @unique @map("user_id")
   user      User    @relation(fields: [userId], references: [id])
 
-  productLink  String @map("product_link")
   productSlug  String @map("product_slug")
   productValue Int    @map("product_values")
   productName  String @map("product_name")
