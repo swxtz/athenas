@@ -8,6 +8,8 @@ const utils = new UtilsService();
 
 const products = new PrismaMocks().products();
 
+const users = new PrismaMocks().users;
+
 async function seed() {
     const p1 = await prisma.product.create({
         data: {
@@ -139,13 +141,14 @@ async function seed() {
         },
     });
 
-    const users = await prisma.user.create({
+    const user1 = await prisma.user.create({
         data: {
-            email: user.email,
-            name: user.name,
-            password: user.password,
+            email: users[0].email,
+            name: users[0].name,
+            password: users[0].password,
         },
     });
+
     console.log("Seed completed");
 }
 
