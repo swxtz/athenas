@@ -13,7 +13,7 @@ export class OdinService {
     async getScoreById(productId: string) {
         const product = await this.prisma.recommendation.findUnique({
             where: { productId },
-            select: { score: true },
+            select: { score: true, likes: true, views: true, sales: true },
         });
 
         if (!product) {
@@ -75,7 +75,15 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { likes: product.likes + this.recommedationValues.likeValue },
+            data: {
+                likes: {
+                    increment: this.recommedationValues.likeValue,
+                },
+
+                dailyLikes: {
+                    increment: this.recommedationValues.likeValue,
+                },
+            },
         });
     }
 

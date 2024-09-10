@@ -124,19 +124,19 @@ model Recommendation {
   // recomedation values
 
   // views
-  views       Int @default(0)
-  weeklyViews Int @default(0) @map("weekly_views")
-  dailyViews  Int @default(0) @map("daily_views")
+  views       Float @default(0)
+  weeklyViews Float @default(0) @map("weekly_views")
+  dailyViews  Float @default(0) @map("daily_views")
 
   // likes
-  likes       Int @default(0)
-  weeklyLikes Int @default(0) @map("weekly_likes")
-  dailyLikes  Int @default(0) @map("daily_likes")
+  likes       Float @default(0)
+  weeklyLikes Float @default(0) @map("weekly_likes")
+  dailyLikes  Float @default(0) @map("daily_likes")
 
   // sales 
-  sales       Int @default(0)
-  weeklySales Int @default(0) @map("weekly_sales")
-  dailySales  Int @default(0) @map("daily_sales")
+  sales       Float @default(0)
+  weeklySales Float @default(0) @map("weekly_sales")
+  dailySales  Float @default(0) @map("daily_sales")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
