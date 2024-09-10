@@ -107,8 +107,6 @@ describe("OdinController", () => {
                 "/odin/get-score-by-slug/invalid-slug",
             );
 
-            console.log(res.body);
-
             expect(res.statusCode).toBe(404);
             expect(res.body.message).toBe("Produto não encontrado");
         });
