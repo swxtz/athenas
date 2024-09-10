@@ -138,6 +138,14 @@ async function seed() {
             productId: p5.id,
         },
     });
+
+    const users = await prisma.user.create({
+        data: {
+            email: user.email,
+            name: user.name,
+            password: user.password,
+        },
+    });
     console.log("Seed completed");
 }
 

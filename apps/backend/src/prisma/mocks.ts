@@ -1,4 +1,6 @@
 import { ProductEntity } from "src/products/entity/product.entity";
+import { UserEntity } from "src/users/entity/user.entity";
+import { v4 as uuidv4 } from "uuid";
 
 export class PrismaMocks {
     products(): ProductEntity[] {
@@ -96,5 +98,22 @@ export class PrismaMocks {
         ];
 
         return products;
+    }
+    users(): UserEntity[] {
+        const users: UserEntity[] = [
+            new UserEntity({
+                id: uuidv4(),
+                name: "Jose",
+                email: "jose@seedmock.com",
+                password: "123456789",
+                userType: "consumer",
+                emailVerified: true,
+                emailVerificatedAt: new Date("2024-09-10T01:11:28Z"),
+                createdAt: new Date("2024-09-10T01:11:28Z"),
+                updatedAt: new Date("2024-09-10T01:11:28Z"),
+            }),
+        ];
+
+        return users;
     }
 }
