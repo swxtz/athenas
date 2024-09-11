@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PrismaClient } from "@prisma/client";
 import { UtilsService } from "src/utils/utils.service";
 import { PrismaMocks } from "./mocks";
@@ -8,7 +9,7 @@ const utils = new UtilsService();
 
 const products = new PrismaMocks().products();
 
-const users = new PrismaMocks().users;
+const users = new PrismaMocks().users();
 
 async function seed() {
     const p1 = await prisma.product.create({
@@ -146,6 +147,56 @@ async function seed() {
             email: users[0].email,
             name: users[0].name,
             password: users[0].password,
+        },
+    });
+
+    await prisma.userPurchases.create({
+        data: {
+            productName: p1.name,
+            productValue: p1.price,
+            productSlug: p1.slug,
+            productId: p1.id,
+            userId: user1.id,
+        },
+    });
+
+    await prisma.userPurchases.create({
+        data: {
+            productName: p2.name,
+            productValue: p2.price,
+            productSlug: p2.slug,
+            productId: p2.id,
+            userId: user1.id,
+        },
+    });
+
+    await prisma.userPurchases.create({
+        data: {
+            productName: p3.name,
+            productValue: p3.price,
+            productSlug: p3.slug,
+            productId: p3.id,
+            userId: user1.id,
+        },
+    });
+
+    await prisma.userPurchases.create({
+        data: {
+            productName: p4.name,
+            productValue: p4.price,
+            productSlug: p4.slug,
+            productId: p4.id,
+            userId: user1.id,
+        },
+    });
+
+    await prisma.userPurchases.create({
+        data: {
+            productName: p5.name,
+            productValue: p5.price,
+            productSlug: p5.slug,
+            productId: p5.id,
+            userId: user1.id,
         },
     });
 

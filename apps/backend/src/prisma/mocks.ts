@@ -110,8 +110,6 @@ export class PrismaMocks {
                 userType: "consumer",
                 emailVerified: true,
                 emailVerificatedAt: new Date("2024-09-10T01:11:28Z"),
-                createdAt: new Date("2024-09-10T01:11:28Z"),
-                updatedAt: new Date("2024-09-10T01:11:28Z"),
             }),
         ];
 
@@ -120,7 +118,9 @@ export class PrismaMocks {
 
     userPurchases(): PurchasedProductEntity[] {
         const purchases: PurchasedProductEntity[] = [
-            new PurchasedProductEntity({}),
+            new PurchasedProductEntity({
+
+            }),
         ];
 
         return purchases;

@@ -45,9 +45,12 @@ export class PrismaHelpers {
                     await prisma.product.delete({
                         where: {
                             name: product.name,
+                            id: product.id,
                         },
                     });
-                    this.logger.log(`Deleted product: ${product.name}`);
+                    this.logger.log(
+                        `Deleted product: ${(product.name, product.id)}`,
+                    );
                 } else {
                     this.logger.warn(`Product does not exist: ${product.name}`);
                 }
