@@ -10,8 +10,63 @@ export class PrismaHelpers {
         const startTime = new Date().getTime();
 
         const productMock = new PrismaMocks().products();
+        const userMock = new PrismaMocks().users();
 
         this.logger.log("Clearing product table");
+
+        userMock.forEach(async (user) => {
+            const userExists = await prisma.user.findUnique({
+                where: {
+                    email: user.email,
+                },
+                select: {
+                    id: true,
+                },
+            });
+
+            if (userExists) {
+                const userPurchases = await prisma.userPurchases.findMany({
+                    where: {
+                        userId: user.id,
+                    },
+                    select: {
+                        id: true,
+                    },
+                });
+
+                if (!userPurchases) {
+                    userPurchases.forEach(async (userPurchase) => {
+                        const userPurchased = await prisma.userPurchases.delete(
+                            {
+                                where: {
+                                    id: userPurchase.id,
+                                },
+                                select: {
+                                    user: true,
+                                },
+                            },
+                        );
+
+                        this.logger.log(
+                            `Deleted user purchases: ${userPurchased.user.email}`,
+                        );
+                    });
+                }
+
+                const deletedUser = await prisma.user.delete({
+                    where: {
+                        id: userExists.id,
+                    },
+                    select: {
+                        email: true,
+                    },
+                });
+
+                this.logger.log(`Deleted user: ${deletedUser.email}`);
+            } else {
+                this.logger.warn(`User does not exist: ${user.email}`);
+            }
+        });
 
         Promise.all([
             productMock.forEach(async (product) => {
@@ -45,12 +100,9 @@ export class PrismaHelpers {
                     await prisma.product.delete({
                         where: {
                             name: product.name,
-                            id: product.id,
                         },
                     });
-                    this.logger.log(
-                        `Deleted product: ${(product.name, product.id)}`,
-                    );
+                    this.logger.log(`Deleted product: ${product.name}`);
                 } else {
                     this.logger.warn(`Product does not exist: ${product.name}`);
                 }

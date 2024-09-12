@@ -1,5 +1,4 @@
 import { ProductEntity } from "src/products/entity/product.entity";
-import { PurchasedProductEntity } from "src/purchased-products/entities/purchased-product.entity";
 import { UserEntity } from "src/users/entity/user.entity";
 import { v4 as uuidv4 } from "uuid";
 
@@ -114,13 +113,5 @@ export class PrismaMocks {
         ];
 
         return users;
-    }
-
-    userPurchases(): PurchasedProductEntity[] {
-        const purchases: PurchasedProductEntity[] = [
-            new PurchasedProductEntity({}),
-        ];
-
-        return purchases;
     }
 }
