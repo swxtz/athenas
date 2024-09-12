@@ -12,3 +12,9 @@ services:
       POSTGRES_DB: athenas
     volumes:
       - .docker/athenas-db-data:/var/lib/postgresql/data
+    networks:
+      - athenas-network
+
+networks:
+  athenas-network:
+    #driver: bridge
