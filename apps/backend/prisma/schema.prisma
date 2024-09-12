@@ -75,6 +75,8 @@ model Product {
   Recommendation   Recommendation?
   recommendationId String?
 
+  Category Category[]
+
   @@map("products")
 }
 
@@ -176,4 +178,20 @@ model CartItem {
   updatedAt DateTime @updatedAt @map("update_at")
 
   @@map("cart_item")
+}
+
+model Category {
+  id String @id @default(cuid())
+
+  productId  String       @map("product_id")
+  product    Product      @relation(fields: [productId], references: [id])
+  categories CategoryEnum @map("categories")
+
+  @@map("categories")
+}
+
+enum CategoryEnum {
+  bread
+  hamburger
+  others
 }

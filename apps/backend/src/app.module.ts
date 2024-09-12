@@ -15,6 +15,7 @@ import { CepModule } from "./cep/cep.module";
 import { PurchasedProductsModule } from "./purchased-products/purchased-products.module";
 import { ShoppingCartModule } from "./shopping-cart/shopping-cart.module";
 import { ScheduleModule } from "@nestjs/schedule";
+import { CategoriesModule } from "./categories/categories.module";
 
 @Module({
     imports: [
@@ -35,6 +36,7 @@ import { ScheduleModule } from "@nestjs/schedule";
         PurchasedProductsModule,
         ShoppingCartModule,
         ScheduleModule.forRoot(),
+        CategoriesModule,
     ],
     controllers: [],
     providers: [],

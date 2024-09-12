@@ -115,4 +115,15 @@ export class PrismaMocks {
 
         return users;
     }
+<<<<<<< HEAD
+=======
+
+    userPurchases(): PurchasedProductEntity[] {
+        const purchases: PurchasedProductEntity[] = [
+            new PurchasedProductEntity({}),
+        ];
+
+        return purchases;
+    }
+>>>>>>> 0e02f8e7ef862aadc93e2da75c96af054b73ce20
 }
