@@ -5,7 +5,7 @@ export class RecommendationValuesService {
     private static viewValue = 0.03;
     private static saleValue = 0.5;
     private static reBuy = 0.6;
-    private static like = 0.1;
+    private static like = 0.3;
     private static selfSearch = 0.75;
 
     public static get view() {
