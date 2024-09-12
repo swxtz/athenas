@@ -118,9 +118,7 @@ export class PrismaMocks {
 
     userPurchases(): PurchasedProductEntity[] {
         const purchases: PurchasedProductEntity[] = [
-            new PurchasedProductEntity({
-
-            }),
+            new PurchasedProductEntity({}),
         ];
 
         return purchases;
