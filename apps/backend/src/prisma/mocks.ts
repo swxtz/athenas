@@ -115,14 +115,4 @@ export class PrismaMocks {
 
         return users;
     }
-
-    userPurchases(): PurchasedProductEntity[] {
-        const purchases: PurchasedProductEntity[] = [
-            new PurchasedProductEntity({
-
-            }),
-        ];
-
-        return purchases;
-    }
 }
