@@ -2,10 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { Category } from "./types/category.type";
 import { PrismaService } from "src/prisma/prisma.service";
 
-// interface QueryProducts {
-//     type: {}
-// }
-
 @Injectable()
 export class CategoriesService {
     constructor(private prisma: PrismaService) {}

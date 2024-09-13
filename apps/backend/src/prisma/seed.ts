@@ -29,6 +29,12 @@ async function seed() {
             productType: products[0].productType,
             state: products[0].state,
             slug: utils.createProductSlug(products[0].name),
+
+            Category: {
+                create: {
+                    type: products[0].type,
+                },
+            },
         },
     });
 
@@ -55,6 +61,12 @@ async function seed() {
             productType: products[1].productType,
             state: products[1].state,
             slug: utils.createProductSlug(products[1].name),
+
+            Category: {
+                create: {
+                    type: products[1].type,
+                },
+            },
         },
     });
 
@@ -81,6 +93,12 @@ async function seed() {
             productType: products[2].productType,
             state: products[2].state,
             slug: utils.createProductSlug(products[2].name),
+
+            Category: {
+                create: {
+                    type: products[2].type,
+                },
+            },
         },
     });
 
@@ -107,6 +125,12 @@ async function seed() {
             productType: products[3].productType,
             state: products[3].state,
             slug: utils.createProductSlug(products[3].name),
+
+            Category: {
+                create: {
+                    type: products[3].type,
+                },
+            },
         },
     });
 
@@ -133,6 +157,12 @@ async function seed() {
             productType: products[4].productType,
             state: products[4].state,
             slug: utils.createProductSlug(products[4].name),
+
+            Category: {
+                create: {
+                    type: products[4].type,
+                },
+            },
         },
     });
 

@@ -22,6 +22,7 @@ export class PrismaMocks {
                 numberOfViewsInLastWeek: 1000,
                 productType: "others",
                 state: "available",
+                type: "Molhos",
             },
             {
                 name: "Junior Ketchup American",
@@ -40,6 +41,7 @@ export class PrismaMocks {
                 numberOfViewsInLastWeek: 1000,
                 productType: "others",
                 state: "available",
+                type: "Molhos",
             },
             {
                 name: "Junior Maionese Grill",
@@ -58,6 +60,7 @@ export class PrismaMocks {
                 numberOfViewsInLastWeek: 1000,
                 productType: "others",
                 state: "available",
+                type: "Molhos",
             },
             {
                 name: "Junior Maionese de Bacon",
@@ -76,6 +79,7 @@ export class PrismaMocks {
                 numberOfViewsInLastWeek: 1000,
                 productType: "others",
                 state: "available",
+                type: "Molhos",
             },
             {
                 name: "Junior Chipotle",
@@ -94,6 +98,7 @@ export class PrismaMocks {
                 numberOfViewsInLastWeek: 1000,
                 productType: "others",
                 state: "available",
+                type: "Molhos",
             },
         ];
 

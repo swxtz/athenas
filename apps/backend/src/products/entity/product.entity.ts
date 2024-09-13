@@ -20,6 +20,7 @@ export class ProductEntity {
     price: number;
     stock: number;
     sku?: string;
+    type?: string;
 
     createdAt?: Date;
     updatedAt?: Date;
