@@ -28,16 +28,15 @@ const links: ActiveLinkProps[] = [
 
 export function Navbar() {
   
-
   return (
-    <nav className="py-4 bg-amber-800 flex justify-between items-center shadow">
+    <nav className="py-3 bg-yellow-300 flex justify-between items-center shadow-md">
       <div className="px-6 lg:px-24 w-full flex items-center justify-between">
         <Link href="/">
           <Image
             src={logo}
             alt="logo RN Distribuidora"
             quality={100}
-            className="w-20 md:w-28"
+            className="w-10 md:w-20"
           />
         </Link>
 
