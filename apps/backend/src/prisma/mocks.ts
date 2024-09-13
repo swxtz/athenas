@@ -200,7 +200,7 @@ export class PrismaMocks {
                 type: "Batatas",
             },
 
-            //Hambugueres
+            // Hambugueres
             {
                 name: "Hambúrguer Tradicional 56g – Caixa com 36 Unidades",
                 description:
@@ -299,6 +299,103 @@ export class PrismaMocks {
                 productType: "others",
                 state: "available",
                 type: "Hambugueres",
+            },
+
+            // Pães
+
+            {
+                name: "Pão de Hambúrguer Mônaco G CT BIMBO QSR 12x73g",
+                description: "Pão de Hambúrguer Mônaco G CT BIMBO QSR 12x73g",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Pao-de-Hamburguer-Monaco-G-CT-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão de Hambúrguer Brioche MAX BIMBO QSR 12x95g",
+                description: "Pão de Hambúrguer Brioche MAX BIMBO QSR 12x95g",
+                barcode: "123456789",
+                price: 5625,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/03/Pao-de-Hamburguer-Brioche-MAX-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão de Hambúrguer Brioche 4″ CT BIMBO QSR 15x64g",
+                description: "Pão de Hambúrguer Brioche 4″ CT BIMBO QSR 15x64g",
+                barcode: "123456789",
+                price: 2325,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2017/03/Pao-de-Hamburguer-Brioche-4-CT-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão de Hambúrguer Supremo G CD BIMBO QSR 15x73g",
+                description: "Pão de Hambúrguer Supremo G CD BIMBO QSR 15x73g",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2017/03/Pao-de-Hamburguer-Supremo-G-CD-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão de Hambúrguer Riviera G CT BIMBO QSR 15x50g",
+                description: "Pão de Hambúrguer Riviera G CT BIMBO QSR 15x50g",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/03/Pao-de-Hamburguer-Riviera-G-CT-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
             },
         ];
 
