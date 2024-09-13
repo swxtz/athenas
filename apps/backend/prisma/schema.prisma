@@ -28,7 +28,7 @@ model User {
   createdAt     DateTime        @default(now()) @map("created_at")
   updatedAt     DateTime        @updatedAt @map("updated_at")
   UserPurchases UserPurchases[]
-  CartItem      CartItem[]
+  ShoppingCart  ShoppingCart[]
 
   @@map("users")
 }
@@ -71,7 +71,7 @@ model Product {
   updatedAt        DateTime        @updatedAt @map("updated_at")
   Promotion        Promotion[]
   UserPurchases    UserPurchases?
-  CartItem         CartItem?
+  ShoppingCart     ShoppingCart?
   Recommendation   Recommendation?
   recommendationId String?
 
@@ -165,7 +165,7 @@ model UserPurchases {
   @@map("user_purchases")
 }
 
-model CartItem {
+model ShoppingCart {
   id String @id @default(uuid())
 
   productId String @unique @map("product_id")
@@ -177,7 +177,7 @@ model CartItem {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("update_at")
 
-  @@map("cart_item")
+  @@map("shopping_cart")
 }
 
 model Category {

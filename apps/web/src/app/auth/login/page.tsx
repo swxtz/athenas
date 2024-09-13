@@ -6,44 +6,78 @@ import imageLogin from "@/images/interation-login.png";
 export default function LoginPage() {
   return (
     <div
-      className="
+    className="
     w-full
-    mt-12 
+    h-full
+    shadow-inner
+    mt-32
+    rounded-lg
     container
-    py-6
+    py-9
     text-2xl
     flex
-  bg-zinc-100"
+    "
     >
-      <div className="w-1/2 ">
+      <div className="
+        w-1/2">
+
         <h2
           className="text-center 
           pl-20
+          ml-2
+          
           font-semibold ">
-          O melhor para o melhor </h2>
+          O melhor para o melhor
+        </h2>
+
         <Image
           src={imageLogin}
           alt="iconLog"
           width={700}
           height={700}
-          className="w-full ml-8"
+          className="
+          w-96
+          ml-40"
         />
+
       </div>
 
       <div className="
-        container">
-        <h2
-          className="
-          text-center
+        ml-20
+        w-2/3 ">
+        <h2 className="
           font-semibold
-          text-xl">
+          ml-36
+          text-x2l">
           Bem-vindo de volta!
         </h2>
-        <Separator className="
-        w-3/5
-        my-4
-        mx-auto" />
+        <h3 className="
+        font-semibold
+        ml-36
+        text-xs">
+          Faça seu login e se junte conosco!
+        </h3>
+
         <LoginForm />
+
+        <div className="
+          ml-20
+          mt-5">
+          <Separator className="
+          w-2/3
+          my-4
+          bg-amber-800
+          mx-auto" />
+        </div>
+        <div>
+          <h2 className="
+          font-semibold
+          ml-80
+          text-sm">
+            Logar com
+          </h2>
+        </div>
+        <div id="Icons"></div>
       </div>
     </div>
   );
