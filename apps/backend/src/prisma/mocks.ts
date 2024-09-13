@@ -100,6 +100,105 @@ export class PrismaMocks {
                 state: "available",
                 type: "Molhos",
             },
+
+            // Batatas
+            {
+                name: "Batata Palito Pré-frita Congelada 9mm Bem Brasil 2Kg",
+                description:
+                    "Batata Palito Pré-frita Congelada 9mm Bem Brasil 2Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito Pré-frita Congelada 7mm Bem Brasil 2Kg",
+                description:
+                    "Batata Palito Pré-frita Congelada 7mm Bem Brasil 2Kg",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-7mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Lamb Weston® Corte Fino 7 mm",
+                description: "Lamb Weston® Corte Fino 7 mm",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2022/05/Batata-7mm-LambWeston-Pacote.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Congelada Lamb Weston Tradicional 9MM 2,5Kg",
+                description:
+                    "Batata Congelada Lamb Weston Tradicional 9MM 2,5Kg",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://cdn.shopify.com/s/files/1/0579/9742/6861/files/image-removebg-preview_18_0dc0c323-1b2c-45a2-888a-59e953e595f3.png?v=1685130398",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Stealth Fries®",
+                description: "Stealth Fries®",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://lambweston.scene7.com/is/image/lambweston/Stealth_Fries_9mm_Spanish_Box_LowRes?$ProductImage$",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
         ];
 
         return products;
