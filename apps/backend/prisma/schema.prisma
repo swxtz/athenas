@@ -183,15 +183,9 @@ model CartItem {
 model Category {
   id String @id @default(cuid())
 
-  productId  String       @map("product_id")
-  product    Product      @relation(fields: [productId], references: [id])
-  categories CategoryEnum @map("categories")
+  productId String  @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+  type      String
 
   @@map("categories")
-}
-
-enum CategoryEnum {
-  bread
-  hamburger
-  others
 }
