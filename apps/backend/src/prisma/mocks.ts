@@ -199,6 +199,107 @@ export class PrismaMocks {
                 state: "available",
                 type: "Batatas",
             },
+
+            //Hambugueres
+            {
+                name: "Hambúrguer Tradicional 56g – Caixa com 36 Unidades",
+                description:
+                    "Hambúrguer Tradicional 56g – Caixa com 36 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-tradicional-56g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 56g – Caixa com 36 Unidades",
+                description:
+                    "Hambúrguer Sabor Picanha 56g – Caixa com 36 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-56g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 90g – Caixa com 36 Unidades",
+                description:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Tradicional 90g – Caixa com 36 Unidades",
+                description:
+                    "Hambúrguer Tradicional 90g – Caixa com 36 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-tradicional-90g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 120g – Caixa com 30 Unidades",
+                description:
+                    "Hambúrguer Sabor Picanha 120g – Caixa com 30 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-120g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
         ];
 
         return products;
