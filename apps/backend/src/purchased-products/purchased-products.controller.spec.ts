@@ -3,7 +3,6 @@ import { PurchasedProductsController } from "./purchased-products.controller";
 import { PurchasedProductsService } from "./purchased-products.service";
 import { JwtService } from "@nestjs/jwt";
 import { PrismaService } from "src/prisma/prisma.service";
-import { User } from "@prisma/client";
 import { CreateUserDTO } from "src/users/dtos/create-user.dto";
 import request from "supertest";
 import { createNestAppInstance } from "test/test.helpers";
@@ -58,9 +57,17 @@ describe("PurchasedProductsController", () => {
                 .post("/users/dev")
                 .send(userBody);
 
-            //const verifyEmail = await request(app.getHttpServer())
-            // .post("/auth/verify-email")
-            // .send(createUser.token);
+            const { token } = createUser.body;
+            console.log(token);
+            const verifyEmail = await request(app.getHttpServer())
+                .post("/auth/verify-email")
+                .send(token);
+
+            console.log(verifyEmail.body);
+            const userLogin = await request(app.getHttpServer())
+                .post("/auth/login")
+                .send({ email: userBody.email, password: userBody.password });
+            console.log(userLogin.body);
         });
     });
 });
