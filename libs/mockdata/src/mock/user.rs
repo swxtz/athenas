@@ -1,17 +1,19 @@
-use crate::data::names::NAMES;
-use crate::utils::nanoid::nanoid;
 use rand::seq::SliceRandom;
 use rand::thread_rng;
 use serde::Serialize;
+use crate::data::names::NAMES;
+use crate::utils::nanoid::nanoid;
+use crate::utils::random_string::generate_random_string;
 
 #[derive(Serialize)]
 pub struct UserJson {
     pub email: String,
     pub name: String,
-    // pub password: String,
+    pub password: String,
 }
 
 pub fn random_names() -> String {
+
     let mut rng = thread_rng();
 
     let first_name = NAMES.choose(&mut rng).unwrap();
@@ -21,8 +23,14 @@ pub fn random_names() -> String {
 }
 
 pub fn random_email() -> String {
+
     let id = nanoid();
     let at = "seedmock.com";
 
     return format!("{}@{}", id, at);
+}
+
+pub fn random_password() -> String {
+    let password = generate_random_string(10, 40);
+    return password;
 }
