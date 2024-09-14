@@ -1,7 +1,7 @@
+use std::fs::File;
+use std::io::{self, Write};
 use clap::Parser;
-use serde::Serialize;
-use serde_json::json;
-use crate::mock::user::UserJson;
+use crate::mock::user::{random_names, UserJson};
 
 #[derive(Parser)]
 pub struct Cli {
@@ -17,8 +17,13 @@ pub fn cli() {
 
     for i in 0..args.num_size {
         user_json.push(UserJson {
-
+            name: random_names()
         })
     }
+
+    let json = serde_json::to_string_pretty(&user_json).expect("Falha ao serializar para JSON");
+
+    let mut file = File::create("output.json").expect("Falha ao criar o arquivo JSON");
+    file.write_all(json.as_bytes()).expect("Falha ao escrever no arquivo");
 }
 
