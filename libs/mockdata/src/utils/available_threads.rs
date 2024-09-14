@@ -7,11 +7,7 @@ pub fn available_threads() -> usize {
 
     println!("Número de threads reais disponíveis: {}", num_threads);
 
-    let adjusted_threads = if num_threads < 2 {
-        1
-    } else {
-        num_threads - 2
-    };
+    let adjusted_threads = if num_threads < 2 { 1 } else { num_threads - 2 };
 
     println!("Número de threads seguras: {}", adjusted_threads);
 

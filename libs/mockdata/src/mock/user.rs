@@ -1,12 +1,13 @@
-use std::fs::File;
-use std::io::Write;
-use rand::seq::SliceRandom;
-use rand::thread_rng;
-use serde::Serialize;
 use crate::data::names::NAMES;
 use crate::utils::available_threads::available_threads;
 use crate::utils::nanoid::nanoid;
 use crate::utils::random_string::generate_random_string;
+use chrono::prelude::*;
+use rand::seq::SliceRandom;
+use rand::thread_rng;
+use serde::Serialize;
+use std::fs::File;
+use std::io::Write;
 
 #[derive(Serialize)]
 pub struct UserJson {
@@ -16,7 +17,6 @@ pub struct UserJson {
 }
 
 pub fn random_names() -> String {
-
     let mut rng = thread_rng();
 
     let first_name = NAMES.choose(&mut rng).unwrap();
@@ -26,11 +26,11 @@ pub fn random_names() -> String {
 }
 
 pub fn random_email() -> String {
-
     let id = nanoid();
     let at = "seedmock.com";
+    let time = Utc::now().to_rfc3339().to_string().trim().to_string();
 
-    return format!("{}@{}", id, at);
+    return format!("{}.{}@{}", id, time, at);
 }
 
 pub fn random_password() -> String {
