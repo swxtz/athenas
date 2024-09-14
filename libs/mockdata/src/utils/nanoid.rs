@@ -5,7 +5,5 @@ pub fn nanoid() -> String {
 
     let id = nanoid!(15, dicionary);
 
-    println!("{}", id);
-
     return id;
 }
