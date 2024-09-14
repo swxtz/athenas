@@ -1,7 +1,7 @@
-use crate::mock::user::{random_email, random_names, UserJson};
+use crate::mock::user::{random_email, random_names, random_password, UserJson};
 use clap::Parser;
 use std::fs::File;
-use std::io::{self, Write};
+use std::io::Write;
 
 #[derive(Parser)]
 pub struct Cli {
@@ -13,10 +13,11 @@ pub fn cli() {
 
     let mut user_json = Vec::new();
 
-    for i in 0..args.num_size {
+    for _ in 0..args.num_size {
         user_json.push(UserJson {
             name: random_names(),
             email: random_email(),
+            password: random_password(),
         })
     }
 
