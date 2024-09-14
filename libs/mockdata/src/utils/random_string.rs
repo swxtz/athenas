@@ -12,7 +12,9 @@ use rand::Rng;
 /// Uma string aleatória de tamanho entre `min_len` e `max_len`.
 pub fn generate_random_string(min_len: usize, max_len: usize) -> String {
     // Definindo os caracteres permitidos (letras e números)
-    let characters: Vec<char> = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".chars().collect();
+    let characters: Vec<char> = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        .chars()
+        .collect();
 
     // Criando um gerador de números aleatórios
     let mut rng = rand::thread_rng();
