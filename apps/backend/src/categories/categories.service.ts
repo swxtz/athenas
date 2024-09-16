@@ -35,11 +35,13 @@ export class CategoriesService {
                 where: {
                     type: category.type,
                 },
+                select: {
+                    product: true,
+                },
             });
 
             products.push({ type: category.type, products: categoryProducts });
         }
-
         return products;
     }
 }
