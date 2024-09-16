@@ -46,7 +46,7 @@ export function BestSellers() {
           </div>
         </div>
 
-        <div className="mb-[500px]" />
+        <div className="" />
       </div>
     </div>
   );
