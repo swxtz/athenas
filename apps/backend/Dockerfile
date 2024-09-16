@@ -1,4 +1,4 @@
-FROM node:20.14.0-alpine
+FROM node:20.14.0
 
 RUN mkdir -p /home/node/app 
 
@@ -16,12 +16,7 @@ RUN pnpm run build
 
 RUN pnpm prisma generate
 
-EXPOSE 3000
+EXPOSE 3001
 
 CMD [ "pnpm", "run", "start:prod" ]
 
-# FROM base AS install
-
-# RUN mkdir -p /temp/prod
-# COPY package.json bun.lockb /temp/prod/
-# RUN cd /temp/prod && bun install --frozen-lockfile --production

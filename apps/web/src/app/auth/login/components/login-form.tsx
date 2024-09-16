@@ -55,9 +55,10 @@ export function LoginForm() {
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <div className="flex
          flex-col 
-         container 
-         w-2/3  
-         gap-5">
+         ml-36
+         w-2/3
+         gap-5
+         mt-6">
           <FormField
             control={form.control}
             name="email"
@@ -115,7 +116,10 @@ export function LoginForm() {
             )}
           />
 
-          <Button type="submit" variant={"default"} className="">
+          <Button type="submit" variant={"primary"} className="
+          w-2/4
+          h-12
+          rounded-full">
             {" "}
             Entrar{" "}
           </Button>
