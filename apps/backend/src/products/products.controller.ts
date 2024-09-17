@@ -32,6 +32,11 @@ export class ProductsController {
         return this.productsService.getAllProducts();
     }
 
+    @Get("get-product-by-id/:id")
+    async getProductById(@Param("id") id: string) {
+        return this.productsService.getProductById(id);
+    }
+
     @Post("create-product")
     //@UseGuards(AuthGuard)
     @UsePipes(new ZodValidationPipe(CreateProductDTO))
