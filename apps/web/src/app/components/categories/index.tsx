@@ -29,9 +29,9 @@ export function Categories() {
           <CategorySection  title={category.type} />
             <div>
               {category.products.map((products) => (
-                <h2>
-                {products.productId}
-                </h2>
+                <CategoryCard
+                  productId={products.productId} 
+                />
               )
             )}
             </div>
