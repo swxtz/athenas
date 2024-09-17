@@ -5,6 +5,7 @@ import { Loader2 } from "lucide-react";
 import { CategorySection } from "../category-section";
 import { cuid } from "@/utils/cuid";
 import { CategoryCard } from "../category-card";
+import { products } from "@/data/best-sellers";
 
 export function Categories() {
   const { data, isLoading, error } = useQueryGetCategoriesProducts();
@@ -26,11 +27,16 @@ export function Categories() {
       {data?.map((category) => (
         <div key={cuid()}>
           <CategorySection  title={category.type} />
-          {category.products.map((product) => (
-            
-          ))}
+            <div>
+              {category.products.map((products) => (
+                <h2>
+                {products.productId}
+                </h2>
+              )
+            )}
+            </div>
         </div>
-
+        
       ))}
       
     </div>
