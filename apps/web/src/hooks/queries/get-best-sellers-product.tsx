@@ -31,7 +31,7 @@ interface Product {
 
 async function getBestSellersProduct(): Promise<Product> {
   const response = await api.get(
-    "http://localhost:3001/products/get-best-sellers?limit=6",
+    "/products/get-best-sellers?limit=6",
   );
   return response.data;
 }
