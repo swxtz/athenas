@@ -18,7 +18,7 @@ export function Avatar({ name, email, avatarPhotoUrl }: AvatarProps) {
     <div className="">
       <div className="">
         <AvatarRoot>
-          <AvatarImage src="https://github.com/swxtz.png" />
+          <AvatarImage src="" />
           <AvatarFallback className="">
             <User className="text-zinc-900 p-1 w-96" size={128} />
           </AvatarFallback>
