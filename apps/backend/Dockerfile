@@ -1,4 +1,4 @@
-FROM node:20.14.0
+FROM node:20.14.0-alpine
 
 RUN mkdir -p /home/node/app 
 
@@ -9,6 +9,8 @@ COPY . .
 #ENV NODE_ENV=production
 
 RUN npm i -g corepack @nestjs/cli
+
+RUN rm -rf node_modules
 
 RUN pnpm i 
 
