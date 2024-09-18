@@ -150,7 +150,6 @@ export class ProductsService {
         }
 
         return product;
-
     }
 
     async uploadCoverImage(id: string, file: Express.Multer.File) {

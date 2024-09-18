@@ -26,3 +26,4 @@ terraform.rc
 **/*.tfstate
 
 infra/keys/*
+.vercel

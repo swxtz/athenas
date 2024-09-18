@@ -10,7 +10,6 @@ export function CategorySection({ title }: CategorySectionProps) {
     <div className="">
       <div> 
         <CategoryDivisor title={title} />
-        {/* <CategoryCard /> */}
       </div>
     </div>
   );

@@ -57,6 +57,7 @@ const returnedProduct: ProductEntity[] = [
 describe("ProductsController", () => {
     let controller: ProductsController;
     let service: ProductsService;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let app;
 
     beforeAll(async () => {
