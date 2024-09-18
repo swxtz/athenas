@@ -17,7 +17,7 @@ export function Categories() {
   console.log(data);
 
   return (
-    <div className="">
+    <div className="mt-12">
       {isLoading && (
         <div className="mt-52 w-fit mx-auto">
           <Loader2 size={32} className="animate-spin" />
@@ -25,7 +25,7 @@ export function Categories() {
       )}
 
       {data?.map((category) => (
-        <div key={cuid()}>
+        <div key={cuid()} className="mt-12">
           <CategorySection title={category.type} />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 lg:grid-cols-6  gap-y-4 md:gap-y-8 mx-auto">
             {category.products.map((products) => (

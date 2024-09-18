@@ -12,7 +12,7 @@ interface Product {
 
 
 async function getCategoriesProducts(): Promise<Categories[]> {
-  const res = await api.get("/categories/all");
+  const res = await api.get("/categories/all?limit=6");
   return res.data;
 }
 
