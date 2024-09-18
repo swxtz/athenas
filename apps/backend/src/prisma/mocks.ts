@@ -100,6 +100,25 @@ export class PrismaMocks {
                 state: "available",
                 type: "Molhos",
             },
+            {
+                name: "Ketchup Cepêra",
+                description:
+                    "Descubra um novo nível de sabor com o Junior Ketchup ! Este ketchup artesanal combina o clássico molho de tomate com um toque sofisticado de defumado, oferecendo uma explosão de sabor que vai elevar suas refeições a um patamar gourmet. Feito com ingredientes selecionados e um processo de defumação especial, o Junior Ketchup Defumado proporciona uma textura suave e um gosto irresistível, perfeito para acompanhar hambúrgueres, batatas fritas, carnes grelhadas e muito mais. Experimente e transforme o simples em extraordinário com este ketchup inovador e cheio de personalidade!",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_770885-MLB73177688727_112023-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
 
             // Batatas
             {
@@ -199,8 +218,27 @@ export class PrismaMocks {
                 state: "available",
                 type: "Batatas",
             },
+            {
+                name: "Batata Palito Pré-frita Congelada 9mm Bem Brasil 2Kgs",
+                description:
+                    "Batata Palito Pré-frita Congelada 9mm Bem Brasil 2Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
 
-            // Hambugueres
+            // Hambuguéres
             {
                 name: "Hambúrguer Tradicional 56g – Caixa com 36 Unidades",
                 description:
@@ -282,7 +320,27 @@ export class PrismaMocks {
             },
 
             {
-                name: "Hambúrguer Sabor Picanha 120g – Caixa com 30 Unidades",
+                name: "Hambúrguer Sabor Picanha 120g – Caixa com 30 Unidadess",
+                description:
+                    "Hambúrguer Sabor Picanha 120g – Caixa com 30 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-120g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 120gss Caixa com 30 Unidadess",
                 description:
                     "Hambúrguer Sabor Picanha 120g – Caixa com 30 Unidades",
                 barcode: "123456789",
@@ -396,6 +454,135 @@ export class PrismaMocks {
                 productType: "others",
                 state: "available",
                 type: "Pães",
+            },
+            {
+                name: "Pão de Hambúrguer Riviera G CT BIMBO QSR 15x50gs",
+                description: "Pão de Hambúrguer Riviera G CT BIMBO QSR 15x50g",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/03/Pao-de-Hamburguer-Riviera-G-CT-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            // Queijos
+
+            {
+                name: "Queijo Cheddar Fatiado Bloco 2,27Kg – Polenghi",
+                description: "Queijo Cheddar Fatiado Bloco 2,27Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+            {
+                name: "Queijo Mussarela Fatiado Bloco 2,735Kggg Polenghi",
+                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+            {
+                name: " Mussarela Fatiado Bloco 2,735Kg Polenghi",
+                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+            {
+                name: "Queijo Mussarela Fatiado Bloco 2,735Kgsqr Polenghi",
+                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+            {
+                name: "Queijo Mussarela Fatiado Bloco Polenghi",
+                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+            {
+                name: "Queijo Mussarela Bloco 2,7Kg Polenghi",
+                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
             },
         ];
 
