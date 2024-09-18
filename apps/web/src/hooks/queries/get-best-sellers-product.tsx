@@ -10,11 +10,11 @@ interface ProductObject {
   price: number;
   stock: number;
   barcode: string;
-  sku: any;
+  sku: string
   isAvailable: boolean;
-  rating: any;
+  rating: number;
   coverImage: string;
-  images: any[];
+  images: string[];
   productType: string;
   state: string;
   localPickup: boolean;
@@ -31,7 +31,7 @@ interface Product {
 
 async function getBestSellersProduct(): Promise<Product> {
   const response = await api.get(
-    "http://localhost:3001/products/get-best-sellers"
+    "http://localhost:3001/products/get-best-sellers?limit=6",
   );
   return response.data;
 }

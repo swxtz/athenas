@@ -9,6 +9,22 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "https://megag.com.br",
+      },
+      {
+        protocol: "https",
+        hostname: "www.riosoftice.com.br",
+      },
+      {
+        protocol: "https",
+        hostname: "lambweston.scene7.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+      },
+      {
+        protocol: "https",
+        hostname: "brasa.com.br",
       }
     ],
   },

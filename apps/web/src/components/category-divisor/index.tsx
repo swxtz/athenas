@@ -4,9 +4,8 @@ interface CategoryDivisorProps {
 
 export function CategoryDivisor({ title }: CategoryDivisorProps) {
   return (
-    <div className="font-medium text-xl w-fit ">
+    <div className="font-medium text-xl w-fit border-b-[3px] rounded-b-sm border-orange-500">
       <h2>{title}</h2>
-      <div className="mt-4 bg-amber-800 rounded w-full h-1" />
     </div>
   );
 }

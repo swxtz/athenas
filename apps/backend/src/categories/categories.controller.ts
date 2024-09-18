@@ -12,6 +12,6 @@ export class CategoriesController {
         @Query(new ValidationPipe({ transform: true }))
         query?: GetAllCategoriesDTO,
     ) {
-        console.log(query);
+        return this.categoriesService.getCategories(query.limit);
     }
 }

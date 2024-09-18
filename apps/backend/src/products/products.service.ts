@@ -135,6 +135,23 @@ export class ProductsService {
         }
     }
 
+    async getProductById(id: string) {
+        const product = await this.prisma.product.findFirst({
+            where: { id },
+        });
+
+        if (!product) {
+            throw new HttpException(
+                {
+                    message: "Produto não encontrado",
+                },
+                404,
+            );
+        }
+
+        return product;
+    }
+
     async uploadCoverImage(id: string, file: Express.Multer.File) {
         const verifyIfProductExists = await this.prisma.product.findFirst({
             where: { id },

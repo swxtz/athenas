@@ -20,6 +20,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { UploadCoverImageParams } from "./dtos/upload-cover-image.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
+import { SkipThrottle } from "@nestjs/throttler";
 
 @ApiTags("Products")
 @Controller("products")
@@ -30,6 +31,12 @@ export class ProductsController {
     @Get("get-all")
     async getAllProducts() {
         return this.productsService.getAllProducts();
+    }
+
+    @SkipThrottle()
+    @Get("get-product-by-id/:id")
+    async getProductById(@Param("id") id: string) {
+        return this.productsService.getProductById(id);
     }
 
     @Post("create-product")

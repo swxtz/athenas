@@ -39,7 +39,6 @@ export class CategoriesService {
 
             products.push({ type: category.type, products: categoryProducts });
         }
-
         return products;
     }
 }
