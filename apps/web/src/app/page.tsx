@@ -18,6 +18,8 @@ export default async function Home() {
       <BestSellers />
 
       <Categories />
+
+      <div className="mt-24 md:mt-48" />
     </main>
   );
 }
