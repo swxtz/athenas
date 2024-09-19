@@ -23,15 +23,16 @@ export const metadata: Metadata = {
 
 interface ProductParams {
   params: {
-    name: string;
+    slug: string;
   };
 }
 
 export default function ProductPage({ params }: ProductParams) {
+
   return (
     <div>
       <div className="">
-        <Product {...product} />
+        <Product slug={params.slug} />
       </div>
 
     </div>

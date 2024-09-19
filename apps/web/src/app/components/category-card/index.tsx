@@ -20,6 +20,8 @@ export function CategoryCard({ productId }: ProductCardProps) {
     );
   }
 
+  const productLink = `/produto/${data.slug}`;
+
   return (
     <div className="mt-6 mx-auto">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 lg:grid-cols-6  gap-y-4 md:gap-y-8 mx-auto">
@@ -28,7 +30,7 @@ export function CategoryCard({ productId }: ProductCardProps) {
           name={data.name}
           image={data.coverImage}
           price={data.price}
-          productLink={data.slug}
+          productLink={productLink}
           isPayable={true}
           numberOfInstallments={3}
           fees={1}

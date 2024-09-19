@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -14,40 +13,36 @@ import { ProductDescription } from "./product-description";
 import { RWebShare } from "react-web-share";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { ProductStars } from "./product-starts";
+import { useQueryGetProductById } from "@/hooks/queries/get-product-by-id";
+import { useQueryGetProductBySlug } from "@/hooks/queries/get-product-by-slug";
 
 interface ProductCardProps {
-  name: string;
-  image: string;
-  price: number;
-  isPayable: boolean;
-  numberOfInstallments: number;
-  fees: number;
-  description: string;
+  slug: string;
 }
 
-export function Product({
-  name,
-  fees,
-  image,
-  isPayable,
-  price,
-  numberOfInstallments,
-  description,
-}: ProductCardProps) {
+export function Product({ slug }: ProductCardProps) {
   const isDesktop = useMediaQuery(768);
+  const { data, isLoading, error } = useQueryGetProductBySlug(slug);
 
   const zipcodeCookie = nookies.get(null).zipcode;
 
+  function handleAddToCart() {
+    localStorage.setItem("cart", JSON.stringify({ id: data?.id, name: data?.name, price: data?.price, slug: data?.slug }));
+  }
+
   return (
     <>
+      {isLoading && <div>Carregando...</div>}
+      {error && <div>Erro ao carregar o produto</div>}
+
       {!isDesktop ? (
         <div className="bg-white min-h-screen min-w-screen">
           <div className="pb-[200px]">
             <section className="mt-8 pt-8 flex flex-col gap-8 container">
               <div className="flex items-center justify-center my-4 mx-8 bg-white rounded ">
                 <Image
-                  src={image}
-                  alt={name}
+                  src={data?.coverImage || ""}
+                  alt={data?.name || ""}
                   width={1000}
                   height={1000}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -61,7 +56,7 @@ export function Product({
                 <div className="flex flex-col gap-20">
                   <div className="">
                     <span className="text-xl font-medium font-montserrat text-zinc-800">
-                      {name}
+                      {data?.name}
                     </span>
                     <div className="flex mt-6 justify-between">
                       <ProductStars size={24} />
@@ -97,9 +92,9 @@ export function Product({
             {/* Section do preço */}
             <section className="container flex flex-col gap-4">
               <PriceDisplay
-                fees={fees}
-                numberOfInstallments={numberOfInstallments}
-                price={price}
+                fees={12}
+                numberOfInstallments={3}
+                price={data?.price}
                 discont={true}
                 discountAmount={3.99}
                 isPayable={true}
@@ -125,7 +120,7 @@ export function Product({
             <SectionDivisor />
 
             <section className="container">
-              <ProductDescription>{description}</ProductDescription>
+              <ProductDescription text={data?.description} />
             </section>
           </div>
         </div>
@@ -136,8 +131,8 @@ export function Product({
               <div className="container bg-white rounded-md shadow-md flex flex-row">
                 <div className="mx-16 py-16 w-fit">
                   <Image
-                    src={image}
-                    alt={name}
+                    src={data?.coverImage || ""}
+                    alt={data?.name || ""}
                     width={1000}
                     height={100}
                     sizes="(max-width: 500px) 13vw, (max-width: 500px) 13vw, 13vw"
@@ -149,16 +144,16 @@ export function Product({
 
                 <div className="mt-32 flex flex-col gap-2">
                   <span className="text-2xl font-medium font-montserrat text-zinc-800">
-                    {name}
+                    {data?.name}
                   </span>
                   <div className="">
                     <ProductStars />
                   </div>
                   <div className="mt-4">
                     <PriceDisplay
-                      fees={fees}
-                      numberOfInstallments={numberOfInstallments}
-                      price={price}
+                      fees={12}
+                      numberOfInstallments={3}
+                      price={data?.price}
                       discont={true}
                       discountAmount={3.99}
                       isPayable={true}
@@ -171,7 +166,11 @@ export function Product({
                       <Button className="bg-green-700 hover:bg-green-800">
                         Compre agora
                       </Button>
-                      <Button variant={"outline"} className="">
+                      <Button
+                        variant={"outline"}
+                        className=""
+                        onClick={handleAddToCart}
+                      >
                         Adicionar ao carrinho
                       </Button>
                     </div>

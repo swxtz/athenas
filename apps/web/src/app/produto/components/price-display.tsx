@@ -2,7 +2,7 @@ import { calculateTotalWithInterest } from "@/utils/calculate-total-with-interes
 import { convertToReal } from "@/utils/convert-to-real";
 
 interface PriceProps {
-  price: number;
+  price: number | undefined;
   numberOfInstallments: number;
   fees: number;
   discont: boolean;
@@ -28,10 +28,10 @@ export function PriceDisplay({
           {discont ? (
             <div className="flex flex-col gap-1">
               <span className="text-3xl text-zinc-700">
-                {convertToReal(price - discountAmount)}
+                {convertToReal((price ?? 0) - discountAmount)}
               </span>
               <span className="text-sm text-zinc-500 line-through">
-                {convertToReal(price)}
+                {convertToReal(price ?? 0)}
               </span>
               {isPayable && (
                 <span className="text-sm text-zinc-500">
@@ -40,7 +40,7 @@ export function PriceDisplay({
                     calculateTotalWithInterest(
                       numberOfInstallments,
                       fees,
-                      price
+                      (price ?? 0)
                     )
                   )}{" "}
                   sem juros
@@ -50,7 +50,7 @@ export function PriceDisplay({
           ) : (
             <div className="flex flex-col gap-1">
               <span className="text-3xl text-zinc-700">
-                {convertToReal(price)}
+                {convertToReal(price ?? 0)}
               </span>
               {isPayable && (
                 <span className="text-sm text-zinc-500">
@@ -59,7 +59,7 @@ export function PriceDisplay({
                     calculateTotalWithInterest(
                       numberOfInstallments,
                       fees,
-                      price
+                      (price ?? 0)
                     )
                   )}{" "}
                   sem juros
@@ -74,10 +74,10 @@ export function PriceDisplay({
             // Desktop
             <div className="flex flex-col gap-0.5">
               <span className="text-3xl text-zinc-700">
-                {convertToReal(price - discountAmount)}
+                {convertToReal((price ?? 0) - discountAmount)}
               </span>
               <span className="text-sm text-zinc-500 line-through">
-                {convertToReal(price)}
+                {convertToReal((price ?? 0))}
               </span>
               {isPayable && (
                 <span className="text-sm text-zinc-500">
@@ -86,7 +86,7 @@ export function PriceDisplay({
                     calculateTotalWithInterest(
                       numberOfInstallments,
                       fees,
-                      price
+                      (price ?? 0)
                     )
                   )}{" "}
                   sem juros
@@ -96,7 +96,7 @@ export function PriceDisplay({
           ) : (
             <div className="flex flex-col gap-1">
               <span className="text-3xl text-zinc-700">
-                {convertToReal(price)}
+                {convertToReal((price ?? 0))}
               </span>
               {isPayable && (
                 <span className="text-sm text-zinc-500">
@@ -105,7 +105,7 @@ export function PriceDisplay({
                     calculateTotalWithInterest(
                       numberOfInstallments,
                       fees,
-                      price
+                      (price ?? 0)
                     )
                   )}{" "}
                   sem juros
