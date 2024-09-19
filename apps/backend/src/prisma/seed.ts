@@ -363,7 +363,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p11.id
+            productId: p11.id,
         },
     });
 
@@ -395,7 +395,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p12.id
+            productId: p12.id,
         },
     });
 
@@ -429,7 +429,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p13.id
+            productId: p13.id,
         },
     });
 
@@ -461,7 +461,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p14.id
+            productId: p14.id,
         },
     });
 
@@ -493,7 +493,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p15.id
+            productId: p15.id,
         },
     });
 
@@ -525,7 +525,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p16.id
+            productId: p16.id,
         },
     });
 
@@ -557,7 +557,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p17.id
+            productId: p17.id,
         },
     });
 
@@ -589,7 +589,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p18.id
+            productId: p18.id,
         },
     });
 
@@ -623,7 +623,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p19.id
+            productId: p19.id,
         },
     });
 
@@ -655,7 +655,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p20.id
+            productId: p20.id,
         },
     });
 
@@ -687,7 +687,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p21.id
+            productId: p21.id,
         },
     });
 
@@ -719,7 +719,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p22.id
+            productId: p22.id,
         },
     });
 
@@ -751,7 +751,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p23.id
+            productId: p23.id,
         },
     });
 
@@ -783,10 +783,9 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p24.id
+            productId: p24.id,
         },
     });
-    
 
     // Queijos
 
@@ -818,7 +817,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p25.id
+            productId: p25.id,
         },
     });
 
@@ -850,10 +849,10 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p26.id
+            productId: p26.id,
         },
     });
-    
+
     const p27 = await prisma.product.create({
         data: {
             name: products[26].name,
@@ -882,11 +881,11 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p27.id
+            productId: p27.id,
         },
     });
 
-        const p28 = await prisma.product.create({
+    const p28 = await prisma.product.create({
         data: {
             name: products[27].name,
             description: products[27].description,
@@ -914,7 +913,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p28.id
+            productId: p28.id,
         },
     });
 
@@ -946,7 +945,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p29.id
+            productId: p29.id,
         },
     });
 
@@ -978,7 +977,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p30.id
+            productId: p30.id,
         },
     });
 

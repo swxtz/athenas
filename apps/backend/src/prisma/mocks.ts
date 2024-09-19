@@ -496,7 +496,8 @@ export class PrismaMocks {
             },
             {
                 name: "Queijo Mussarela Fatiado Bloco 2,735Kggg Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -514,7 +515,8 @@ export class PrismaMocks {
             },
             {
                 name: " Mussarela Fatiado Bloco 2,735Kg Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -532,7 +534,8 @@ export class PrismaMocks {
             },
             {
                 name: "Queijo Mussarela Fatiado Bloco 2,735Kgsqr Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -550,7 +553,8 @@ export class PrismaMocks {
             },
             {
                 name: "Queijo Mussarela Fatiado Bloco Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -568,7 +572,8 @@ export class PrismaMocks {
             },
             {
                 name: "Queijo Mussarela Bloco 2,7Kg Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,

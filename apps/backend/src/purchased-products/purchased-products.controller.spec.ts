@@ -61,7 +61,7 @@ describe("PurchasedProductsController", () => {
             console.log(token);
             const verifyEmail = await request(app.getHttpServer())
                 .post("/auth/verify-email")
-                .send(token);
+                .send({ token: token });
 
             console.log(verifyEmail.body);
             const userLogin = await request(app.getHttpServer())
