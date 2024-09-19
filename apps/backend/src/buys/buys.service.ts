@@ -23,7 +23,7 @@ export class BuysService {
 
     private logger = new Logger();
 
-    async createBuyOrder(rawtoken: string) {
+    async createBuyOrder(rawtoken: string, productId) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
