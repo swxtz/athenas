@@ -14,7 +14,7 @@ import {
 import { Avatar } from "../avatar";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
-import { ActiveLink, ActiveLinkProps } from "../active-link";
+import type { ActiveLinkProps } from "../active-link";
 import { useState } from "react";
 import { Searchbar } from "@/app/components/searchbar";
 import { MobileMenu } from "../menu/mobile-menu";
@@ -29,7 +29,7 @@ const links: ActiveLinkProps[] = [
 export function Navbar() {
   
   return (
-    <nav className="py-3 bg-yellow-300 flex justify-between items-center shadow-md">
+    <nav className="py-3 bg-yellow-400 flex justify-between items-center shadow-md">
       <div className="px-6 lg:px-24 w-full flex items-center justify-between">
         <Link href="/">
           <Image
