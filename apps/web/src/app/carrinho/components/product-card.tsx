@@ -4,6 +4,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useQueryGetProductById } from "@/hooks/queries/get-product-by-id";
 import { convertToReal } from "@/utils/convert-to-real";
 import Image from "next/image";
+import { QuantityButton } from "./quantity-button";
+import { useState } from "react";
 
 interface ProductCardProps {
   productId: string;
@@ -11,6 +13,14 @@ interface ProductCardProps {
 
 export function ProductCard({ productId }: ProductCardProps) {
   const { data, isLoading, error } = useQueryGetProductById(productId);
+  const [quantity, setQuantity] = useState(1);
+
+  function handleIncrementQuantity() {
+    setQuantity((prev) => prev + 1);
+  }
+  function handleDecrementQuantity() {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
+  }
 
   return (
     <div className="container h-[180px] w-full mt-9 flex flex-row gap-8">
@@ -33,10 +43,20 @@ export function ProductCard({ productId }: ProductCardProps) {
             <div className="flex justify-between">
               <div className="" />
               <div className="flex flex-col h-[120px] justify-between">
-                <p className="font-semibold text-lg text-brown-500 font-inter">adcionar mais produtos</p>
+                <QuantityButton
+                  onDecrement={handleDecrementQuantity}
+                  onIncrement={handleIncrementQuantity}
+                  quantity={quantity}
+                />
+
                 <p className="font-semibold text-lg text-end text-brown-500 font-inter">
                   {convertToReal(data?.price / 100)}
                 </p>
+                {quantity > 1 && (
+                  <p className="font-semibold text-sm text-end text-brown-500 font-inter">
+                    {convertToReal((data?.price * quantity) / 100)}
+                  </p>
+                )}
               </div>
             </div>
           </div>
