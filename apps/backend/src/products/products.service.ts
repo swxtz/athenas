@@ -91,7 +91,7 @@ export class ProductsService {
             if (verifyIfProductExists) {
                 throw new HttpException(
                     {
-                        message: "Produto já cadrastrado",
+                        message: "Produto já cadastrado",
                         data: verifyIfProductExists,
                     },
                     400,
