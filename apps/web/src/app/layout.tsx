@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Poppins, Rubik, Lato, Montserrat } from "next/font/google";
+import { Poppins, Rubik, Lato, Montserrat, Inter } from "next/font/google";
 import "./globals.css";
+import "react-loading-skeleton/dist/skeleton.css";
 import { cn } from "@/lib/utils";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -31,6 +32,12 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
+const inter = Inter({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
 export const metadata: Metadata = {
   title: "RN Distribuidora",
   description: "Ecommerce da RN Distribuidora",
@@ -49,7 +56,8 @@ export default function RootLayout({
           poppins.className,
           lato.variable,
           rubik.variable,
-          montserrat.variable
+          montserrat.variable,
+          inter.variable
         )}
       >
         <ReactQueryProvider>

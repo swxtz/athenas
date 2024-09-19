@@ -22,6 +22,7 @@ const config = {
         rubik: ["var(--font-rubik)", "sans-serif"],
         lato: ["var(--font-lato)", "sans-serif"],
         montserrat: ["var(--font-montserrat)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
       },
       borderWidth: {
         1: "1px",
