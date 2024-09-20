@@ -61,8 +61,8 @@ describe("PurchasedProductsController", () => {
 
             console.log(purchasedproducts.body);
 
-            const produtos = purchasedproducts.body;
-            const camposEsperados = [
+            const products = purchasedproducts.body;
+            const expectedfields = [
                 "id",
                 "productId",
                 "userId",
@@ -73,9 +73,24 @@ describe("PurchasedProductsController", () => {
                 "updatedAt",
             ];
 
-            produtos.forEach((produto) => {
-                camposEsperados.forEach((campo) => {
-                    expect(produto).toHaveProperty(campo);
+            expect(Array.isArray(products)).toBe(true);
+            expect(products.length).toBeGreaterThan(0);
+
+            products.forEach((product) => {
+                // Verifica se cada produto possui as propriedades esperadas
+                expectedfields.forEach((field) => {
+                    expect(product).toHaveProperty(field);
+                    expect(product[field]).toBeDefined();
+                    expect(product[field]).not.toBeNull();
+
+                    // Verifica o comprimento apenas para strings
+                    if (typeof product[field] === "string") {
+                        expect(product[field].length).toBeGreaterThan(0); // Verifica se a string não está vazia
+                    }
+                    // Se `productValue` for um número, verifique se é um valor válido
+                    else if (field === "productValue") {
+                        expect(product[field]).toBeGreaterThan(0); // Verifica se o valor é positivo
+                    }
                 });
             });
         });
