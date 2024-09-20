@@ -20,6 +20,6 @@ export class BuysController {
         @Body(new ValidationPipe()) body: CreateBuyOrderPixDTO,
         @Headers("authorization") token: string,
     ) {
-        return this.buysService.createBuyOrder(token, body);
+        return this.buysService.createBuyOrderPix(token, body);
     }
 }

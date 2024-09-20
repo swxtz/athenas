@@ -2,7 +2,8 @@ import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
-import { CreateBuyOrderDTO } from "./dtos/create-buy-order.dto";
+import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
+import { Prisma } from "@prisma/client";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -24,7 +25,7 @@ export class BuysService {
 
     private logger = new Logger();
 
-    async createBuyOrder(rawtoken: string, productId: CreateBuyOrderDTO) {
+    async createBuyOrderPix(rawtoken: string, productId: CreateBuyOrderPixDTO) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
@@ -40,52 +41,110 @@ export class BuysService {
                 );
             }
 
-            const user = await this.prisma.user.findFirst({
+            const user = await this.prisma.user.findFirstOrThrow({
                 where: { id: jwtpayload.id },
                 select: {
                     id: true,
+                    email: true,
                 },
             });
 
-            if (!user) {
-                this.logger.warn(`User not find with: ${user.id}`);
-                throw new HttpException(
-                    {
-                        message: "Usuário não existe",
+            const products = [];
+
+            // Verifica se o produto existe, se está disponível e se não foi deletado
+            for (const product of productId.products) {
+                const productExists = await this.prisma.product.findFirst({
+                    where: { id: product },
+                    select: {
+                        id: true,
+                        name: true,
+                        price: true,
+                        isAvailable: true,
+                        isDeleted: true,
                     },
-                    401,
-                );
+                });
+
+                if (!productExists) {
+                    this.logger.warn(`Product not find with: ${product}`);
+                    throw new HttpException(
+                        {
+                            message: `Produto não encontrado com o id: ${product}`,
+                        },
+                        404,
+                    );
+                }
+
+                if (productExists.isDeleted) {
+                    this.logger.warn(`Product deleted with: ${product}`);
+                    throw new HttpException(
+                        {
+                            message: `Produto deletado com o id: ${product}`,
+                        },
+                        404,
+                    );
+                }
+
+                if (!productExists.isAvailable) {
+                    this.logger.warn(`Product not available with: ${product}`);
+                    throw new HttpException(
+                        {
+                            message: `Produto não disponível com o id: ${product}`,
+                        },
+                        404,
+                    );
+                }
+
+                products.push(productExists);
             }
 
-            const products = await this.prisma.product.findMany({
-                where: { id: { in: productId.products } },
+            console.log(products);
+
+            const buyOrder = await this.prisma.buyOrder.create({
+                data: {
+                    userId: user.id,
+                    paymentMethod: "pix",
+                    paymentStatus: "pending",
+                    products: {
+                        connect: products.map((product) => ({
+                            id: product.id,
+                        })),
+                    },
+                },
             });
 
-            if (products.length !== productId.products.length) {
-                this.logger.warn(
-                    `product not found with: ${productId.products}`,
-                );
+            this.logger.debug(`Buy order created with: ${buyOrder.id}`);
 
-                throw new HttpException(
-                    {
-                        message: "Produto não encontrado",
-                    },
-                    404,
-                );
-            }
+            return products;
         } catch (err) {
+            if (err instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(err.name);
+                if (
+                    err.name === "NotFoundError" &&
+                    err.message === "No User found"
+                ) {
+                    this.logger.warn(`User not find`);
+                    throw new HttpException(
+                        {
+                            message:
+                                "Usuário não existe, tente relogar na aplicação",
+                        },
+                        401,
+                    );
+                }
+            }
+
             if (err instanceof HttpException) {
                 throw err;
-            } else {
-                this.logger.error(err);
-                throw new HttpException(
-                    {
-                        message: "Erro ao criar produto",
-                        error: err,
-                    },
-                    500,
-                );
             }
+
+            this.logger.error(err);
+            console.error(err);
+            throw new HttpException(
+                {
+                    message: "Ocorreu um erro interno",
+                },
+                500,
+            );
         }
     }
 }

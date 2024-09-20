@@ -79,9 +79,7 @@ model Product {
   Recommendation   Recommendation?
   recommendationId String?
 
-  Category   Category[]
-  BuyOrder   BuyOrder?  @relation(fields: [orderBuyId], references: [id])
-  orderBuyId String?
+  Category Category[]
 
   @@map("products")
 }
@@ -205,8 +203,7 @@ model BuyOrder {
 
   paymentMethod PaymentMethod @map("payment_method")
   paymentStatus PaymentStatus @map("payment_status")
-
-  products Product[]
+  productsId    String[]      @map("products_id")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
