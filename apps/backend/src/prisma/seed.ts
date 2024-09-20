@@ -2,6 +2,8 @@
 import { PrismaClient } from "@prisma/client";
 import { UtilsService } from "src/utils/utils.service";
 import { PrismaMocks } from "./mocks";
+import { ArgonService } from "src/argon/argon.service";
+import argon2 from "argon2";
 
 const prisma = new PrismaClient();
 
@@ -12,6 +14,8 @@ const products = new PrismaMocks().products();
 const users = new PrismaMocks().users();
 
 async function seed() {
+    const argon = new ArgonService();
+
     // Molhos
     const p1 = await prisma.product.create({
         data: {
@@ -985,7 +989,9 @@ async function seed() {
         data: {
             email: users[0].email,
             name: users[0].name,
-            password: users[0].password,
+            password: await argon2.hash(users[0].password),
+            emailVerified: true,
+            emailVerificatedAt: new Date("2024-08-07T22:58:31.874Z"),
         },
     });
 

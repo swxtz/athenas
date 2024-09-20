@@ -3,9 +3,9 @@ import { PurchasedProductsController } from "./purchased-products.controller";
 import { PurchasedProductsService } from "./purchased-products.service";
 import { JwtService } from "@nestjs/jwt";
 import { PrismaService } from "src/prisma/prisma.service";
-import { CreateUserDTO } from "src/users/dtos/create-user.dto";
 import request from "supertest";
 import { createNestAppInstance } from "test/test.helpers";
+import { PrismaMocks } from "src/prisma/mocks";
 
 describe("PurchasedProductsController", () => {
     let controller: PurchasedProductsController;
@@ -47,27 +47,37 @@ describe("PurchasedProductsController", () => {
 
     describe("getAllPurchasedProducts", () => {
         it("should return the products purchased by the user", async () => {
-            const userBody: CreateUserDTO = {
-                email: "returnproductspurchasedbytheuser@purchasedproducts.com",
-                name: "Jose",
-                password: "123456789",
-            };
+            const users = new PrismaMocks().users();
 
-            const createUser = await request(app.getHttpServer())
-                .post("/users/dev")
-                .send(userBody);
-
-            const { token } = createUser.body;
-            console.log(token);
-            const verifyEmail = await request(app.getHttpServer())
-                .post("/auth/verify-email")
-                .send({ token: token });
-
-            console.log(verifyEmail.body);
             const userLogin = await request(app.getHttpServer())
                 .post("/auth/login")
-                .send({ email: userBody.email, password: userBody.password });
-            console.log(userLogin.body);
+                .send({ email: users[0].email, password: users[0].password });
+
+            const token = userLogin.body.data.token;
+
+            const purchasedproducts = await request(app.getHttpServer())
+                .get("/purchased-products/get-all")
+                .set("Authorization", `Bearer ${token}`);
+
+            console.log(purchasedproducts.body);
+
+            const produtos = purchasedproducts.body;
+            const camposEsperados = [
+                "id",
+                "productId",
+                "userId",
+                "productSlug",
+                "productValue",
+                "productName",
+                "createdAt",
+                "updatedAt",
+            ];
+
+            produtos.forEach((produto) => {
+                camposEsperados.forEach((campo) => {
+                    expect(produto).toHaveProperty(campo);
+                });
+            });
         });
     });
 });
