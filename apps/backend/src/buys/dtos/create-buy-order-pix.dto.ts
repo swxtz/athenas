@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { ArrayMinSize, ArrayNotEmpty, IsArray, IsUUID } from "class-validator";
 
-export class CreateBuyOrderDTO {
+export class CreateBuyOrderPixDTO {
     @ApiProperty()
     @IsArray()
     @ArrayNotEmpty()

@@ -29,7 +29,7 @@ model User {
   updatedAt     DateTime        @updatedAt @map("updated_at")
   UserPurchases UserPurchases[]
   ShoppingCart  ShoppingCart[]
-  OrderBuy      OrderBuy[]
+  BuyOrder      BuyOrder[]
 
   @@map("users")
 }
@@ -80,7 +80,7 @@ model Product {
   recommendationId String?
 
   Category   Category[]
-  OrderBuy   OrderBuy?  @relation(fields: [orderBuyId], references: [id])
+  BuyOrder   BuyOrder?  @relation(fields: [orderBuyId], references: [id])
   orderBuyId String?
 
   @@map("products")
@@ -197,7 +197,7 @@ model Category {
 }
 
 // OrderBuy
-model OrderBuy {
+model BuyOrder {
   id String @id @default(uuid())
 
   userId String @map("user_id")
@@ -211,7 +211,7 @@ model OrderBuy {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("order_buy")
+  @@map("buy_orders")
 }
 
 enum PaymentMethod {

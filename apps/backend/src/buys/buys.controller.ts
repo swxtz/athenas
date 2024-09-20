@@ -7,17 +7,17 @@ import {
     ValidationPipe,
 } from "@nestjs/common";
 import { BuysService } from "./buys.service";
-import { CreateBuyOrderDTO } from "./dtos/create-buy-order.dto";
+import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
 import { AuthGuard } from "src/auth/auth.guard";
 
 @Controller("buys")
 export class BuysController {
     constructor(private readonly buysService: BuysService) {}
 
-    @Post("create-buy-order")
+    @Post("create-buy-order/pix")
     @UseGuards(AuthGuard)
     async createBuyOrder(
-        @Body(new ValidationPipe()) body: CreateBuyOrderDTO,
+        @Body(new ValidationPipe()) body: CreateBuyOrderPixDTO,
         @Headers("authorization") token: string,
     ) {
         return this.buysService.createBuyOrder(token, body);

@@ -8,7 +8,7 @@ CREATE TYPE "PaymentStatus" AS ENUM ('pending', 'paid', 'canceled');
 ALTER TABLE "products" ADD COLUMN     "orderBuyId" TEXT;
 
 -- CreateTable
-CREATE TABLE "order_buy" (
+CREATE TABLE "buy_orders" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "payment_method" "PaymentMethod" NOT NULL,
@@ -16,11 +16,11 @@ CREATE TABLE "order_buy" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "order_buy_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "buy_orders_pkey" PRIMARY KEY ("id")
 );
 
 -- AddForeignKey
-ALTER TABLE "products" ADD CONSTRAINT "products_orderBuyId_fkey" FOREIGN KEY ("orderBuyId") REFERENCES "order_buy"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "products" ADD CONSTRAINT "products_orderBuyId_fkey" FOREIGN KEY ("orderBuyId") REFERENCES "buy_orders"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "order_buy" ADD CONSTRAINT "order_buy_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "buy_orders" ADD CONSTRAINT "buy_orders_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
