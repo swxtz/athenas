@@ -52,6 +52,9 @@ model Product {
   isAvailable Boolean @default(true) @map("is_available")
   rating      Float?  @map("rating")
 
+  isDeleted Boolean   @default(false) @map("is_deleted")
+  deletedAt DateTime? @map("deleted_at")
+
   coverImage String?  @map("cover_image")
   images     String[]
 
@@ -189,3 +192,5 @@ model Category {
 
   @@map("categories")
 }
+
+//

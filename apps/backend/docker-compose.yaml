@@ -10,8 +10,8 @@ services:
       POSTGRES_USER: athenas
       POSTGRES_PASSWORD: athenas
       POSTGRES_DB: athenas
-    volumes:
-      - .docker/athenas-db-data:/var/lib/postgresql/data
+    #volumes:
+     # - .docker/athenas-db-data:/var/lib/postgresql/data
     networks:
       - athenas-network
 
