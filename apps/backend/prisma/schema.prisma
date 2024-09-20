@@ -10,9 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// generator erd {
-//   provider = "prisma-erd-generator"
-// }
+generator erd {
+  provider = "prisma-erd-generator"
+}
 
 model User {
   id   String @id @default(cuid())
@@ -29,6 +29,7 @@ model User {
   updatedAt     DateTime        @updatedAt @map("updated_at")
   UserPurchases UserPurchases[]
   ShoppingCart  ShoppingCart[]
+  OrderBuy      OrderBuy[]
 
   @@map("users")
 }
@@ -78,7 +79,9 @@ model Product {
   Recommendation   Recommendation?
   recommendationId String?
 
-  Category Category[]
+  Category   Category[]
+  OrderBuy   OrderBuy?  @relation(fields: [orderBuyId], references: [id])
+  orderBuyId String?
 
   @@map("products")
 }
@@ -193,4 +196,34 @@ model Category {
   @@map("categories")
 }
 
-//
+// OrderBuy
+model OrderBuy {
+  id String @id @default(uuid())
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  paymentMethod PaymentMethod @map("payment_method")
+  paymentStatus PaymentStatus @map("payment_status")
+
+  products Product[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("order_buy")
+}
+
+enum PaymentMethod {
+  creditCard
+  debitCard
+  cash
+  pix
+  boleto
+}
+
+enum PaymentStatus {
+  pending
+  paid
+  canceled
+}

@@ -1,12 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { createZodDto } from "nestjs-zod";
-import { z } from "zod";
+import { ArrayMinSize, ArrayNotEmpty, IsArray, IsUUID } from "class-validator";
 
-const schema = z.object({
-    productId: z.string(),
-});
-
-export class CreateBuyOrderDTO extends createZodDto(schema) {
+export class CreateBuyOrderDTO {
     @ApiProperty()
-    productId: string;
+    @IsArray()
+    @ArrayNotEmpty()
+    @ArrayMinSize(1)
+    @IsUUID(4, { each: true })
+    products: string[];
 }

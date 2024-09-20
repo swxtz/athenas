@@ -2,6 +2,7 @@ import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
+import { CreateBuyOrderDTO } from "./dtos/create-buy-order.dto";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -23,7 +24,7 @@ export class BuysService {
 
     private logger = new Logger();
 
-    async createBuyOrder(rawtoken: string, productId) {
+    async createBuyOrder(rawtoken: string, productId: CreateBuyOrderDTO) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
@@ -55,6 +56,36 @@ export class BuysService {
                     401,
                 );
             }
-        } catch {}
+
+            const products = await this.prisma.product.findMany({
+                where: { id: { in: productId.products } },
+            });
+
+            if (products.length !== productId.products.length) {
+                this.logger.warn(
+                    `product not found with: ${productId.products}`,
+                );
+
+                throw new HttpException(
+                    {
+                        message: "Produto não encontrado",
+                    },
+                    404,
+                );
+            }
+        } catch (err) {
+            if (err instanceof HttpException) {
+                throw err;
+            } else {
+                this.logger.error(err);
+                throw new HttpException(
+                    {
+                        message: "Erro ao criar produto",
+                        error: err,
+                    },
+                    500,
+                );
+            }
+        }
     }
 }
