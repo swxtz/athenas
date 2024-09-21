@@ -1,5 +1,3 @@
-
-
 services:
   athenas-db:
     image: postgres:16.2
@@ -14,6 +12,23 @@ services:
      # - .docker/athenas-db-data:/var/lib/postgresql/data
     networks:
       - athenas-network
+    deploy:
+        resources:
+            limits:
+                cpus: '0.2'
+                memory: 256M
+
+  rabbitmq: 
+    image: rabbitmq:4.0-management-alpine
+    container_name: rabbitmq-athenas
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    deploy:
+        resources:
+            limits:
+                cpus: '0.2'
+                memory: 128M
 
 networks:
   athenas-network:
