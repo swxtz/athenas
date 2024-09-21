@@ -10,7 +10,7 @@ import request from "supertest";
 import { INestApplication } from "@nestjs/common";
 
 describe("BuysController", () => {
-    let controller: BuysController
+    let controller: BuysController;
     let app: INestApplication;
 
     beforeAll(async () => {
