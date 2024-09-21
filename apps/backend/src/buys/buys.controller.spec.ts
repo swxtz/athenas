@@ -158,6 +158,36 @@ describe("BuysController", () => {
                         products.products[0].id,
                 );
             });
+
+            it("should not be possible to create a purchase order with a product that is not available", async () => {
+                const products: CreateBuyOrderPixDTO = {
+                    products: [
+                        {
+                            id: "1",
+                            amount: 1,
+                        },
+                    ],
+                };
+
+                const loginRequest = await request(app.getHttpServer())
+                    .post("/auth/login")
+                    .send({
+                        email: users[1].email,
+                        password: users[1].password,
+                    });
+
+                const token = loginRequest.body.data.token;
+
+                const req = await request(app.getHttpServer())
+                    .post("/buys/create-buy-order/pix")
+                    .set("Authorization", `Bearer ${token}`)
+                    .send(products);
+
+                expect(req.statusCode).toBe(400);
+                expect(req.body.message).toBe(
+                    "Produto não disponível para compra",
+                );
+            });
         });
     });
 });

@@ -589,6 +589,28 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
+            // produtos para testes unitarios do /buys
+
+            {
+                name: "Queijo Mussarela Bloco 2,7Kg Polenghis",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: false,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "unavailable",
+                type: "Queijos",
+            },
         ];
 
         return products;

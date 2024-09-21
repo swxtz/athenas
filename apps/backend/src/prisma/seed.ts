@@ -985,6 +985,38 @@ async function seed() {
         },
     });
 
+    const p31 = await prisma.product.create({
+        data: {
+            name: products[30].name,
+            description: products[30].description,
+            barcode: products[30].barcode,
+            price: products[30].price,
+            stock: products[30].stock,
+            coverImage: products[30].coverImage,
+            buyPrice: products[30].buyPrice,
+            isAvailable: products[30].isAvailable,
+            localPickup: products[30].localPickup,
+            numberOfSales: products[30].numberOfSales,
+            numberOfViews: products[30].numberOfViews,
+            numberOfViewsInLastWeek: products[30].numberOfViewsInLastWeek,
+            productType: products[30].productType,
+            state: products[30].state,
+            slug: utils.createProductSlug(products[30].name),
+
+            Category: {
+                create: {
+                    type: products[30].type,
+                },
+            },
+        },
+    });
+
+    await prisma.recommendation.create({
+        data: {
+            productId: p31.id,
+        },
+    });
+
     const user1 = await prisma.user.create({
         data: {
             email: users[0].email,

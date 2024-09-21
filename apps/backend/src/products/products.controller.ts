@@ -81,4 +81,12 @@ export class ProductsController {
     async getProductBySlug(@Param("slug") slug: string) {
         return this.productsService.getProductBySlug(slug);
     }
+
+    @Get("get-products-not-available")
+    async getProductsNotAvailable(
+        @Query(new ValidationPipe({ transform: true }))
+        query?: GetBestSellersDTO,
+    ) {
+        return this.productsService.getProductsNotAvailable(query);
+    }
 }

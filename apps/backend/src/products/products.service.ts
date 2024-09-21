@@ -10,6 +10,7 @@ import { UtilsService } from "src/utils/utils.service";
 import { JwtService } from "@nestjs/jwt";
 import { ConvertedImage } from "./interfaces/converted-image.interface";
 import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
+import { getProductsNotAvailableDTO } from "./dtos/get-products-not-available.dto";
 
 // interface JWTBearerTokenPayload {
 //     id: string;
@@ -308,5 +309,14 @@ export class ProductsService {
         }
 
         return product;
+    }
+
+    async getProductsNotAvailable(query?: getProductsNotAvailableDTO) {
+        const products = await this.prisma.product.findMany({
+            take: query.limit || 10,
+            where: { isAvailable: false },
+        });
+
+        return products;
     }
 }
