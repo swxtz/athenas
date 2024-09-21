@@ -96,15 +96,16 @@ describe("PurchasedProductsController", () => {
         });
 
         it("should be not possible add products without login", async () => {
-        
-            const purchasedproducts = await request(app.getHttpServer())
-                .get("/purchased-products/get-all")
+            const purchasedproducts = await request(app.getHttpServer()).get(
+                "/purchased-products/get-all",
+            );
 
             expect(purchasedproducts.statusCode).toBe(401);
         });
 
         it("should be not possible return the purchased products with a invalid token ", async () => {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+            const token =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
             const purchasedproducts = await request(app.getHttpServer())
                 .get("/purchased-products/get-all")
