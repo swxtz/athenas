@@ -9,8 +9,10 @@ import {
 import { BuysService } from "./buys.service";
 import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
 import { AuthGuard } from "src/auth/auth.guard";
+import { ApiTags } from "@nestjs/swagger";
 
 @Controller("buys")
+@ApiTags("Buys")
 export class BuysController {
     constructor(private readonly buysService: BuysService) {}
 
