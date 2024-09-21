@@ -105,14 +105,12 @@ export class BuysService {
                         {
                             message: `Produto sem estoque: ${productExists.name}`,
                         },
-                        404,
+                        400,
                     );
                 }
 
                 orderProducts.push(productExists);
             }
-
-            console.log(products);
 
             const buyOrder = await this.prisma.buyOrder.create({
                 data: {
@@ -129,7 +127,14 @@ export class BuysService {
 
             this.logger.debug(`Buy order created with: ${buyOrder.id}`);
 
-            return orderProducts;
+            return {
+                message: "Ordem de compra criada com sucesso",
+                data: {
+                    buyOrderId: buyOrder.id,
+                    buyOrder: buyOrder,
+                    products: orderProducts,
+                },
+            };
         } catch (err) {
             if (err instanceof Prisma.PrismaClientKnownRequestError) {
                 console.log(err.name);

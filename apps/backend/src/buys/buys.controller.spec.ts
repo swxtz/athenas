@@ -256,6 +256,120 @@ describe("BuysController", () => {
 
                 expect(req.statusCode).toBe(404);
             });
+
+            it("should not be possible to create a buy order where the quantity is greater than the stock", async () => {
+                const getProducts = await request(app.getHttpServer()).get(
+                    "/products/get-best-sellers?limit=1",
+                );
+
+                const products: CreateBuyOrderPixDTO = {
+                    products: [
+                        {
+                            id: getProducts.body.data[0].id,
+                            amount: getProducts.body.data[0].stock + 1,
+                        },
+                    ],
+                };
+
+                const loginRequest = await request(app.getHttpServer())
+                    .post("/auth/login")
+                    .send({
+                        email: users[1].email,
+                        password: users[1].password,
+                    });
+
+                const token = loginRequest.body.data.token;
+
+                const req = await request(app.getHttpServer())
+                    .post("/buys/create-buy-order/pix")
+                    .set("Authorization", `Bearer ${token}`)
+                    .send(products);
+
+                expect(req.statusCode).toBe(400);
+                expect(req.body.message).toBe(
+                    `Produto sem estoque: ${getProducts.body.data[0].name}`,
+                );
+            });
+        });
+
+        describe("create buy order with sucess", () => {
+            it("should be possible to create a purchase order with a product", async () => {
+                const getProducts = await request(app.getHttpServer()).get(
+                    "/products/get-best-sellers?limit=1",
+                );
+
+                const products: CreateBuyOrderPixDTO = {
+                    products: [
+                        {
+                            id: getProducts.body.data[0].id,
+                            amount: 1,
+                        },
+                    ],
+                };
+
+                const loginRequest = await request(app.getHttpServer())
+                    .post("/auth/login")
+                    .send({
+                        email: users[1].email,
+                        password: users[1].password,
+                    });
+
+                const token = loginRequest.body.data.token;
+
+                const req = await request(app.getHttpServer())
+                    .post("/buys/create-buy-order/pix")
+                    .set("Authorization", `Bearer ${token}`)
+                    .send(products);
+
+                expect(req.statusCode).toBe(201);
+                expect(req.body.data.buyOrder).toHaveProperty("id");
+                expect(req.body.data.buyOrder).toHaveProperty("userId");
+                expect(req.body.data.buyOrder).toHaveProperty("paymentMethod");
+                expect(req.body.data.buyOrder).toHaveProperty("paymentStatus");
+
+                expect(req.body.data.products).toHaveLength(1);
+            });
+
+            it("should be possible to create a purchase order with multiple products", async () => {
+                const getProducts = await request(app.getHttpServer()).get(
+                    "/products/get-best-sellers?limit=2",
+                );
+
+                const products: CreateBuyOrderPixDTO = {
+                    products: [
+                        {
+                            id: getProducts.body.data[0].id,
+                            amount: 1,
+                        },
+                        {
+                            id: getProducts.body.data[1].id,
+                            amount: 1,
+                        },
+                    ],
+                };
+
+                const loginRequest = await request(app.getHttpServer())
+                    .post("/auth/login")
+                    .send({
+                        email: users[1].email,
+                        password: users[1].password,
+                    });
+
+                const token = loginRequest.body.data.token;
+
+                const req = await request(app.getHttpServer())
+                    .post("/buys/create-buy-order/pix")
+                    .set("Authorization", `Bearer ${token}`)
+                    .send(products);
+
+                expect(req.statusCode).toBe(201);
+                expect(req.body.data.buyOrder).toHaveProperty("id");
+                expect(req.body.data.buyOrder).toHaveProperty("userId");
+                expect(req.body.data.buyOrder).toHaveProperty("paymentMethod");
+                expect(req.body.data.buyOrder).toHaveProperty("paymentStatus");
+
+                expect(req.body.data.products).toHaveLength(2);
+            });
         });
     });
 });
