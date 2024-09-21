@@ -11,6 +11,7 @@ import { JwtService } from "@nestjs/jwt";
 import { ConvertedImage } from "./interfaces/converted-image.interface";
 import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
 import { getProductsNotAvailableDTO } from "./dtos/get-products-not-available.dto";
+import { getProductsDeletedQuery } from "./querys/get-products-deleted.query";
 
 // interface JWTBearerTokenPayload {
 //     id: string;
@@ -317,6 +318,21 @@ export class ProductsService {
             where: { isAvailable: false },
         });
 
-        return products;
+        return {
+            message: "Produtos retornados com sucesso",
+            data: [...products],
+        };
+    }
+
+    async getProductsDeleted(query?: getProductsDeletedQuery) {
+        const products = await this.prisma.product.findMany({
+            take: query.limit || 10,
+            where: { isDeleted: true },
+        });
+
+        return {
+            message: "Produtos deletados retornados com sucesso",
+            data: [...products],
+        };
     }
 }

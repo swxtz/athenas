@@ -1011,9 +1011,36 @@ async function seed() {
         },
     });
 
+    const p32 = await prisma.product.create({
+        data: {
+            name: products[31].name,
+            description: products[31].description,
+            barcode: products[31].barcode,
+            price: products[31].price,
+            stock: products[31].stock,
+            coverImage: products[31].coverImage,
+            buyPrice: products[31].buyPrice,
+            isAvailable: products[31].isAvailable,
+            localPickup: products[31].localPickup,
+            numberOfSales: products[31].numberOfSales,
+            numberOfViews: products[31].numberOfViews,
+            numberOfViewsInLastWeek: products[31].numberOfViewsInLastWeek,
+            productType: products[31].productType,
+            state: products[31].state,
+            slug: utils.createProductSlug(products[31].name),
+            isDeleted: products[31].isDeleted,
+
+            Category: {
+                create: {
+                    type: products[31].type,
+                },
+            },
+        },
+    });
+
     await prisma.recommendation.create({
         data: {
-            productId: p31.id,
+            productId: p32.id,
         },
     });
 

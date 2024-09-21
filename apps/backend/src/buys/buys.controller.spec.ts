@@ -32,7 +32,7 @@ describe("BuysController", () => {
 
     describe("create buy order pix", () => {
         describe("auth", () => {
-            it("should not be possible to create a purchase order without an authorization token", async () => {
+            it("should not be possible to create a buy order without an authorization token", async () => {
                 const products: CreateBuyOrderPixDTO = {
                     products: [
                         {
@@ -53,7 +53,7 @@ describe("BuysController", () => {
                 expect(req.body.statusCode).toBe(401);
             });
 
-            it("should not be possible to create a purchase order with an invalid token", async () => {
+            it("should not be possible to create a buy order with an invalid token", async () => {
                 const products: CreateBuyOrderPixDTO = {
                     products: [
                         {
@@ -75,7 +75,7 @@ describe("BuysController", () => {
                 expect(req.body.statusCode).toBe(401);
             });
 
-            it("should not be possible to create a purchase order with a token that does not exist", async () => {
+            it("should not be possible to create a buy order with a token that does not exist", async () => {
                 const products: CreateBuyOrderPixDTO = {
                     products: [
                         {
@@ -102,7 +102,7 @@ describe("BuysController", () => {
         });
 
         describe("validation", () => {
-            it("should not be possible to create a purchase order with an empty array", async () => {
+            it("should not be possible to create a buy order with an empty array", async () => {
                 const products: CreateBuyOrderPixDTO = {
                     products: [],
                 };
@@ -128,7 +128,7 @@ describe("BuysController", () => {
                 expect(req.body.statusCode).toBe(400);
             });
 
-            it("should not be possible to create a purchase order with a product that does not exist", async () => {
+            it("should not be possible to create a buy order with a product that does not exist", async () => {
                 const products: CreateBuyOrderPixDTO = {
                     products: [
                         {
@@ -159,12 +159,12 @@ describe("BuysController", () => {
                 );
             });
 
-            it("should not be possible to create a purchase order with a product that is not available", async () => {
+            it("should not be possible to create a buy order with a product that has an amount less than 1", async () => {
                 const products: CreateBuyOrderPixDTO = {
                     products: [
                         {
-                            id: "1",
-                            amount: 1,
+                            id: uuidv4(),
+                            amount: 0,
                         },
                     ],
                 };
@@ -184,9 +184,77 @@ describe("BuysController", () => {
                     .send(products);
 
                 expect(req.statusCode).toBe(400);
-                expect(req.body.message).toBe(
-                    "Produto não disponível para compra",
+                expect(req.body.message[0]).toBe(
+                    "products.0.O valor mínimo é 1",
                 );
+                expect(req.body.statusCode).toBe(400);
+            });
+        });
+
+        describe("product availability", () => {
+            it("should not be possible to create a buy order with a product that is not available", async () => {
+                const getProductsNotAvailable = await request(
+                    app.getHttpServer(),
+                ).get("/products/get-products-not-available?limit=1");
+
+                const products: CreateBuyOrderPixDTO = {
+                    products: [
+                        {
+                            id: getProductsNotAvailable.body.data[0].id,
+                            amount: 1,
+                        },
+                    ],
+                };
+
+                const loginRequest = await request(app.getHttpServer())
+                    .post("/auth/login")
+                    .send({
+                        email: users[1].email,
+                        password: users[1].password,
+                    });
+
+                const token = loginRequest.body.data.token;
+
+                const req = await request(app.getHttpServer())
+                    .post("/buys/create-buy-order/pix")
+                    .set("Authorization", `Bearer ${token}`)
+                    .send(products);
+
+                expect(req.statusCode).toBe(404);
+                expect(req.body.message).toBe(
+                    `Produto não disponível com o id: ${getProductsNotAvailable.body.data[0].id}`,
+                );
+            });
+
+            it("should not be possible to create a purchase order with a deleted product", async () => {
+                const getProductsDeleted = await request(
+                    app.getHttpServer(),
+                ).get("/products/get-products-deleted?limit=1");
+
+                const products: CreateBuyOrderPixDTO = {
+                    products: [
+                        {
+                            id: getProductsDeleted.body.data[0].id,
+                            amount: 1,
+                        },
+                    ],
+                };
+
+                const loginRequest = await request(app.getHttpServer())
+                    .post("/auth/login")
+                    .send({
+                        email: users[1].email,
+                        password: users[1].password,
+                    });
+
+                const token = loginRequest.body.data.token;
+
+                const req = await request(app.getHttpServer())
+                    .post("/buys/create-buy-order/pix")
+                    .set("Authorization", `Bearer ${token}`)
+                    .send(products);
+
+                expect(req.statusCode).toBe(404);
             });
         });
     });
