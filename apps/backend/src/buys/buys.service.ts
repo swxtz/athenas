@@ -104,9 +104,9 @@ export class BuysService {
                     userId: user.id,
                     paymentMethod: "pix",
                     paymentStatus: "pending",
-                    products: {
-                        connect: products.map((product) => ({
-                            id: product.id,
+                    BuyOrderProducts: {
+                        create: productId.products.map((product) => ({
+                            productId: product,
                         })),
                     },
                 },

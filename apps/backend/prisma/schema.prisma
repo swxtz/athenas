@@ -79,7 +79,8 @@ model Product {
   Recommendation   Recommendation?
   recommendationId String?
 
-  Category Category[]
+  Category         Category[]
+  BuyOrderProducts BuyOrderProducts[]
 
   @@map("products")
 }
@@ -203,10 +204,10 @@ model BuyOrder {
 
   paymentMethod PaymentMethod @map("payment_method")
   paymentStatus PaymentStatus @map("payment_status")
-  productsId    String[]      @map("products_id")
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+  BuyOrderProducts BuyOrderProducts[]
 
   @@map("buy_orders")
 }
@@ -223,4 +224,19 @@ enum PaymentStatus {
   pending
   paid
   canceled
+}
+
+model BuyOrderProducts {
+  id String @id @default(uuid())
+
+  buyOrderId String   @map("buy_order_id")
+  buyOrder   BuyOrder @relation(fields: [buyOrderId], references: [id])
+
+  productId String  @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("buy_order_products")
 }
