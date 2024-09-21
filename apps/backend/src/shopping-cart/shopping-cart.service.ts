@@ -23,7 +23,7 @@ export class ShoppingCartService {
 
     private logger = new Logger();
 
-    async addProductInUserShoppingCart(rawtoken: string, productsId:) {
+    async addProductInUserShoppingCart(rawtoken: string, productsId: any) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
