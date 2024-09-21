@@ -13,7 +13,9 @@ import {
 export class CreateBuyOrderPixDTO {
     @ApiProperty()
     @IsArray()
-    @ArrayMinSize(1, { message: "Deve ter pelo menos um produto" })
+    @ArrayMinSize(1, {
+        message: "Nenhum produto foi informado. Deve ter pelo menos um produto",
+    })
     @ValidateNested({ each: true })
     @Type(() => ProductDTO)
     products: ProductDTO[];

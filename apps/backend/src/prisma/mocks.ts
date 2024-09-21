@@ -604,6 +604,15 @@ export class PrismaMocks {
                 emailVerified: true,
                 emailVerificatedAt: new Date("2024-09-10T01:11:28Z"),
             }),
+            new UserEntity({
+                id: uuidv4(),
+                name: "Jose",
+                email: "buysspec@seedmock.com",
+                password: "123456789",
+                userType: "consumer",
+                emailVerified: true,
+                emailVerificatedAt: new Date("2024-09-10T01:11:28Z"),
+            }),
         ];
 
         return users;

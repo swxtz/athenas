@@ -8,10 +8,14 @@ import { createNestAppInstance } from "test/test.helpers";
 import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
 import request from "supertest";
 import { INestApplication } from "@nestjs/common";
+import { PrismaMocks } from "src/prisma/mocks";
+import { v4 as uuidv4 } from "uuid";
 
 describe("BuysController", () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let controller: BuysController;
     let app: INestApplication;
+    const users = new PrismaMocks().users();
 
     beforeAll(async () => {
         app = await createNestAppInstance();
@@ -68,6 +72,81 @@ describe("BuysController", () => {
                 "Token inválido, por favor faça login",
             );
             expect(req.body.statusCode).toBe(401);
+        });
+
+        it("should not be possible to create a purchase order with a token that does not exist", async () => {
+            const products: CreateBuyOrderPixDTO = {
+                products: [
+                    {
+                        id: "1",
+                        amount: 1,
+                    },
+                ],
+            };
+
+            const token =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+
+            const req = await request(app.getHttpServer())
+                .post("/buys/create-buy-order/pix")
+                .set("Authorization", `Bearer ${token}`)
+                .send(products);
+
+            expect(req.statusCode).toBe(401);
+            expect(req.body.message).toBe(
+                "Token inválido, por favor faça login",
+            );
+            expect(req.body.statusCode).toBe(401);
+        });
+
+        it("should not be possible to create a purchase order with an empty array", async () => {
+            const products: CreateBuyOrderPixDTO = {
+                products: [],
+            };
+
+            const loginRequest = await request(app.getHttpServer())
+                .post("/auth/login")
+                .send({ email: users[1].email, password: users[1].password });
+
+            const token = loginRequest.body.data.token;
+
+            const req = await request(app.getHttpServer())
+                .post("/buys/create-buy-order/pix")
+                .set("Authorization", `Bearer ${token}`)
+                .send(products);
+
+            expect(req.statusCode).toBe(400);
+            expect(req.body.message[0]).toBe(
+                "Nenhum produto foi informado. Deve ter pelo menos um produto",
+            );
+            expect(req.body.statusCode).toBe(400);
+        });
+
+        it("should not be possible to create a purchase order with a product that does not exist", async () => {
+            const products: CreateBuyOrderPixDTO = {
+                products: [
+                    {
+                        id: uuidv4(),
+                        amount: 1,
+                    },
+                ],
+            };
+
+            const loginRequest = await request(app.getHttpServer())
+                .post("/auth/login")
+                .send({ email: users[1].email, password: users[1].password });
+
+            const token = loginRequest.body.data.token;
+
+            const req = await request(app.getHttpServer())
+                .post("/buys/create-buy-order/pix")
+                .set("Authorization", `Bearer ${token}`)
+                .send(products);
+
+            expect(req.statusCode).toBe(404);
+            expect(req.body.message).toBe(
+                "Produto não encontrado com o id: " + products.products[0].id,
+            );
         });
     });
 });

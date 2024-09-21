@@ -66,30 +66,32 @@ export class BuysService {
                 });
 
                 if (!productExists) {
-                    this.logger.warn(`Product not find with: ${product}`);
+                    this.logger.warn(`Product not find with: ${product.id}`);
                     throw new HttpException(
                         {
-                            message: `Produto não encontrado com o id: ${product}`,
+                            message: `Produto não encontrado com o id: ${product.id}`,
                         },
                         404,
                     );
                 }
 
                 if (productExists.isDeleted) {
-                    this.logger.warn(`Product deleted with: ${product}`);
+                    this.logger.warn(`Product deleted with: ${product.id}`);
                     throw new HttpException(
                         {
-                            message: `Produto deletado com o id: ${product}`,
+                            message: `Produto deletado com o id: ${product.id}`,
                         },
                         404,
                     );
                 }
 
                 if (!productExists.isAvailable) {
-                    this.logger.warn(`Product not available with: ${product}`);
+                    this.logger.warn(
+                        `Product not available with: ${product.id}`,
+                    );
                     throw new HttpException(
                         {
-                            message: `Produto não disponível com o id: ${product}`,
+                            message: `Produto não disponível com o id: ${product.id}`,
                         },
                         404,
                     );
