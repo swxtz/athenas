@@ -17,6 +17,7 @@ import { ShoppingCartModule } from "./shopping-cart/shopping-cart.module";
 import { ScheduleModule } from "@nestjs/schedule";
 import { CategoriesModule } from "./categories/categories.module";
 import { BuysModule } from "./buys/buys.module";
+import { BuysNotificationsModule } from "./buys-notifications/buys-notifications.module";
 
 @Module({
     imports: [
@@ -39,6 +40,7 @@ import { BuysModule } from "./buys/buys.module";
         ScheduleModule.forRoot(),
         CategoriesModule,
         BuysModule,
+        BuysNotificationsModule,
     ],
     controllers: [],
     providers: [],

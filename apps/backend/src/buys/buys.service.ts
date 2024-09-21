@@ -25,7 +25,7 @@ export class BuysService {
 
     private logger = new Logger();
 
-    async createBuyOrderPix(rawtoken: string, productId: CreateBuyOrderPixDTO) {
+    async createBuyOrderPix(rawtoken: string, products: CreateBuyOrderPixDTO) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
@@ -49,18 +49,19 @@ export class BuysService {
                 },
             });
 
-            const products = [];
+            const orderProducts = [];
 
             // Verifica se o produto existe, se está disponível e se não foi deletado
-            for (const product of productId.products) {
+            for (const product of products.products) {
                 const productExists = await this.prisma.product.findFirst({
-                    where: { id: product },
+                    where: { id: product.id },
                     select: {
                         id: true,
                         name: true,
                         price: true,
                         isAvailable: true,
                         isDeleted: true,
+                        stock: true,
                     },
                 });
 
@@ -94,7 +95,19 @@ export class BuysService {
                     );
                 }
 
-                products.push(productExists);
+                if (product.amount > productExists.stock) {
+                    this.logger.warn(
+                        `Product out of stock with: ${product.id}`,
+                    );
+                    throw new HttpException(
+                        {
+                            message: `Produto sem estoque: ${productExists.name}`,
+                        },
+                        404,
+                    );
+                }
+
+                orderProducts.push(productExists);
             }
 
             console.log(products);
@@ -105,8 +118,8 @@ export class BuysService {
                     paymentMethod: "pix",
                     paymentStatus: "pending",
                     BuyOrderProducts: {
-                        create: productId.products.map((product) => ({
-                            productId: product,
+                        create: products.products.map((product) => ({
+                            productId: product.id,
                         })),
                     },
                 },
@@ -114,7 +127,7 @@ export class BuysService {
 
             this.logger.debug(`Buy order created with: ${buyOrder.id}`);
 
-            return products;
+            return orderProducts;
         } catch (err) {
             if (err instanceof Prisma.PrismaClientKnownRequestError) {
                 console.log(err.name);
