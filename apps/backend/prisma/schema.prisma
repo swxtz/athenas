@@ -75,12 +75,12 @@ model Product {
   updatedAt        DateTime        @updatedAt @map("updated_at")
   Promotion        Promotion[]
   UserPurchases    UserPurchases?
-  ShoppingCart     ShoppingCart?
   Recommendation   Recommendation?
   recommendationId String?
 
-  Category         Category[]
-  BuyOrderProducts BuyOrderProducts[]
+  Category            Category[]
+  BuyOrderProducts    BuyOrderProducts[]
+  ShoppingCartProduct ShoppingCartProduct[]
 
   @@map("products")
 }
@@ -173,16 +173,26 @@ model UserPurchases {
 model ShoppingCart {
   id String @id @default(uuid())
 
-  productId String @unique @map("product_id")
-  userId    String @unique @map("user_id")
+  userId String @unique @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
 
-  product Product @relation(fields: [productId], references: [id])
-  user    User    @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("update_at")
+  createdAt           DateTime              @default(now()) @map("created_at")
+  updatedAt           DateTime              @updatedAt @map("updated_at")
+  ShoppingCartProduct ShoppingCartProduct[]
 
   @@map("shopping_cart")
+}
+
+model ShoppingCartProduct {
+  id String @id @default(uuid())
+
+  shoppingCartId String       @map("shopping_cart_id")
+  shoppingCart   ShoppingCart @relation(fields: [shoppingCartId], references: [id])
+  productId      String       @map("product_id")
+  product        Product      @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 }
 
 model Category {
