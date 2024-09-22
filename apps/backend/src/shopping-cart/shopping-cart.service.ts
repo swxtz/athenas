@@ -3,6 +3,7 @@ import { JwtService } from "@nestjs/jwt";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
 import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shopping-cart.dto";
+import { Prisma } from "@prisma/client";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -114,9 +115,50 @@ export class ShoppingCartService {
                         400,
                     );
                 }
-
-                return product;
             }
-        } catch {}
+            const addProductInUserShoppingCart =
+                await this.prisma.shoppingCart.create({
+                    data: {
+                        userId: user.id,
+                        ShoppingCartProduct: {
+                            create: products.products.map((product) => ({
+                                productId: product.id,
+                            })),
+                        },
+                    },
+                });
+
+            return addProductInUserShoppingCart;
+        } catch (err) {
+            if (err instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(err.name);
+                if (
+                    err.name === "NotFoundError" &&
+                    err.message === "No User found"
+                ) {
+                    this.logger.warn(`User not find`);
+                    throw new HttpException(
+                        {
+                            message:
+                                "Usuário não existe, tente relogar na aplicação",
+                        },
+                        401,
+                    );
+                }
+            }
+
+            if (err instanceof HttpException) {
+                throw err;
+            }
+
+            this.logger.error(err);
+            console.error(err);
+            throw new HttpException(
+                {
+                    message: "Ocorreu um erro interno",
+                },
+                500,
+            );
+        }
     }
 }
