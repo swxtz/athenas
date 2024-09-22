@@ -2,6 +2,7 @@ import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
+import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shopping-cart.dto";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -23,7 +24,10 @@ export class ShoppingCartService {
 
     private logger = new Logger();
 
-    async addProductInUserShoppingCart(rawtoken: string, productsId: any) {
+    async addProductInUserShoppingCart(
+        rawtoken: string,
+        products: AddProductInUserShoppingCartDTO,
+    ) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
@@ -39,7 +43,7 @@ export class ShoppingCartService {
                 );
             }
 
-            const user = await this.prisma.user.findFirstOrThrow({
+            const user = await this.prisma.user.findFirst({
                 where: { id: jwtpayload.id },
                 select: {
                     id: true,
@@ -47,17 +51,25 @@ export class ShoppingCartService {
                 },
             });
 
-            const products = [];
+            if (!user) {
+                throw new HttpException(
+                    {
+                        message: "JWT Inválido",
+                    },
+                    401,
+                );
+            }
 
-            for (const product of productId.products) {
+            for (const product of products.products) {
                 const productExists = await this.prisma.product.findFirst({
-                    where: { id: product },
+                    where: { id: product.id },
                     select: {
                         id: true,
                         name: true,
                         price: true,
                         isAvailable: true,
                         isDeleted: true,
+                        stock: true,
                     },
                 });
 
@@ -91,7 +103,19 @@ export class ShoppingCartService {
                     );
                 }
 
-                products.push(productExists);
+                if (product.amount > productExists.stock) {
+                    this.logger.warn(
+                        `Product out of stock with: ${product.id}`,
+                    );
+                    throw new HttpException(
+                        {
+                            message: `Produto sem estoque: ${productExists.name}`,
+                        },
+                        400,
+                    );
+                }
+
+                return product;
             }
         } catch {}
     }
