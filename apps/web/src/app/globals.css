@@ -70,8 +70,8 @@
     }
   }
   
-@layer utilities {
-  .second-child:mt-4:nth-child(n+2) {
-    margin-top: 1rem; /* Exemplo de margem, ajuste conforme necessário */
+  @layer utilities {
+    .product-card-border:nth-of-type(n+2) {
+      @apply border-t-2 border-[#F9A84D]/20;
+    }
   }
-}

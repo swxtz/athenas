@@ -7,6 +7,8 @@ import Image from "next/image";
 import { QuantityButton } from "./quantity-button";
 import { useEffect, useState } from "react";
 import { useCart } from "@/hooks/use-cart";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface ProductCardProps {
   productId: string;
@@ -33,21 +35,25 @@ export function ProductCard({ productId }: ProductCardProps) {
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (context) {
-      context.dispatch({ type: "UPDATE_QUANTITY", id: productId, quantity: quantity });
+      context.dispatch({
+        type: "UPDATE_QUANTITY",
+        id: productId,
+        quantity: quantity,
+      });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
 
   return (
-    <div className="container h-[180px] w-full mt-9 flex flex-row gap-8">
+    <div className="container h-[180px] w-full mt-9 flex flex-row gap-8 border-b-2 border-[#F9A84D]/20">
       {isLoading && <Skeleton className="h-[150px] w-full rounded-xl" />}
 
       {data && (
-        <div className="flex w-full flex-row gap-4">
+        <div className="flex w-full flex-row gap-4 ">
           <Image
             src={data.coverImage}
             alt={data.name}
-            className="h-[150px] w-[150px] rounded-xl"
+            className="w-[150px] object-contain mx-auto rounded-xl"
             width={150}
             height={150}
           />
@@ -57,7 +63,15 @@ export function ProductCard({ productId }: ProductCardProps) {
             </h3>
 
             <div className="flex justify-between">
-              <div className="" />
+              <div className="flex flex-col items-start justify-between">
+                <p className="font-semibold text-sm text-brown-500 font-inter">
+                  {data.description}
+                </p>
+
+                <Button variant={"link"} className="text-brown-500 px-0">
+                  <Link href={`/produto/${data.slug}`}>Ver produto</Link>
+                </Button>
+              </div>
               <div className="flex flex-col h-[120px] justify-between">
                 <QuantityButton
                   onDecrement={handleDecrementQuantity}

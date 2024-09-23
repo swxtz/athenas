@@ -25,7 +25,7 @@ export function Products() {
         </h2>
       </div>
 
-      {context?.state.items.length === 0 && (<EmptyCart />)}
+      {context?.state.items.length === 0 && <EmptyCart />}
       {context?.state.items.map((item) => (
         <ProductCard key={item.id} productId={item.id} />
       ))}

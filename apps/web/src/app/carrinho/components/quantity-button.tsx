@@ -1,7 +1,6 @@
 "use client";
 
 import { Minus, Plus, Trash2Icon } from "lucide-react";
-import MotionNumber from "motion-number";
 
 interface QuantityButtonProps {
   quantity: number;
@@ -17,8 +16,8 @@ export function QuantityButton({
   onRemoveProduct,
 }: QuantityButtonProps) {
   return (
-    <div className="flex gap-4 font-semibold text-lg text-brown-500 font-inter">
-      <p>Qntd.</p>
+    <div className="flex gap-4 font-semibold text-lg text-brown-500 font-inter items-center">
+      <p className="text-brown-500/70">Qntd.</p>
       <div className="flex w-[100px] justify-center gap-2 items-center border-1 border-brown-500 rounded px-3 py-2">
         {quantity <= 1 ? (
           <Trash2Icon onClick={onRemoveProduct} className="cursor-pointer" />
@@ -27,7 +26,7 @@ export function QuantityButton({
             <Minus />
           </button>
         )}
-        <MotionNumber value={quantity} />
+        <span>{quantity}</span>
         <button type="button" onClick={onIncrement}>
           <Plus />
         </button>

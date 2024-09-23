@@ -27,7 +27,6 @@ const links: ActiveLinkProps[] = [
 ];
 
 export function Navbar() {
-  
   return (
     <nav className="py-3 bg-amber-800 flex justify-between items-center shadow-md">
       <div className="px-6 lg:px-24 w-full flex items-center justify-between">
@@ -46,8 +45,11 @@ export function Navbar() {
           <MobileMenu />
         </div>
 
-        <div className="hidden md:flex">
+        <div className="hidden md:flex items-center gap-8">
           <DesktopMenu />
+          <Link href="/carrinho">
+            <ShoppingBasket size={38} className="text-white"/>
+          </Link>
         </div>
       </div>
     </nav>
