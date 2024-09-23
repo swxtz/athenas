@@ -29,7 +29,7 @@ const links: ActiveLinkProps[] = [
 export function Navbar() {
   
   return (
-    <nav className="py-3 bg-yellow-400 flex justify-between items-center shadow-md">
+    <nav className="py-3 bg-amber-800 flex justify-between items-center shadow-md">
       <div className="px-6 lg:px-24 w-full flex items-center justify-between">
         <Link href="/">
           <Image
