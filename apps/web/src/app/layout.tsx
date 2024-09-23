@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { ReactQueryProvider } from "@/providers/react-query-providers";
 import { Toaster } from "@/components/ui/toaster";
+import { CartProvider } from "@/context/cart-context";
 
 // fonts
 const poppins = Poppins({
@@ -61,15 +62,17 @@ export default function RootLayout({
         )}
       >
         <ReactQueryProvider>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-            <div className="">
-              <Navbar />
-            </div>
-            <main>{children}</main>
-          </ThemeProvider>
-          <Analytics />
-          <SpeedInsights />
-          <Toaster />
+          <CartProvider>
+            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+              <div className="">
+                <Navbar />
+              </div>
+              <main>{children}</main>
+            </ThemeProvider>
+            <Analytics />
+            <SpeedInsights />
+            <Toaster />
+          </CartProvider>
         </ReactQueryProvider>
       </body>
     </html>

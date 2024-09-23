@@ -5,13 +5,15 @@ import { useQueryGetProductById } from "@/hooks/queries/get-product-by-id";
 import { convertToReal } from "@/utils/convert-to-real";
 import Image from "next/image";
 import { QuantityButton } from "./quantity-button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useCart } from "@/hooks/use-cart";
 
 interface ProductCardProps {
   productId: string;
 }
 
 export function ProductCard({ productId }: ProductCardProps) {
+  const context = useCart();
   const { data, isLoading, error } = useQueryGetProductById(productId);
   const [quantity, setQuantity] = useState(1);
 
@@ -21,6 +23,18 @@ export function ProductCard({ productId }: ProductCardProps) {
   function handleDecrementQuantity() {
     setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
   }
+
+  function handleRemoveProduct() {
+    if (context) {
+      context.dispatch({ type: "REMOVE_ITEM", id: productId });
+    }
+  }
+
+  useEffect(() => {
+    if (context) {
+      context.dispatch({ type: "UPDATE_QUANTITY", id: productId, quantity: quantity });
+    }
+  }, [quantity]);
 
   return (
     <div className="container h-[180px] w-full mt-9 flex flex-row gap-8">
@@ -46,6 +60,7 @@ export function ProductCard({ productId }: ProductCardProps) {
                 <QuantityButton
                   onDecrement={handleDecrementQuantity}
                   onIncrement={handleIncrementQuantity}
+                  onRemoveProduct={handleRemoveProduct}
                   quantity={quantity}
                 />
 

@@ -5,6 +5,7 @@ import MotionNumber from "motion-number";
 
 interface QuantityButtonProps {
   quantity: number;
+  onRemoveProduct: () => void;
   onIncrement: () => void;
   onDecrement: () => void;
 }
@@ -13,13 +14,14 @@ export function QuantityButton({
   quantity,
   onDecrement,
   onIncrement,
+  onRemoveProduct,
 }: QuantityButtonProps) {
   return (
     <div className="flex gap-4 font-semibold text-lg text-brown-500 font-inter">
       <p>Qntd.</p>
       <div className="flex w-[100px] justify-center gap-2 items-center border-1 border-brown-500 rounded px-3 py-2">
         {quantity <= 1 ? (
-          <Trash2Icon />
+          <Trash2Icon onClick={onRemoveProduct} className="cursor-pointer" />
         ) : (
           <button type="button" onClick={onDecrement}>
             <Minus />

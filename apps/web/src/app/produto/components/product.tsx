@@ -15,19 +15,23 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { ProductStars } from "./product-starts";
 import { useQueryGetProductById } from "@/hooks/queries/get-product-by-id";
 import { useQueryGetProductBySlug } from "@/hooks/queries/get-product-by-slug";
+import { useCart } from "@/hooks/use-cart";
 
 interface ProductCardProps {
   slug: string;
 }
 
 export function Product({ slug }: ProductCardProps) {
+  const cartContext = useCart();
   const isDesktop = useMediaQuery(768);
   const { data, isLoading, error } = useQueryGetProductBySlug(slug);
 
   const zipcodeCookie = nookies.get(null).zipcode;
 
   function handleAddToCart() {
-    localStorage.setItem("cart", JSON.stringify({ id: data?.id, name: data?.name, price: data?.price, slug: data?.slug }));
+    if (cartContext && data) {
+      cartContext.dispatch({ type: "ADD_ITEM", item: { id: data.id, quantity: 1 } });
+    }
   }
 
   return (
