@@ -3,6 +3,7 @@
 import { useCart } from "@/hooks/use-cart";
 import { ProductCard } from "./product-card";
 import { useState, useEffect } from "react";
+import { EmptyCart } from "./empty-cart";
 
 export function Products() {
   const context = useCart();
@@ -23,6 +24,8 @@ export function Products() {
           Carrinho de produtos
         </h2>
       </div>
+
+      {context?.state.items.length === 0 && (<EmptyCart />)}
       {context?.state.items.map((item) => (
         <ProductCard key={item.id} productId={item.id} />
       ))}

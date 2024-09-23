@@ -30,10 +30,12 @@ export function ProductCard({ productId }: ProductCardProps) {
     }
   }
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (context) {
       context.dispatch({ type: "UPDATE_QUANTITY", id: productId, quantity: quantity });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
 
   return (
