@@ -18,6 +18,8 @@ import { ScheduleModule } from "@nestjs/schedule";
 import { CategoriesModule } from "./categories/categories.module";
 import { BuysModule } from "./buys/buys.module";
 import { BuysNotificationsModule } from "./buys-notifications/buys-notifications.module";
+import { EventsModule } from "./events/events.module";
+import { EventsModule } from "./events/events.module";
 
 @Module({
     imports: [
@@ -41,6 +43,7 @@ import { BuysNotificationsModule } from "./buys-notifications/buys-notifications
         CategoriesModule,
         BuysModule,
         BuysNotificationsModule,
+        EventsModule,
     ],
     controllers: [],
     providers: [],
