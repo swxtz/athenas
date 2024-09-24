@@ -113,13 +113,21 @@ export class ShoppingCartService {
                 );
             }
 
-            const addProductInUserShoppingCart =
-                await this.prisma.shoppingCart.create({
-                    data: {
+            const shoppingCart =
+                await this.prisma.shoppingCart.findFirstOrThrow({
+                    where: {
                         userId: user.id,
-                        ShoppingCartProduct: {
-                            create: { productId: product.id },
-                        },
+                    },
+                    select: {
+                        id: true,
+                    },
+                });
+
+            const addProductInUserShoppingCart =
+                await this.prisma.shoppingCartProduct.create({
+                    data: {
+                        shoppingCartId: shoppingCart.id,
+                        productId: product.id,
                     },
                 });
 
