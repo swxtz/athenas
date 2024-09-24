@@ -68,6 +68,12 @@ export class UsersService {
                 },
             });
 
+            await this.prisma.shoppingCart.create({
+                data: {
+                    userId: user.id,
+                },
+            });
+
             const payload = {
                 id: user.id,
                 email: user.email,

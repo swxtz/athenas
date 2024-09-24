@@ -5,11 +5,6 @@ import { IsNumber, IsPositive, IsUUID, Min } from "class-validator";
 export class AddProductInUserShoppingCartDTO {
     @ApiProperty()
     @IsUUID(4, { message: "O valor deve ser um UUID" })
-    @Type(() => ProductDTO)
-    products: ProductDTO[];
-}
-
-export class ProductDTO {
     @ApiProperty()
     @IsUUID(4, { message: "Cada valor em produtos deve ser um UUID" })
     id: string;

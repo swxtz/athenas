@@ -27,7 +27,7 @@ export class ShoppingCartService {
 
     async addProductInUserShoppingCart(
         rawtoken: string,
-        products: AddProductInUserShoppingCartDTO,
+        product: AddProductInUserShoppingCartDTO,
     ) {
         const token = this.utils.removeBearer(rawtoken);
 
@@ -61,69 +61,64 @@ export class ShoppingCartService {
                 );
             }
 
-            for (const product of products.products) {
-                const productExists = await this.prisma.product.findFirst({
-                    where: { id: product.id },
-                    select: {
-                        id: true,
-                        name: true,
-                        price: true,
-                        isAvailable: true,
-                        isDeleted: true,
-                        stock: true,
+            const productExists = await this.prisma.product.findFirst({
+                where: { id: product.id },
+                select: {
+                    id: true,
+                    name: true,
+                    price: true,
+                    isAvailable: true,
+                    isDeleted: true,
+                    stock: true,
+                },
+            });
+
+            if (!productExists) {
+                this.logger.warn(`Product not find with: ${product.id}`);
+                throw new HttpException(
+                    {
+                        message: `Produto não encontrado com o id: ${product.id}`,
                     },
-                });
-
-                if (!productExists) {
-                    this.logger.warn(`Product not find with: ${product}`);
-                    throw new HttpException(
-                        {
-                            message: `Produto não encontrado com o id: ${product}`,
-                        },
-                        404,
-                    );
-                }
-
-                if (productExists.isDeleted) {
-                    this.logger.warn(`Product deleted with: ${product}`);
-                    throw new HttpException(
-                        {
-                            message: `Produto deletado com o id: ${product}`,
-                        },
-                        404,
-                    );
-                }
-
-                if (!productExists.isAvailable) {
-                    this.logger.warn(`Product not available with: ${product}`);
-                    throw new HttpException(
-                        {
-                            message: `Produto não disponível com o id: ${product}`,
-                        },
-                        404,
-                    );
-                }
-
-                if (product.amount > productExists.stock) {
-                    this.logger.warn(
-                        `Product out of stock with: ${product.id}`,
-                    );
-                    throw new HttpException(
-                        {
-                            message: `Produto sem estoque: ${productExists.name}`,
-                        },
-                        400,
-                    );
-                }
+                    404,
+                );
             }
+
+            if (productExists.isDeleted) {
+                this.logger.warn(`Product deleted with: ${product.id}`);
+                throw new HttpException(
+                    {
+                        message: `Produto deletado com o id: ${product.id}`,
+                    },
+                    404,
+                );
+            }
+
+            if (!productExists.isAvailable) {
+                this.logger.warn(`Product not available with: ${product.id}`);
+                throw new HttpException(
+                    {
+                        message: `Produto não disponível com o id: ${product.id}`,
+                    },
+                    404,
+                );
+            }
+
+            if (product.amount > productExists.stock) {
+                this.logger.warn(`Product out of stock with: ${product.id}`);
+                throw new HttpException(
+                    {
+                        message: `Produto sem estoque: ${productExists.name}`,
+                    },
+                    400,
+                );
+            }
+
             const addProductInUserShoppingCart =
                 await this.prisma.shoppingCart.create({
                     data: {
                         userId: user.id,
                         ShoppingCartProduct: {
-                            create: products.products.map((product) => ({
-                                productId: product.id,
-                            })),
+                            create: { productId: product.id },
                         },
                     },
                 });
