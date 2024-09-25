@@ -12,6 +12,7 @@ import { ReactQueryProvider } from "@/providers/react-query-providers";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "@/context/cart-context";
 import { inter, lato, montserrat, poppins, rubik } from "./fonts/fonts";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "RN Distribuidora",
@@ -41,7 +42,12 @@ export default function RootLayout({
               <div className="">
                 <Navbar />
               </div>
-              <main>{children}</main>
+              <main className="">
+                <div className="flex min-h-screen flex-col justify-between">
+                  {children}
+                  <Footer />
+                </div>
+              </main>
             </ThemeProvider>
             <Analytics />
             <SpeedInsights />
