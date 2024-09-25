@@ -2,7 +2,7 @@
 
 import { TruncateText } from "@/components/ui/truncate-text";
 import { convertToReal } from "@/utils/convert-to-real";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import type { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -62,7 +62,7 @@ export function ProductCard({
                 alt=""
                 width={250}
                 height={250}
-                className="w-[75px] md:w-[100px] mx-auto"
+                className="h-[75px] md:h-[150px] max-w-full object-contain"
               />
             </div>
 
