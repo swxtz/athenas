@@ -16,8 +16,6 @@ RUN pnpm i
 
 RUN pnpm run build
 
-RUN pnpm prisma generate
-
 EXPOSE 3001
 
 CMD [ "pnpm", "run", "start:prod" ]

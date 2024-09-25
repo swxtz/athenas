@@ -26,7 +26,7 @@ export function DesktopMenu() {
                 <Button className="w-full">Entre</Button>
               </Link>
               <Separator />
-              <Link href="/auth/register" className="w-full">
+              <Link href="/auth/crie-sua-conta" className="w-full">
                 <Button className="w-full">Crie sua conta</Button>
               </Link>
             </div>

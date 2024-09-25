@@ -21,6 +21,7 @@ import { UploadCoverImageParams } from "./dtos/upload-cover-image.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
 import { SkipThrottle } from "@nestjs/throttler";
+import { getProductsDeletedQuery } from "./querys/get-products-deleted.query";
 
 @ApiTags("Products")
 @Controller("products")
@@ -80,5 +81,21 @@ export class ProductsController {
     @Get("get-product-by-slug/:slug")
     async getProductBySlug(@Param("slug") slug: string) {
         return this.productsService.getProductBySlug(slug);
+    }
+
+    @Get("get-products-not-available")
+    async getProductsNotAvailable(
+        @Query(new ValidationPipe({ transform: true }))
+        query?: GetBestSellersDTO,
+    ) {
+        return this.productsService.getProductsNotAvailable(query);
+    }
+
+    @Get("get-products-deleted")
+    async getProductsDeleted(
+        @Query(new ValidationPipe({ transform: true }))
+        query?: getProductsDeletedQuery,
+    ) {
+        return this.productsService.getProductsDeleted(query);
     }
 }

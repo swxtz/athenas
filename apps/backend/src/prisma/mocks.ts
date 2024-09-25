@@ -496,7 +496,8 @@ export class PrismaMocks {
             },
             {
                 name: "Queijo Mussarela Fatiado Bloco 2,735Kggg Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -514,7 +515,8 @@ export class PrismaMocks {
             },
             {
                 name: " Mussarela Fatiado Bloco 2,735Kg Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -532,7 +534,8 @@ export class PrismaMocks {
             },
             {
                 name: "Queijo Mussarela Fatiado Bloco 2,735Kgsqr Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -550,7 +553,8 @@ export class PrismaMocks {
             },
             {
                 name: "Queijo Mussarela Fatiado Bloco Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -568,7 +572,8 @@ export class PrismaMocks {
             },
             {
                 name: "Queijo Mussarela Bloco 2,7Kg Polenghi",
-                description: "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -584,6 +589,49 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
+            // produtos para testes unitarios do /buys
+
+            {
+                name: "Queijo Mussarela Bloco 2,7Kg Polenghis",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: false,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "unavailable",
+                type: "Queijos",
+            },
+
+            {
+                name: "Queijo Mussarela Bloco 2,7Kg Polenghid",
+                description:
+                    "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "unavailable",
+                type: "Queijos",
+                isDeleted: true,
+            },
         ];
 
         return products;
@@ -594,6 +642,15 @@ export class PrismaMocks {
                 id: uuidv4(),
                 name: "Jose",
                 email: "jose@seedmock.com",
+                password: "123456789",
+                userType: "consumer",
+                emailVerified: true,
+                emailVerificatedAt: new Date("2024-09-10T01:11:28Z"),
+            }),
+            new UserEntity({
+                id: uuidv4(),
+                name: "Jose",
+                email: "buysspec@seedmock.com",
                 password: "123456789",
                 userType: "consumer",
                 emailVerified: true,

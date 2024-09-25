@@ -2,6 +2,8 @@
 import { PrismaClient } from "@prisma/client";
 import { UtilsService } from "src/utils/utils.service";
 import { PrismaMocks } from "./mocks";
+import { ArgonService } from "src/argon/argon.service";
+import argon2 from "argon2";
 
 const prisma = new PrismaClient();
 
@@ -12,6 +14,8 @@ const products = new PrismaMocks().products();
 const users = new PrismaMocks().users();
 
 async function seed() {
+    const argon = new ArgonService();
+
     // Molhos
     const p1 = await prisma.product.create({
         data: {
@@ -363,7 +367,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p11.id
+            productId: p11.id,
         },
     });
 
@@ -395,7 +399,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p12.id
+            productId: p12.id,
         },
     });
 
@@ -429,7 +433,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p13.id
+            productId: p13.id,
         },
     });
 
@@ -461,7 +465,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p14.id
+            productId: p14.id,
         },
     });
 
@@ -493,7 +497,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p15.id
+            productId: p15.id,
         },
     });
 
@@ -525,7 +529,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p16.id
+            productId: p16.id,
         },
     });
 
@@ -557,7 +561,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p17.id
+            productId: p17.id,
         },
     });
 
@@ -589,7 +593,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p18.id
+            productId: p18.id,
         },
     });
 
@@ -623,7 +627,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p19.id
+            productId: p19.id,
         },
     });
 
@@ -655,7 +659,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p20.id
+            productId: p20.id,
         },
     });
 
@@ -687,7 +691,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p21.id
+            productId: p21.id,
         },
     });
 
@@ -719,7 +723,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p22.id
+            productId: p22.id,
         },
     });
 
@@ -751,7 +755,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p23.id
+            productId: p23.id,
         },
     });
 
@@ -783,10 +787,9 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p24.id
+            productId: p24.id,
         },
     });
-    
 
     // Queijos
 
@@ -818,7 +821,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p25.id
+            productId: p25.id,
         },
     });
 
@@ -850,10 +853,10 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p26.id
+            productId: p26.id,
         },
     });
-    
+
     const p27 = await prisma.product.create({
         data: {
             name: products[26].name,
@@ -882,11 +885,11 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p27.id
+            productId: p27.id,
         },
     });
 
-        const p28 = await prisma.product.create({
+    const p28 = await prisma.product.create({
         data: {
             name: products[27].name,
             description: products[27].description,
@@ -914,7 +917,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p28.id
+            productId: p28.id,
         },
     });
 
@@ -946,7 +949,7 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p29.id
+            productId: p29.id,
         },
     });
 
@@ -978,7 +981,66 @@ async function seed() {
 
     await prisma.recommendation.create({
         data: {
-            productId: p30.id
+            productId: p30.id,
+        },
+    });
+
+    const p31 = await prisma.product.create({
+        data: {
+            name: products[30].name,
+            description: products[30].description,
+            barcode: products[30].barcode,
+            price: products[30].price,
+            stock: products[30].stock,
+            coverImage: products[30].coverImage,
+            buyPrice: products[30].buyPrice,
+            isAvailable: products[30].isAvailable,
+            localPickup: products[30].localPickup,
+            numberOfSales: products[30].numberOfSales,
+            numberOfViews: products[30].numberOfViews,
+            numberOfViewsInLastWeek: products[30].numberOfViewsInLastWeek,
+            productType: products[30].productType,
+            state: products[30].state,
+            slug: utils.createProductSlug(products[30].name),
+
+            Category: {
+                create: {
+                    type: products[30].type,
+                },
+            },
+        },
+    });
+
+    const p32 = await prisma.product.create({
+        data: {
+            name: products[31].name,
+            description: products[31].description,
+            barcode: products[31].barcode,
+            price: products[31].price,
+            stock: products[31].stock,
+            coverImage: products[31].coverImage,
+            buyPrice: products[31].buyPrice,
+            isAvailable: products[31].isAvailable,
+            localPickup: products[31].localPickup,
+            numberOfSales: products[31].numberOfSales,
+            numberOfViews: products[31].numberOfViews,
+            numberOfViewsInLastWeek: products[31].numberOfViewsInLastWeek,
+            productType: products[31].productType,
+            state: products[31].state,
+            slug: utils.createProductSlug(products[31].name),
+            isDeleted: products[31].isDeleted,
+
+            Category: {
+                create: {
+                    type: products[31].type,
+                },
+            },
+        },
+    });
+
+    await prisma.recommendation.create({
+        data: {
+            productId: p32.id,
         },
     });
 
@@ -986,7 +1048,19 @@ async function seed() {
         data: {
             email: users[0].email,
             name: users[0].name,
-            password: users[0].password,
+            password: await argon2.hash(users[0].password),
+            emailVerified: true,
+            emailVerificatedAt: new Date("2024-08-07T22:58:31.874Z"),
+        },
+    });
+
+    const user2 = await prisma.user.create({
+        data: {
+            email: users[1].email,
+            name: users[1].name,
+            password: await argon2.hash(users[1].password),
+            emailVerified: true,
+            emailVerificatedAt: new Date("2024-08-07T22:58:31.874Z"),
         },
     });
 

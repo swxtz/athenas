@@ -64,7 +64,7 @@ export function MobileMenu() {
                 </Link>
                 <Link
                   onClick={closeDialog}
-                  href="/auth/register"
+                  href="/auth/crie-sua-conta"
                   className="bg-zinc-900 text-zinc-50 w-full md:text-base flex items-center justify-center rounded py-1 text-sm hover:bg-zinc-950 transition-colors"
                 >
                   Crie sua conta

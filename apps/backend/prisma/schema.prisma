@@ -29,6 +29,7 @@ model User {
   updatedAt     DateTime        @updatedAt @map("updated_at")
   UserPurchases UserPurchases[]
   ShoppingCart  ShoppingCart[]
+  BuyOrder      BuyOrder[]
 
   @@map("users")
 }
@@ -52,6 +53,9 @@ model Product {
   isAvailable Boolean @default(true) @map("is_available")
   rating      Float?  @map("rating")
 
+  isDeleted Boolean   @default(false) @map("is_deleted")
+  deletedAt DateTime? @map("deleted_at")
+
   coverImage String?  @map("cover_image")
   images     String[]
 
@@ -71,11 +75,12 @@ model Product {
   updatedAt        DateTime        @updatedAt @map("updated_at")
   Promotion        Promotion[]
   UserPurchases    UserPurchases?
-  ShoppingCart     ShoppingCart?
   Recommendation   Recommendation?
   recommendationId String?
 
-  Category Category[]
+  Category            Category[]
+  BuyOrderProducts    BuyOrderProducts[]
+  ShoppingCartProduct ShoppingCartProduct[]
 
   @@map("products")
 }
@@ -168,16 +173,26 @@ model UserPurchases {
 model ShoppingCart {
   id String @id @default(uuid())
 
-  productId String @unique @map("product_id")
-  userId    String @unique @map("user_id")
+  userId String @unique @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
 
-  product Product @relation(fields: [productId], references: [id])
-  user    User    @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("update_at")
+  createdAt           DateTime              @default(now()) @map("created_at")
+  updatedAt           DateTime              @updatedAt @map("updated_at")
+  ShoppingCartProduct ShoppingCartProduct[]
 
   @@map("shopping_cart")
+}
+
+model ShoppingCartProduct {
+  id String @id @default(uuid())
+
+  shoppingCartId String       @map("shopping_cart_id")
+  shoppingCart   ShoppingCart @relation(fields: [shoppingCartId], references: [id])
+  productId      String       @map("product_id")
+  product        Product      @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 }
 
 model Category {
@@ -188,4 +203,50 @@ model Category {
   type      String
 
   @@map("categories")
+}
+
+// OrderBuy
+model BuyOrder {
+  id String @id @default(uuid())
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  paymentMethod PaymentMethod @map("payment_method")
+  paymentStatus PaymentStatus @map("payment_status")
+
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+  BuyOrderProducts BuyOrderProducts[]
+
+  @@map("buy_orders")
+}
+
+enum PaymentMethod {
+  creditCard
+  debitCard
+  cash
+  pix
+  boleto
+}
+
+enum PaymentStatus {
+  pending
+  paid
+  canceled
+}
+
+model BuyOrderProducts {
+  id String @id @default(uuid())
+
+  buyOrderId String   @map("buy_order_id")
+  buyOrder   BuyOrder @relation(fields: [buyOrderId], references: [id])
+
+  productId String  @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("buy_order_products")
 }

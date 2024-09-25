@@ -1,7 +1,30 @@
-import { Controller } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    Headers,
+    Post,
+    UseGuards,
+    ValidationPipe,
+} from "@nestjs/common";
 import { ShoppingCartService } from "./shopping-cart.service";
+import { AuthGuard } from "src/auth/auth.guard";
+import { ApiTags } from "@nestjs/swagger";
+import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shopping-cart.dto";
 
 @Controller("shopping-cart")
+@ApiTags("Shopping Cart")
 export class ShoppingCartController {
     constructor(private readonly shoppingCartService: ShoppingCartService) {}
+
+    @Post("add-product-in-user-shopping-cart")
+    @UseGuards(AuthGuard)
+    async addProductInShoppingCart(
+        @Body(new ValidationPipe()) body: AddProductInUserShoppingCartDTO,
+        @Headers("authorization") token: string,
+    ) {
+        return this.shoppingCartService.addProductInUserShoppingCart(
+            token,
+            body,
+        );
+    }
 }

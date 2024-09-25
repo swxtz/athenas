@@ -10,6 +10,8 @@ import { UtilsService } from "src/utils/utils.service";
 import { JwtService } from "@nestjs/jwt";
 import { ConvertedImage } from "./interfaces/converted-image.interface";
 import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
+import { getProductsNotAvailableDTO } from "./dtos/get-products-not-available.dto";
+import { getProductsDeletedQuery } from "./querys/get-products-deleted.query";
 
 // interface JWTBearerTokenPayload {
 //     id: string;
@@ -91,7 +93,7 @@ export class ProductsService {
             if (verifyIfProductExists) {
                 throw new HttpException(
                     {
-                        message: "Produto já cadrastrado",
+                        message: "Produto já cadastrado",
                         data: verifyIfProductExists,
                     },
                     400,
@@ -308,5 +310,29 @@ export class ProductsService {
         }
 
         return product;
+    }
+
+    async getProductsNotAvailable(query?: getProductsNotAvailableDTO) {
+        const products = await this.prisma.product.findMany({
+            take: query.limit || 10,
+            where: { isAvailable: false },
+        });
+
+        return {
+            message: "Produtos retornados com sucesso",
+            data: [...products],
+        };
+    }
+
+    async getProductsDeleted(query?: getProductsDeletedQuery) {
+        const products = await this.prisma.product.findMany({
+            take: query.limit || 10,
+            where: { isDeleted: true },
+        });
+
+        return {
+            message: "Produtos deletados retornados com sucesso",
+            data: [...products],
+        };
     }
 }

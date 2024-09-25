@@ -5,7 +5,7 @@ import imageLogin from "@/images/interation-login.png";
 
 export default function LoginPage() {
   return (
-    <div className="w-full h-full shadow-inner mt-32 rounded-lg container py-9 text-2xl flex">
+    <div className="w-full h-full shadow-inner mt-32 rounded-lg container py-9 text-2xl flex min-h-screen">
       <div className="w-1/2">
         <h2 className="text-center pl-20 ml-2 font-semibold">
           O melhor para o melhor

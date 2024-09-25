@@ -22,6 +22,7 @@ const config = {
         rubik: ["var(--font-rubik)", "sans-serif"],
         lato: ["var(--font-lato)", "sans-serif"],
         montserrat: ["var(--font-montserrat)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
       },
       borderWidth: {
         1: "1px",
@@ -32,6 +33,19 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+
+        brown: {
+          100: "#dfd3cd",
+          200: "#bfa79b",
+          300: "#9e7c68",
+          400: "#7e5036",
+          500: "#5e2404",
+          600: "#4b1d03",
+          700: "#381602",
+          800: "#260e02",
+          900: "#130701",
+        },
+
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -60,6 +74,8 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+
+        // Custom colors
       },
       borderRadius: {
         lg: "var(--radius)",

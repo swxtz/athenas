@@ -9,6 +9,7 @@ export class ProductEntity {
     images?: string[];
     coverImage?: string;
     isAvailable: boolean;
+    isDeleted?: boolean;
     rating?: string;
     productType: $Enums.ProductType;
     state: $Enums.ProductState;
