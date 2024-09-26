@@ -123,6 +123,25 @@ export class ShoppingCartService {
                     },
                 });
 
+            const cartProducts = await this.prisma.shoppingCartProduct.findMany(
+                {
+                    where: {
+                        shoppingCartId: shoppingCart.id,
+                    },
+                },
+            );
+
+            for (const cartProduct of cartProducts) {
+                if (cartProduct.productId === product.id) {
+                    throw new HttpException(
+                        {
+                            message: `Produto já está no carrinho: ${productExists.name}`,
+                        },
+                        400,
+                    );
+                }
+            }
+
             const addProductInUserShoppingCart =
                 await this.prisma.shoppingCartProduct.create({
                     data: {
