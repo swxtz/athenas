@@ -6,7 +6,6 @@ export class AddProductInUserShoppingCartDTO {
     @ApiProperty()
     @IsUUID(4, { message: "O valor deve ser um UUID" })
     @ApiProperty()
-    @IsUUID(4, { message: "Cada valor em produtos deve ser um UUID" })
     id: string;
 
     @ApiProperty()
