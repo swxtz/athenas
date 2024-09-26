@@ -14,4 +14,7 @@ export class AddProductInUserShoppingCartDTO {
     @Min(1, { message: "O valor mínimo é 1" })
     @Type(() => Number)
     amount: number;
+
+    @ApiProperty()
+    name: string;
 }
