@@ -197,6 +197,24 @@ export class ShoppingCartService {
                     401,
                 );
             }
+
+            const shoppingCart = await this.prisma.shoppingCart.findFirst({
+                where: {
+                    userId: user.id,
+                },
+                select: {
+                    id: true,
+                },
+            });
+
+            const products = await this.prisma.shoppingCartProduct.findMany({
+                where: { shoppingCartId: shoppingCart.id },
+                select: {
+                    productId: true,
+                },
+            });
+
+            return products;
         } catch {}
     }
 }
