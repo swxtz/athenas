@@ -1,6 +1,7 @@
 import {
     Body,
     Controller,
+    Get,
     Headers,
     Post,
     UseGuards,
@@ -26,5 +27,11 @@ export class ShoppingCartController {
             token,
             body,
         );
+    }
+
+    @Get("get-all-products-in-user-shopping-cart")
+    @UseGuards(AuthGuard)
+    async allProductsInShoppingCart(@Headers("authorization") token: string) {
+        return this.shoppingCartService.getAllProductsInUserShoppingCart(token);
     }
 }

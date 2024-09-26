@@ -164,4 +164,39 @@ export class ShoppingCartService {
             );
         }
     }
+
+    async getAllProductsInUserShoppingCart(rawtoken: string) {
+        const token = this.utils.removeBearer(rawtoken);
+
+        try {
+            const jwtpayload: JWTBearerTokenPayLoad =
+                await this.jwt.verifyAsync(token);
+
+            if (!jwtpayload) {
+                throw new HttpException(
+                    {
+                        message: "Token inválido",
+                    },
+                    401,
+                );
+            }
+
+            const user = await this.prisma.user.findFirst({
+                where: { id: jwtpayload.id },
+                select: {
+                    id: true,
+                    email: true,
+                },
+            });
+
+            if (!user) {
+                throw new HttpException(
+                    {
+                        message: "JWT Inválido",
+                    },
+                    401,
+                );
+            }
+        } catch {}
+    }
 }
