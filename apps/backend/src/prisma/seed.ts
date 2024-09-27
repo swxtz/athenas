@@ -1058,9 +1058,25 @@ async function seed() {
         data: {
             email: users[1].email,
             name: users[1].name,
-            password: await argon2.hash(users[1].password),
+            password: await argon2.hash(users[0].password),
             emailVerified: true,
             emailVerificatedAt: new Date("2024-08-07T22:58:31.874Z"),
+        },
+    });
+
+    const user3 = await prisma.user.create({
+        data: {
+            email: users[2].email,
+            name: users[2].name,
+            password: await argon2.hash(users[2].password),
+            emailVerified: true,
+            emailVerificatedAt: new Date("2024-08-07T22:58:31.874Z"),
+        },
+    });
+
+    await prisma.shoppingCart.create({
+        data: {
+            userId: user3.id,
         },
     });
 
