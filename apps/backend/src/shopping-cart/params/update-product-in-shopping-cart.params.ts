@@ -7,9 +7,4 @@ export class UpdateProductInShoppingCartParams {
     @IsString({ message: "O valor deve ser uma string" })
     @IsUUID(4, { message: "O valor deve ser um UUID" })
     id: string;
-
-    @ApiProperty()
-    @IsNotEmpty({ message: "O valor não pode ser vazio" })
-    @IsString({ message: "O valor deve ser uma string" })
-    name: string;
 }

@@ -389,6 +389,14 @@ export class ShoppingCartService {
                     400,
                 );
             }
+            if (product.order === "increment") {
+                await this.prisma.shoppingCartProduct.update({
+                    data: {},
+                    where: {
+                        productId: product.id,
+                    },
+                });
+            }
         } catch {}
     }
 }
