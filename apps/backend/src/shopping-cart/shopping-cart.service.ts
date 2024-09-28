@@ -5,6 +5,7 @@ import { UtilsService } from "src/utils/utils.service";
 import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shopping-cart.dto";
 import { Prisma } from "@prisma/client";
 import { UpdateProductInShoppingCartParams } from "./params/update-product-in-shopping-cart.params";
+import { UpdateProductInShoppingCartDTO } from "./dtos/update-product-in-shopping-cart.dto";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -150,6 +151,7 @@ export class ShoppingCartService {
                     data: {
                         shoppingCartId: shoppingCart.id,
                         productId: product.id,
+                        amount: product.amount,
                     },
                 });
 
@@ -273,7 +275,7 @@ export class ShoppingCartService {
     async updateProductInShoppingCart(
         rawtoken: string,
         params: UpdateProductInShoppingCartParams,
-        product: AddProductInUserShoppingCartDTO,
+        product: UpdateProductInShoppingCartDTO,
     ) {
         const token = this.utils.removeBearer(rawtoken);
 
@@ -308,7 +310,7 @@ export class ShoppingCartService {
             }
 
             const productExists = await this.prisma.product.findFirst({
-                where: { id: product.id },
+                where: { id: params.id },
                 select: {
                     id: true,
                     name: true,
@@ -320,37 +322,37 @@ export class ShoppingCartService {
             });
 
             if (!productExists) {
-                this.logger.warn(`Product not find with: ${product.id}`);
+                this.logger.warn(`Product not find with: ${params.id}`);
                 throw new HttpException(
                     {
-                        message: `Produto não encontrado com o id: ${product.id}`,
+                        message: `Produto não encontrado com o id: ${params.id}`,
                     },
                     404,
                 );
             }
 
             if (productExists.isDeleted) {
-                this.logger.warn(`Product deleted with: ${product.id}`);
+                this.logger.warn(`Product deleted with: ${params.id}`);
                 throw new HttpException(
                     {
-                        message: `Produto deletado com o id: ${product.id}`,
+                        message: `Produto deletado com o id: ${params.id}`,
                     },
                     404,
                 );
             }
 
             if (!productExists.isAvailable) {
-                this.logger.warn(`Product not available with: ${product.id}`);
+                this.logger.warn(`Product not available with: ${params.id}`);
                 throw new HttpException(
                     {
-                        message: `Produto não disponível com o id: ${product.id}`,
+                        message: `Produto não disponível com o id: ${params.id}`,
                     },
                     404,
                 );
             }
 
             if (product.amount > productExists.stock) {
-                this.logger.warn(`Product out of stock with: ${product.id}`);
+                this.logger.warn(`Product out of stock with: ${params.id}`);
                 throw new HttpException(
                     {
                         message: `Produto sem estoque: ${productExists.name}`,
@@ -374,11 +376,25 @@ export class ShoppingCartService {
                     where: {
                         shoppingCartId: shoppingCart.id,
                     },
+                    select: {
+                        id: true,
+                        productId: true,
+                    },
                 },
             );
 
+            let productToUpdate: {
+                id: string;
+            };
+
             const productExistsInShoppingCart = cartProducts.some(
-                (cartProduct) => cartProduct.productId === product.id,
+                (cartProduct) => {
+                    if (cartProduct.productId === params.id) {
+                        productToUpdate = { id: cartProduct.id };
+                        return true;
+                    }
+                    return false;
+                },
             );
 
             if (!productExistsInShoppingCart) {
@@ -389,14 +405,16 @@ export class ShoppingCartService {
                     400,
                 );
             }
-            /*if (product.order === "increment") {
+            if (product.order === "increment") {
                 await this.prisma.shoppingCartProduct.update({
-                    data: {},
                     where: {
-                        productId: product.id,
+                        id: productToUpdate.id,
+                    },
+                    data: {
+                        amount: 5,
                     },
                 });
-            }*/
+            }
         } catch {}
     }
 }
