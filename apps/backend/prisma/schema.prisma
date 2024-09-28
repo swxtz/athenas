@@ -190,6 +190,7 @@ model ShoppingCartProduct {
   shoppingCart   ShoppingCart @relation(fields: [shoppingCartId], references: [id])
   productId      String       @map("product_id")
   product        Product      @relation(fields: [productId], references: [id])
+  amount         Int
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

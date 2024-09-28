@@ -14,6 +14,7 @@ import { AuthGuard } from "src/auth/auth.guard";
 import { ApiTags } from "@nestjs/swagger";
 import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shopping-cart.dto";
 import { UpdateProductInShoppingCartParams } from "./params/update-product-in-shopping-cart.params";
+import { UpdateProductInShoppingCartDTO } from "./dtos/update-product-in-shopping-cart.dto";
 
 @Controller("shopping-cart")
 @ApiTags("Shopping Cart")
@@ -42,7 +43,7 @@ export class ShoppingCartController {
     async updateProduct(
         @Param(new ValidationPipe({ transform: true }))
         params: UpdateProductInShoppingCartParams,
-        @Body(new ValidationPipe()) body: AddProductInUserShoppingCartDTO,
+        @Body() body: UpdateProductInShoppingCartDTO,
         @Headers("authorization") token: string,
     ) {
         return this.shoppingCartService.updateProductInShoppingCart(

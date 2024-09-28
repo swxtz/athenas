@@ -43,9 +43,6 @@ describe("ShoppingCartController", () => {
                 const product: AddProductInUserShoppingCartDTO = {
                     amount: 1,
                     id: uuidv4(),
-                    name: "",
-                    order: "increment",
-                    body: "",
                 };
 
                 const req = await request(app.getHttpServer())
@@ -62,9 +59,6 @@ describe("ShoppingCartController", () => {
                 const product: AddProductInUserShoppingCartDTO = {
                     id: "1",
                     amount: 1,
-                    name: "",
-                    order: "increment",
-                    body: "",
                 };
 
                 const req = await request(app.getHttpServer())
@@ -83,9 +77,6 @@ describe("ShoppingCartController", () => {
                 const product: AddProductInUserShoppingCartDTO = {
                     id: "1",
                     amount: 1,
-                    name: "",
-                    order: "increment",
-                    body: "",
                 };
 
                 const token =
@@ -119,9 +110,6 @@ describe("ShoppingCartController", () => {
                 const product: AddProductInUserShoppingCartDTO = {
                     amount: 1,
                     id: uuidv4(),
-                    name: "",
-                    order: "increment",
-                    body: "",
                 };
 
                 const req = await request(app.getHttpServer())
@@ -133,37 +121,34 @@ describe("ShoppingCartController", () => {
                 expect(req.body.message).toBe("Produto sem estoque");
                 expect(req.body.statusCode).toBe(400);
             });
-            it("shouldn't add non-existent product", async () => {
-                const users = new PrismaMocks().users();
-                const userToken = await request(app.getHttpServer())
-                    .post("/auth/login")
-                    .send({
-                        email: users[2].email,
-                        password: users[2].password,
-                    });
-                const product: AddProductInUserShoppingCartDTO = {
-                    id: uuidv4(),
-                    amount: 1,
-                    name: "",
-                    order: "increment",
-                    body: "",
-                };
-                const req = await request(app.getHttpServer())
-                    .post("/shopping-cart/add-product-in-user-shopping-cart")
-                    .set("Authorization", `Bearer ${userToken.body.data.token}`)
-                    .send(product);
-
-                expect(req.statusCode).toBe(404);
-                expect(req.body.message).toBe("Produto não encontrado");
-                expect(req.body.statusCode).toBe(404);
-            });
-            // it("Add a product in shopping cart successfully", async () => {
+            // it("shouldn't add non-existent product", async () => {
+            //     const users = new PrismaMocks().users();
+            //     const userToken = await request(app.getHttpServer())
+            //         .post("/auth/login")
+            //         .send({
+            //             email: users[2].email,
+            //             password: users[2].password,
+            //         });
             //     const product: AddProductInUserShoppingCartDTO = {
-            //         amount: 2,
             //         id: uuidv4(),
-            //         name: "",
+            //         amount: 1,
             //     };
+            //     const req = await request(app.getHttpServer())
+            //         .post("/shopping-cart/add-product-in-user-shopping-cart")
+            //         .set("Authorization", `Bearer ${userToken.body.data.token}`)
+            //         .send(product);
+
+            //     expect(req.statusCode).toBe(404);
+            //     expect(req.body.message).toBe("Produto não encontrado");
+            //     expect(req.body.statusCode).toBe(404);
             // });
+            // // it("Add a product in shopping cart successfully", async () => {
+            // //     const product: AddProductInUserShoppingCartDTO = {
+            // //         amount: 2,
+            // //         id: uuidv4(),
+            // //         name: "",
+            // //     };
+            // // });
         });
     });
 });

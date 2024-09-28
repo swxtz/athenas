@@ -1,14 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import {
-    IsEnum,
-    IsNotEmpty,
-    IsNumber,
-    IsPositive,
-    IsString,
-    IsUUID,
-    Min,
-} from "class-validator";
+import { IsNumber, IsPositive, IsUUID, Min } from "class-validator";
 export class AddProductInUserShoppingCartDTO {
     @ApiProperty()
     @IsUUID(4, { message: "O valor deve ser um UUID" })
@@ -22,13 +14,12 @@ export class AddProductInUserShoppingCartDTO {
     @Type(() => Number)
     amount: number;
 
-    @ApiProperty()
-    @IsEnum(["increment", "decrease"])
-    order: "increment" | "decrease";
+    // }@ApiProperty()
+    //     @IsEnum(["increment", "decrease"])
+    //     order: "increment" | "decrease";
 
-    @ApiProperty()
-    @IsNotEmpty({ message: "O valor não pode ser vazio" })
-    @IsString({ message: "O valor deve ser uma string" })
-    name: string;
-    body: any;
+    //     @ApiProperty()
+    //     @IsNotEmpty({ message: "O valor não pode ser vazio" })
+    //     @IsString({ message: "O valor deve ser uma string" })
+    //     name: string;
 }
