@@ -44,6 +44,8 @@ describe("ShoppingCartController", () => {
                     amount: 1,
                     id: uuidv4(),
                     name: "",
+                    order: "increment",
+                    body: "",
                 };
 
                 const req = await request(app.getHttpServer())
@@ -61,6 +63,8 @@ describe("ShoppingCartController", () => {
                     id: "1",
                     amount: 1,
                     name: "",
+                    order: "increment",
+                    body: "",
                 };
 
                 const req = await request(app.getHttpServer())
@@ -80,6 +84,8 @@ describe("ShoppingCartController", () => {
                     id: "1",
                     amount: 1,
                     name: "",
+                    order: "increment",
+                    body: "",
                 };
 
                 const token =
@@ -108,12 +114,14 @@ describe("ShoppingCartController", () => {
                         password: users[2].password,
                     });
 
-                console.log(userToken.body);
+                // console.log(userToken.body);
 
                 const product: AddProductInUserShoppingCartDTO = {
                     amount: 1,
                     id: uuidv4(),
                     name: "",
+                    order: "increment",
+                    body: "",
                 };
 
                 const req = await request(app.getHttpServer())
@@ -123,18 +131,32 @@ describe("ShoppingCartController", () => {
 
                 expect(req.statusCode).toBe(400);
                 expect(req.body.message).toBe("Produto sem estoque");
+                expect(req.body.statusCode).toBe(400);
             });
-            // it("shouldn't add non-existent product", async () => {
-            //     const products = await request(app.getHttpServer()).get(
-            //         "/products/get-best-sellers",
-            //     );
+            it("shouldn't add non-existent product", async () => {
+                const users = new PrismaMocks().users();
+                const userToken = await request(app.getHttpServer())
+                    .post("/auth/login")
+                    .send({
+                        email: users[2].email,
+                        password: users[2].password,
+                    });
+                const product: AddProductInUserShoppingCartDTO = {
+                    id: uuidv4(),
+                    amount: 1,
+                    name: "",
+                    order: "increment",
+                    body: "",
+                };
+                const req = await request(app.getHttpServer())
+                    .post("/shopping-cart/add-product-in-user-shopping-cart")
+                    .set("Authorization", `Bearer ${userToken.body.data.token}`)
+                    .send(product);
 
-            //     const product: AddProductInUserShoppingCartDTO = {
-            //         id: uuidv4(),
-            //         amount: 1 + products.body.data[0].stock,
-            //         name: "",
-            //     };
-            // });
+                expect(req.statusCode).toBe(404);
+                expect(req.body.message).toBe("Produto não encontrado");
+                expect(req.body.statusCode).toBe(404);
+            });
             // it("Add a product in shopping cart successfully", async () => {
             //     const product: AddProductInUserShoppingCartDTO = {
             //         amount: 2,
