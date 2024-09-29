@@ -10,7 +10,7 @@ export function DesktopMenu() {
       <div className="">
         <Popover>
           <PopoverTrigger asChild>
-            <button className="text-white flex items-center gap-2">
+            <button type="button" className="text-white flex items-center gap-2">
               <div className="flex flex-row items-center gap-2">
                 <Avatar />
                 <span className="text-sm text-zinc-200">
