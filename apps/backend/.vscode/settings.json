@@ -1,5 +1,11 @@
 {
     "yaml.schemas": {
         "https://json.schemastore.org/kustomization.json": "file:///home/swxtz/code/athenas/apps/backend/kube/pod.yml"
-    }
+    },
+    "cSpell.words": [
+        "dayjs",
+        "nestjs",
+        "paralleldrive",
+        "websockets"
+    ]
 }
