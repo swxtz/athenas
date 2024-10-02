@@ -7,6 +7,7 @@ import {
     Post,
     Put,
     UseGuards,
+    UsePipes,
     ValidationPipe,
 } from "@nestjs/common";
 import { ShoppingCartService } from "./shopping-cart.service";
@@ -40,10 +41,11 @@ export class ShoppingCartController {
     }
 
     @Put(":id")
+    @UsePipes(new ValidationPipe({ transform: true }))
     async updateProduct(
+        @Body() body: UpdateProductInShoppingCartDTO,
         @Param(new ValidationPipe({ transform: true }))
         params: UpdateProductInShoppingCartParams,
-        @Body() body: UpdateProductInShoppingCartDTO,
         @Headers("authorization") token: string,
     ) {
         return this.shoppingCartService.updateProductInShoppingCart(
