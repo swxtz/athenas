@@ -235,6 +235,7 @@ export class ShoppingCartService {
                 where: { shoppingCartId: shoppingCart.id },
                 select: {
                     productId: true,
+                    amount: true,
                 },
             });
 
@@ -405,13 +406,28 @@ export class ShoppingCartService {
                     400,
                 );
             }
+
+            console.log("KKKKK");
             if (product.order === "increment") {
                 await this.prisma.shoppingCartProduct.update({
                     where: {
                         id: productToUpdate.id,
                     },
                     data: {
-                        amount: 5,
+                        amount: {
+                            increment: product.amount,
+                        },
+                    },
+                });
+            } else {
+                await this.prisma.shoppingCartProduct.update({
+                    where: {
+                        id: productToUpdate.id,
+                    },
+                    data: {
+                        amount: {
+                            decrement: product.amount,
+                        },
                     },
                 });
             }
