@@ -30,6 +30,7 @@ model User {
   UserPurchases UserPurchases[]
   ShoppingCart  ShoppingCart[]
   BuyOrder      BuyOrder[]
+  events        events[]
 
   @@map("users")
 }
@@ -250,4 +251,18 @@ model BuyOrderProducts {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("buy_order_products")
+}
+
+model events {
+  id String @id @default(cuid())
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  message String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("events")
 }
