@@ -431,6 +431,36 @@ export class ShoppingCartService {
                     },
                 });
             }
-        } catch {}
+        } catch (err) {
+            if (err instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(err.name);
+                if (
+                    err.name === "NotFoundError" &&
+                    err.message === "No User found"
+                ) {
+                    this.logger.warn(`User not find`);
+                    throw new HttpException(
+                        {
+                            message:
+                                "Usuário não existe, tente relogar na aplicação",
+                        },
+                        401,
+                    );
+                }
+            }
+
+            if (err instanceof HttpException) {
+                throw err;
+            }
+
+            this.logger.error(err);
+            console.error(err);
+            throw new HttpException(
+                {
+                    message: "Ocorreu um erro interno",
+                },
+                500,
+            );
+        }
     }
 }
