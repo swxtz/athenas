@@ -14,7 +14,6 @@ async function getProducts() {
 export default async function Home() {
   return (
     <main className="container min-h-screen min-w-screen">
-      <ProductsCarousel />
       <BestSellers />
 
       <Categories />

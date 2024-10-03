@@ -22,6 +22,7 @@ import { useState } from "react";
 import { Searchbar } from "@/app/components/searchbar";
 import { MobileMenu } from "../menu/mobile-menu";
 import { DesktopMenu } from "../menu/desktop-menu";
+import { Categories } from "./categories";
 
 const links: ActiveLinkProps[] = [
   { href: "/", children: "Home", icon: <Home /> },
@@ -65,6 +66,8 @@ export function Navbar() {
           </Link> */}
         </div>
       </div>
+
+      <Categories scrollY={0} />
     </nav>
   );
 }
