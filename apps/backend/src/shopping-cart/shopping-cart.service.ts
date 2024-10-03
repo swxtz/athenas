@@ -485,4 +485,9 @@ export class ShoppingCartService {
             );
         }
     }
+
+    async deleteProductInUserShoppingCart(
+        rawtoken: string,
+        params: UpdateProductInShoppingCartParams,
+    ) {}
 }
