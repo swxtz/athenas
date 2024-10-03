@@ -55,14 +55,14 @@ describe("ShoppingCartController", () => {
                 );
                 expect(req.body.statusCode).toBe(401);
             });
-            it("should not be possible to create a buy order with an invalid token", async () => {
+            it("should not be possible to create add a product with an invalid token", async () => {
                 const product: AddProductInUserShoppingCartDTO = {
                     id: "1",
                     amount: 1,
                 };
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/shopping-cart/add-product-in-user-shopping-cart")
                     .set("Authorization", "Bearer token")
                     .send(product);
 
@@ -73,7 +73,7 @@ describe("ShoppingCartController", () => {
                 expect(req.body.statusCode).toBe(401);
             });
 
-            it("should not be possible to create a buy order with a token that does not exist", async () => {
+            it("should not be possible to add a product with a token that does not exist", async () => {
                 const product: AddProductInUserShoppingCartDTO = {
                     id: "1",
                     amount: 1,
@@ -83,7 +83,7 @@ describe("ShoppingCartController", () => {
                     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/shopping-cart/add-product-in-user-shopping-cart")
                     .set("Authorization", `Bearer ${token}`)
                     .send(product);
 
@@ -94,9 +94,8 @@ describe("ShoppingCartController", () => {
                 expect(req.body.statusCode).toBe(401);
             });
         });
-
         describe("validation", () => {
-            it("shouldn't add an out-of-stock product", async () => {
+            it("shouldn't be possible add an out-of-stock product", async () => {
                 const users = new PrismaMocks().users();
                 const userToken = await request(app.getHttpServer())
                     .post("/auth/login")
@@ -105,23 +104,28 @@ describe("ShoppingCartController", () => {
                         password: users[2].password,
                     });
 
+                const products = await request(app.getHttpServer()).get(
+                    "/products/get-best-sellers",
+                );
+
                 // console.log(userToken.body);
 
                 const product: AddProductInUserShoppingCartDTO = {
-                    amount: 1,
-                    id: uuidv4(),
+                    amount: products.body.data[0].stock + 1,
+                    id: products.body.data[0].id,
                 };
 
                 const req = await request(app.getHttpServer())
                     .post("/shopping-cart/add-product-in-user-shopping-cart")
-                    .set("Authorization", `Bearer ${userToken.body.data.token}`)
+                    .set("authorization", `Bearer ${userToken.body.data.token}`)
                     .send(product);
 
                 expect(req.statusCode).toBe(400);
-                expect(req.body.message).toBe("Produto sem estoque");
-                expect(req.body.statusCode).toBe(400);
+                expect(req.body.message).toBe(
+                    `Produto sem estoque: ${products.body.data[0].name}`,
+                );
             });
-            // it("shouldn't add non-existent product", async () => {
+            // it("shouldn't be possible to add a product that is not found", async () => {
             //     const users = new PrismaMocks().users();
             //     const userToken = await request(app.getHttpServer())
             //         .post("/auth/login")
@@ -129,8 +133,9 @@ describe("ShoppingCartController", () => {
             //             email: users[2].email,
             //             password: users[2].password,
             //         });
-            //     const product: AddProductInUserShoppingCartDTO = {
-            //         id: uuidv4(),
+            //     const product: UpdateProductInShoppingCartDTO = {
+            //         order: "increment",
+            //         name: "",
             //         amount: 1,
             //     };
             //     const req = await request(app.getHttpServer())
@@ -142,13 +147,13 @@ describe("ShoppingCartController", () => {
             //     expect(req.body.message).toBe("Produto não encontrado");
             //     expect(req.body.statusCode).toBe(404);
             // });
-            // // it("Add a product in shopping cart successfully", async () => {
-            // //     const product: AddProductInUserShoppingCartDTO = {
-            // //         amount: 2,
-            // //         id: uuidv4(),
-            // //         name: "",
-            // //     };
-            // // });
+            // it("Add a product in shopping cart successfully", async () => {
+            //     const product: AddProductInUserShoppingCartDTO = {
+            //         amount: 2,
+            //         id: uuidv4(),
+            //         name: "",
+            //     };
+            // });
         });
     });
 });

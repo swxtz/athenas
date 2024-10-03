@@ -13,13 +13,4 @@ export class AddProductInUserShoppingCartDTO {
     @Min(1, { message: "O valor mínimo é 1" })
     @Type(() => Number)
     amount: number;
-
-    // }@ApiProperty()
-    //     @IsEnum(["increment", "decrease"])
-    //     order: "increment" | "decrease";
-
-    //     @ApiProperty()
-    //     @IsNotEmpty({ message: "O valor não pode ser vazio" })
-    //     @IsString({ message: "O valor deve ser uma string" })
-    //     name: string;
 }
