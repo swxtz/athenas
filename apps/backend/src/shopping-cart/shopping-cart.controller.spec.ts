@@ -125,35 +125,59 @@ describe("ShoppingCartController", () => {
                     `Produto sem estoque: ${products.body.data[0].name}`,
                 );
             });
-            // it("shouldn't be possible to add a product that is not found", async () => {
-            //     const users = new PrismaMocks().users();
-            //     const userToken = await request(app.getHttpServer())
-            //         .post("/auth/login")
-            //         .send({
-            //             email: users[2].email,
-            //             password: users[2].password,
-            //         });
-            //     const product: UpdateProductInShoppingCartDTO = {
-            //         order: "increment",
-            //         name: "",
-            //         amount: 1,
-            //     };
-            //     const req = await request(app.getHttpServer())
-            //         .post("/shopping-cart/add-product-in-user-shopping-cart")
-            //         .set("Authorization", `Bearer ${userToken.body.data.token}`)
-            //         .send(product);
+            it("shouldn't be possible to add a product that is not found", async () => {
+                const users = new PrismaMocks().users();
+                const userToken = await request(app.getHttpServer())
+                    .post("/auth/login")
+                    .send({
+                        email: users[2].email,
+                        password: users[2].password,
+                    });
 
-            //     expect(req.statusCode).toBe(404);
-            //     expect(req.body.message).toBe("Produto não encontrado");
-            //     expect(req.body.statusCode).toBe(404);
-            // });
-            // it("Add a product in shopping cart successfully", async () => {
-            //     const product: AddProductInUserShoppingCartDTO = {
-            //         amount: 2,
-            //         id: uuidv4(),
-            //         name: "",
-            //     };
-            // });
+                const products = await request(app.getHttpServer()).get(
+                    "/products/get-best-sellers",
+                );
+
+                const id = uuidv4();
+
+                const product: AddProductInUserShoppingCartDTO = {
+                    amount: products.body.data[0].stock + 1,
+                    id: id,
+                };
+                const req = await request(app.getHttpServer())
+                    .post("/shopping-cart/add-product-in-user-shopping-cart")
+                    .set("Authorization", `Bearer ${userToken.body.data.token}`)
+                    .send(product);
+
+                expect(req.statusCode).toBe(404);
+                expect(req.body.message).toBe(
+                    `Produto não encontrado com o id: ${id}`,
+                );
+            });
+            it("shouldn't be possible to add a product that is already in the shopping cart", async () => {
+                const users = new PrismaMocks().users();
+                const userToken = await request(app.getHttpServer())
+                    .post("/auth/login")
+                    .send({
+                        email: users[2].email,
+                        password: users[2].password,
+                    });
+
+                const products = await request(app.getHttpServer()).get(
+                    "/products/get-best-sellers",
+                );
+                const product: AddProductInUserShoppingCartDTO = {
+                    amount: products.body.data[0].stock + 1,
+                    id: products.body.data[0].id,
+                };
+                const req = await request(app.getHttpServer())
+                    .post("/shopping-cart/add-product-in-user-shopping-cart")
+                    .set("Authorization", `Bearer ${userToken.body.data.token}`)
+                    .send(product);
+
+                expect(req.statusCode).toBe(400);
+                expect(req.body.message).toBe("Produto já está no carrinho");
+            });
         });
     });
 });
