@@ -1,6 +1,7 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
     Headers,
     Param,
@@ -16,6 +17,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shopping-cart.dto";
 import { UpdateProductInShoppingCartParams } from "./params/update-product-in-shopping-cart.params";
 import { UpdateProductInShoppingCartDTO } from "./dtos/update-product-in-shopping-cart.dto";
+import { DeleteProductInShoppingCsartParam } from "./params/delete-product-in-user-shopping-cart.params";
 
 @Controller("shopping-cart")
 @ApiTags("Shopping Cart")
@@ -52,6 +54,19 @@ export class ShoppingCartController {
             token,
             params,
             body,
+        );
+    }
+
+    @Delete(":id")
+    @UsePipes(new ValidationPipe({ transform: true }))
+    async deleteProductInShoppingCart(
+        @Param(new ValidationPipe({ transform: true }))
+        params: DeleteProductInShoppingCsartParam,
+        @Headers("authorization") token: string,
+    ) {
+        return this.shoppingCartService.deleteProductInUserShoppingCart(
+            token,
+            params,
         );
     }
 }
