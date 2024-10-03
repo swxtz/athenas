@@ -380,18 +380,23 @@ export class ShoppingCartService {
                     select: {
                         id: true,
                         productId: true,
+                        amount: true,
                     },
                 },
             );
 
             let productToUpdate: {
                 id: string;
+                amount: number;
             };
 
             const productExistsInShoppingCart = cartProducts.some(
                 (cartProduct) => {
                     if (cartProduct.productId === params.id) {
-                        productToUpdate = { id: cartProduct.id };
+                        productToUpdate = {
+                            id: cartProduct.id,
+                            amount: cartProduct.amount,
+                        };
                         return true;
                     }
                     return false;
@@ -407,29 +412,46 @@ export class ShoppingCartService {
                 );
             }
 
-            console.log("KKKKK");
             if (product.order === "increment") {
-                await this.prisma.shoppingCartProduct.update({
-                    where: {
-                        id: productToUpdate.id,
-                    },
-                    data: {
-                        amount: {
-                            increment: product.amount,
+                if (product.amount < productExists.stock) {
+                    await this.prisma.shoppingCartProduct.update({
+                        where: {
+                            id: productToUpdate.id,
                         },
-                    },
-                });
+                        data: {
+                            amount: {
+                                increment: product.amount,
+                            },
+                        },
+                    });
+                } else {
+                    throw new HttpException(
+                        {
+                            message: `Não é possível adicionar mais produtos do que há no estoque`,
+                        },
+                        400,
+                    );
+                }
             } else {
-                await this.prisma.shoppingCartProduct.update({
-                    where: {
-                        id: productToUpdate.id,
-                    },
-                    data: {
-                        amount: {
-                            decrement: product.amount,
+                if (product.amount < productToUpdate.amount) {
+                    await this.prisma.shoppingCartProduct.update({
+                        where: {
+                            id: productToUpdate.id,
                         },
-                    },
-                });
+                        data: {
+                            amount: {
+                                decrement: product.amount,
+                            },
+                        },
+                    });
+                } else {
+                    throw new HttpException(
+                        {
+                            message: `Não é possível retirar mais produtos do que há no carrinho`,
+                        },
+                        400,
+                    );
+                }
             }
         } catch (err) {
             if (err instanceof Prisma.PrismaClientKnownRequestError) {
