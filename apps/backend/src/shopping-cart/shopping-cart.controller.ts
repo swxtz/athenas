@@ -4,6 +4,7 @@ import {
     Delete,
     Get,
     Headers,
+    HttpCode,
     Param,
     Post,
     Put,
@@ -57,7 +58,8 @@ export class ShoppingCartController {
         );
     }
 
-    @Delete(":id")
+    @Delete("/delete-product/:id")
+    @HttpCode(200)
     @UsePipes(new ValidationPipe({ transform: true }))
     async deleteProductInShoppingCart(
         @Param(new ValidationPipe({ transform: true }))
@@ -67,6 +69,16 @@ export class ShoppingCartController {
         return this.shoppingCartService.deleteProductInUserShoppingCart(
             token,
             params,
+        );
+    }
+
+    @Delete("delete-all-products-from-user-shopping-cart")
+    @HttpCode(200)
+    async deleteManyProductInShoppingCart(
+        @Headers("authorization") token: string,
+    ) {
+        return this.shoppingCartService.deleteAllProductsFromUserShoppingCart(
+            token,
         );
     }
 }
