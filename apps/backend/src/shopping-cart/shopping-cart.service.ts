@@ -6,6 +6,7 @@ import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shop
 import { Prisma } from "@prisma/client";
 import { UpdateProductInShoppingCartParams } from "./params/update-product-in-shopping-cart.params";
 import { UpdateProductInShoppingCartDTO } from "./dtos/update-product-in-shopping-cart.dto";
+import { DeleteProductInShoppingCsartParam } from "./params/delete-product-in-user-shopping-cart.params";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -453,6 +454,241 @@ export class ShoppingCartService {
                     );
                 }
             }
+        } catch (err) {
+            if (err instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(err.name);
+                if (
+                    err.name === "NotFoundError" &&
+                    err.message === "No User found"
+                ) {
+                    this.logger.warn(`User not find`);
+                    throw new HttpException(
+                        {
+                            message:
+                                "Usuário não existe, tente relogar na aplicação",
+                        },
+                        401,
+                    );
+                }
+            }
+
+            if (err instanceof HttpException) {
+                throw err;
+            }
+
+            this.logger.error(err);
+            console.error(err);
+            throw new HttpException(
+                {
+                    message: "Ocorreu um erro interno",
+                },
+                500,
+            );
+        }
+    }
+
+    async deleteProductInUserShoppingCart(
+        rawtoken: string,
+        params: DeleteProductInShoppingCsartParam,
+    ) {
+        const token = this.utils.removeBearer(rawtoken);
+
+        try {
+            const jwtpayload: JWTBearerTokenPayLoad =
+                await this.jwt.verifyAsync(token);
+
+            if (!jwtpayload) {
+                throw new HttpException(
+                    {
+                        message: "Token inválido",
+                    },
+                    401,
+                );
+            }
+
+            const user = await this.prisma.user.findFirst({
+                where: { id: jwtpayload.id },
+                select: {
+                    id: true,
+                    email: true,
+                },
+            });
+
+            if (!user) {
+                throw new HttpException(
+                    {
+                        message: "JWT Inválido",
+                    },
+                    401,
+                );
+            }
+
+            const productExists = await this.prisma.product.findFirst({
+                where: { id: params.id },
+                select: {
+                    id: true,
+                    name: true,
+                    price: true,
+                    isAvailable: true,
+                    isDeleted: true,
+                    stock: true,
+                },
+            });
+
+            if (!productExists) {
+                this.logger.warn(`Product not find with: ${params.id}`);
+                throw new HttpException(
+                    {
+                        message: `Produto não encontrado com o id: ${params.id}`,
+                    },
+                    404,
+                );
+            }
+            const shoppingCart =
+                await this.prisma.shoppingCart.findFirstOrThrow({
+                    where: {
+                        userId: user.id,
+                    },
+                    select: {
+                        id: true,
+                    },
+                });
+
+            const cartProducts = await this.prisma.shoppingCartProduct.findMany(
+                {
+                    where: {
+                        shoppingCartId: shoppingCart.id,
+                    },
+                    select: {
+                        id: true,
+                        productId: true,
+                        amount: true,
+                    },
+                },
+            );
+
+            let productToDelete: {
+                id: string;
+            };
+
+            const productExistsInShoppingCart = cartProducts.some(
+                (cartProduct) => {
+                    if (cartProduct.productId === params.id) {
+                        productToDelete = {
+                            id: cartProduct.id,
+                        };
+                        return true;
+                    }
+                    return false;
+                },
+            );
+
+            if (!productExistsInShoppingCart) {
+                throw new HttpException(
+                    {
+                        message: `Esse Produto não existe no carrinho`,
+                    },
+                    400,
+                );
+            }
+
+            await this.prisma.shoppingCartProduct.delete({
+                where: {
+                    id: productToDelete.id,
+                },
+            });
+
+            const succesfully = {
+                message: "Produto deletado com sucesso do carrinho",
+            };
+
+            return succesfully;
+        } catch (err) {
+            if (err instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(err.name);
+                if (
+                    err.name === "NotFoundError" &&
+                    err.message === "No User found"
+                ) {
+                    this.logger.warn(`User not find`);
+                    throw new HttpException(
+                        {
+                            message:
+                                "Usuário não existe, tente relogar na aplicação",
+                        },
+                        401,
+                    );
+                }
+            }
+
+            if (err instanceof HttpException) {
+                throw err;
+            }
+
+            this.logger.error(err);
+            console.error(err);
+            throw new HttpException(
+                {
+                    message: "Ocorreu um erro interno",
+                },
+                500,
+            );
+        }
+    }
+
+    async deleteAllProductsFromUserShoppingCart(rawtoken: string) {
+        const token = this.utils.removeBearer(rawtoken);
+
+        try {
+            const jwtpayload: JWTBearerTokenPayLoad =
+                await this.jwt.verifyAsync(token);
+
+            if (!jwtpayload) {
+                throw new HttpException(
+                    {
+                        message: "Token inválido",
+                    },
+                    401,
+                );
+            }
+
+            const user = await this.prisma.user.findFirst({
+                where: { id: jwtpayload.id },
+                select: {
+                    id: true,
+                    email: true,
+                },
+            });
+
+            if (!user) {
+                throw new HttpException(
+                    {
+                        message: "JWT Inválido",
+                    },
+                    401,
+                );
+            }
+
+            const shoppingCart =
+                await this.prisma.shoppingCart.findFirstOrThrow({
+                    where: {
+                        userId: user.id,
+                    },
+                    select: {
+                        id: true,
+                    },
+                });
+            await this.prisma.shoppingCartProduct.deleteMany({
+                where: {
+                    shoppingCartId: shoppingCart.id,
+                },
+            });
+
+            const succesfully = {
+                message: "Carrinho do usuário deletado com sucesso",
+            };
+
+            return succesfully;
         } catch (err) {
             if (err instanceof Prisma.PrismaClientKnownRequestError) {
                 console.log(err.name);
