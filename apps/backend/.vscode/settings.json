@@ -3,7 +3,10 @@
         "https://json.schemastore.org/kustomization.json": "file:///home/swxtz/code/athenas/apps/backend/kube/pod.yml"
     },
     "cSpell.words": [
+        "Athenas",
         "dayjs",
+        "e-commerc",
+        "ecommerce",
         "nestjs",
         "paralleldrive",
         "websockets"

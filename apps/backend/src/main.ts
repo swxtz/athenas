@@ -7,13 +7,15 @@ async function bootstrap() {
 
     const swaggerConfig = new DocumentBuilder()
         .setTitle("Athenas")
-        .setDescription("API do ecommerce da RN Distriuidora")
+        .setDescription("API do ecommerce da RN Distribuidora")
         .setVersion("0.0.0")
         .addTag("e-commerce")
         .build();
 
     const document = SwaggerModule.createDocument(app, swaggerConfig);
-    SwaggerModule.setup("api-docs", app, document);
+    SwaggerModule.setup("api-docs", app, document, {
+        jsonDocumentUrl: "swagger/json",
+    });
 
     app.enableCors();
 

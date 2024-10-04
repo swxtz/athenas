@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import slugify from "slugify";
+import { createId } from "@paralleldrive/cuid2";
 
 @Injectable()
 export class UtilsService {
@@ -56,5 +57,10 @@ export class UtilsService {
         }
 
         return result;
+    }
+
+    createCUID(): string {
+        const id = createId();
+        return id;
     }
 }
