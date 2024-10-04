@@ -54,16 +54,16 @@ export function LoginForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <div
-          className="flex flex-col ml-36 w-2/3 gap-5 mt-6">
+          className="flex flex-col gap-5 ">
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>E-mail</FormLabel>
+                <FormLabel className="flex w-full">E-mail</FormLabel>
                 <FormControl>
                   <Input
-                    className="h-10 w-full rounded-none"
+                    className="h-10  rounded-none"
                     type="email"
                     placeholder="digite seu e-mail aqui"
                     {...field}
@@ -84,10 +84,10 @@ export function LoginForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Senha</FormLabel>
+                <FormLabel className="flex w-full" >Senha</FormLabel>
                 <FormControl>
                   <Input
-                    className="h-10 w-full rounded-none"
+                    className="h-10 rounded-none"
                     type="password"
                     placeholder="••••••••"
                     {...field}
@@ -103,11 +103,14 @@ export function LoginForm() {
               </FormItem>
             )}
           />
-
+          <div>
+            <p className="w-full flex text-xs">esqueceu sua senha?</p>
+          </div>
+          
           <Button
             type="submit"
             variant={"primary"}
-            className="w-2/4 h-12 rounded-full"
+            className=" h-12 rounded-full"
           >
             {" "}
             Entrar{" "}

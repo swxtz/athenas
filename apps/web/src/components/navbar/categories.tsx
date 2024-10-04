@@ -41,7 +41,7 @@ export function Categories() {
   }, [scrollY, controls]);
 
   return (
-    <motion.div className="px-6 lg:px-24 flex gap-9 items-center justify-center border-t-1 pt-4">
+    <motion.div className="px-6 lg:px-24 flex gap-9 items-center justify-center">
       {navbarCategories.map((category) => (
         <motion.div
           animate={controls}

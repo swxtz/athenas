@@ -2,44 +2,42 @@ import { Separator } from "@/components/ui/separator";
 import { LoginForm } from "./components/login-form";
 import Image from "next/image";
 import imageLogin from "@/images/interation-login.png";
+import { FcGoogle } from "react-icons/fc";
+
 
 export default function LoginPage() {
   return (
-    <div className="w-full h-full shadow-inner mt-32 rounded-lg container py-9 text-2xl flex min-h-screen">
-      <div className="w-1/2">
-        <h2 className="text-center pl-20 ml-2 font-semibold">
-          O melhor para o melhor
-        </h2>
-
-        <Image
+    <div className="w-full shadow-inner rounded-lg container py-9 text-2xl flex flex-col ">
+      <div className="w-full ">
+        {/* <Image
           src={imageLogin}
           alt="iconLog"
           width={700}
           height={700}
           className="w-96 l-40"
-        />
+        /> */}
       </div>
 
-      <div className="ml-20 w-2/3">
-        <h2 className="font-semibold ml-36 text-x2l">
-          Bem-vindo de volta!
-        </h2>
-        <h3 className="font-semibol ml-3 text-xs">
-          Faça seu login e se junte conosco!
-        </h3>
-
-        <LoginForm />
-
-        <div className="ml-20 mt-5">
-          <Separator className=" w-2/3 my-4 bg-amber-800 mx-auto"
-          />
-        </div>
-        <div>
-          <h2 className="font-semibold ml-80 text-sm">
-            Logar com
+      <div className=" w-full container text-center flex flex-col gap-4">
+          <h2 className="font-semibold container text-x2l">
+            Bem-vindo de volta!
           </h2>
-        </div>
-        <div/>
+          <h3 className="font-semibol flex w-full text-xs">
+            Acesse sua conta
+          </h3>
+
+          <LoginForm />
+        
+          <div className="flex flex-row gap-2">
+            <Separator className="my-4 bg-amber-800 w-32"/>
+              <p className="text-sm flex items-center">ou</p>
+            <Separator className="my-4 bg-amber-800 w-32"/>
+          </div>
+
+          <div className="justify-center flex w-full bg-slate-300">
+            <FcGoogle size={52} />
+          </div>
+          {/* icons */}
       </div>
     </div>
   );

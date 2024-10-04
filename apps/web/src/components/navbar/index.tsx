@@ -5,6 +5,7 @@ import logo from "@/images/logo-rn.png";
 import { Home, MenuIcon, Phone, ShoppingBasket } from "lucide-react";
 import { PiShoppingCart, } from "react-icons/pi";
 import { TbShoppingBagHeart } from "react-icons/tb";
+import { IoSearch } from "react-icons/io5";
 
 import {
   Dialog,
@@ -32,8 +33,8 @@ const links: ActiveLinkProps[] = [
 
 export function Navbar() {
   return (
-    <nav className="bg-gray-700 w-full h-10 md:h-24 flex ">
-      <div className=" flex w-full items-center">
+    <nav className=" w-full h-20 self-center md:h-32  flex flex-col">
+      <div className="flex w-full items-center container justify-between p-2">
       
         {/* <div className="">
           <Searchbar/>
@@ -42,10 +43,10 @@ export function Navbar() {
         <div className="flex items-center md:hidden ml-4">
           <MobileMenu />
           <div className="ml-2">
-            <LuUser size={28}/>
+            <Link href={"/auth/login"}><LuUser size={28}/></Link>
           </div>
         </div>
-
+    
         <Link href="/">
           <Image
             src={logo}
@@ -55,19 +56,26 @@ export function Navbar() {
           />
         </Link>
         {/* logo */}
-
-        <TbShoppingBagHeart size={28} className="mr-4" /> 
-        {/* carrinho */}
-
-        <div className="hidden md:flex  items-center gap-8">
-          <DesktopMenu />
-          {/* <Link href="/carrinho">
-            <ShoppingBasket size={38} className="text-white"/>
-          </Link> */}
+          
+        <div className=" items-center px-4 w-2/6 flex flex-cow rounded-2xl border-2">
+          <button><IoSearch size={28} /></button> 
+          <input type="text" className="pl-2 h-12 w-full  bg-slate-100" placeholder="O que você precisa?"/>
         </div>
-      </div>
+        {/* pesquisa */}
+        <div className="flex-row items-center flex">
+          <TbShoppingBagHeart size={28} className="mr-4" /> 
+          {/* carrinho */}
 
-      <Categories scrollY={0} />
+          <div className="hidden md:flex items-center gap-8">
+            <DesktopMenu /> 
+          </div>
+          {/* login */}
+        </div>
+        
+      </div>
+        {/* <div className="p-4 h-full border-y-2">
+          <Categories />
+        </div>       */}
     </nav>
   );
 }
