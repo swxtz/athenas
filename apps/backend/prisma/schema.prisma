@@ -217,9 +217,11 @@ model BuyOrder {
   paymentMethod PaymentMethod @map("payment_method")
   paymentStatus PaymentStatus @map("payment_status")
 
-  createdAt        DateTime           @default(now()) @map("created_at")
-  updatedAt        DateTime           @updatedAt @map("updated_at")
-  BuyOrderProducts BuyOrderProducts[]
+  createdAt             DateTime             @default(now()) @map("created_at")
+  updatedAt             DateTime             @updatedAt @map("updated_at")
+  BuyOrderProducts      BuyOrderProducts[]
+  paymentNotificationId String
+  paymentNotification   paymentNotification?
 
   @@map("buy_orders")
 }
@@ -256,8 +258,12 @@ model BuyOrderProducts {
 model paymentNotification {
   id String @id @default(cuid())
 
-  userId String  @map("user_id")
-  user   User    @relation(fields: [userId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+  buyOrder BuyOrder @relation(fields: [buyOrderId], references: [id])
+
+  userId     String @map("user_id")
+  buyOrderId String @unique @map("buy_order_id")
+
   status String?
 
   message String
