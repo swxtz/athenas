@@ -16,11 +16,20 @@ export class EventsService {
         private prisma: PrismaService,
     ) {}
 
-    async getLastPaymentStatus() {}
-    async createPaymentStatus(userId: string) {
+    async getLastPaymentStatus() {
+        const paymentStatus = await this.prisma.paymentNotification.findFirst({
+            orderBy: {
+                createdAt: "desc",
+            },
+        });
+
+        return paymentStatus;
+    }
+    async createPaymentStatus(userId: string, buyOrderId: string) {
         const paymentStatus = await this.prisma.paymentNotification.create({
             data: {
                 userId,
+                buyOrderId,
                 status: PaymentStatus.Pending,
                 message:
                     "O Pagamento está pendente. Avisaremos quando for concluído.",

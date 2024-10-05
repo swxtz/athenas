@@ -4,6 +4,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
 import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
 import { Prisma } from "@prisma/client";
+import { EventsService } from "src/events/events.service";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -21,6 +22,7 @@ export class BuysService {
         private prisma: PrismaService,
         private utils: UtilsService,
         private jwt: JwtService,
+        private eventsService: EventsService,
     ) {}
 
     private logger = new Logger();
@@ -124,6 +126,8 @@ export class BuysService {
                     },
                 },
             });
+
+            await this.eventsService.createPaymentStatus(user.id, buyOrder.id);
 
             this.logger.debug(`Buy order created with: ${buyOrder.id}`);
 
