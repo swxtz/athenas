@@ -1,4 +1,12 @@
-import { Controller, Header, Req, Res, Sse, UseGuards } from "@nestjs/common";
+import {
+    Controller,
+    Header,
+    Headers,
+    Req,
+    Res,
+    Sse,
+    UseGuards,
+} from "@nestjs/common";
 import { EventsService, PaymentStatus } from "./events.service";
 import { Request, Response } from "express";
 import { AuthGuard } from "src/auth/auth.guard";
@@ -15,10 +23,14 @@ export class EventsController {
     @Sse("get-last-payment-status")
     @Header("Cache-Control", "no-cache")
     @Header("Connection", "keep-alive")
-    //@UseGuards(AuthGuard)
-    async getLastPaymentStatus(@Req() req: Request, @Res() res: Response) {
+    @UseGuards(AuthGuard)
+    async getLastPaymentStatus(
+        @Req() req: Request,
+        @Res() res: Response,
+        @Headers("authorization") token: string,
+    ) {
         req.setTimeout(80000);
-        return defer(() => this.eventsService.getLastPaymentStatus()).pipe(
+        return defer(() => this.eventsService.getLastPaymentStatus(token)).pipe(
             repeat({
                 delay: 5000,
             }),

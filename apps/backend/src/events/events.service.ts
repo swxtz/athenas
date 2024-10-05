@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { $Enums } from "@prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
@@ -11,12 +11,36 @@ export class EventsService {
         private prisma: PrismaService,
     ) {}
 
-    async getLastPaymentStatus() {
+    async getLastPaymentStatus(rawToken: string) {
+        const token = this.utils.removeBearer(rawToken);
+        const user = await this.utils.jwtIsValid(token);
+
+        if (!user) {
+            throw new HttpException(
+                {
+                    message: "Usuário não existe, tente relogar na aplicação",
+                },
+                401,
+            );
+        }
+
         const paymentStatus = await this.prisma.paymentNotification.findFirst({
+            where: {
+                userId: user.id,
+            },
             orderBy: {
                 createdAt: "desc",
             },
         });
+
+        if (!paymentStatus) {
+            throw new HttpException(
+                {
+                    message: "Nenhum pagamento encontrado",
+                },
+                404,
+            );
+        }
 
         return paymentStatus;
     }

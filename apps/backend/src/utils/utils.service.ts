@@ -1,14 +1,29 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, Injectable, Logger } from "@nestjs/common";
 import slugify from "slugify";
 import { createId } from "@paralleldrive/cuid2";
+import { JwtService } from "@nestjs/jwt";
+import { ConfigService } from "@nestjs/config";
+
+interface VerifyEmailJWTPayload {
+    id: string;
+    email: string;
+    iat: number;
+    exp: number;
+}
 
 @Injectable()
 export class UtilsService {
+    constructor(
+        private jwtService: JwtService,
+        private configService: ConfigService,
+    ) {}
+
+    private logger = new Logger();
     removeBearer(token: string) {
         return token.split(" ")[1];
     }
 
-    async jwtIsValid(token: string): Promise<boolean> {
+    async jwtIsValid(token: string): Promise<VerifyEmailJWTPayload | null> {
         try {
             const isValid: VerifyEmailJWTPayload =
                 await this.jwtService.verifyAsync(token, {
@@ -16,15 +31,15 @@ export class UtilsService {
                 });
 
             if (!isValid || null) {
-                return false;
+                return null;
             }
 
-            return true;
+            return isValid;
         } catch (err) {
             if (err.message === "invalid signature") {
                 throw new HttpException("Token expirado", 401);
             }
-
+            console.log(err);
             this.logger.error(err.message);
         }
     }
