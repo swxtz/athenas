@@ -1,5 +1,5 @@
 import { Controller, Header, Req, Res, Sse, UseGuards } from "@nestjs/common";
-import { EventsService } from "./events.service";
+import { EventsService, PaymentStatus } from "./events.service";
 import { Request, Response } from "express";
 import { AuthGuard } from "src/auth/auth.guard";
 import { defer, map, repeat, tap } from "rxjs";
@@ -23,7 +23,12 @@ export class EventsController {
                 delay: 5000,
             }),
             tap((payment) => {
-                if (payment.status === "DONE" || payment.status === "FAILED") {
+                if (
+                    payment.status === PaymentStatus.Done ||
+                    payment.status === PaymentStatus.Failed ||
+                    payment.status === PaymentStatus.Refunded
+                ) {
+                    console.log(payment.status);
                     setTimeout(() => {
                         res.end();
                     }, 1000);

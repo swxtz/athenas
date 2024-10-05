@@ -30,7 +30,7 @@ model User {
   UserPurchases        UserPurchases[]
   ShoppingCart         ShoppingCart[]
   BuyOrder             BuyOrder[]
-  paymentNotifications paymentNotification[]
+  paymentNotifications PaymentNotification[]
 
   @@map("users")
 }
@@ -220,7 +220,7 @@ model BuyOrder {
   createdAt           DateTime             @default(now()) @map("created_at")
   updatedAt           DateTime             @updatedAt @map("updated_at")
   BuyOrderProducts    BuyOrderProducts[]
-  paymentNotification paymentNotification?
+  paymentNotification PaymentNotification?
 
   @@map("buy_orders")
 }
@@ -254,7 +254,7 @@ model BuyOrderProducts {
   @@map("buy_order_products")
 }
 
-model paymentNotification {
+model PaymentNotification {
   id String @id @default(cuid())
 
   user     User     @relation(fields: [userId], references: [id])
@@ -263,7 +263,7 @@ model paymentNotification {
   userId     String @map("user_id")
   buyOrderId String @unique @map("buy_order_id")
 
-  status String?
+  status PaymentNotificationStatus @default(Pending)
 
   message String
 
@@ -271,4 +271,12 @@ model paymentNotification {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("payment_notifications")
+}
+
+enum PaymentNotificationStatus {
+  Done
+  Failed
+  Pending
+  Refunded
+  Processing
 }

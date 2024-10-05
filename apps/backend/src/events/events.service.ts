@@ -1,14 +1,9 @@
 import { Injectable } from "@nestjs/common";
+import { $Enums } from "@prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
 
-export enum PaymentStatus {
-    Done = "Done",
-    Failed = "Failed",
-    Pending = "Pending",
-    Refunded = "Refunded",
-    Processing = "Processing",
-}
+export const PaymentStatus = $Enums.PaymentNotificationStatus;
 @Injectable()
 export class EventsService {
     constructor(
