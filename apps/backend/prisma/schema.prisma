@@ -10,9 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// generator erd {
-//   provider = "prisma-erd-generator"
-// }
+generator erd {
+  provider = "prisma-erd-generator"
+}
 
 model User {
   id   String @id @default(cuid())
@@ -25,12 +25,12 @@ model User {
 
   userType UserType @default(consumer) @map("user_type")
 
-  createdAt     DateTime        @default(now()) @map("created_at")
-  updatedAt     DateTime        @updatedAt @map("updated_at")
-  UserPurchases UserPurchases[]
-  ShoppingCart  ShoppingCart[]
-  BuyOrder      BuyOrder[]
-  events        events[]
+  createdAt            DateTime              @default(now()) @map("created_at")
+  updatedAt            DateTime              @updatedAt @map("updated_at")
+  UserPurchases        UserPurchases[]
+  ShoppingCart         ShoppingCart[]
+  BuyOrder             BuyOrder[]
+  paymentNotifications paymentNotification[]
 
   @@map("users")
 }
@@ -253,16 +253,17 @@ model BuyOrderProducts {
   @@map("buy_order_products")
 }
 
-model events {
+model paymentNotification {
   id String @id @default(cuid())
 
-  userId String @map("user_id")
-  user   User   @relation(fields: [userId], references: [id])
+  userId String  @map("user_id")
+  user   User    @relation(fields: [userId], references: [id])
+  status String?
 
   message String
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("events")
+  @@map("payment_notifications")
 }
