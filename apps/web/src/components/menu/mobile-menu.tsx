@@ -1,6 +1,6 @@
 "use client";
 
-import { PiShoppingCart } from "react-icons/pi";
+import { IoMenu } from "react-icons/io5";
 import {
   Dialog,
   DialogContent,
@@ -29,14 +29,11 @@ export function MobileMenu() {
   }
 
   return (
-    <div className="flex justify-center gap-4">
-      <button>
-        <PiShoppingCart className="text-slate-50 size-9" />
-      </button>
+    <div className="flex justify-center items-center mt-1 gap-4">
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
           <button type="button">
-            <MenuIcon className="text-slate-50 size-9" />
+            <IoMenu className="text-black-50 size-9" />
           </button>
         </DialogTrigger>
 

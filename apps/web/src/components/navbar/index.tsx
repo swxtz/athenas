@@ -3,7 +3,10 @@
 import Image from "next/image";
 import logo from "@/images/logo-rn.png";
 import { Home, MenuIcon, Phone, ShoppingBasket } from "lucide-react";
-import { PiShoppingCart } from "react-icons/pi";
+import { PiShoppingCart, } from "react-icons/pi";
+import { TbShoppingBagHeart } from "react-icons/tb";
+import { IoSearch } from "react-icons/io5";
+
 import {
   Dialog,
   DialogPortal,
@@ -13,12 +16,14 @@ import {
 } from "@radix-ui/react-dialog";
 import { Avatar } from "../avatar";
 import Link from "next/link";
+import { LuUser } from "react-icons/lu";
 import { Separator } from "../ui/separator";
 import type { ActiveLinkProps } from "../active-link";
 import { useState } from "react";
 import { Searchbar } from "@/app/components/searchbar";
 import { MobileMenu } from "../menu/mobile-menu";
 import { DesktopMenu } from "../menu/desktop-menu";
+import { Categories } from "./categories";
 
 const links: ActiveLinkProps[] = [
   { href: "/", children: "Home", icon: <Home /> },
@@ -28,30 +33,49 @@ const links: ActiveLinkProps[] = [
 
 export function Navbar() {
   return (
-    <nav className="py-3 bg-[#202020] flex justify-between items-center shadow-md">
-      <div className="px-6 lg:px-24 w-full flex items-center justify-between">
+    <nav className=" w-full h-20 self-center md:h-32  flex flex-col">
+      <div className="flex w-full items-center container justify-between p-2">
+      
+        {/* <div className="">
+          <Searchbar/>
+        </div> */}
+
+        <div className="flex items-center md:hidden ml-4">
+          <MobileMenu />
+          <div className="ml-2">
+            <Link href={"/auth/login"}><LuUser size={28}/></Link>
+          </div>
+        </div>
+    
         <Link href="/">
           <Image
             src={logo}
             alt="logo RN Distribuidora"
             quality={100}
-            className="w-10 md:w-20"
+            className="w-20 mr-10 md:w-30"
           />
         </Link>
-
-        <Searchbar />
-
-        <div className="flex md:hidden">
-          <MobileMenu />
+        {/* logo */}
+          
+        <div className=" items-center px-4 w-2/6 flex flex-cow rounded-2xl border-2">
+          <button><IoSearch size={28} /></button> 
+          <input type="text" className="pl-2 h-12 w-full  bg-slate-100" placeholder="O que você precisa?"/>
         </div>
+        {/* pesquisa */}
+        <div className="flex-row items-center flex">
+          <TbShoppingBagHeart size={28} className="mr-4" /> 
+          {/* carrinho */}
 
-        <div className="hidden md:flex items-center gap-8">
-          <DesktopMenu />
-          <Link href="/carrinho">
-            <ShoppingBasket size={38} className="text-white"/>
-          </Link>
+          <div className="hidden md:flex items-center gap-8">
+            <DesktopMenu /> 
+          </div>
+          {/* login */}
         </div>
+        
       </div>
+        {/* <div className="p-4 h-full border-y-2">
+          <Categories />
+        </div>       */}
     </nav>
   );
 }

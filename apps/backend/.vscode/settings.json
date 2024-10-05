@@ -1,5 +1,16 @@
 {
     "yaml.schemas": {
         "https://json.schemastore.org/kustomization.json": "file:///home/swxtz/code/athenas/apps/backend/kube/pod.yml"
-    }
+    },
+    "cSpell.words": [
+        "Athenas",
+        "dayjs",
+        "dtos",
+        "e-commerc",
+        "ecommerce",
+        "nestjs",
+        "paralleldrive",
+        "relogar",
+        "websockets"
+    ]
 }

@@ -1,12 +1,13 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { EventsService } from "./events.service";
+import { UtilsService } from "src/utils/utils.service";
 
 describe("EventsService", () => {
     let service: EventsService;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            providers: [EventsService],
+            providers: [EventsService, UtilsService],
         }).compile();
 
         service = module.get<EventsService>(EventsService);

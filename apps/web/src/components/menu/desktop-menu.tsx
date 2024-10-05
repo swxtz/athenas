@@ -1,4 +1,4 @@
-import { Avatar } from "../avatar";
+import { FaRegUser } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Separator } from "../ui/separator";
@@ -10,25 +10,21 @@ export function DesktopMenu() {
       <div className="">
         <Popover>
           <PopoverTrigger asChild>
-            <button className="text-white flex items-center gap-2">
+            <button className="text-black flex items-center gap-2">
               <div className="flex flex-row items-center gap-2">
-                <Avatar />
-                <span className="text-sm text-zinc-200">
-                  Faça login <span className="font-medium">ou</span> <br /> crie
-                  sua conta!
+                <FaRegUser size={28}/>
+                <span className="text-sm text-left text-black-700">
+                  Entrar <span className="font-medium text-xs"> <br />ou cadastre-se </span>
                 </span>
               </div>
             </button>
           </PopoverTrigger>
           <PopoverContent>
-            <div className="my-6 mx-4 flex flex-col gap-2">
+            <div className="mx-6 flex p-3 flex-col gap-1">
               <Link href="/auth/login" className="w-full">
-                <Button className="w-full">Entre</Button>
+                <Button variant={"primary"} className="w-full h-12">Entrar</Button>
               </Link>
-              <Separator />
-              <Link href="/auth/crie-sua-conta" className="w-full">
-                <Button className="w-full">Crie sua conta</Button>
-              </Link>
+              <p className="text-xs"> Não tem cadastro? <Link href="/auth/crie-sua-conta" className=" hover:underline"> Crie sua conta.</Link> </p>
             </div>
           </PopoverContent>
         </Popover>

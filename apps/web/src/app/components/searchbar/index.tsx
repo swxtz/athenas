@@ -4,7 +4,7 @@ import { SearchIcon } from "lucide-react";
 export function Searchbar() {
   return (
     // Removendo searchbar
-    <div className="hidden flex-row bg-white py-1 px-2 rounded-xl">
+    <div className="hidden flex-row bg-black py-1 rounded-xl">
       <SearchIcon />
       <input type="text" className="w-2/3" />
       <Separator orientation="vertical" />
