@@ -3,7 +3,7 @@
 import Image from "next/image";
 import logo from "@/images/logo-rn.png";
 import { Home, MenuIcon, Phone, ShoppingBasket } from "lucide-react";
-import { PiShoppingCart, } from "react-icons/pi";
+import { PiShoppingCart } from "react-icons/pi";
 import { TbShoppingBagHeart } from "react-icons/tb";
 import { IoSearch } from "react-icons/io5";
 
@@ -35,7 +35,6 @@ export function Navbar() {
   return (
     <nav className=" w-full h-20 self-center md:h-32  flex flex-col">
       <div className="flex w-full items-center container justify-between p-2">
-      
         {/* <div className="">
           <Searchbar/>
         </div> */}
@@ -43,10 +42,12 @@ export function Navbar() {
         <div className="flex items-center md:hidden ml-4">
           <MobileMenu />
           <div className="ml-2">
-            <Link href={"/auth/login"}><LuUser size={28}/></Link>
+            <Link href={"/auth/login"}>
+              <LuUser size={28} />
+            </Link>
           </div>
         </div>
-    
+
         <Link href="/">
           <Image
             src={logo}
@@ -56,24 +57,29 @@ export function Navbar() {
           />
         </Link>
         {/* logo */}
-          
+
         <div className=" items-center px-4 w-2/6 flex flex-cow rounded-2xl border-2">
-          <button><IoSearch size={28} /></button> 
-          <input type="text" className="pl-2 h-12 w-full  bg-slate-100" placeholder="O que você precisa?"/>
+          <button>
+            <IoSearch size={28} />
+          </button>
+          <input
+            type="text"
+            className="pl-2 h-12 w-full  bg-slate-100"
+            placeholder="O que você precisa?"
+          />
         </div>
         {/* pesquisa */}
         <div className="flex-row items-center flex">
-          <TbShoppingBagHeart size={28} className="mr-4" /> 
+          <TbShoppingBagHeart size={28} className="mr-4" />
           {/* carrinho */}
 
           <div className="hidden md:flex items-center gap-8">
-            <DesktopMenu /> 
+            <DesktopMenu />
           </div>
           {/* login */}
         </div>
-        
       </div>
-        {/* <div className="p-4 h-full border-y-2">
+      {/* <div className="p-4 h-full border-y-2">
           <Categories />
         </div>       */}
     </nav>

@@ -12,11 +12,11 @@ services:
      # - .docker/athenas-db-data:/var/lib/postgresql/data
     networks:
       - athenas-network
-    # deploy:
-    #     resources:
-    #         limits:
-    #             cpus: '0.2'
-    #             memory: 256M
+    deploy:
+        resources:
+            limits:
+                cpus: '0.2'
+                memory: 256M
 
   rabbitmq: 
     image: rabbitmq:4.0-management-alpine
@@ -24,11 +24,20 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
-    # deploy:
-    #     resources:
-    #         limits:
-    #             cpus: '0.2'
-    #             memory: 128M
+    deploy:
+        resources:
+            limits:
+                cpus: '0.2'
+                memory: 128M
+
+
+  # cockroachdb:
+  #   image: cockroachdb/cockroach:v21.1.0
+  #   container_name: cockroachdb-athenas
+  #   command: start-single-node --insecure
+  #   ports:
+  #     - "26257:26257"
+  #     - "9000:8080"
 
 networks:
   athenas-network:

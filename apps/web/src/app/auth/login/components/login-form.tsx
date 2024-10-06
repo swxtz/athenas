@@ -16,6 +16,7 @@ import { ErrorInputDisplay } from "@/components/ui/error-input-display";
 import { useToast } from "@/components/ui/use-toast";
 import { setCookie } from "nookies";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z
@@ -29,6 +30,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export function LoginForm() {
+  const router = useRouter();
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
   });
@@ -42,12 +44,11 @@ export function LoginForm() {
       redirect: false,
     });
 
-    console.log(result);
-
     if (result?.error) {
       toast({
-        title: "Erro ao fazer login",
-        description: result.error,
+        title: "Email ou senha inválidos",
+        description: "Verifique suas credenciais e tente novamente",
+        variant: "destructive",
       });
       return;
     }
@@ -55,12 +56,13 @@ export function LoginForm() {
     toast({
       title: "Usuário logado com sucesso!",
     });
+
+    router.push("/");
   }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <div
-          className="flex flex-col gap-5 ">
+        <div className="flex flex-col gap-5 ">
           <FormField
             control={form.control}
             name="email"
@@ -90,7 +92,7 @@ export function LoginForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="flex w-full" >Senha</FormLabel>
+                <FormLabel className="flex w-full">Senha</FormLabel>
                 <FormControl>
                   <Input
                     className="h-10 rounded-none"
@@ -112,7 +114,7 @@ export function LoginForm() {
           <div>
             <p className="w-full flex text-xs">esqueceu sua senha?</p>
           </div>
-          
+
           <Button
             type="submit"
             variant={"primary"}
