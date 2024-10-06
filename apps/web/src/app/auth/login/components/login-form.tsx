@@ -15,13 +15,14 @@ import { Button } from "@/components/ui/button";
 import { ErrorInputDisplay } from "@/components/ui/error-input-display";
 import { useToast } from "@/components/ui/use-toast";
 import { setCookie } from "nookies";
+import { signIn } from "next-auth/react";
 
 const formSchema = z.object({
   email: z
-    .string({ message: "Esse campo é obrigatorio" })
+    .string({ message: "Esse campo é obrigatório" })
     .email("Digite um e-mail válido"),
   password: z
-    .string({ message: "Esse campo é obrigatorio" })
+    .string({ message: "Esse campo é obrigatório" })
     .min(8, "A senha deve ter no mínimo 8 caracteres"),
 });
 
@@ -34,18 +35,23 @@ export function LoginForm() {
 
   const { toast } = useToast();
 
-  function handleSubmit(values: FormValues) {
-    console.log(values);
-
-    setCookie(null, "login-token-email", values.email, {
-      maxAge: 30 * 24 * 60 * 60,
-      path: "/",
+  async function handleSubmit(values: FormValues) {
+    const result = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
     });
 
-    setCookie(null, "login-token-password", values.password, {
-      maxAge: 30 * 24 * 60 * 60,
-      path: "/",
-    });
+    console.log(result);
+
+    if (result?.error) {
+      toast({
+        title: "Erro ao fazer login",
+        description: result.error,
+      });
+      return;
+    }
+
     toast({
       title: "Usuário logado com sucesso!",
     });
