@@ -1,56 +1,98 @@
 import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { GetSearchParams } from "./params/get-search-params";
-import { GetSearchDTO } from "./dtos/get-search.dto";
-import { UtilsService } from "src/utils/utils.service";
 import { PrismaService } from "src/prisma/prisma.service";
+import { Prisma } from "@prisma/client";
 
 @Injectable()
 export class SearchService {
-    constructor(
-        private prisma: PrismaService,
-        private utils: UtilsService,
-    ) {}
+    constructor(private prisma: PrismaService) {}
     private logger = new Logger();
-    async getSearch(params: GetSearchParams, product: GetSearchDTO) {
-        const productExists = await this.prisma.product.findFirst({
-            where: { id: product.id },
-            select: {
-                id: true,
-                name: true,
-                price: true,
-                isAvailable: true,
-                isDeleted: true,
-                stock: true,
-            },
-        });
+    async getSearch(params: GetSearchParams) {
+        try {
+            const productExists = await this.prisma.product.findFirst({
+                where: { name: params.search },
+                select: {
+                    id: true,
+                    name: true,
+                    price: true,
+                    isAvailable: true,
+                    isDeleted: true,
+                    stock: true,
+                },
+            });
 
-        if (!productExists) {
-            this.logger.warn(`Product not find with: ${product.id}`);
+            console.log(productExists);
+            if (!productExists) {
+                this.logger.warn(`Product not find with: ${params.search}`);
+                throw new HttpException(
+                    {
+                        message: `Produto não encontrado com o nome: ${params.search}`,
+                    },
+                    404,
+                );
+            }
+
+            if (productExists.isDeleted) {
+                this.logger.warn(`Product deleted with: ${params.search}`);
+                throw new HttpException(
+                    {
+                        message: `Produto deletado com o nome: ${params.search}`,
+                    },
+                    404,
+                );
+            }
+
+            if (!productExists.isAvailable) {
+                this.logger.warn(
+                    `Product not available with: ${params.search}`,
+                );
+                throw new HttpException(
+                    {
+                        message: `Produto não disponível com o nome: ${params.search}`,
+                    },
+                    404,
+                );
+            }
+
+            const searchResult = await this.prisma.product.findMany({
+                orderBy: {
+                    _relevance: {
+                        fields: ["name"],
+                        search: params.search,
+                        sort: "asc",
+                    },
+                },
+            });
+
+            return searchResult;
+        } catch (err) {
+            if (err instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(err.name);
+                if (
+                    err.name === "NotFoundError" &&
+                    err.message === "No product find"
+                ) {
+                    this.logger.warn(`Product not find`);
+                    throw new HttpException(
+                        {
+                            message: "Produto procurado não existe",
+                        },
+                        401,
+                    );
+                }
+            }
+
+            if (err instanceof HttpException) {
+                throw err;
+            }
+
+            this.logger.error(err);
+            console.error(err);
             throw new HttpException(
                 {
-                    message: `Produto não encontrado com o id: ${product.id}`,
+                    message: "Ocorreu um erro interno",
                 },
-                404,
-            );
-        }
-
-        if (productExists.isDeleted) {
-            this.logger.warn(`Product deleted with: ${product.id}`);
-            throw new HttpException(
-                {
-                    message: `Produto deletado com o id: ${product.id}`,
-                },
-                404,
-            );
-        }
-
-        if (!productExists.isAvailable) {
-            this.logger.warn(`Product not available with: ${product.id}`);
-            throw new HttpException(
-                {
-                    message: `Produto não disponível com o id: ${product.id}`,
-                },
-                404,
+                500,
             );
         }
     }

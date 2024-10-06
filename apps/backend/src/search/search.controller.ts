@@ -1,5 +1,4 @@
 import {
-    Body,
     Controller,
     Get,
     Param,
@@ -9,7 +8,6 @@ import {
 import { SearchService } from "./search.service";
 import { ApiTags } from "@nestjs/swagger";
 import { GetSearchParams } from "./params/get-search-params";
-import { GetSearchDTO } from "./dtos/get-search.dto";
 
 @Controller("search")
 @ApiTags("Search")
@@ -21,8 +19,7 @@ export class SearchController {
     async getSearch(
         @Param(new ValidationPipe({ transform: true }))
         params: GetSearchParams,
-        @Body() body: GetSearchDTO,
     ) {
-        return this.searchService.getSearch(params, body);
+        return this.searchService.getSearch(params);
     }
 }
