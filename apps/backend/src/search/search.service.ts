@@ -1,5 +1,5 @@
 import { HttpException, Injectable, Logger } from "@nestjs/common";
-import { GetSearchParams } from "./params/get-search-params";
+import { GetSearchQuery } from "./querys/get-search-params";
 import { PrismaService } from "src/prisma/prisma.service";
 import { Prisma } from "@prisma/client";
 
@@ -7,62 +7,26 @@ import { Prisma } from "@prisma/client";
 export class SearchService {
     constructor(private prisma: PrismaService) {}
     private logger = new Logger();
-    async getSearch(params: GetSearchParams) {
+    async getSearch(query: GetSearchQuery) {
         try {
-            const productExists = await this.prisma.product.findFirst({
-                where: { name: params.search },
-                select: {
-                    id: true,
-                    name: true,
-                    price: true,
-                    isAvailable: true,
-                    isDeleted: true,
-                    stock: true,
-                },
-            });
-
-            console.log(productExists);
-            if (!productExists) {
-                this.logger.warn(`Product not find with: ${params.search}`);
-                throw new HttpException(
-                    {
-                        message: `Produto não encontrado com o nome: ${params.search}`,
-                    },
-                    404,
-                );
-            }
-
-            if (productExists.isDeleted) {
-                this.logger.warn(`Product deleted with: ${params.search}`);
-                throw new HttpException(
-                    {
-                        message: `Produto deletado com o nome: ${params.search}`,
-                    },
-                    404,
-                );
-            }
-
-            if (!productExists.isAvailable) {
-                this.logger.warn(
-                    `Product not available with: ${params.search}`,
-                );
-                throw new HttpException(
-                    {
-                        message: `Produto não disponível com o nome: ${params.search}`,
-                    },
-                    404,
-                );
-            }
-
             const searchResult = await this.prisma.product.findMany({
-                orderBy: {
-                    _relevance: {
-                        fields: ["name"],
-                        search: params.search,
-                        sort: "asc",
+                where: {
+                    isDeleted: false,
+                    name: {
+                        contains: query.search,
+                        mode: "insensitive",
                     },
                 },
+                take: 10,
+                orderBy: {
+                    numberOfSales: "desc",
+                },
             });
+            if (searchResult.length <= 0) {
+                return {
+                    message: `Produto não encontrado com o nome: ${query.search}`,
+                };
+            }
 
             return searchResult;
         } catch (err) {
