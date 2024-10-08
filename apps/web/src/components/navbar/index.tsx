@@ -58,8 +58,10 @@ export function Navbar() {
         </Link>
         {/* logo */}
 
-        <div className=" items-center hidden md:w-2/6 px-4 md:flex flex-cow rounded-2xl border-2">
-          <button>
+        <div className="items-center hidden md:w-2/6 px-4 md:flex flex-cow rounded-2xl border-2">
+          <button type="button">
+        
+          
             <IoSearch size={28} />
           </button>
           <input

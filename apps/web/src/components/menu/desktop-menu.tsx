@@ -6,15 +6,19 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { Avatar } from "../avatar";
+import { useQueryGetPersonalInfo } from "@/hooks/queries/get-personal-info";
 
 export function DesktopMenu() {
-  const session = useSession();
+  const { status, data: session } = useSession();
+  const isAuthorized = status === "authenticated";
+  console.log(`teste ${session}`);
 
   return (
     <div className="hidden md:flex gap-4">
       <div className="">
-        {session ? (
-          <h2>teste</h2>
+        {isAuthorized ? (
+          <Avatar  />
         ) : (
           <Popover>
             <PopoverTrigger asChild>

@@ -3,6 +3,7 @@
         "hamburgueres",
         "hookform",
         "nextauth",
-        "paes"
+        "paes",
+        "tanstack"
     ]
 }
