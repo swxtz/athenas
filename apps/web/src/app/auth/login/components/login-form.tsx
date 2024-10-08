@@ -71,7 +71,7 @@ export function LoginForm() {
                 <FormLabel className="flex w-full">E-mail</FormLabel>
                 <FormControl>
                   <Input
-                    className="h-10  rounded-none"
+                    className="h-10 rounded-none"
                     type="email"
                     placeholder="digite seu e-mail aqui"
                     {...field}

@@ -33,7 +33,7 @@ const links: ActiveLinkProps[] = [
 
 export function Navbar() {
   return (
-    <nav className=" w-full h-20 self-center md:h-32  flex flex-col">
+    <nav className=" w-full h-20 self-center md:h-32 flex flex-col">
       <div className="flex w-full items-center container justify-between p-2">
         {/* <div className="">
           <Searchbar/>
@@ -58,13 +58,13 @@ export function Navbar() {
         </Link>
         {/* logo */}
 
-        <div className=" items-center px-4 w-2/6 flex flex-cow rounded-2xl border-2">
+        <div className=" items-center hidden md:w-2/6 px-4 md:flex flex-cow rounded-2xl border-2">
           <button>
             <IoSearch size={28} />
           </button>
           <input
             type="text"
-            className="pl-2 h-12 w-full  bg-slate-100"
+            className="pl-2 h-12 w-full"
             placeholder="O que você precisa?"
           />
         </div>

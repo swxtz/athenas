@@ -5,5 +5,5 @@ interface InputErrorProps {
 }
 
 export function ErrorInputDisplay({ children }: InputErrorProps) {
-  return <p className="text-red-700 text-sm">{children}</p>;
+  return <p className="flex-initial flex text-red-700 text-sm">{children}</p>;
 }
