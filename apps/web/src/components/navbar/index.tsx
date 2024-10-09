@@ -33,7 +33,7 @@ const links: ActiveLinkProps[] = [
 
 export function Navbar() {
   return (
-    <nav className=" w-full h-20 self-center md:h-32 flex flex-col">
+    <nav className=" w-full h-20 self-center md:h-32 flex flex-col border-b-1 ">
       <div className="flex w-full items-center container justify-between p-2">
         {/* <div className="">
           <Searchbar/>

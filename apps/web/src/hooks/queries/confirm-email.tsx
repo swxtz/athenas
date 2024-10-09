@@ -17,5 +17,6 @@ export function useQueryConfirmEmail(token: string | null) {
   return useQuery({
     queryKey: ["confirm-email", token],
     queryFn: () => verifyEmail(token),
+    retry: 0,
   });
 }

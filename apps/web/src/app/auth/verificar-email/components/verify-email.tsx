@@ -1,29 +1,25 @@
 "use client";
 
 import { useMutationVerifyEmail } from "@/hooks/mutations/verify-email";
-import { SuccessMessage } from "./sucess-message";
+import { SuccessMessage } from "./success-message";
 import { ErrorMessage } from "./error-message";
 import { useQueryConfirmEmail } from "@/hooks/queries/confirm-email";
 import { useSearchParams } from "next/navigation";
 import { ParamNotFound } from "./param-not-found";
-
-interface VerifyEmailProps {
-  token: string;
-}
+import { useQueryState } from "nuqs";
+import { EmailLoading } from "./email-loading";
 
 export function VerifyEmail() {
-  const searchParams = useSearchParams();
+  const [token] = useQueryState("token");
 
-  const token = searchParams.get("token");
   const { isLoading, isSuccess } = useQueryConfirmEmail(token);
 
   if (!token) {
     return <ParamNotFound />;
   }
 
-
   if (isLoading) {
-    return <p>Verificando...</p>;
+    return <EmailLoading />;
   }
 
   return (

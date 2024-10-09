@@ -18,7 +18,7 @@ export function DesktopMenu() {
     <div className="hidden md:flex gap-4">
       <div className="">
         {isAuthorized ? (
-          <Avatar  />
+          <Avatar />
         ) : (
           <Popover>
             <PopoverTrigger asChild>
@@ -46,7 +46,7 @@ export function DesktopMenu() {
                     Entrar
                   </Button>
                 </Link>
-                <p className="text-xs">
+                <p className="text-xs mt-2">
                   {" "}
                   Não tem cadastro?{" "}
                   <Link
