@@ -5,7 +5,7 @@ interface PriceProps {
   price: number | undefined;
   numberOfInstallments: number;
   fees: number;
-  discont: boolean;
+  discount: boolean;
   discountAmount: number;
   isPayable: boolean;
   isDesktop: boolean;
@@ -15,7 +15,7 @@ export function PriceDisplay({
   price,
   numberOfInstallments,
   fees,
-  discont,
+  discount,
   discountAmount,
   isPayable,
   isDesktop,
@@ -25,7 +25,7 @@ export function PriceDisplay({
       {!isDesktop ? (
         // Mobile
         <div className="flex flex-col gap-1">
-          {discont ? (
+          {discount ? (
             <div className="flex flex-col gap-1">
               <span className="text-3xl text-zinc-700">
                 {convertToReal((price ?? 0) - discountAmount)}
@@ -70,7 +70,7 @@ export function PriceDisplay({
         </div>
       ) : (
         <div className="flex flex-col gap-1">
-          {discont ? (
+          {discount ? (
             // Desktop
             <div className="flex flex-col gap-0.5">
               <span className="text-3xl text-zinc-700">

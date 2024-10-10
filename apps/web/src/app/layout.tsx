@@ -11,7 +11,7 @@ import { Navbar } from "@/components/navbar";
 import { ReactQueryProvider } from "@/providers/react-query-providers";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "@/context/cart-context";
-import { inter, lato, montserrat, poppins, rubik } from "./fonts/fonts";
+import { inter, lato, montserrat, poppins, rubik } from "../fonts/fonts";
 import { Footer } from "@/components/footer";
 import { NextAuthSessionProvider } from "@/providers/session-provider";
 

@@ -5,6 +5,7 @@
         "nextauth",
         "nuqs",
         "paes",
-        "tanstack"
+        "tanstack",
+        "Zipcode"
     ]
 }

@@ -3,22 +3,19 @@
 import { FaRegUser } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Separator } from "../ui/separator";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { Avatar } from "../avatar";
-import { useQueryGetPersonalInfo } from "@/hooks/queries/get-personal-info";
+import { DesktopAvatar } from "./desktop-avatar";
 
 export function DesktopMenu() {
   const { status, data: session } = useSession();
   const isAuthorized = status === "authenticated";
-  console.log(`teste ${session}`);
 
   return (
     <div className="hidden md:flex gap-4">
       <div className="">
         {isAuthorized ? (
-          <Avatar />
+          <DesktopAvatar />
         ) : (
           <Popover>
             <PopoverTrigger asChild>
