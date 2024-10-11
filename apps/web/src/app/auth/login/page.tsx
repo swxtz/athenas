@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 
 export default function LoginPage() {
   return (
-    <div className="w-full bg-slate-50 rounded-lg container md:w-1/2 py-9 text-2xl md:flex flex-col ">
+    <div className="w-full bg-slate-50 rounded-lg container mt-9 md:w-1/2 py-9 text-2xl md:flex flex-col ">
       <div className="w-full bg-slate-400">
         {/* <Image
           src={imageLogin}

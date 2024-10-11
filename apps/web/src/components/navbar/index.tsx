@@ -70,7 +70,7 @@ export function Navbar() {
             placeholder="O que você precisa?"
           />
         </div>
-        {/* pesquisa */}
+        {/* pesquisa */}  
         <div className="flex-row items-center flex">
           <TbShoppingBagHeart size={28} className="mr-4" />
           {/* carrinho */}
