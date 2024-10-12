@@ -28,7 +28,10 @@ export class SearchService {
                 };
             }
 
-            return searchResult;
+            return {
+                message: "Produtos encontrados com base na sua pesquisa:",
+                data: searchResult,
+            };
         } catch (err) {
             if (err instanceof Prisma.PrismaClientKnownRequestError) {
                 console.log(err.name);

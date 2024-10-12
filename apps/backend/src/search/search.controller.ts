@@ -13,7 +13,6 @@ export class SearchController {
         @Query()
         query: GetSearchQuery,
     ) {
-        console.log(query);
         return this.searchService.getSearch(query);
     }
 }
