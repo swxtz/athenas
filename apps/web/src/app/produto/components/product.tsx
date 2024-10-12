@@ -53,9 +53,12 @@ export function Product({ slug }: ProductCardProps) {
           fees={12}
           numberOfInstallments={3}
         />
-      ) : (<ProductDisplayDesktop 
-            name={data?.name || ""}
-            coverImage={data?.coverImage || ""} />
+      ) : (<ProductDisplayDesktop
+        name={data?.name || ""}
+        coverImage={data?.coverImage || ""}
+        price={data?.price || 0}
+        fees={12}
+        numberOfInstallments={3} />
         // <div className="min-w-screen min-h-screen bg-zinc-100 ">
         //   <div className="">
         //     <div className="container pt-16">
