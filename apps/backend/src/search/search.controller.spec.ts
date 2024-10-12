@@ -39,13 +39,25 @@ describe("SearchController", () => {
     });
 
     describe("getSearch", () => {
-        it("should return products based on user search ", async () => {
+        it("should return products based on user search", async () => {
             const SearchReturn = await request(app.getHttpServer()).get(
                 "/search?search=ketchup",
             );
             expect(SearchReturn.body).toBeInstanceOf(Object);
             expect(SearchReturn.body.data.length).toBeGreaterThan(0);
             expect(SearchReturn.body.data).toBeInstanceOf(Array);
+            expect(SearchReturn.body.message).toBe(
+                "Produtos encontrados com base na sua pesquisa:",
+            );
+        });
+        it("should return products based on the proximity of the user's search", async () => {
+            const SearchReturn = await request(app.getHttpServer()).get(
+                "/search?search=ket",
+            );
+            expect(SearchReturn.body).toBeInstanceOf(Object);
+            expect(SearchReturn.body.data.length).toBeGreaterThan(0);
+            expect(SearchReturn.body.data).toBeInstanceOf(Array);
+            expect(SearchReturn.body.data[0].name).toMatch(/Ketchup/i);
             expect(SearchReturn.body.message).toBe(
                 "Produtos encontrados com base na sua pesquisa:",
             );
