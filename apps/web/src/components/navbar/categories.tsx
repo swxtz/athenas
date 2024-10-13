@@ -1,59 +1,58 @@
 "use client";
 
 import { navbarCategories } from "@/data/navbar-categories";
-import { motion, useAnimation, useScroll } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useAnimation,
+  useScroll,
+} from "framer-motion";
 import { CategoryButton } from "./category-button";
 import { useEffect, useState } from "react";
+import { cuid } from "@/utils/cuid";
 
 interface CategoriesProps {
   scrollY: number;
 }
 
 export function Categories() {
-  const [isHidden, setIsHidden] = useState(false);
-  const { scrollY } = useScroll();
-  const controls = useAnimation();
+  const [showCategories, setShowCategories] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY) {
+      // Rolando para baixo
+      setShowCategories(false);
+    } else {
+      // Rolando para cima
+      setShowCategories(true);
+    }
+    setLastScrollY(currentScrollY);
+  };
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
-    const unsubscribe = scrollY.onChange((latest) => {
-      if (latest > 1) {
-        controls
-          .start({
-            y: -50, // Sobe para cima
-            opacity: 0, // Desaparece
-            transition: { duration: 0.3, ease: "easeInOut" },
-          })
-          .then(() => {
-            // Após a animação terminar, aplica a classe 'hidden'
-            setIsHidden(true);
-          });
-      } else {
-        setIsHidden(false); // Remove o 'hidden' quando voltar ao topo
-        controls.start({
-          y: 0, // Volta à posição original
-          opacity: 1, // Torna visível
-          transition: { duration: 0.3, ease: "easeInOut" },
-        });
-      }
-    });
-
-    return () => unsubscribe(); // Limpa o listener ao desmontar o componente
-  }, [scrollY, controls]);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   return (
-    <motion.div className="px-6 lg:px-24 flex gap-9 items-center justify-center">
+    <div className="px-6 lg:px-24 flex gap-9 items-center justify-center">
       {navbarCategories.map((category) => (
-        <motion.div
-          animate={controls}
-          key={category.name}
-          className={`flex items-center justify-center ${
-            isHidden ? "hidden" : ""
+        <div
+          key={cuid()}
+          className={`transform transition-transform duration-300 ease-in-out ${
+            showCategories
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-full opacity-0"
           }`}
-          whileHover={{ scale: 1.03 }}
         >
           <CategoryButton {...category} />
-        </motion.div>
+        </div>
       ))}
-    </motion.div>
+    </div>
   );
 }

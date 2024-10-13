@@ -33,7 +33,7 @@ const links: ActiveLinkProps[] = [
 
 export function Navbar() {
   return (
-    <nav className=" w-full h-20 self-center md:h-32 flex flex-col border-b-1 ">
+    <nav className="fixed top-0 left-0 bg-white w-full h-20 self-center md:h-32 flex flex-col border-b-1 z-50">
       <div className="flex w-full items-center container justify-between p-2">
         {/* <div className="">
           <Searchbar/>
@@ -60,8 +60,6 @@ export function Navbar() {
 
         <div className="items-center hidden md:w-2/6 px-4 md:flex flex-cow rounded-2xl border-2">
           <button type="button">
-        
-          
             <IoSearch size={28} />
           </button>
           <input
@@ -70,7 +68,7 @@ export function Navbar() {
             placeholder="O que você precisa?"
           />
         </div>
-        {/* pesquisa */}  
+        {/* pesquisa */}
         <div className="flex-row items-center flex">
           <TbShoppingBagHeart size={28} className="mr-4" />
           {/* carrinho */}
@@ -81,9 +79,11 @@ export function Navbar() {
           {/* login */}
         </div>
       </div>
-      {/* <div className="p-4 h-full border-y-2">
+      <div className="p-4 bg-white h-full border-b-1">
+        <div className="mt-4">
           <Categories />
-        </div>       */}
+        </div>
+      </div>
     </nav>
   );
 }
