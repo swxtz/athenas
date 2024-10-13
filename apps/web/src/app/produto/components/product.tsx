@@ -59,61 +59,61 @@ export function Product({ slug }: ProductCardProps) {
         price={data?.price || 0}
         fees={12}
         numberOfInstallments={3} />
-        // <div className="min-w-screen min-h-screen bg-zinc-100 ">
-        //   <div className="">
-        //     <div className="container pt-16">
-        //       <div className="container bg-white rounded-md shadow-md flex flex-row">
-        //         <div className="mx-16 py-16 w-fit">
-        //           <Image
-        //             src={data?.coverImage || ""}
-        //             alt={data?.name || ""}
-        //             width={1000}
-        //             height={100}
-        //             sizes="(max-width: 500px) 13vw, (max-width: 500px) 13vw, 13vw"
-        //             className="w-[250px]"
-        //           />
-        //         </div>
+      // <div className="min-w-screen min-h-screen bg-zinc-100 ">
+      //   <div className="">
+      //     <div className="container pt-16">
+      //       <div className="container bg-white rounded-md shadow-md flex flex-row">
+      //         <div className="mx-16 py-16 w-fit">
+      //           <Image
+      //             src={data?.coverImage || ""}
+      //             alt={data?.name || ""}
+      //             width={1000}
+      //             height={100}
+      //             sizes="(max-width: 500px) 13vw, (max-width: 500px) 13vw, 13vw"
+      //             className="w-[250px]"
+      //           />
+      //         </div>
 
-        //         <div className="w-[1px] bg-border h-[500px] my-auto rounded mx-8" />
+      //         <div className="w-[1px] bg-border h-[500px] my-auto rounded mx-8" />
 
-        //         <div className="mt-32 flex flex-col gap-2">
-        //           <span className="text-2xl font-medium font-montserrat text-zinc-800">
-        //             {data?.name}
-        //           </span>
-        //           <div className="">
-        //             <ProductStars />
-        //           </div>
-        //           <div className="mt-4">
-        //             <PriceDisplay
-        //               fees={12}
-        //               numberOfInstallments={3}
-        //               price={data?.price}
-        //               discount={true}
-        //               discountAmount={3.99}
-        //               isPayable={true}
-        //               isDesktop={true}
-        //             />
-        //           </div>
+      //         <div className="mt-32 flex flex-col gap-2">
+      //           <span className="text-2xl font-medium font-montserrat text-zinc-800">
+      //             {data?.name}
+      //           </span>
+      //           <div className="">
+      //             <ProductStars />
+      //           </div>
+      //           <div className="mt-4">
+      //             <PriceDisplay
+      //               fees={12}
+      //               numberOfInstallments={3}
+      //               price={data?.price}
+      //               discount={true}
+      //               discountAmount={3.99}
+      //               isPayable={true}
+      //               isDesktop={true}
+      //             />
+      //           </div>
 
-        //           <div className="">
-        //             <div className="flex flex-col gap-2">
-        //               <Button className="bg-green-700 hover:bg-green-800">
-        //                 Compre agora
-        //               </Button>
-        //               <Button
-        //                 variant={"outline"}
-        //                 className=""
-        //                 onClick={handleAddToCart}
-        //               >
-        //                 Adicionar ao carrinho
-        //               </Button>
-        //             </div>
-        //           </div>
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        // </div>
+      //           <div className="">
+      //             <div className="flex flex-col gap-2">
+      //               <Button className="bg-green-700 hover:bg-green-800">
+      //                 Compre agora
+      //               </Button>
+      //               <Button
+      //                 variant={"outline"}
+      //                 className=""
+      //                 onClick={handleAddToCart}
+      //               >
+      //                 Adicionar ao carrinho
+      //               </Button>
+      //             </div>
+      //           </div>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>
       )}
     </>
   );

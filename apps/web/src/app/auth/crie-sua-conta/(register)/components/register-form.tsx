@@ -51,10 +51,10 @@ export function RegisterForm() {
                 <FormLabel className="flex w-full" >Nome Completo</FormLabel>
                 <FormControl>
                   <Input 
-                  type="text" 
-                  className="h-10 rounded-none"
-                  placeholder="Nome e sobrenome" 
-                  {...field} />
+                    type="text" 
+                    className="h-10 rounded-none"
+                    placeholder="Nome e sobrenome" 
+                    {...field} />
                 </FormControl>
 
                 {form.formState.errors.name && (
@@ -74,10 +74,10 @@ export function RegisterForm() {
                 <FormLabel className="flex w-full">E-mail</FormLabel>
                 <FormControl>
                   <Input 
-                  type="email" 
-                  placeholder="" 
-                  className="h-10 rounded-none"
-                  {...field} />
+                    type="email" 
+                    placeholder="" 
+                    className="h-10 rounded-none"
+                    {...field} />
                 </FormControl>
 
                 {form.formState.errors.email && (
@@ -97,10 +97,10 @@ export function RegisterForm() {
                 <FormLabel className="flex w-full">Senha</FormLabel>
                 <FormControl>
                   <Input 
-                  type="password" 
-                  placeholder="••••••••" 
-                  className="h-10 rounded-none"
-                  {...field} />
+                    type="password" 
+                    placeholder="••••••••" 
+                    className="h-10 rounded-none"
+                    {...field} />
                 </FormControl>
 
                 {form.formState.errors.password && (
