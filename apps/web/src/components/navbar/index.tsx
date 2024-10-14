@@ -80,7 +80,7 @@ export function Navbar() {
         </div>
       </div>
       <div className="p-4 bg-white h-full border-b-1">
-        <div className="mt-4">
+        <div className="mt-4 hidden md:flex">
           <Categories />
         </div>
       </div>

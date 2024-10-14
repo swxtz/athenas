@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Product } from "../components/product";
-import { ProductDesktop } from "../components/product-desktop";
 
 const product = {
   name: "Molho ketchup junior 380g",
