@@ -4,6 +4,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
 import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
 import { Prisma } from "@prisma/client";
+import { EventsService } from "src/events/events.service";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -21,18 +22,19 @@ export class BuysService {
         private prisma: PrismaService,
         private utils: UtilsService,
         private jwt: JwtService,
+        private eventsService: EventsService,
     ) {}
 
     private logger = new Logger();
 
-    async createBuyOrderPix(rawtoken: string, products: CreateBuyOrderPixDTO) {
-        const token = this.utils.removeBearer(rawtoken);
+    async createBuyOrderPix(rawToken: string, products: CreateBuyOrderPixDTO) {
+        const token = this.utils.removeBearer(rawToken);
 
         try {
-            const jwtpayload: JWTBearerTokenPayLoad =
+            const jwtPayload: JWTBearerTokenPayLoad =
                 await this.jwt.verifyAsync(token);
 
-            if (!jwtpayload) {
+            if (!jwtPayload) {
                 throw new HttpException(
                     {
                         message: "Token inválido",
@@ -42,7 +44,7 @@ export class BuysService {
             }
 
             const user = await this.prisma.user.findFirstOrThrow({
-                where: { id: jwtpayload.id },
+                where: { id: jwtPayload.id },
                 select: {
                     id: true,
                     email: true,
@@ -124,6 +126,8 @@ export class BuysService {
                     },
                 },
             });
+
+            await this.eventsService.createPaymentStatus(user.id, buyOrder.id);
 
             this.logger.debug(`Buy order created with: ${buyOrder.id}`);
 

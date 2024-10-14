@@ -1,6 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
-import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from "next-auth/next";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -9,52 +9,53 @@ const nextAuthOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "email", type: "text"},
-        password: { label: "password", type: "password"}
+        email: { label: "email", type: "text" },
+        password: { label: "password", type: "password" },
       },
 
       async authorize(credentials, req) {
-        const response = await fetch(`${apiUrl}/auth`, {
+        const response = await fetch(`${apiUrl}/auth/login`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             email: credentials?.email,
-            password: credentials?.password
-          })
+            password: credentials?.password,
+          }),
         });
-
 
         const user = await response.json();
 
         if (user && response.ok) {
-          return user;
+          return user.data;
         }
 
         return null;
-      }
-    })
+      },
+    }),
   ],
   pages: {
-    "signIn": "/login"
+    signIn: "/auth/login",
   },
 
   callbacks: {
     async jwt({ token, user }) {
+      // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
       user && (token.user = user);
       return token;
     },
 
     async session({ session, token }) {
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       session = token.user as any;
       return session;
-    }
+    },
   },
 
   jwt: {
-    maxAge: 60 * 60 * 24 * 14 // 14 days
-  }
+    maxAge: 60 * 60 * 24 * 14, // 14 days
+  },
 };
 
 export default nextAuthOptions;

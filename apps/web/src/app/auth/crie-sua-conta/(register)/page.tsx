@@ -9,10 +9,12 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <div className="mt-12 container py-8 rounded shadow bg-zinc-100 ">
-      <h2 className="text-center font-semibold text-xl">Bem-vindo de volta!</h2>
-      <Separator className="w-4/5 my-4 mx-auto" />
-      <RegisterForm />
+    <div className="w-full bg-slate-50 rounded-lg container mt-9 md:w-1/2 py-11 text-2xl md:flex flex-col ">
+      <div className="w-full container text-center flex flex-col gap-4">
+        <h2 className="font-semibold container text-x2l">Seja Bem-vindo!</h2>
+        <h3 className="font-semibold flex w-full text-xs">Crie sua conta</h3>
+        <RegisterForm />
+      </div>
     </div>
   );
 }

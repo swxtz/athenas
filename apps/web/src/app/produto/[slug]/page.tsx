@@ -34,7 +34,7 @@ export default function ProductPage({ params }: ProductParams) {
       <div className="">
         <Product slug={params.slug} />
       </div>
-
+    
     </div>
   );
 }

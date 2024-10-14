@@ -6,7 +6,7 @@ import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shop
 import { Prisma } from "@prisma/client";
 import { UpdateProductInShoppingCartParams } from "./params/update-product-in-shopping-cart.params";
 import { UpdateProductInShoppingCartDTO } from "./dtos/update-product-in-shopping-cart.dto";
-import { DeleteProductInShoppingCsartParam } from "./params/delete-product-in-user-shopping-cart.params";
+import { DeleteProductInShoppingCartParam } from "./params/delete-product-in-user-shopping-cart.params";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -489,7 +489,7 @@ export class ShoppingCartService {
 
     async deleteProductInUserShoppingCart(
         rawtoken: string,
-        params: DeleteProductInShoppingCsartParam,
+        params: DeleteProductInShoppingCartParam,
     ) {
         const token = this.utils.removeBearer(rawtoken);
 

@@ -42,15 +42,19 @@ export function RegisterForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col gap-5">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nome Completo</FormLabel>
+                <FormLabel className="flex w-full" >Nome Completo</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="João da Silva" {...field} />
+                  <Input 
+                    type="text" 
+                    className="h-10 rounded-none"
+                    placeholder="Nome e sobrenome" 
+                    {...field} />
                 </FormControl>
 
                 {form.formState.errors.name && (
@@ -67,9 +71,13 @@ export function RegisterForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>E-mail</FormLabel>
+                <FormLabel className="flex w-full">E-mail</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="joao@silva.com" {...field} />
+                  <Input 
+                    type="email" 
+                    placeholder="" 
+                    className="h-10 rounded-none"
+                    {...field} />
                 </FormControl>
 
                 {form.formState.errors.email && (
@@ -86,9 +94,13 @@ export function RegisterForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Senha</FormLabel>
+                <FormLabel className="flex w-full">Senha</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="********" {...field} />
+                  <Input 
+                    type="password" 
+                    placeholder="••••••••" 
+                    className="h-10 rounded-none"
+                    {...field} />
                 </FormControl>
 
                 {form.formState.errors.password && (
@@ -99,9 +111,19 @@ export function RegisterForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" variant={"default"} className="">
-            Entrar
+          <div className="w-full flex">
+            <input type="checkbox" name="" id="" />
+            <p className="md:text-xs text-[10px] leading-3	 text-slate-400 flex m-1">Eu li e concordo com os Termos de Privacidade e estou ciente de como minhas informações serão utilizadas.</p>
+          </div>    
+          <Button
+            type="submit"
+            variant={"primary"}
+            className=" h-12 rounded-full"
+          >
+            {" "}
+            Criar conta{" "}
           </Button>
+          
         </div>
       </form>
     </Form>

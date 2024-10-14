@@ -5,6 +5,7 @@ node_modules
 .env.local
 dist
 .docker/
+Dockerfile.prod
 
 # Local .terraform directories
 **/.terraform/*

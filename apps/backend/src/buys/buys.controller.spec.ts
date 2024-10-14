@@ -10,6 +10,7 @@ import request from "supertest";
 import { INestApplication } from "@nestjs/common";
 import { PrismaMocks } from "src/prisma/mocks";
 import { v4 as uuidv4 } from "uuid";
+import { EventsService } from "src/events/events.service";
 
 describe("BuysController", () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -24,7 +25,13 @@ describe("BuysController", () => {
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [BuysController],
-            providers: [BuysService, UtilsService, JwtService, PrismaService],
+            providers: [
+                BuysService,
+                UtilsService,
+                JwtService,
+                PrismaService,
+                EventsService,
+            ],
         }).compile();
 
         controller = module.get<BuysController>(BuysController);

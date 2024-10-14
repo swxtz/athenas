@@ -11,8 +11,9 @@ import { Navbar } from "@/components/navbar";
 import { ReactQueryProvider } from "@/providers/react-query-providers";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "@/context/cart-context";
-import { inter, lato, montserrat, poppins, rubik } from "./fonts/fonts";
+import { inter, lato, montserrat, poppins, rubik } from "../fonts/fonts";
 import { Footer } from "@/components/footer";
+import { NextAuthSessionProvider } from "@/providers/session-provider";
 
 export const metadata: Metadata = {
   title: "RN Distribuidora",
@@ -37,22 +38,28 @@ export default function RootLayout({
         )}
       >
         <ReactQueryProvider>
-          <CartProvider>
-            <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-              <div className="">
-                <Navbar />
-              </div>
-              <main className="">
-                <div className="flex min-h-screen flex-col justify-between">
-                  {children}
-                  <Footer />
+          <NextAuthSessionProvider>
+            <CartProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+              >
+                <div className="">
+                  <Navbar />
                 </div>
-              </main>
-            </ThemeProvider>
-            <Analytics />
-            <SpeedInsights />
-            <Toaster />
-          </CartProvider>
+                <main className="">
+                  <div className="flex min-h-screen flex-col justify-between">
+                    {children}
+                    <Footer />
+                  </div>
+                </main>
+              </ThemeProvider>
+              <Analytics />
+              <SpeedInsights />
+              <Toaster />
+            </CartProvider>
+          </NextAuthSessionProvider>
         </ReactQueryProvider>
       </body>
     </html>

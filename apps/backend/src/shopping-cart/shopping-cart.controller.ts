@@ -19,7 +19,7 @@ import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shop
 import { UpdateProductInShoppingCartParams } from "./params/update-product-in-shopping-cart.params";
 import { UpdateProductInShoppingCartDTO } from "./dtos/update-product-in-shopping-cart.dto";
 import { Throttle } from "@nestjs/throttler";
-import { DeleteProductInShoppingCsartParam } from "./params/delete-product-in-user-shopping-cart.params";
+import { DeleteProductInShoppingCartParam } from "./params/delete-product-in-user-shopping-cart.params";
 
 @Controller("shopping-cart")
 @ApiTags("Shopping Cart")
@@ -67,7 +67,7 @@ export class ShoppingCartController {
     @UsePipes(new ValidationPipe({ transform: true }))
     async deleteProductInShoppingCart(
         @Param(new ValidationPipe({ transform: true }))
-        params: DeleteProductInShoppingCsartParam,
+        params: DeleteProductInShoppingCartParam,
         @Headers("authorization") token: string,
     ) {
         return this.shoppingCartService.deleteProductInUserShoppingCart(

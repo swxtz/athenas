@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -10,9 +11,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// generator erd {
-//   provider = "prisma-erd-generator"
-// }
+generator erd {
+  provider = "prisma-erd-generator"
+}
 
 model User {
   id   String @id @default(cuid())
@@ -25,12 +26,12 @@ model User {
 
   userType UserType @default(consumer) @map("user_type")
 
-  createdAt     DateTime        @default(now()) @map("created_at")
-  updatedAt     DateTime        @updatedAt @map("updated_at")
-  UserPurchases UserPurchases[]
-  ShoppingCart  ShoppingCart[]
-  BuyOrder      BuyOrder[]
-  events        events[]
+  createdAt            DateTime              @default(now()) @map("created_at")
+  updatedAt            DateTime              @updatedAt @map("updated_at")
+  UserPurchases        UserPurchases[]
+  ShoppingCart         ShoppingCart[]
+  BuyOrder             BuyOrder[]
+  paymentNotifications PaymentNotification[]
 
   @@map("users")
 }
@@ -217,9 +218,10 @@ model BuyOrder {
   paymentMethod PaymentMethod @map("payment_method")
   paymentStatus PaymentStatus @map("payment_status")
 
-  createdAt        DateTime           @default(now()) @map("created_at")
-  updatedAt        DateTime           @updatedAt @map("updated_at")
-  BuyOrderProducts BuyOrderProducts[]
+  createdAt           DateTime             @default(now()) @map("created_at")
+  updatedAt           DateTime             @updatedAt @map("updated_at")
+  BuyOrderProducts    BuyOrderProducts[]
+  paymentNotification PaymentNotification?
 
   @@map("buy_orders")
 }
@@ -239,7 +241,7 @@ enum PaymentStatus {
 }
 
 model BuyOrderProducts {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   buyOrderId String   @map("buy_order_id")
   buyOrder   BuyOrder @relation(fields: [buyOrderId], references: [id])
@@ -253,16 +255,30 @@ model BuyOrderProducts {
   @@map("buy_order_products")
 }
 
-model events {
+model PaymentNotification {
   id String @id @default(cuid())
 
-  userId String @map("user_id")
-  user   User   @relation(fields: [userId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+  buyOrder BuyOrder @relation(fields: [buyOrderId], references: [id])
+
+  userId     String @map("user_id")
+  buyOrderId String @unique @map("buy_order_id")
+
+  status PaymentNotificationStatus @default(Pending)
 
   message String
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("events")
+  @@map("payment_notifications")
 }
+
+enum PaymentNotificationStatus {
+  Done
+  Failed
+  Pending
+  Refunded
+  Processing
+}
+

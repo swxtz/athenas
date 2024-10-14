@@ -19,6 +19,7 @@ import { CategoriesModule } from "./categories/categories.module";
 import { BuysModule } from "./buys/buys.module";
 import { BuysNotificationsModule } from "./buys-notifications/buys-notifications.module";
 import { EventsModule } from "./events/events.module";
+import { SearchModule } from "./search/search.module";
 
 @Module({
     imports: [
@@ -43,6 +44,7 @@ import { EventsModule } from "./events/events.module";
         BuysModule,
         BuysNotificationsModule,
         EventsModule,
+        SearchModule,
     ],
     controllers: [],
     providers: [],

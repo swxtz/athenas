@@ -11,6 +11,7 @@ import { AddProductInUserShoppingCartDTO } from "./dtos/add-product-in-user-shop
 import { v4 as uuidv4 } from "uuid";
 import { PrismaMocks } from "src/prisma/mocks";
 import { UpdateProductInShoppingCartDTO } from "./dtos/update-product-in-shopping-cart.dto";
+import { ConfigService } from "@nestjs/config";
 
 describe("ShoppingCartController", () => {
     let controller: ShoppingCartController;
@@ -25,6 +26,7 @@ describe("ShoppingCartController", () => {
             controllers: [ShoppingCartController],
             providers: [
                 ShoppingCartService,
+                ConfigService,
                 PrismaService,
                 UtilsService,
                 JwtService,
@@ -303,10 +305,36 @@ describe("ShoppingCartController", () => {
                 expect(req.body.statusCode).toBe(401);
             });
         });
-        // describe("validation", () => {
-        //     it("should not be possible to update a product without id", async () => {
-        //
-        //     });
+        // it("should not be possible to update a product without a id", async () => {
+        //     const users = new PrismaMocks().users();
+        //     const userToken = await request(app.getHttpServer())
+        //         .post("/auth/login")
+        //         .send({
+        //             email: users[2].email,
+        //             password: users[2].password,
+        //         });
+
+        //     const products = await request(app.getHttpServer()).get(
+        //         "/products/get-best-sellers",
+        //     );
+
+        //     const id = uuidv4();
+
+        //     const product: UpdateProductInShoppingCartDTO = {
+        //         amount: products.body.data[0].stock + 1,
+        //         name: "",
+        //         order: "increment",
+        //     };
+
+        //     const req = await request(app.getHttpServer())
+        //         .put("/shopping-cart/update-product-in-shopping-cart")
+        //         .set("authorization", `Bearer ${userToken.body.data.token}`)
+        //         .send(product);
+
+        //     expect(req.statusCode).toBe(404);
+        //     expect(req.body.message).toBe(
+        //         `Produto não encontrado com o id: ${id}`,
+        //     );
         // });
     });
 });
