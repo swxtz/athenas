@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { ProductCardDesktop } from "./product-card-desktop";
+import { ProductCardMobile } from "./product-card-mobile";
 
 interface ProductCardProps {
   productId: string;
@@ -65,7 +66,10 @@ export function ProductCard({ productId }: ProductCardProps) {
           handleRemoveProduct={handleRemoveProduct}
         />
       ) : (
-        <h1>teste</h1>
+        <ProductCardMobile
+          name={data?.name}
+          coverImage={data?.coverImage}
+        />
       )}
     </div>
   );
