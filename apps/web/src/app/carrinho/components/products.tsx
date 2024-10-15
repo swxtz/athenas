@@ -20,7 +20,7 @@ export function Products() {
   return (
     <div className="mt-9 bg-white rounded-[10px]">
       <div className="container py-6 border-b-2  border-[#F9A84D]/20">
-        <h2 className="font-semibold text-2xl font-inter ">
+        <h2 className="font-semibold text-2xl font-inter">
           Carrinho de produtos
         </h2>
       </div>

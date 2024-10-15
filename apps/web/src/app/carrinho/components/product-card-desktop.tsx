@@ -5,6 +5,7 @@ import { QuantityButton } from "./quantity-button";
 import { convertToReal } from "@/utils/convert-to-real";
 import { Skeleton } from "@/components/ui/skeleton";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { truncateText } from "@/utils/truncate-text";
 
 interface ProductCardDesktopProps {
   name: string;
@@ -48,11 +49,13 @@ export function ProductCardDesktop({
             {name}
           </h3>
 
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-2">
             <div className="flex flex-col items-start justify-between">
-              <p className="font-semibold text-sm text-brown-500 font-inter">
-                {description}
-              </p>
+              {description && (
+                <p className="font-medium text-sm text-brown-500 font-inter">
+                  {truncateText(description, 40)}
+                </p>
+              )}
 
               <Button variant={"link"} className="text-brown-500 px-0">
                 <Link href={`/produto/${slug}`}>Ver produto</Link>

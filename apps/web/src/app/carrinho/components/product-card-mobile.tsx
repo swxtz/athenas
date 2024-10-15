@@ -1,6 +1,7 @@
 import { convertToReal } from "@/utils/convert-to-real";
 import Image from "next/image";
 import { QuantityButton } from "./quantity-button";
+import { truncateText } from "@/utils/truncate-text";
 
 interface ProductCardMobileProps {
   name: string;
@@ -34,9 +35,11 @@ export function ProductCardMobile({
       </div>
       <div className="w-full">
         <div className="flex flex-col justify-between h-full w-full">
-          <h2 className="text-sm font-semibold font-inter text-brown-500">
-            {name}
-          </h2>
+          {name && (
+            <h2 className="text-sm font-medium font-inter text-brown-500">
+              {truncateText(name, 6)}
+            </h2>
+          )}
 
           <div className="flex items-center justify-between w-full">
             <p className="font-semibold text-sm  text-brown-500 font-inter">
