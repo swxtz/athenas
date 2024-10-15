@@ -1,8 +1,9 @@
 "use client";
 
 import { Minus, Plus, Trash2Icon } from "lucide-react";
+import { HTMLAttributes } from "react";
 
-interface QuantityButtonProps {
+interface QuantityButtonProps extends HTMLAttributes<HTMLDivElement> {
   quantity: number;
   onRemoveProduct: () => void;
   onIncrement: () => void;
@@ -14,9 +15,10 @@ export function QuantityButton({
   onDecrement,
   onIncrement,
   onRemoveProduct,
+  ...rest
 }: QuantityButtonProps) {
   return (
-    <div className="flex gap-4 font-semibold text-xs md:text-lg text-brown-500 font-inter items-center">
+    <div className="flex gap-4 font-semibold text-xs md:text-lg text-brown-500 font-inter items-center" {...rest}>
       <p className="text-brown-500/70 text-xs md:text-base">Qntd.</p>
       <div className="flex w-[100px] justify-center gap-2 items-center border-1 border-brown-500 rounded px-1 md:px-3 py-1 md:py-2">
         {quantity <= 1 ? (

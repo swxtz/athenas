@@ -71,6 +71,7 @@ export function ProductCard({ productId }: ProductCardProps) {
           coverImage={data?.coverImage}
           price={data?.price}
           quantity={quantity}
+          slug={data?.slug}
           handleDecrementQuantity={handleDecrementQuantity}
           handleIncrementQuantity={handleIncrementQuantity}
           handleRemoveProduct={handleRemoveProduct}
