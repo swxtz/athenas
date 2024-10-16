@@ -51,14 +51,15 @@ export function ProductCard({ productId }: ProductCardProps) {
   return (
     <div className="container h-[150px] md:h-[220px] w-full py-8 md:py-0 md:mt-9 flex flex-row gap-8 border-b-2 border-[#F9A84D]/20">
       {isLoading && <Skeleton className="h-[150px] w-full rounded-xl" />}
+      {error && <Skeleton className="h-[150px] w-full rounded-xl" />}
 
       {isDesktop ? (
         <ProductCardDesktop
-          name={data?.name}
-          coverImage={data?.coverImage}
-          description={data?.description}
-          slug={data?.slug}
-          price={data?.price}
+          name={data?.name || ""}
+          coverImage={data?.coverImage || ""}
+          description={data?.description || ""}
+          slug={data?.slug || ""}
+          price={data?.price || 0}
           quantity={quantity}
           isLoading={isLoading}
           handleDecrementQuantity={handleDecrementQuantity}
@@ -67,11 +68,11 @@ export function ProductCard({ productId }: ProductCardProps) {
         />
       ) : (
         <ProductCardMobile
-          name={data?.name}
-          coverImage={data?.coverImage}
-          price={data?.price}
+          name={data?.name || ""}
+          coverImage={data?.coverImage || ""}
+          price={data?.price || 0}
           quantity={quantity}
-          slug={data?.slug}
+          slug={data?.slug || ""}
           handleDecrementQuantity={handleDecrementQuantity}
           handleIncrementQuantity={handleIncrementQuantity}
           handleRemoveProduct={handleRemoveProduct}

@@ -1,9 +1,12 @@
 "use client";
 
 import { api } from "@/lib/axios";
+import { Product } from "@/types/api/product";
 import { useQuery } from "@tanstack/react-query";
 
-async function getProduct(id:string) {
+
+
+async function getProduct(id:string): Promise<Product> {
   const res = await api.get(`products/get-product-by-id/${id}`);
   return res.data;
 }
