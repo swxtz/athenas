@@ -24,6 +24,7 @@ import { Searchbar } from "@/app/components/searchbar";
 import { MobileMenu } from "../menu/mobile-menu";
 import { DesktopMenu } from "../menu/desktop-menu";
 import { Categories } from "./categories";
+import { Button } from "../ui/button";
 
 const links: ActiveLinkProps[] = [
   { href: "/", children: "Home", icon: <Home /> },
@@ -70,7 +71,11 @@ export function Navbar() {
         </div>
         {/* pesquisa */}
         <div className="flex-row items-center flex">
-          <TbShoppingBagHeart size={28} className="mr-4" />
+          <Button variant={"ghost"} className="flex justify-center items-center p-2 mr-2" asChild>
+            <Link href="/carrinho" className="">
+              <TbShoppingBagHeart size={28} className="" />
+            </Link>
+          </Button>
           {/* carrinho */}
 
           <div className="hidden md:flex items-center gap-8">
