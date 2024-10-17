@@ -136,7 +136,38 @@ export class AuthService {
         }
     }
 
-    async getUserEmail(body: GetEmailForResetPasswordDTO) {}
+    async getUserEmail(body: GetEmailForResetPasswordDTO) {
+        const verifyUser = await this.prisma.user.findFirst({
+            where: { email: body.email },
+            select: { id: true, emailVerified: true },
+        });
+
+        if (!verifyUser) {
+            throw new HttpException(
+                "Não há uma conta vinculada a esse email",
+                400,
+            );
+        }
+
+        if (verifyUser.emailVerified == false) {
+            throw new HttpException("Verifique seu email primeiro", 400);
+        }
+
+        console.log("KKKKKKK");
+
+        const payload = {
+            id: verifyUser.id,
+            email: body.email,
+        };
+
+        const token = await this.jwtService.signAsync(payload, {
+            expiresIn: 60 * 10,
+            secret: this.configService.getOrThrow("JWT_SECRET"),
+        });
+
+        console.log("KKKKKKK");
+        console.log(token);
+    }
 
     async resetPassword(body: ResetPasswordDTO) {
         const jwtIsValid = await this.jwtIsValid(body.token);
