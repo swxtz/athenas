@@ -1,14 +1,12 @@
 "use client";
 
-import { Skeleton } from "@/components/ui/skeleton";
 import { useCart } from "@/hooks/use-cart";
 import { useEffect, useState } from "react";
 import { EmptyCart } from "./empty-cart";
 import { cuid } from "@/utils/cuid";
 import { ResumeCard } from "./resume-card";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { convertToReal } from "@/utils/convert-to-real";
+import { TotalPrice } from "./total-price";
 
 export function Resume() {
   const context = useCart();
@@ -37,17 +35,8 @@ export function Resume() {
         ))}
       </div>
 
-      <Separator />
-
-      <div className="flex flex-col gap-4 justify-center py-3 container">
-        <div className="text-brown-500 flex flex-row justify-between font-inter">
-          <span className="font-semibold">Total: </span>
-          <span className="font-semibold">{convertToReal(2000 / 100)}</span>
-        </div>
-        <Button className="mx-auto bg-green-600 w-full font-semibold text-white text-lg hover:bg-green-700 hover:text-zinc-200 py-4 ">
-          Finalizar Compra
-        </Button>
-      </div>
+      {context?.state.items.length !== 0 && <Separator />}
+      {context?.state.items.length !== 0 && <TotalPrice />}
     </div>
   );
 }
