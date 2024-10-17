@@ -1,6 +1,7 @@
 import {
     Body,
     Controller,
+    Get,
     HttpCode,
     Patch,
     Post,
@@ -15,6 +16,7 @@ import { LoginDTO } from "./dtos/sign-in.dto";
 import { VerifyEmailDTO } from "./dtos/verify-email.dto";
 import { ResetPasswordDTO } from "./dtos/reset-password.dto";
 import { AuthGuard } from "./auth.guard";
+import { GetEmailForResetPasswordDTO } from "./dtos/get-email-for-reset-password.dto";
 
 @Controller("auth")
 @ApiTags("Auth")
@@ -33,7 +35,12 @@ export class AuthController {
     async verifyEmail(@Body() body: VerifyEmailDTO) {
         return this.authService.verifyEmail(body.token);
     }
-    
+    @Get("get-email-for-reset-password")
+    @UsePipes(new ValidationPipe({ transform: true }))
+    async getemailresetpass(@Body() body: GetEmailForResetPasswordDTO) {
+        return this.authService.getUserEmail(body);
+    }
+
     @Patch("reset-password")
     @UsePipes(new ValidationPipe({ transform: true }))
     @UseGuards(AuthGuard)
