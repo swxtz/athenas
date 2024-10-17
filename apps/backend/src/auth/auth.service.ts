@@ -135,5 +135,7 @@ export class AuthService {
         }
     }
 
-    async resetPassword(token: ResetPasswordDTO) {}
+    async resetPassword(body: ResetPasswordDTO) {
+        const jwtIsValid = await this.jwtIsValid(body.token);
+    }
 }

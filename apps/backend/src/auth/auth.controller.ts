@@ -33,8 +33,8 @@ export class AuthController {
     async verifyEmail(@Body() body: VerifyEmailDTO) {
         return this.authService.verifyEmail(body.token);
     }
-
-    @Patch()
+    
+    @Patch("reset-password")
     @UsePipes(new ValidationPipe({ transform: true }))
     @UseGuards(AuthGuard)
     async resetpass(@Body() body: ResetPasswordDTO) {
