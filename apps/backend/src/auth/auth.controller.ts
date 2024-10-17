@@ -1,9 +1,20 @@
-import { Body, Controller, HttpCode, Post, UsePipes } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    HttpCode,
+    Patch,
+    Post,
+    UseGuards,
+    UsePipes,
+    ValidationPipe,
+} from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { ApiTags } from "@nestjs/swagger";
 import { ZodValidationPipe } from "nestjs-zod";
 import { LoginDTO } from "./dtos/sign-in.dto";
 import { VerifyEmailDTO } from "./dtos/verify-email.dto";
+import { ResetPasswordDTO } from "./dtos/reset-password.dto";
+import { AuthGuard } from "./auth.guard";
 
 @Controller("auth")
 @ApiTags("Auth")
@@ -21,5 +32,12 @@ export class AuthController {
     @UsePipes(new ZodValidationPipe(VerifyEmailDTO))
     async verifyEmail(@Body() body: VerifyEmailDTO) {
         return this.authService.verifyEmail(body.token);
+    }
+
+    @Patch()
+    @UsePipes(new ValidationPipe({ transform: true }))
+    @UseGuards(AuthGuard)
+    async resetpass(@Body() body: ResetPasswordDTO) {
+        return this.authService.resetPassword(body);
     }
 }

@@ -5,6 +5,7 @@ import { ArgonService } from "src/argon/argon.service";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { VerifyEmailResponse } from "./response/verify-email.response";
+import { ResetPasswordDTO } from "./dtos/reset-password.dto";
 
 export interface signinReturn {
     data: {
@@ -133,4 +134,6 @@ export class AuthService {
             this.logger.error(err.message);
         }
     }
+
+    async resetPassword(token: ResetPasswordDTO) {}
 }

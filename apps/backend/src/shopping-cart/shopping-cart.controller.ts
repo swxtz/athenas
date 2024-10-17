@@ -49,6 +49,7 @@ export class ShoppingCartController {
     @Put(":id")
     @Throttle({ default: { limit: 20, ttl: 60000 } })
     @UsePipes(new ValidationPipe({ transform: true }))
+    @UseGuards(AuthGuard)
     async updateProduct(
         @Body() body: UpdateProductInShoppingCartDTO,
         @Param(new ValidationPipe({ transform: true }))
@@ -65,6 +66,7 @@ export class ShoppingCartController {
     @Delete("/delete-product/:id")
     @HttpCode(200)
     @UsePipes(new ValidationPipe({ transform: true }))
+    @UseGuards(AuthGuard)
     async deleteProductInShoppingCart(
         @Param(new ValidationPipe({ transform: true }))
         params: DeleteProductInShoppingCartParam,
@@ -78,6 +80,7 @@ export class ShoppingCartController {
 
     @Delete("delete-all-products-from-user-shopping-cart")
     @HttpCode(200)
+    @UseGuards(AuthGuard)
     async deleteManyProductInShoppingCart(
         @Headers("authorization") token: string,
     ) {
