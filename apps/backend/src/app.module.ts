@@ -20,6 +20,9 @@ import { BuysModule } from "./buys/buys.module";
 import { BuysNotificationsModule } from "./buys-notifications/buys-notifications.module";
 import { EventsModule } from "./events/events.module";
 import { SearchModule } from "./search/search.module";
+import { EmailsModule } from "./emails/emails.module";
+import { MailerModule } from "@nestjs-modules/mailer";
+import { ReactAdapter } from "@webtre/nestjs-mailer-react-adapter";
 
 @Module({
     imports: [
@@ -45,8 +48,23 @@ import { SearchModule } from "./search/search.module";
         BuysNotificationsModule,
         EventsModule,
         SearchModule,
+        EmailsModule,
+        MailerModule.forRoot({
+            transport: {
+                host: "smtp.resend.com",
+                port: 465,
+                secure: true,
+                auth: {
+                    user: "resend",
+                    pass: "re_HTZaFmzr_L1NRF9hQd8xYQyRmV3GURYFA",
+                },
+            },
+            template: {
+                dir: __dirname + "/templates",
+                adapter: new ReactAdapter(),
+            },
+        }),
     ],
     controllers: [],
-    providers: [],
 })
 export class AppModule {}
