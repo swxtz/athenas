@@ -40,9 +40,9 @@ describe("ShoppingCartController", () => {
         expect(controller).toBeDefined();
     });
 
-    describe("create product in shopping cart", () => {
+    describe("add product in shopping cart", () => {
         describe("auth", () => {
-            it("shouldn't create a product in the cart without being authenticated", async () => {
+            it("shouldn't add a product in the cart without being authenticated", async () => {
                 const product: AddProductInUserShoppingCartDTO = {
                     amount: 1,
                     id: uuidv4(),
@@ -58,7 +58,7 @@ describe("ShoppingCartController", () => {
                 );
                 expect(req.body.statusCode).toBe(401);
             });
-            it("should not be possible to create add a product with an invalid token", async () => {
+            it("should not be possible to add a product with an invalid token", async () => {
                 const product: AddProductInUserShoppingCartDTO = {
                     id: "1",
                     amount: 1,
@@ -110,8 +110,6 @@ describe("ShoppingCartController", () => {
                 const products = await request(app.getHttpServer()).get(
                     "/products/get-best-sellers",
                 );
-
-                // console.log(userToken.body);
 
                 const product: AddProductInUserShoppingCartDTO = {
                     amount: products.body.data[0].stock + 1,
@@ -192,12 +190,12 @@ describe("ShoppingCartController", () => {
                         email: users[2].email,
                         password: users[2].password,
                     });
-
                 const products = await request(app.getHttpServer()).get(
-                    "/products/get-best-sellers",
+                    "/products/get-products-deleted",
                 );
 
-                const id = uuidv4();
+                const id = products.body.data[0].id;
+                console.log(products.body.data[0].id);
 
                 const product: AddProductInUserShoppingCartDTO = {
                     amount: products.body.data[0].stock + 1,
@@ -305,36 +303,32 @@ describe("ShoppingCartController", () => {
                 expect(req.body.statusCode).toBe(401);
             });
         });
-        // it("should not be possible to update a product without a id", async () => {
-        //     const users = new PrismaMocks().users();
-        //     const userToken = await request(app.getHttpServer())
-        //         .post("/auth/login")
-        //         .send({
-        //             email: users[2].email,
-        //             password: users[2].password,
-        //         });
+        it("should not be possible to update a product without a id", async () => {
+            const users = new PrismaMocks().users();
+            const userToken = await request(app.getHttpServer())
+                .post("/auth/login")
+                .send({
+                    email: users[2].email,
+                    password: users[2].password,
+                });
 
-        //     const products = await request(app.getHttpServer()).get(
-        //         "/products/get-best-sellers",
-        //     );
+            const products = await request(app.getHttpServer()).get(
+                "/products/get-best-sellers",
+            );
 
-        //     const id = uuidv4();
+            const product: UpdateProductInShoppingCartDTO = {
+                amount: products.body.data[0].stock + 1,
+                name: "",
+                order: "increment",
+            };
 
-        //     const product: UpdateProductInShoppingCartDTO = {
-        //         amount: products.body.data[0].stock + 1,
-        //         name: "",
-        //         order: "increment",
-        //     };
+            const req = await request(app.getHttpServer())
+                .put("/shopping-cart/update-product-in-shopping-cart")
+                .set("authorization", `Bearer ${userToken.body.data.token}`)
+                .send(product);
 
-        //     const req = await request(app.getHttpServer())
-        //         .put("/shopping-cart/update-product-in-shopping-cart")
-        //         .set("authorization", `Bearer ${userToken.body.data.token}`)
-        //         .send(product);
-
-        //     expect(req.statusCode).toBe(404);
-        //     expect(req.body.message).toBe(
-        //         `Produto não encontrado com o id: ${id}`,
-        //     );
-        // });
+            expect(req.statusCode).toBe(400);
+            console.log(req.body.message);
+        });
     });
 });

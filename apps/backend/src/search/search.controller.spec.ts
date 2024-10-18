@@ -62,5 +62,21 @@ describe("SearchController", () => {
                 "Produtos encontrados com base na sua pesquisa:",
             );
         });
+
+        it("should return products sorted by numberOfSales in descending order", async () => {
+            const SearchReturn = await request(app.getHttpServer()).get(
+                "/search?search=ketchup",
+            );
+            expect(SearchReturn.body).toBeInstanceOf(Object);
+            expect(SearchReturn.body.data.length).toBeGreaterThan(0);
+            expect(SearchReturn.body.data).toBeInstanceOf(Array);
+
+            const products = SearchReturn.body.data;
+            const sortedProducts = [...products].sort(
+                (a, b) => b.numberOfSales - a.numberOfSales,
+            );
+            console.log(sortedProducts);
+            expect(products).toEqual(sortedProducts);
+        });
     });
 });

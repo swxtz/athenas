@@ -15,6 +15,7 @@ export class PrismaMocks {
                 coverImage:
                     "https://http2.mlstatic.com/D_NQ_NP_623362-MLA76151912404_052024-O.webp",
                 buyPrice: 1000,
+                isDeleted: true,
                 isAvailable: true,
                 localPickup: true,
                 numberOfSales: 1000,
