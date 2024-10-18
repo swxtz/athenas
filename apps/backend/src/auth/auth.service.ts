@@ -7,7 +7,7 @@ import { ConfigService } from "@nestjs/config";
 import { VerifyEmailResponse } from "./response/verify-email.response";
 import { ResetPasswordDTO } from "./dtos/reset-password.dto";
 import { GetEmailForResetPasswordDTO } from "./dtos/get-email-for-reset-password.dto";
-import nodemailer from "nodemailer";
+import { EmailsService } from "src/emails/emails.service";
 
 export interface signinReturn {
     data: {
@@ -29,6 +29,7 @@ export class AuthService {
         private argon: ArgonService,
         private jwtService: JwtService,
         private configService: ConfigService,
+        private emailsService: EmailsService,
     ) {}
 
     private logger = new Logger(AuthService.name);
@@ -164,6 +165,12 @@ export class AuthService {
         const token = await this.jwtService.signAsync(payload, {
             expiresIn: 60 * 10,
             secret: this.configService.getOrThrow("JWT_SECRET"),
+        });
+
+        this.emailsService.sendAccountVerificationEmail({
+            from: "onboarding@resend.dev",
+            to: "alf4r6@gmail.com",
+            subject: "redefina sua conta",
         });
 
         console.log("KKKKKKK");

@@ -5,6 +5,9 @@ import { PrismaMocks } from "./mocks";
 import { ArgonService } from "src/argon/argon.service";
 import argon2 from "argon2";
 
+import { ConfigService } from "@nestjs/config";
+import { JwtService } from "src/jwt/jwt.service";
+
 const prisma = new PrismaClient();
 
 const utils = new UtilsService();
