@@ -5,6 +5,7 @@ import { QueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { CategorySection } from "./components/category-section";
 import { Categories } from "./components/categories";
+import { BannerMain } from "./components/banner-main";
 
 async function getProducts() {
   const res = await api.get("/categories/all");
@@ -13,9 +14,13 @@ async function getProducts() {
 
 export default async function Home() {
   return (
-    <main className="container min-h-screen min-w-screen">
-      <BestSellers />
+    <main className="container mt-36 md:mt-48 min-h-screen min-w-screen">
+      <BannerMain />
 
+      {/* carrossel */}
+
+      <BestSellers />
+      
       <Categories />
 
       <div className="mt-24 md:mt-48" />
