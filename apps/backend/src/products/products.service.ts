@@ -9,9 +9,9 @@ import { createId as CUID } from "@paralleldrive/cuid2";
 import { UtilsService } from "src/utils/utils.service";
 import { JwtService } from "@nestjs/jwt";
 import { ConvertedImage } from "./interfaces/converted-image.interface";
-import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
-import { getProductsNotAvailableDTO } from "./dtos/get-products-not-available.dto";
-import { getProductsDeletedQuery } from "./querys/get-products-deleted.query";
+import { GetRandomProductsQuery } from "./querys/get-products-randomly.query";
+import { GetProductsNotAvailableQuery } from "./querys/get-products-not-available.dto";
+import { GetBestSellersQuery } from "./querys/get-bests-sellers.dto";
 
 // interface JWTBearerTokenPayload {
 //     id: string;
@@ -282,7 +282,7 @@ export class ProductsService {
         return image;
     }
 
-    async getBestSellersProducts(query?: GetBestSellersDTO) {
+    async getBestSellersProducts(query?: GetBestSellersQuery) {
         const bestSellerProduct = await this.prisma.product.findMany({
             take: query.limit || 10,
             orderBy: {
@@ -312,7 +312,7 @@ export class ProductsService {
         return product;
     }
 
-    async getProductsNotAvailable(query?: getProductsNotAvailableDTO) {
+    async getProductsNotAvailable(query?: GetProductsNotAvailableQuery) {
         const products = await this.prisma.product.findMany({
             take: query.limit || 10,
             where: { isAvailable: false },
@@ -324,7 +324,7 @@ export class ProductsService {
         };
     }
 
-    async getProductsDeleted(query?: getProductsDeletedQuery) {
+    async getProductsDeleted(query?: GetBestSellersQuery) {
         const products = await this.prisma.product.findMany({
             take: query.limit || 10,
             where: { isDeleted: true },
@@ -334,5 +334,17 @@ export class ProductsService {
             message: "Produtos deletados retornados com sucesso",
             data: [...products],
         };
+    }
+
+    async getRandomProducts(query?: GetRandomProductsQuery) {
+        const count = await this.prisma.product.count();
+        const randomNumberProduct = Math.floor(Math.random() * count);
+
+        const products = await this.prisma.product.findMany({
+            skip: randomNumberProduct,
+            take: query.limit || 30,
+        });
+
+        return products;
     }
 }

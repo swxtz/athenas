@@ -19,9 +19,11 @@ import { CreateProductDTO } from "./dtos/create-product.dto";
 import { ApiTags } from "@nestjs/swagger";
 import { UploadCoverImageParams } from "./dtos/upload-cover-image.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { GetBestSellersDTO } from "./dtos/get-bests-sellers.dto";
 import { SkipThrottle } from "@nestjs/throttler";
-import { getProductsDeletedQuery } from "./querys/get-products-deleted.query";
+import { GetProductsDeletedQuery } from "./querys/get-products-deleted.query";
+import { GetBestSellersQuery } from "./querys/get-bests-sellers.dto";
+import { GetRandomProductsQuery } from "./querys/get-products-randomly.query";
+import { GetProductsNotAvailableQuery } from "./querys/get-products-not-available.dto";
 
 @ApiTags("Products")
 @Controller("products")
@@ -73,7 +75,7 @@ export class ProductsController {
     @Get("get-best-sellers")
     async getBestSellersProducts(
         @Query(new ValidationPipe({ transform: true }))
-        query?: GetBestSellersDTO,
+        query?: GetBestSellersQuery,
     ) {
         return this.productsService.getBestSellersProducts(query);
     }
@@ -86,7 +88,7 @@ export class ProductsController {
     @Get("get-products-not-available")
     async getProductsNotAvailable(
         @Query(new ValidationPipe({ transform: true }))
-        query?: GetBestSellersDTO,
+        query?: GetProductsNotAvailableQuery,
     ) {
         return this.productsService.getProductsNotAvailable(query);
     }
@@ -94,8 +96,16 @@ export class ProductsController {
     @Get("get-products-deleted")
     async getProductsDeleted(
         @Query(new ValidationPipe({ transform: true }))
-        query?: getProductsDeletedQuery,
+        query?: GetProductsDeletedQuery,
     ) {
         return this.productsService.getProductsDeleted(query);
+    }
+
+    @Get("get-random-products")
+    async getProductsRandomly(
+        @Query(new ValidationPipe({ transform: true }))
+        query?: GetRandomProductsQuery,
+    ) {
+        return this.productsService.getRandomProducts(query)
     }
 }
