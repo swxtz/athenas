@@ -2,6 +2,7 @@ import {
     Body,
     Controller,
     Get,
+    Headers,
     Param,
     Post,
     UseGuards,
@@ -27,7 +28,8 @@ export class CepController {
     @UseGuards(AuthGuard)
     async createUserAdress(
         @Body(new ValidationPipe()) body: CreateUserAdressDTO,
+        @Headers("authorization") token: string,
     ) {
-        return this.cepService.createUserAdress(body);
+        return this.cepService.createUserAdress(body, token);
     }
 }

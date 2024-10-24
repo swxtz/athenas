@@ -20,5 +20,5 @@ export class CepService {
         return viacepResponse.data;
     }
 
-    async createUserAdress(body) {}
+    async createUserAdress(body, token) {}
 }
