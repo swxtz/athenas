@@ -166,8 +166,6 @@ describe("ProductsController", () => {
 
             expect(result).toEqual(returnedBestSellersProduct);
             expect(service.getBestSellersProducts);
-            //expect(result.data.length).toBeGreaterThan(1);
-            //expect(result.data.length).toBeLessThan(11);
         });
         it("", async () => {
             const query = {
@@ -176,7 +174,9 @@ describe("ProductsController", () => {
 
             const result = await controller.getBestSellersProducts(query);
 
-            expect(result);
+            expect(result).toBeLessThan(9);
         });
     });
+
+    describe("get-random-products",() => {});
 });
