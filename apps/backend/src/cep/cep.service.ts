@@ -19,4 +19,6 @@ export class CepService {
 
         return viacepResponse.data;
     }
+
+    async createUserAdress(body) {}
 }
