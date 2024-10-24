@@ -1,21 +1,20 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { BuysController } from "./buys.controller";
-import { BuysService } from "./buys.service";
-import { PrismaService } from "src/prisma/prisma.service";
-import { JwtService } from "@nestjs/jwt";
-import { UtilsService } from "src/utils/utils.service";
-import { createNestAppInstance } from "test/test.helpers";
+import { PaymentsController } from "./payments.controller";
+import { PaymentsService } from "./payments.service";
 import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
 import request from "supertest";
 import { INestApplication } from "@nestjs/common";
 import { PrismaMocks } from "src/prisma/mocks";
+import { createNestAppInstance } from "test/test.helpers";
 import { v4 as uuidv4 } from "uuid";
+import { UtilsService } from "src/utils/utils.service";
+import { JwtService } from "@nestjs/jwt";
+import { PrismaService } from "src/prisma/prisma.service";
 import { EventsService } from "src/events/events.service";
 import { ConfigService } from "@nestjs/config";
 
-describe("BuysController", () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let controller: BuysController;
+describe("PaymentsController", () => {
+    let controller: PaymentsController;
     let app: INestApplication;
     const users = new PrismaMocks().users();
 
@@ -25,9 +24,9 @@ describe("BuysController", () => {
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            controllers: [BuysController],
+            controllers: [PaymentsController],
             providers: [
-                BuysService,
+                PaymentsService,
                 ConfigService,
                 UtilsService,
                 JwtService,
@@ -36,7 +35,11 @@ describe("BuysController", () => {
             ],
         }).compile();
 
-        controller = module.get<BuysController>(BuysController);
+        controller = module.get<PaymentsController>(PaymentsController);
+    });
+
+    it("should be defined", () => {
+        expect(controller).toBeDefined();
     });
 
     describe("create buy order pix", () => {
@@ -52,7 +55,7 @@ describe("BuysController", () => {
                 };
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .send(products);
 
                 expect(req.statusCode).toBe(401);
@@ -73,7 +76,7 @@ describe("BuysController", () => {
                 };
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", "Bearer token")
                     .send(products);
 
@@ -98,7 +101,7 @@ describe("BuysController", () => {
                     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", `Bearer ${token}`)
                     .send(products);
 
@@ -126,7 +129,7 @@ describe("BuysController", () => {
                 const token = loginRequest.body.data.token;
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", `Bearer ${token}`)
                     .send(products);
 
@@ -157,7 +160,7 @@ describe("BuysController", () => {
                 const token = loginRequest.body.data.token;
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", `Bearer ${token}`)
                     .send(products);
 
@@ -188,7 +191,7 @@ describe("BuysController", () => {
                 const token = loginRequest.body.data.token;
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", `Bearer ${token}`)
                     .send(products);
 
@@ -225,7 +228,7 @@ describe("BuysController", () => {
                 const token = loginRequest.body.data.token;
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", `Bearer ${token}`)
                     .send(products);
 
@@ -259,7 +262,7 @@ describe("BuysController", () => {
                 const token = loginRequest.body.data.token;
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", `Bearer ${token}`)
                     .send(products);
 
@@ -290,7 +293,7 @@ describe("BuysController", () => {
                 const token = loginRequest.body.data.token;
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", `Bearer ${token}`)
                     .send(products);
 
@@ -326,7 +329,7 @@ describe("BuysController", () => {
                 const token = loginRequest.body.data.token;
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", `Bearer ${token}`)
                     .send(products);
 
@@ -367,7 +370,7 @@ describe("BuysController", () => {
                 const token = loginRequest.body.data.token;
 
                 const req = await request(app.getHttpServer())
-                    .post("/buys/create-buy-order/pix")
+                    .post("/payments/create-buy-order/pix")
                     .set("Authorization", `Bearer ${token}`)
                     .send(products);
 
