@@ -6,6 +6,7 @@ import { api } from "@/lib/axios";
 import { CategorySection } from "./components/category-section";
 import { Categories } from "./components/categories";
 import { BannerMain } from "./components/banner-main";
+import { AboutUs } from "./components/card-about-us/index";
 
 async function getProducts() {
   const res = await api.get("/categories/all");
@@ -19,9 +20,11 @@ export default async function Home() {
 
       {/* carrossel */}
 
-      <BestSellers />
+      {/* <BestSellers />
       
-      <Categories />
+      <Categories /> */}
+
+      <AboutUs />
 
       <div className="mt-24 md:mt-48" />
     </main>

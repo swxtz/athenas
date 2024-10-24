@@ -9,6 +9,6 @@ interface CategoryButtonProps {
 
 export function CategoryButton({ href, name, image }: CategoryButtonProps) {
   return (
-    <Link href={href} className="text-zinc-950 bg-brown-100 px-6 py-3 rounded-lg font-semibold">{name}</Link>
+    <Link href={href} className="text-zinc-950 bg-brown-100 hover:bg-brown-200 px-6 py-3 flex rounded-lg font-semibold">{name}</Link>
   );
 }
