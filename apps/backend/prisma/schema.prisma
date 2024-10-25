@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
@@ -32,6 +32,7 @@ model User {
   ShoppingCart         ShoppingCart[]
   BuyOrder             BuyOrder[]
   paymentNotifications PaymentNotification[]
+  UserAdress           UserAdress[]
 
   @@map("users")
 }
@@ -39,6 +40,21 @@ model User {
 enum UserType {
   consumer
   admim
+}
+
+model UserAdress {
+  id     String @id @default(cuid())
+  userId String @unique @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  street       String @map("street")
+  houseNumber  Int    @map("house_number")
+  neighborhood String @map("neighborhood")
+  city         String @map("city")
+  state        String @map("state")
+  complement   String @map("complement")
+  apartment    Int    @map("apartment")
+  apBlock      Int    @map("ap_block")
 }
 
 model Product {
@@ -281,4 +297,3 @@ enum PaymentNotificationStatus {
   Refunded
   Processing
 }
-
