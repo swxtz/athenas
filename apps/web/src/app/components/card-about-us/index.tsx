@@ -1,14 +1,11 @@
 export function AboutUs(){
     return(
         <div >
-            <div className="bg-red-500 flex flex-col w-1/3 p-5 text-justify text-sm gap-1 text-gray-200 rounded-sm">
-                <p className="">Quer saber mais sobre nós? </p>
-                <input className="bg-red-500 border hover:bprder-whiter text-sm p-2 text-gray-200  border-gray-300 w-8/12 hover:bg-red-400 h-7" 
-                type="text" 
-                name="" 
-                placeholder="Digite seu email " id="" />
-                <p>Digite seu endereço e fique por dentro de todas as novidades e informações exclusivas</p> 
+            <div className="bg-green-500 flex flex-col h-36 justify-center w-1/3 p-5 text-justify text-sm gap-2 text-gray-200 rounded-sm">
+                <p className="">Você já nos conhece?? </p>
+                <p> Clique aqui para saber nossa história, valores e tudo o que nos move.</p> 
+                <button className="border hover:bg-green-600 p-2 w-1/3" >Sobre nós</button>
             </div>
         </div>
-    )
+    )   
 }
