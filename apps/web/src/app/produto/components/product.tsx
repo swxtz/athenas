@@ -60,10 +60,12 @@ export function Product({ slug }: ProductCardProps) {
         //   price={data?.price || 0}
         //   fees={12}
         //   numberOfInstallments={3} />
+
         <div className="min-w-screen min-h-screen bg-zinc-100 ">
+
           <div className="">
-            <div className="container pt-16">
-              <div className="container bg-white rounded-md shadow-md flex flex-row">
+            <div className="container pt-8">
+              <div className="container bg-white rounded-md shadow-md flex flex-row pb-8">
                 <div className="mx-16 py-16 w-fit">
                   <Image
                     src={data?.coverImage || ""}
@@ -78,6 +80,11 @@ export function Product({ slug }: ProductCardProps) {
                 <div className="w-[1px] bg-border h-[500px] my-auto rounded mx-8" />
 
                 <div className="mt-32 flex flex-col gap-2">
+                  <div className="">
+                    <p className="flex justify-center items-center rounded-2xl p-1 bg-orange-400 text-white text-xs w-28">
+                      mais vendidos
+                    </p>
+                  </div>
                   <span className="text-2xl font-medium font-montserrat text-zinc-800">
                     {data?.name}
                   </span>
@@ -95,7 +102,13 @@ export function Product({ slug }: ProductCardProps) {
                       isDesktop={true}
                     />
                   </div>
-
+                  <div className="  flex flex-col gap-2 text-zinc-600 leading-tight">
+                    <p className="text-2xl font-semibold"> DESCRIÇÃO DO PRODUTO</p>
+                    <p className="text-sm  text-justify  "> 
+                    pão de 73g é macio e leve, ideal para hambúrgueres. Com 12 unidades por embalagem, oferece praticidade para lanchonetes e eventos. Seu sabor delicado realça os recheios, tornando cada lanche mais saboroso.
+                    Perfeito para diversas preparações, é a escolha ideal para quem busca qualidade e versatilidade em suas refeições. Experimente e eleve seus lanches a um novo nível!
+                    </p>
+                  </div>
                   <div className="">
                     <div className="flex flex-col gap-2">
                       <Button className="bg-green-700 hover:bg-green-800">

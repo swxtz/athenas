@@ -21,9 +21,9 @@ export default async function Home() {
 
       {/* carrossel */}
 
-      {/* <BestSellers />
+       <BestSellers />
       
-      <Categories /> */}
+      <Categories />  
 
       <InformationsCard />
 

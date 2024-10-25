@@ -3,7 +3,7 @@ import { InformationMore } from "../card-more-information";
 
 export function InformationsCard(){
     return(
-        <div>
+        <div className="flex flex-row gap-11">
 
             <InformationMore />
 

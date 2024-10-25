@@ -30,7 +30,7 @@ export default function ProductPage({ params }: ProductParams) {
 
   return (
     <div>
-      <div className="">
+      <div className="mt-36 md:mt-48">
         <Product slug={params.slug} />
       </div>
     
