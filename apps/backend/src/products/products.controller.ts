@@ -106,6 +106,6 @@ export class ProductsController {
         @Query(new ValidationPipe({ transform: true }))
         query?: GetRandomProductsQuery,
     ) {
-        return this.productsService.getRandomProducts(query)
+        return this.productsService.getRandomProducts(query);
     }
 }

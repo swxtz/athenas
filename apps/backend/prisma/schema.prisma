@@ -44,7 +44,7 @@ enum UserType {
 
 model UserAdress {
   id     String @id @default(cuid())
-  userId String @unique @map("user_id")
+  userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])
 
   street       String @map("street")
