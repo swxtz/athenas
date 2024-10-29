@@ -30,6 +30,7 @@ export class CepController {
         @Body(new ValidationPipe()) body: CreateUserAdressDTO,
         @Headers("authorization") token: string,
     ) {
+        console.log(body.cep);
         return this.cepService.createUserAdress(body, token);
     }
 }

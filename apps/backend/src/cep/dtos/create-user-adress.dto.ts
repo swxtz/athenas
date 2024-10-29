@@ -3,24 +3,11 @@ import { IsNotEmpty, IsOptional } from "class-validator";
 
 export class CreateUserAdressDTO {
     @ApiProperty()
-    @IsNotEmpty({ message: "O valor não pode ser vazio" })
-    street: string;
+    cep: number;
 
     @ApiProperty()
     @IsNotEmpty({ message: "O valor não pode ser vazio" })
     houseNumber: number;
-
-    @ApiProperty()
-    @IsNotEmpty({ message: "O valor não pode ser vazio" })
-    neighborhood: string;
-
-    @ApiProperty()
-    @IsNotEmpty({ message: "O valor não pode ser vazio" })
-    city: string;
-
-    @ApiProperty()
-    @IsNotEmpty({ message: "O valor não pode ser vazio" })
-    state: string;
 
     @ApiProperty()
     @IsOptional()
@@ -28,9 +15,9 @@ export class CreateUserAdressDTO {
 
     @ApiProperty()
     @IsOptional()
-    apartment: number;
+    apartment: boolean;
 
     @ApiProperty()
     @IsOptional()
-    apBlock: number;
+    apBlock: string;
 }

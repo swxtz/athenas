@@ -47,14 +47,15 @@ model UserAdress {
   userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])
 
+  cep          Int @map("cep")
   street       String @map("street")
   houseNumber  Int    @map("house_number")
   neighborhood String @map("neighborhood")
   city         String @map("city")
   state        String @map("state")
   complement   String @map("complement")
-  apartment    Int    @map("apartment")
-  apBlock      Int    @map("ap_block")
+  apartment    Boolean    @map("apartment")
+  apBlock      String    @map("ap_block")
 }
 
 model Product {
