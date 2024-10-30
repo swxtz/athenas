@@ -2,13 +2,13 @@ import { AboutUs } from "../card-about-us";
 import { InformationMore } from "../card-more-information";
 
 export function InformationsCard(){
-    return(
-        <div className="flex flex-row gap-11">
+  return(
+    <div className="flex flex-row gap-11">
 
-            <InformationMore />
+      <InformationMore />
 
-            <AboutUs />
+      <AboutUs />
 
-        </div>
-    )
+    </div>
+  );
 }

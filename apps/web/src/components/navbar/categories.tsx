@@ -40,7 +40,7 @@ export function Categories() {
   }, [lastScrollY]);
 
   return (
-    <div className="px-6 lg:px-24 flex gap-9 items-center justify-center">
+    <div className="px-6 lg:px-24 flex gap-9 items-center justify-center mx-auto">
       {navbarCategories.map((category) => (
         <div
           key={cuid()}
