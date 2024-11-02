@@ -22,7 +22,7 @@ export default async function PaymentMethod() {
         <h1 className="font-medium text-2xl">Finalizar compra</h1>
 
         <div className="">
-          <FreightCard price={100} deliveryDate={twoDaysFromNow} />
+          <FreightCard price={100} deliveryDate={twoDaysFromNow}  />
         </div>
       </div>
     </div>
