@@ -47,7 +47,7 @@ model UserAdress {
   userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])
 
-  cep          Int @map("cep")
+  cep          String @map("cep")
   street       String @map("street")
   houseNumber  Int    @map("house_number")
   neighborhood String @map("neighborhood")

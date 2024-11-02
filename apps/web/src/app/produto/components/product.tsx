@@ -18,15 +18,20 @@ import { useQueryGetProductBySlug } from "@/hooks/queries/get-product-by-slug";
 import { useCart } from "@/hooks/use-cart";
 import { ProductDisplayMobile } from "./product-display-mobile";
 import { ProductDisplayDesktop } from "./product-display-desktop";
+import { QuantityButton } from "@/app/carrinho/components/quantity-button";
+import { BestSellers } from "@/app/components/best-sellers/index";
+import { CardPurchaseFreight } from "./card-purchase-freight";
 
 interface ProductCardProps {
   slug: string;
-}
+} 
 
 export function Product({ slug }: ProductCardProps) {
   const cartContext = useCart();
   const isDesktop = useMediaQuery(768);
   const { data, isLoading, error } = useQueryGetProductBySlug(slug);
+
+
 
   const zipcodeCookie = nookies.get(null).zipcode;
 
@@ -66,20 +71,20 @@ export function Product({ slug }: ProductCardProps) {
           <div className="">
             <div className="container pt-8">
               <div className="container bg-white rounded-md shadow-md flex flex-row pb-8">
-                <div className="mx-16 py-16 w-fit">
+                <div className="p-12 py-36 mx-auto w-fit">
                   <Image
                     src={data?.coverImage || ""}
                     alt={data?.name || ""}
                     width={1000}
                     height={100}
                     sizes="(max-width: 500px) 13vw, (max-width: 500px) 13vw, 13vw"
-                    className="w-[250px]"
+                    className=" w-[300px] min-w-[100px]"
                   />
                 </div>
 
                 <div className="w-[1px] bg-border h-[500px] my-auto rounded mx-8" />
 
-                <div className="mt-32 flex flex-col gap-2">
+                <div className="mt-20 flex flex-col gap-2">
                   <div className="">
                     <p className="flex justify-center items-center rounded-2xl p-1 bg-orange-400 text-white text-xs w-28">
                       mais vendidos
@@ -109,25 +114,35 @@ export function Product({ slug }: ProductCardProps) {
                     Perfeito para diversas preparações, é a escolha ideal para quem busca qualidade e versatilidade em suas refeições. Experimente e eleve seus lanches a um novo nível!
                     </p>
                   </div>
-                  <div className="">
-                    <div className="flex flex-col gap-2">
+                  <div className="flex flex-row gap-16 py-5">
+
+                    <QuantityButton />
+
+                    <div className="flex flex-col gap-3 w-full">
                       <Button className="bg-green-700 hover:bg-green-800">
                         Compre agora
                       </Button>
                       <Button
                         variant={"outline"}
-                        className=""
+                        className="w-full"
                         onClick={handleAddToCart}
                       >
                         Adicionar ao carrinho
                       </Button>
-                    </div>
+                  </div>   
                   </div>
                 </div>
+                <div>
+                  <CardPurchaseFreight />
+                </div>
               </div>
+              
             </div>
+            
           </div>
+          
         </div>
+        
       )}
     </>
   );
