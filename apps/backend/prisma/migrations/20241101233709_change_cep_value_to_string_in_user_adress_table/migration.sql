@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "UserAdress" ALTER COLUMN "cep" SET DATA TYPE TEXT;
