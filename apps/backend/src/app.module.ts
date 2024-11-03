@@ -23,6 +23,7 @@ import { SearchModule } from "./search/search.module";
 import { EmailsModule } from "./emails/emails.module";
 import { MailerModule } from "@nestjs-modules/mailer";
 import { ReactAdapter } from "@webtre/nestjs-mailer-react-adapter";
+import { PaymentsModule } from "./payments/payments.module";
 
 @Module({
     imports: [
@@ -64,6 +65,7 @@ import { ReactAdapter } from "@webtre/nestjs-mailer-react-adapter";
                 adapter: new ReactAdapter(),
             },
         }),
+        PaymentsModule,
     ],
     controllers: [],
 })

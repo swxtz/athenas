@@ -11,6 +11,7 @@ import { INestApplication } from "@nestjs/common";
 import { PrismaMocks } from "src/prisma/mocks";
 import { v4 as uuidv4 } from "uuid";
 import { EventsService } from "src/events/events.service";
+import { ConfigService } from "@nestjs/config";
 
 describe("BuysController", () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -27,6 +28,7 @@ describe("BuysController", () => {
             controllers: [BuysController],
             providers: [
                 BuysService,
+                ConfigService,
                 UtilsService,
                 JwtService,
                 PrismaService,

@@ -18,9 +18,9 @@ export function QuantityButton({
   ...rest
 }: QuantityButtonProps) {
   return (
-    <div className="flex gap-4 font-semibold text-xs md:text-lg text-brown-500 font-inter items-center" {...rest}>
+    <div className="flex gap-4 font-semibold text-xs md:text-lg text-brown-500 font-inter item-center" {...rest}>
       <p className="text-brown-500/70 text-xs md:text-base">Qntd.</p>
-      <div className="flex w-[100px] justify-center gap-2 items-center border-1 border-brown-500 rounded px-1 md:px-3 py-1 md:py-2">
+      <div className="flex w-[100px] justify-center gap-2 items-center border-1 border-brown-500 rounded h-9">
         {quantity <= 1 ? (
           <Trash2Icon onClick={onRemoveProduct} className="cursor-pointer" />
         ) : (

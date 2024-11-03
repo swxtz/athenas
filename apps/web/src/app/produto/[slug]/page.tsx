@@ -21,16 +21,17 @@ export const metadata: Metadata = {
 };
 
 interface ProductParams {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function ProductPage({ params }: ProductParams) {
+export default async function ProductPage(props: ProductParams) {
+  const params = await props.params;
 
   return (
     <div>
-      <div className="">
+      <div className="mt-36 md:mt-48">
         <Product slug={params.slug} />
       </div>
     

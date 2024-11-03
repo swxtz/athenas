@@ -4,6 +4,7 @@ import { CategoriesService } from "./categories.service";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
 import { JwtService } from "@nestjs/jwt";
+import { ConfigService } from "@nestjs/config";
 
 describe("CategoriesController", () => {
     let controller: CategoriesController;
@@ -16,6 +17,7 @@ describe("CategoriesController", () => {
                 PrismaService,
                 UtilsService,
                 JwtService,
+                ConfigService,
             ],
         }).compile();
 
