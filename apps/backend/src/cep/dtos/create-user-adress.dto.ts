@@ -1,9 +1,10 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsOptional } from "class-validator";
+import { Type } from "class-transformer";
+import { IsNotEmpty, IsOptional, IsInt, IsNumber } from "class-validator";
 
 export class CreateUserAdressDTO {
     @ApiProperty()
-    cep: number;
+    cep: string;
 
     @ApiProperty()
     @IsNotEmpty({ message: "O valor não pode ser vazio" })
