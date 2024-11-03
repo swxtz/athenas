@@ -3,18 +3,24 @@ import { convertToReal } from "@/utils/convert-to-real";
 import { getDeliveryInfo } from "@/utils/delivery-days";
 import Image from "next/image";
 import sedex from "@/images/freight/sedex.png";
+import { RadioGroupItem } from "@/components/ui/radio-group";
+import { HTMLAttributes } from "react";
+import { Label } from "@/components/ui/label";
 
-interface FreightCardProps {
+interface FreightCardProps extends HTMLAttributes<HTMLLabelElement> {
   price: number;
   deliveryDate: Date;
+
 }
 
 export function FreightCard({
   price,
   deliveryDate,
+
+ 
 }: FreightCardProps) {
   return (
-    <div className="px-4 py-5 bg-white rounded w-[600px]">
+    <div className="px-4 py-5 bg-white rounded w-[600px]" >
       <div className="flex items-start justify-between">
         <div className="flex gap-4">
           <div className="flex flex-col gap-1">
