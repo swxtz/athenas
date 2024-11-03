@@ -3,6 +3,7 @@ import { Poppins, Rubik, Lato, Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { cn } from "@/lib/utils";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -46,15 +47,17 @@ export default function RootLayout({
                 defaultTheme="light"
                 enableSystem
               >
-                <div className="">
-                  <Navbar />
-                </div>
-                <main className="">
-                  <div className="flex min-h-screen flex-col justify-between">
-                    {children}
-                    <Footer />
+                <NuqsAdapter>
+                  <div className="">
+                    <Navbar />
                   </div>
-                </main>
+                  <main className="">
+                    <div className="flex min-h-screen flex-col justify-between">
+                      {children}
+                      <Footer />
+                    </div>
+                  </main>
+                </NuqsAdapter>
               </ThemeProvider>
               <Analytics />
               <SpeedInsights />
