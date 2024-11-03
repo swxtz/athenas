@@ -1,10 +1,10 @@
-import nextAuthOptions from "@/app/api/auth/[...nextauth]/providers";
-import { getServerSession } from "next-auth";
+
 import { redirect } from "next/navigation";
 import { FreightCard } from "./components/freight-card";
+import { auth } from "@/app/api/auth/[...nextauth]/providers";
 
 export default async function PaymentMethod() {
-  const session = await getServerSession(nextAuthOptions);
+  const session = await auth();
 
   if (!session) {
     redirect("/auth/login");
