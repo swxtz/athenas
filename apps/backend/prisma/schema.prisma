@@ -11,9 +11,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-generator erd {
-  provider = "prisma-erd-generator"
-}
+// generator erd {
+//   provider = "prisma-erd-generator"
+// }
 
 model User {
   id   String @id @default(cuid())
@@ -47,15 +47,15 @@ model UserAdress {
   userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])
 
-  cep          Int @map("cep")
-  street       String @map("street")
-  houseNumber  Int    @map("house_number")
-  neighborhood String @map("neighborhood")
-  city         String @map("city")
-  state        String @map("state")
-  complement   String @map("complement")
-  apartment    Boolean    @map("apartment")
-  apBlock      String    @map("ap_block")
+  cep          Int     @map("cep")
+  street       String  @map("street")
+  houseNumber  Int     @map("house_number")
+  neighborhood String  @map("neighborhood")
+  city         String  @map("city")
+  state        String  @map("state")
+  complement   String  @map("complement")
+  apartment    Boolean @map("apartment")
+  apBlock      String  @map("ap_block")
 }
 
 model Product {
