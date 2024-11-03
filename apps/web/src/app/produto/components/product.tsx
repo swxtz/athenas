@@ -129,7 +129,7 @@ export function Product({ slug }: ProductCardProps) {
                       >
                         Adicionar ao carrinho
                       </Button>
-                  </div>   
+                    </div>   
                   </div>
                 </div>
                 <div>
