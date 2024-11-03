@@ -1,10 +1,16 @@
 interface CategoriesParams {
-  params: {
+  params: Promise<{
     name: string;
-  };
+  }>;
 }
 
-export default function CategoriesPage({ params: { name } }: CategoriesParams) {
+export default async function CategoriesPage(props: CategoriesParams) {
+  const params = await props.params;
+
+  const {
+    name
+  } = params;
+
   return (
     <div>
       <h1>CategoriesPage</h1>

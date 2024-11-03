@@ -14,6 +14,7 @@ import { CartProvider } from "@/context/cart-context";
 import { inter, lato, montserrat, poppins, rubik } from "../fonts/fonts";
 import { Footer } from "@/components/footer";
 import { NextAuthSessionProvider } from "@/providers/session-provider";
+import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
   title: "RN Distribuidora",

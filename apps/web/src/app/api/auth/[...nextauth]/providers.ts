@@ -1,10 +1,9 @@
-import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-const nextAuthOptions: NextAuthOptions = {
+export const { auth, handlers, signIn, signOut, unstable_update } = NextAuth({
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -56,6 +55,5 @@ const nextAuthOptions: NextAuthOptions = {
   jwt: {
     maxAge: 60 * 60 * 24 * 14, // 14 days
   },
-};
-
-export default nextAuthOptions;
+});
+  
