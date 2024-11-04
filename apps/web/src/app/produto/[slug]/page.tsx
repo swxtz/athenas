@@ -34,7 +34,6 @@ export default async function ProductPage(props: ProductParams) {
       <div className="mt-36 md:mt-48">
         <Product slug={params.slug} />
       </div>
-    
     </div>
   );
 }

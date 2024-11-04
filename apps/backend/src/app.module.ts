@@ -24,6 +24,7 @@ import { EmailsModule } from "./emails/emails.module";
 import { MailerModule } from "@nestjs-modules/mailer";
 import { ReactAdapter } from "@webtre/nestjs-mailer-react-adapter";
 import { PaymentsModule } from "./payments/payments.module";
+import { FreightCompaniesModule } from './freight-companies/freight-companies.module';
 
 @Module({
     imports: [
@@ -66,6 +67,7 @@ import { PaymentsModule } from "./payments/payments.module";
             },
         }),
         PaymentsModule,
+        FreightCompaniesModule,
     ],
     controllers: [],
 })

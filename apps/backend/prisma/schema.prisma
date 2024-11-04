@@ -134,6 +134,14 @@ enum ProductState {
   outOfStock
 }
 
+model FreightCompanies {
+  id String @id @default(cuid())
+
+  name String @unique @map("name")
+  kmPrice Int @map("km_price")
+  companyPictureUrl String @map("company_picture_url")
+}
+
 // recomendation engine
 model Recommendation {
   id String @id @default(uuid())

@@ -1,10 +1,13 @@
-import nextAuthOptions from "@/app/api/auth/[...nextauth]/providers";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { FreightCard } from "./components/freight-card";
+import { auth } from "@/app/api/auth/[...nextauth]/providers";
+import { FreightSelect } from "./components/freight-select";
+import { PaymentMethod } from "./components/payment-method";
+import { Separator } from "@/components/ui/separator";
+import { Resume } from "./components/resume";
 
-export default async function PaymentMethod() {
-  const session = await getServerSession(nextAuthOptions);
+export default async function CheckoutPage() {
+  const session = await auth();
 
   if (!session) {
     redirect("/auth/login");
@@ -17,12 +20,33 @@ export default async function PaymentMethod() {
   twoDaysFromNow.setDate(today.getDate() + 15);
 
   return (
-    <div className="mt-48 container">
+    <div className="mt-48 mb-12 container">
       <div className="">
         <h1 className="font-medium text-2xl">Finalizar compra</h1>
 
-        <div className="">
-          <FreightCard price={100} deliveryDate={twoDaysFromNow}  />
+        <div className="flex gap-8">
+          <div className="w-[40.625rem]">
+            <div className="mt-4 w-fit mx-auto">
+              <h2 className="text-xl text-zinc-700 mb-3">
+                Selecione um método de pagamento{" "}
+              </h2>
+              <PaymentMethod />
+            </div>
+
+            <div className="mt-4 w-fit">
+              <h2 className="text-xl text-zinc-700 mb-3">
+                Selecione a opção de frete
+              </h2>
+              <FreightSelect />
+            </div>
+          </div>
+          <div className="flex">
+            <Separator orientation="vertical" className="h-[500px] my-auto" />
+          </div>
+          <div className="">
+            <Resume />
+          </div>
+
         </div>
       </div>
     </div>
