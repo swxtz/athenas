@@ -10,6 +10,7 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useQueryState } from "nuqs";
 import { Label } from "@/components/ui/label";
+import clsx from "clsx";
 
 const formSchema = z.object({
   payment: z.enum(["pix", "mastercard", "visa"], {
@@ -33,7 +34,7 @@ export function PaymentMethod() {
   }
 
   return (
-    <div className="flex gap-8 justify-center items-center w-fit">
+    <div className="flex flex-col gap-8 justify-center items-center w-fit">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(() => {})}>
           <FormField
@@ -47,6 +48,7 @@ export function PaymentMethod() {
                       handlePaymentChange(value as FormSchema["payment"])
                     } // Cast value if needed
                     defaultValue={field.value}
+                    className="flex flex-row gap-4"
                   >
                     {paymentMethods.map((method) => (
                       <div key={cuid()}>
@@ -57,13 +59,14 @@ export function PaymentMethod() {
                                 value={method.name}
                                 id={method.name}
                                 disabled={!method.isAvailable}
-                                className=""
+                                className="hidden "
                               />
                               <Label htmlFor={method.name}>
                                 <PaymentMethodCard
                                   logo={method.logo}
                                   alt={method.alt}
                                   isAvailable={method.isAvailable}
+                                  isSelected={payment === method.name}
                                 />
                               </Label>
                             </div>
