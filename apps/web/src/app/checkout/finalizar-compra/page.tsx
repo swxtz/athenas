@@ -2,8 +2,9 @@ import { redirect } from "next/navigation";
 import { FreightCard } from "./components/freight-card";
 import { auth } from "@/app/api/auth/[...nextauth]/providers";
 import { FreightSelect } from "./components/freight-select";
+import { PaymentMethod } from "./components/payment-method";
 
-export default async function PaymentMethod() {
+export default async function CheckoutPage() {
   const session = await auth();
 
   if (!session) {
@@ -20,6 +21,11 @@ export default async function PaymentMethod() {
     <div className="mt-48 container">
       <div className="">
         <h1 className="font-medium text-2xl">Finalizar compra</h1>
+
+        <div className="mt-4">
+          <h2 className="text-xl text-zinc-700 mb-3">Selecione um método de pagamento </h2>
+          <PaymentMethod />
+        </div>
 
         <div className="mt-4">
           <h2 className="text-xl text-zinc-700 mb-3">Selecione a opção de frete</h2>

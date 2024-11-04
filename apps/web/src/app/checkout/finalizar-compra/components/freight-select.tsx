@@ -4,7 +4,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { FreightCard } from "./freight-card";
 import { Label } from "@/components/ui/label";
 import { z } from "zod";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -28,8 +27,6 @@ export function FreightSelect() {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
-  const router = useRouter();
-  const searchParams = useSearchParams();
 
   const today = new Date();
   const twoDaysFromNow = new Date(today);
