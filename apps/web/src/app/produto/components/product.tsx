@@ -116,7 +116,7 @@ export function Product({ slug }: ProductCardProps) {
                   </div>
                   <div className="flex flex-row gap-16 py-5">
 
-                    <QuantityButton />
+                    {/* <QuantityButton /> */}
 
                     <div className="flex flex-col gap-3 w-full">
                       <Button className="bg-green-700 hover:bg-green-800">
