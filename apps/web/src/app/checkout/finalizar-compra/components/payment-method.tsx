@@ -34,9 +34,9 @@ export function PaymentMethod() {
   }
 
   return (
-    <div className="flex flex-col gap-8 justify-center items-center w-fit">
+    <div className="flex flex-col gap-8 justify-center items-center w-fit mx-auto">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(() => {})}>
+        <form onSubmit={form.handleSubmit(() => {})} >
           <FormField
             control={form.control}
             name="payment"
