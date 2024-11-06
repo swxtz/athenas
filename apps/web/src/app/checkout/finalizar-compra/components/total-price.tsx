@@ -67,8 +67,6 @@ export function TotalPrice({ itens }: TotalPriceProps) {
       return; // Retorna e impede que o código abaixo seja executado
     }
 
-    console.log(itens);
-
     const products = {
       products: itens.map((product) => ({
         id: product.id,
@@ -76,8 +74,6 @@ export function TotalPrice({ itens }: TotalPriceProps) {
       })),
     };
 
-    console.log(products);
-    console.log(session.data.token);
     const res = await createBuyOrder(products, session.data.token);
 
     if (res.status === 500) {
@@ -112,11 +108,11 @@ export function TotalPrice({ itens }: TotalPriceProps) {
       });
     }
 
-    console.log(res.data.data.buyOrderId);
-
     const destination = `/checkout/pagamento?payment=${encodeURIComponent(
       payment
-    )}&freight=${encodeURIComponent(freight)}`;
+    )}&freight=${encodeURIComponent(freight)}&order_id=${encodeURIComponent(
+      res.data.data.buyOrderId
+    )}`;
 
     setTimeout(() => {
       router.push(destination);
