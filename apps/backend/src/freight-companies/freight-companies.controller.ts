@@ -11,7 +11,9 @@ import {
 import { FreightCompaniesService } from "./freight-companies.service";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { CreateFreightCompanyDTO } from "./dtos/create-freight-company.dto";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags("freight-companies")
 @Controller("freight-companies")
 export class FreightCompaniesController {
     constructor(
@@ -20,8 +22,13 @@ export class FreightCompaniesController {
 
     @Post("create-freight-company")
     @UseInterceptors(FileInterceptor("file"))
-    async createFreightCompany(
-        @Body() body: CreateFreightCompanyDTO,
+    async createFreightCompany(@Body() body: CreateFreightCompanyDTO) {
+        return this.freightCompaniesService.createFreightCompany(body);
+    }
+
+    @Post("create-freight-company/upload-sharp-image")
+    @UseInterceptors(FileInterceptor("file"))
+    async uploadSharpImage(
         @UploadedFile(
             new ParseFilePipe({
                 validators: [
@@ -32,10 +39,9 @@ export class FreightCompaniesController {
         )
         file: Express.Multer.File,
     ) {
-        // return this.freightCompaniesService.createFreightCompany(
-        //     body,
-        //     file.buffer,
-        //     file.originalname,
-        // );
+        return this.freightCompaniesService.uploadSharpImage(
+            file.buffer,
+            file.originalname,
+        );
     }
 }

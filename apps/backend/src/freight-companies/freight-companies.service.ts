@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { CreateFreightCompanyDTO } from "./dtos/create-freight-company.dto";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 import { ConfigService } from "@nestjs/config";
+import sharp from "sharp";
 
 @Injectable()
 export class FreightCompaniesService {
@@ -11,17 +12,10 @@ export class FreightCompaniesService {
 
     constructor(private readonly configService: ConfigService) {}
 
-    async createFreightCompany(
-        body: CreateFreightCompanyDTO,
-        file: Buffer,
-        fileName: string,
-    ) {
-        await this.s3Client.send(
-            new PutObjectCommand({
-                Bucket: "athenas-dev",
-                Key: fileName,
-                Body: file,
-            }),
-        );
+    async createFreightCompany(body: CreateFreightCompanyDTO) {}
+
+    async uploadSharpImage(file: Buffer, fileName: string) {
+        const image = await sharp(file).resize().toBuffer();
+        return image;
     }
 }
