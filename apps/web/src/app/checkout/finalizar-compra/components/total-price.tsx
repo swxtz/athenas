@@ -1,15 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-
 import { ResumePriceDisplay } from "@/app/carrinho/components/resume-price-display";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-
 import { useQueryState } from "nuqs";
-import { useMutationCreateBuyOrder } from "@/hooks/mutations/create-buy-order-pix";
 import { api } from "@/lib/axios";
-import { auth } from "@/app/api/auth/[...nextauth]/providers";
 import { useSession } from "next-auth/react";
 
 interface TotalPriceProps {
@@ -22,7 +18,7 @@ interface Item {
 }
 
 async function createBuyOrder(data: any, token: string) {
-  const res = await api.post("/payments/create-buy-order/pix", data, {
+  const res = await api.post("/payments/create/buy-order/pix", data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

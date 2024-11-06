@@ -199,6 +199,7 @@ export class PaymentsService {
                 },
                 select: {
                     id: true,
+                    updatedAt: true,
                 },
             });
 

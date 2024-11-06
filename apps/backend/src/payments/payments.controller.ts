@@ -34,6 +34,7 @@ export class PaymentsController {
         @Body(new ValidationPipe()) body: PayPixOrderDTO,
         @Headers("authorization") token: string,
     ) {
+        console.log("buceta");
         return this.paymentsService.payOrderPix(body, token);
     }
 }
