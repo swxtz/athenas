@@ -1,4 +1,4 @@
-FROM node:20.14.0-alpine
+FROM node:20.14.0
 
 RUN mkdir -p /home/node/app 
 
@@ -8,7 +8,6 @@ COPY . .
 
 #ENV NODE_ENV=production
 
-ENV DATABASE_URL="postgresql://neondb_owner:2SNu5FhqiIQR@ep-shrill-tooth-a8oykgf7-pooler.eastus2.azure.neon.tech/neondb?sslmode=require"
 ENV JWT_SECRET="secret"
 ENV RESEND_EMAIL_API_KEY="api_key"
 
@@ -33,15 +32,15 @@ ENV SMTP_PORT=465
 ENV SMTP_USERNAME="resend"
 ENV SMTP_PASSWORD="api_key"
 
-RUN npm i -g @nestjs/cli
+RUN npm i -g @nestjs/cli corepack
 
 RUN rm -rf node_modules
 
-RUN npm i 
+RUN pnpm i 
 
-RUN npm run build
+RUN pnpm build
 
 EXPOSE 3001
 
-CMD [ "npm", "run", "start:prod" ]
+CMD [ "pnpm", "dev" ]
 
