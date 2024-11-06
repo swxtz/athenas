@@ -32,10 +32,10 @@ export class FreightCompaniesController {
         )
         file: Express.Multer.File,
     ) {
-        return this.freightCompaniesService.createFreightCompany(
-            body,
-            file.buffer,
-            file.originalname,
-        );
+        // return this.freightCompaniesService.createFreightCompany(
+        //     body,
+        //     file.buffer,
+        //     file.originalname,
+        // );
     }
 }

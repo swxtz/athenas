@@ -13,6 +13,7 @@ export default async function CheckoutPage() {
     redirect("/auth/login");
   }
 
+
   const today = new Date(); // Data atual
   const twoDaysFromNow = new Date(today); // Cria uma nova data a partir de hoje
 

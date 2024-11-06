@@ -17,7 +17,7 @@ const product = {
 
 export const metadata: Metadata = {
   title: `RN Distribuidora | ${product.name}`,
-  description: "Ecommerce da RN Distribuidora",
+  description: "E-commerce da RN Distribuidora",
 };
 
 interface ProductParams {
