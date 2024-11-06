@@ -18,6 +18,13 @@ export function Resume() {
 
   if (!isMounted) {
     return null;
+  
+  }
+
+  if(!context?.state.items) {
+    return (
+      <h1>teste</h1>
+    );
   }
 
   return (
@@ -36,7 +43,7 @@ export function Resume() {
       </div>
 
       {context?.state.items.length !== 0 && <Separator />}
-      {context?.state.items.length !== 0 && <TotalPrice />}
+      {context?.state.items.length !== 0 && <TotalPrice itens={context?.state.items} />}
     </div>
   );
 }

@@ -42,13 +42,20 @@ export function Categories() {
   return (
     <div className="px-6 lg:px-24 flex gap-9 items-center justify-center mx-auto">
       {navbarCategories.map((category) => (
+        // <div
+        //   key={cuid()}
+        //   className={`transform transition-transform duration-300 ease-in-out ${
+        //     showCategories
+        //       ? "translate-y-0 opacity-100"
+        //       : "-translate-y-full opacity-0"
+        //   }`}
+        // >
+        //   <CategoryButton {...category} />
+        // </div>
+
         <div
+          className="transform transition-transform duration-300 ease-in-out"
           key={cuid()}
-          className={`transform transition-transform duration-300 ease-in-out ${
-            showCategories
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-full opacity-0"
-          }`}
         >
           <CategoryButton {...category} />
         </div>
