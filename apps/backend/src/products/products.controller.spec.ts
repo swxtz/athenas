@@ -178,5 +178,5 @@ describe("ProductsController", () => {
         });
     });
 
-    describe("get-random-products",() => {});
+    describe("get-random-products", () => {});
 });

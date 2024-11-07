@@ -137,8 +137,8 @@ enum ProductState {
 model FreightCompanies {
   id String @id @default(cuid())
 
-  name String @unique @map("name")
-  kmPrice Int @map("km_price")
+  name              String @unique @map("name")
+  kmPrice           Int    @map("km_price")
   companyPictureUrl String @map("company_picture_url")
 }
 
@@ -236,6 +236,8 @@ model Category {
 // OrderBuy
 model BuyOrder {
   id String @id @default(uuid())
+
+  totalPrice Float @map("total_price")
 
   userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])
