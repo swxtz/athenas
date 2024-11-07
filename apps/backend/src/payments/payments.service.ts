@@ -44,6 +44,7 @@ export class PaymentsService {
             });
 
             const orderProducts = [];
+            let totalPrice = 0; // Variável para armazenar o valor total da compra
 
             // Verifica se o produto existe, se está disponível e se não foi deletado
             for (const product of products.products) {
@@ -103,17 +104,23 @@ export class PaymentsService {
                     );
                 }
 
+                // Acumula o preço total
+                totalPrice += productExists.price * product.amount;
+
                 orderProducts.push(productExists);
             }
 
+            // Criação do pedido de compra
             const buyOrder = await this.prisma.buyOrder.create({
                 data: {
                     userId: user.id,
                     paymentMethod: "pix",
                     paymentStatus: "pending",
+                    totalPrice: totalPrice, // Armazenando o preço total na ordem de compra
                     BuyOrderProducts: {
                         create: products.products.map((product) => ({
                             productId: product.id,
+                            amount: product.amount, // Se necessário, você pode armazenar a quantidade também
                         })),
                     },
                 },
@@ -128,6 +135,7 @@ export class PaymentsService {
                 data: {
                     buyOrderId: buyOrder.id,
                     buyOrder: buyOrder,
+                    totalPrice: totalPrice, // Incluindo o preço total na resposta
                     products: orderProducts,
                 },
             };
