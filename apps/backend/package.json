@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.627.0",
+    "@azure/communication-email": "^1.0.0",
     "@nestjs-modules/mailer": "^2.0.2",
     "@nestjs/common": "^10.3.10",
     "@nestjs/config": "^3.2.3",
@@ -34,7 +35,7 @@
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^10.3.10",
-    "@nestjs/platform-socket.io": "^10.4.3",
+    "@nestjs/platform-socket.io": "^10.4.7",
     "@nestjs/schedule": "^4.1.0",
     "@nestjs/swagger": "^7.4.0",
     "@nestjs/throttler": "^6.1.0",
