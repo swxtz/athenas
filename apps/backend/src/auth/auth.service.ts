@@ -155,8 +155,6 @@ export class AuthService {
             throw new HttpException("Verifique seu email primeiro", 400);
         }
 
-        console.log("KKKKKKK");
-
         const payload = {
             id: verifyUser.id,
             email: body.email,
@@ -173,7 +171,6 @@ export class AuthService {
             subject: "redefina sua conta",
         });
 
-        console.log("KKKKKKK");
         console.log(token);
 
         const transporter = nodemailer.createTransport({

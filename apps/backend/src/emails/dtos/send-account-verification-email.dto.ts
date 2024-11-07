@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class sendAccountVerificationEmailDTO {
     @IsNotEmpty()
@@ -6,12 +6,15 @@ export class sendAccountVerificationEmailDTO {
     @IsEmail()
     to: string;
 
-    @IsNotEmpty()
     @IsString()
     @IsEmail()
+    @IsOptional()
     from: string;
 
     @IsNotEmpty()
     @IsString()
-    subject: string;
+    name: string;
+
+    @IsNotEmpty()
+    link: string;
 }

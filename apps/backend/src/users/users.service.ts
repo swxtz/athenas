@@ -6,6 +6,7 @@ import { UserEntity } from "./entity/user.entity";
 import { JwtService } from "@nestjs/jwt";
 import { UtilsService } from "src/utils/utils.service";
 import { ConfigService } from "@nestjs/config";
+import { EmailsService } from "src/emails/emails.service";
 
 //import { ResendService } from "src/resend/resend.service";
 
@@ -33,6 +34,7 @@ export class UsersService {
         //private resendService: ResendService,
         private utils: UtilsService,
         private readonly configService: ConfigService,
+        private email: EmailsService,
     ) {}
 
     private logger = new Logger(UsersService.name);
@@ -85,10 +87,12 @@ export class UsersService {
 
             const url = `${webUrl}/auth/verificar-email?token=${token}`;
 
-            // await this.resendService.sendVerifyEmailToken(
-            //     token,
-            //     "dev.gustavomendonca@protonmail.com"
-            // );
+            this.email.sendAccountVerificationEmail({
+                from: "",
+                to: user.email,
+                name: user.name,
+                link: url,
+            });
             this.logger.debug(`Confirm email JWT: ${url}`);
 
             if (isDevEnv) {
