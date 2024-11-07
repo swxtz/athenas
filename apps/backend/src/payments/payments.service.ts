@@ -120,7 +120,6 @@ export class PaymentsService {
                     BuyOrderProducts: {
                         create: products.products.map((product) => ({
                             productId: product.id,
-                            amount: product.amount, // Se necessário, você pode armazenar a quantidade também
                         })),
                     },
                 },
