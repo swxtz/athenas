@@ -13,7 +13,11 @@ export function SuccessMessage() {
   const [paymentDate, setPaymentDate] = useQueryState("paymentDate");
   const [totalPrice, setTotalPrice] = useQueryState("totalPrice")
 
-  const { data } = useQueryGetOrderInfos(paymentId);
+  const { data, isLoading } = useQueryGetOrderInfos(paymentId);
+
+  if(isLoading) {
+    return;
+  }
 
   const router = useRouter();
 
