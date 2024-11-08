@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useQueryGetOrderInfos } from "@/hooks/queries/get-order-infos";
+import { convertToReal } from "@/utils/convert-to-real";
 import { ShoppingBag } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useQueryState } from "nuqs";
@@ -8,7 +10,10 @@ import { useQueryState } from "nuqs";
 export function SuccessMessage() {
   const [paymentId, setPaymentId] = useQueryState("paymentId");
   const [paymentMethod, setPaymentMethod] = useQueryState("paymentMethod");
-  const [paymentDate, setPaymentDate] = useQueryState("paymentDate",);
+  const [paymentDate, setPaymentDate] = useQueryState("paymentDate");
+  const [totalPrice, setTotalPrice] = useQueryState("totalPrice")
+
+  const { data } = useQueryGetOrderInfos(paymentId);
 
   const router = useRouter();
 
@@ -45,7 +50,7 @@ export function SuccessMessage() {
           <strong>Status:</strong> Pagamento Confirmado
         </p>
         <p className="text-lg text-green-600">
-          <strong>Valor pago:</strong> R$100,00
+          <strong>Valor pago:</strong> {convertToReal(data.totalPrice / 100)}
         </p>
         <p className="text-lg text-green-600">
           <strong>Forma de pagamento:</strong> {paymentMethod}
