@@ -42,6 +42,7 @@ export class FreightCompaniesController {
         return this.freightCompaniesService.uploadSharpImage(
             file.buffer,
             file.originalname,
+            file.mimetype,
         );
     }
 }

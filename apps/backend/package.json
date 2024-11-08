@@ -26,7 +26,8 @@
     "clean:db": "node dist/prisma/clean.js"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.627.0",
+    "@aws-sdk/client-s3": "^3.687.0",
+    "@aws-sdk/s3-request-presigner": "^3.687.0",
     "@azure/communication-email": "^1.0.0",
     "@nestjs-modules/mailer": "^2.0.2",
     "@nestjs/common": "^10.3.10",
