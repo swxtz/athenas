@@ -10,7 +10,7 @@ async function getPersonalInfo(token: string) {
     },
   });
 
-  return response.data;
+  return response.data.data;
 }
 
 export function useQueryGetPersonalInfo(token: string) {

@@ -16,10 +16,6 @@ export const navbarCategories: Category[] = [
     href: "/paes",
   },
   {
-    name: "Pães",
-    href: "/paes",
-  },
-  {
     name: "Hambúrgueres",
     href: "/hamburgueres",
   },
