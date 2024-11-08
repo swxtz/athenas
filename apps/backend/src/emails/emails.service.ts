@@ -69,7 +69,7 @@ export class EmailsService {
               <tbody>
                 <tr>
                   <td>
-                    <p style="font-size:1.25rem;line-height:1.75rem;color:rgb(17,24,39);margin-top:1rem;margin:16px 0">Olá <!-- -->${emailDTO.name}</p>
+                    <p style="font-size:1.25rem;line-height:1.75rem;color:rgb(17,24,39);margin-top:1rem;margin:16px 0">Olá, <!-- -->${emailDTO.name}</p>
                     <p style="color:rgb(31,41,55);margin-top:0.5rem;font-size:14px;line-height:24px;margin:16px 0">Bem-vindo(a) à <!-- -->RN Distribuidora<!-- -->! Estamos felizes em tê-lo(a) conosco.</p>
                     <p style="color:rgb(31,41,55);margin-top:0.5rem;font-size:14px;line-height:24px;margin:16px 0">Para concluir seu cadastro e aproveitar todas as vantagens de nossa plataforma, é necessário verificar sua conta. Basta clicar no botão abaixo:</p>
                   </td>

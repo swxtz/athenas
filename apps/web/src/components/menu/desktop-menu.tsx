@@ -19,9 +19,10 @@ export function DesktopMenu() {
         ) : (
           <Popover>
             <PopoverTrigger asChild>
-              <button
+              <Button 
                 type="button"
                 className="text-black flex items-center gap-2"
+                variant={"ghost"}
               >
                 <div className="flex flex-row items-center gap-2">
                   <FaRegUser size={28} />
@@ -34,7 +35,7 @@ export function DesktopMenu() {
                     </span>
                   </span>
                 </div>
-              </button>
+              </Button>
             </PopoverTrigger>
             <PopoverContent>
               <div className="mx-6 flex p-3 flex-col gap-1">

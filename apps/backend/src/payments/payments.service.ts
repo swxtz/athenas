@@ -7,6 +7,7 @@ import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
 import { JWTBearerTokenPayLoad } from "src/types/jwt-bearer-token-payload.interface";
 import { Prisma } from "@prisma/client";
 import { PayPixOrderDTO } from "./dtos/pay-pix-order.dto";
+import { GetOrderInfosDTO } from "./dtos/get-order-infos.dto";
 
 @Injectable()
 export class PaymentsService {
@@ -18,6 +19,18 @@ export class PaymentsService {
     ) {}
 
     private logger = new Logger();
+
+    async getOrderInfos(body: GetOrderInfosDTO) {
+        try {
+            const order = await this.prisma.buyOrder.findFirstOrThrow({
+                where: { id: body.orderId },
+            });
+
+            return order;
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     async createBuyOrderPix(rawToken: string, products: CreateBuyOrderPixDTO) {
         const token = this.utils.removeBearer(rawToken);
