@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { CreateFreightCompanyDTO } from "./dtos/create-freight-company.dto";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { ConfigService } from "@nestjs/config";
 import sharp from "sharp";
 import { PrismaService } from "src/prisma/prisma.service";
@@ -33,29 +33,28 @@ export class FreightCompaniesService {
     }
 
     async uploadSharpImage(file: Buffer, fileName: string, mimetype: string) {
-        const image = await sharp(file).resize(720, 720).toBuffer();
+        const image = await sharp(file).webp().resize(640, 360).toBuffer();
         const S3 = new S3Client({
             endpoint:
-                "https://44d47e816465b84f10c7cd07b3059fc8.r2.cloudflarestorage.com/athenas-dev",
+                "https://44d47e816465b84f10c7cd07b3059fc8.r2.cloudflarestorage.com/freight-companies",
             credentials: {
-                accessKeyId: "6408a65431828f3a514f8fa95f032f2e",
+                accessKeyId: "R2_ACCESS_KEY_ID",
                 secretAccessKey:
-                    "de5a3c659ec93b382a431394d3be30f761f31d0d1a999c83df48a3e44112efb9",
+                    "R2_SECRET_ACCESS_KEY",
             },
-            region: "us-east-1",
+            region: "auto",
         });
-        const url = await getSignedUrl(
-            S3,
-            new PutObjectCommand({
+            const putobjectcommand = new PutObjectCommand({
                 Bucket: "athenas-dev",
                 Key: "teste",
-                ContentType: mimetype,
-                Body: file,
-            }),
-            {
-                expiresIn: 60 * 60 * 24 * 7, // 7d
-            },
-        );
-        console.log(url);
+                ContentType: "image/webp",
+                Body: image,
+            });
+            const res = await S3.send(putobjectcommand)
+
+            const getobjectcommand = new GetObjectCommand({
+                Bucket: "athenas-dev",
+                Key: "teste",
+            });
     }
 }
