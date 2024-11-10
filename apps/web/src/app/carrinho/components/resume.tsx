@@ -14,7 +14,8 @@ export function Resume() {
 
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    console.log(context);
+  }, [context]);
 
   if (!isMounted) {
     return null;

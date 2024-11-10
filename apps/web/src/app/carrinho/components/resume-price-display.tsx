@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useCart } from "@/hooks/use-cart";
 import { convertToReal } from "@/utils/convert-to-real";
@@ -17,12 +17,15 @@ export function ResumePriceDisplay() {
     return null;
   }
 
-  const itens = context?.state.items
+  const items = context?.state.items.reduce((context, item) => {
+    const price = (item.price * item.quantity) + context;
+    return price;
+  }, 0) || 0;
 
   return (
     <div className="text-brown-500 flex flex-row justify-between font-inter">
       <span className="font-semibold">Total: </span>
-      <span className="font-semibold">{convertToReal(2000 / 100)}</span>
+      <span className="font-semibold">{convertToReal(items/ 100)}</span>
     </div>
   );
 }

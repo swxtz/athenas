@@ -39,7 +39,7 @@ export function Product({ slug }: ProductCardProps) {
     if (cartContext && data) {
       cartContext.dispatch({
         type: "ADD_ITEM",
-        item: { id: data.id, quantity: 1 },
+        item: { id: data.id, quantity: 1, price: data.price },
       });
     }
   }

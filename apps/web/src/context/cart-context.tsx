@@ -5,6 +5,7 @@ import { createContext, Dispatch, ReactNode, useEffect, useReducer } from "react
 type Item = {
   id: string;
   quantity: number;
+  price: number;
 }
 
 type State = {
