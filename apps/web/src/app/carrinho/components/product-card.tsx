@@ -15,13 +15,14 @@ import { ProductCardMobile } from "./product-card-mobile";
 
 interface ProductCardProps {
   productId: string;
+  productQuantity: number;
 }
 
-export function ProductCard({ productId }: ProductCardProps) {
+export function ProductCard({ productId, productQuantity }: ProductCardProps) {
   const isDesktop = useMediaQuery(768);
   const context = useCart();
   const { data, isLoading, error } = useQueryGetProductById(productId);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(productQuantity || 1);
 
   function handleIncrementQuantity() {
     setQuantity((prev) => prev + 1);

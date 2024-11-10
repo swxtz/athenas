@@ -27,7 +27,7 @@ export function Products() {
 
       {context?.state.items.length === 0 && <EmptyCart />}
       {context?.state.items.map((item) => (
-        <ProductCard key={item.id} productId={item.id} />
+        <ProductCard key={item.id} productId={item.id} productQuantity={item.quantity} />
       ))}
     </div>
   );
