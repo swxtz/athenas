@@ -8,10 +8,12 @@ import { useRouter } from "next/navigation";
 import { useQueryState } from "nuqs";
 
 export function SuccessMessage() {
+  const router = useRouter();
+
   const [paymentId, setPaymentId] = useQueryState("paymentId");
   const [paymentMethod, setPaymentMethod] = useQueryState("paymentMethod");
   const [paymentDate, setPaymentDate] = useQueryState("paymentDate");
-  const [totalPrice, setTotalPrice] = useQueryState("totalPrice")
+  const [totalPrice, setTotalPrice] = useQueryState("totalPrice");
 
   const { data, isLoading } = useQueryGetOrderInfos(paymentId);
 
@@ -19,7 +21,6 @@ export function SuccessMessage() {
     return;
   }
 
-  const router = useRouter();
 
   const datePlaceholder = "2024-11-06T06:25:04.041Z";
   const date = new Date(paymentDate || datePlaceholder);

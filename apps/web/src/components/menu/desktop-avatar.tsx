@@ -10,15 +10,10 @@ import { useQueryGetPersonalInfo } from "@/hooks/queries/get-personal-info";
 
 export function DesktopAvatar() {
   const { data: session } = useSession();
-
-  if (!session) {
-    return;
-  }
-
   const { data, isLoading } = useQueryGetPersonalInfo(session?.token);
 
   if(isLoading) {
-    return
+    return;
   }
 
   return (

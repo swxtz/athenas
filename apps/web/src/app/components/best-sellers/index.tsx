@@ -31,12 +31,13 @@ export function BestSellers() {
 
         <div className="mt-6 mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 lg:grid-cols-6  gap-y-4 md:gap-y-8 mx-auto">
-            {data?.data.map((product) => (
+            {/* Tipar */}
+            {data?.data.map((product: any) => (
               <ProductCard
                 key={cuid()}
                 name={product.name}
                 image={product.coverImage}
-                price={product.price}
+                price={product.price} 
                 productLink={`/produto/${product.slug}`}
                 isPayable={true}
                 numberOfInstallments={3}
