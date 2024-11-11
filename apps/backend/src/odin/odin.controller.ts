@@ -12,7 +12,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { GetScoreByIdDTO } from "./dtos/get-score-by-id.dto";
 import { GetScoreBySlugDTO } from "./dtos/get-score-by-slug.dto";
 import { incrementLikeDTO } from "./dtos/increment-like.dto";
-import { GetRecommendedProductsQuery } from "./querys/get-recommended-products.query";
+import { GetRecommendedProductsQuery } from "./queries/get-recommended-products.query";
 
 @Controller("odin")
 @ApiTags("Odin")
@@ -36,7 +36,7 @@ export class OdinController {
         @Query(new ValidationPipe({ transform: true }))
         query?: GetRecommendedProductsQuery,
     ) {
-        return this.getRecommendedProducts(query);
+        return this.odinService.getRecommendedProducts(query);
     }
 
     @Post("increment-like/:id")

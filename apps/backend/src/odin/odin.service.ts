@@ -2,7 +2,7 @@ import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { Cron } from "@nestjs/schedule";
 import { PrismaService } from "src/prisma/prisma.service";
 import { RecommendationValuesService } from "src/recommendation-values/recommendation-values.service";
-import { GetRecommendedProductsQuery } from "./querys/get-recommended-products.query";
+import { GetRecommendedProductsQuery } from "./queries/get-recommended-products.query";
 
 @Injectable()
 export class OdinService {
