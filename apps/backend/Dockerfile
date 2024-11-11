@@ -1,13 +1,22 @@
-FROM node:20.14.0
+FROM node:20-alpine
 
 RUN mkdir -p /home/node/app 
 
 WORKDIR /home/node/app
 
-COPY . . 
+COPY package.json .
+
+RUN npm i -g pnpm
+
+RUN pnpm i
+
+#RUN apt-get update -y && apt-get install -y openssl
+
+#RUN pnpm prisma migrate deploy
+
+COPY . .
 
 #ENV NODE_ENV=production
-
 ENV JWT_SECRET="secret"
 ENV RESEND_EMAIL_API_KEY="api_key"
 
@@ -32,15 +41,12 @@ ENV SMTP_PORT=465
 ENV SMTP_USERNAME="resend"
 ENV SMTP_PASSWORD="api_key"
 
-RUN npm i -g @nestjs/cli corepack
+# ERD
+ENV DISABLE_ERD=true
 
-RUN rm -rf node_modules
-
-RUN pnpm i 
-
-RUN pnpm build
+RUN pnpm prisma generate --schema prisma/schema.prisma
 
 EXPOSE 3001
 
-CMD [ "pnpm", "dev" ]
+CMD [ "pnpm", "start" ]
 
