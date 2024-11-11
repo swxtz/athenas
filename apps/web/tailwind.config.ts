@@ -1,3 +1,4 @@
+import { roboto } from "@/fonts/fonts";
 import type { Config } from "tailwindcss";
 
 const config = {
@@ -23,6 +24,7 @@ const config = {
         lato: ["var(--font-lato)", "sans-serif"],
         montserrat: ["var(--font-montserrat)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
+        roboto: ["var(--font-roboto)", "sans-serif"],
       },
       borderWidth: {
         1: "1px",

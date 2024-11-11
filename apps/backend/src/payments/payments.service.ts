@@ -7,6 +7,7 @@ import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
 import { JWTBearerTokenPayLoad } from "src/types/jwt-bearer-token-payload.interface";
 import { Prisma } from "@prisma/client";
 import { PayPixOrderDTO } from "./dtos/pay-pix-order.dto";
+import { GetOrderInfosDTO } from "./dtos/get-order-infos.dto";
 
 @Injectable()
 export class PaymentsService {
@@ -18,6 +19,18 @@ export class PaymentsService {
     ) {}
 
     private logger = new Logger();
+
+    async getOrderInfos(body: GetOrderInfosDTO) {
+        try {
+            const order = await this.prisma.buyOrder.findFirstOrThrow({
+                where: { id: body.orderId },
+            });
+
+            return order;
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     async createBuyOrderPix(rawToken: string, products: CreateBuyOrderPixDTO) {
         const token = this.utils.removeBearer(rawToken);
@@ -44,6 +57,7 @@ export class PaymentsService {
             });
 
             const orderProducts = [];
+            let totalPrice = 0; // Variável para armazenar o valor total da compra
 
             // Verifica se o produto existe, se está disponível e se não foi deletado
             for (const product of products.products) {
@@ -103,14 +117,19 @@ export class PaymentsService {
                     );
                 }
 
+                // Acumula o preço total
+                totalPrice += productExists.price * product.amount;
+
                 orderProducts.push(productExists);
             }
 
+            // Criação do pedido de compra
             const buyOrder = await this.prisma.buyOrder.create({
                 data: {
                     userId: user.id,
                     paymentMethod: "pix",
                     paymentStatus: "pending",
+                    totalPrice: totalPrice, // Armazenando o preço total na ordem de compra
                     BuyOrderProducts: {
                         create: products.products.map((product) => ({
                             productId: product.id,
@@ -128,6 +147,7 @@ export class PaymentsService {
                 data: {
                     buyOrderId: buyOrder.id,
                     buyOrder: buyOrder,
+                    totalPrice: totalPrice, // Incluindo o preço total na resposta
                     products: orderProducts,
                 },
             };
@@ -186,6 +206,13 @@ export class PaymentsService {
                     email: true,
                 },
             });
+
+            if (!user) {
+                throw new HttpException(
+                    { message: "Verifique se vc esta logado" },
+                    401,
+                );
+            }
 
             const order = await this.prisma.buyOrder.update({
                 where: { id: body.orderBuyId },

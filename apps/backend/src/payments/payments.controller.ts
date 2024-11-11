@@ -12,11 +12,17 @@ import { ApiTags } from "@nestjs/swagger";
 import { AuthGuard } from "src/auth/auth.guard";
 import { CreateBuyOrderPixDTO } from "./dtos/create-buy-order-pix.dto";
 import { PayPixOrderDTO } from "./dtos/pay-pix-order.dto";
+import { GetOrderInfosDTO } from "./dtos/get-order-infos.dto";
 
 @Controller("payments")
 @ApiTags("Payments")
 export class PaymentsController {
     constructor(private readonly paymentsService: PaymentsService) {}
+
+    @Post("/orders/get-order-info")
+    async getOrderInfos(@Body(new ValidationPipe()) body: GetOrderInfosDTO) {
+        return this.paymentsService.getOrderInfos(body);
+    }
 
     @Post("create/buy-order/pix")
     @UseGuards(AuthGuard)

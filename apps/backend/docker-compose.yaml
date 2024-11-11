@@ -31,6 +31,15 @@ services:
                 memory: 128M
 
 
+  mailhog: 
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+
+
   # cockroachdb:
   #   image: cockroachdb/cockroach:v21.1.0
   #   container_name: cockroachdb-athenas

@@ -23,9 +23,7 @@ export default async function Home() {
 
       <BestSellers />
       
-      <Categories />  
-
-      <InformationsCard />
+      <Categories />   
 
       <div className="mt-24 md:mt-48" />
     </main>

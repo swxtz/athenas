@@ -51,10 +51,10 @@ export function ProductCard({
   return (
     <>
       {isDesktop ? (
-        <motion.div whileHover={{ scale: 1.05 }}>
+        <motion.div whileHover={{ scale: 1.01 }}>
           <Link
             href={productLink}
-            className="bg-white rounded-[10px] md:rounded shadow-md flex itens-center justify-center w-[150px] md:w-[200px] px-4 py-2 flex-col h-[350px]"
+            className="bg-white rounded-[10px] md:rounded-xl shadow-md flex itens-center justify-center w-[150px] md:w-[200px] px-4 py-2 flex-col h-[350px]"
           >
             <div className="w-[75px] md:w-[100px] h-[180px] flex items-center justify-center mx-auto">
               <Image
@@ -67,19 +67,22 @@ export function ProductCard({
             </div>
 
             <div className="mt-4 flex flex-col gap-1">
+              <span className="text-lg font-bold font-roboto text-brown-500 ">
+                {convertedPrice}
+              </span>
+
               <TruncateText
                 text={name}
                 maxLength={30}
-                className="text-base font-rubik"
+                className="text-sm font-roboto "
               />
-              <span className="text-lg font-montserrat font-medium">
-                {convertedPrice}
-              </span>
+
+              <span className="text-green-500 text-xs font-roboto">Frete ou retirada</span>
 
               <span>
                 {isPayable && (
                   <span className="text-xs font-montserrat font-medium">
-                    {`Em ${numberOfInstallments}x de ${convertToReal(calculateTotalWithInterest(numberOfInstallments, fees, price))} sem juros`}
+                    {`Em ${numberOfInstallments}x de ${convertToReal(calculateTotalWithInterest(numberOfInstallments, fees, price) / 100)} sem juros`}
                   </span>
                 )}
               </span>
@@ -89,7 +92,7 @@ export function ProductCard({
       ) : (
         <Link
           href={productLink}
-          className="bg-white/50 rounded-[10px] md:rounded shadow-md flex itens-center justify-center w-[150px] md:w-[200px] px-4 py-2 flex-col h-[350px]"
+          className="bg-white rounded-[10px] md:rounded shadow-md flex itens-center justify-center w-[150px] md:w-[200px] px-4 py-2 flex-col h-[350px]"
         >
           <div className="w-[75px] md:w-[100px] h-[180px] flex items-center justify-center mx-auto">
             <Image

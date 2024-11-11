@@ -4,14 +4,14 @@ import { CategoryDivisor } from "@/components/category-divisor";
 import { ProductCard } from "../product-card";
 import { cuid } from "@/utils/cuid";
 import { Loader2 } from "lucide-react";
-import { useQueryGetBestSellersProduct } from "@/hooks/queries/get-best-sellers-product";
+import { useQueryGetRecommendedProducts } from "@/hooks/queries/get-recommended-products";
 
 export function BestSellers() {
   const {
     data,
     error: fetchError,
     isLoading,
-  } = useQueryGetBestSellersProduct();
+  } = useQueryGetRecommendedProducts();
 
   if (fetchError) {
     return <div>Erro ao carregar produtos</div>;
@@ -21,7 +21,7 @@ export function BestSellers() {
     <div className="mt-12">
       <div className="">
         {/* Divisor */}
-        <CategoryDivisor title="Mais vendidos" />
+        <CategoryDivisor title="O QUE MAIS IMPRESSIONA NO SABOR" />
 
         {isLoading && (
           <div className="mt-52 w-fit mx-auto">
@@ -31,13 +31,14 @@ export function BestSellers() {
 
         <div className="mt-6 mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 lg:grid-cols-6  gap-y-4 md:gap-y-8 mx-auto">
-            {data?.data.map((product) => (
+            {/* Tipar */}
+            {data?.data.map((product: any) => (
               <ProductCard
                 key={cuid()}
                 name={product.name}
                 image={product.coverImage}
-                price={product.price}
-                productLink={`/produto/${product.id}`}
+                price={product.price} 
+                productLink={`/produto/${product.slug}`}
                 isPayable={true}
                 numberOfInstallments={3}
                 fees={1}

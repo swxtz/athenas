@@ -14,5 +14,5 @@
         },
         "baseUrl": "./"
     },
-    "minify": false
+    "minify": true
 }
