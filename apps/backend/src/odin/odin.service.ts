@@ -192,14 +192,65 @@ export class OdinService {
     }
 
     async getRecommendedProducts(query: GetRecommendedProductsQuery) {
-        const count = await this.prisma.product.count();
-        const randomNumberProduct = Math.floor(Math.random() * count);
+        const limit = BigInt(query.limit || 30);
 
-        const products = await this.prisma.product.findMany({
-            skip: randomNumberProduct,
-            take: query.limit || 30,
-        });
+        const randomProducts = await this.prisma.$queryRaw`
+            SELECT 
+            p.id, 
+            p.name, 
+            p.description,
+            p.slug, 
+            p.buy_price, 
+            p.price, 
+            p.stock, 
+            p.barcode, 
+            p.sku, 
+            p.is_available, 
+            p.rating, 
+            p.is_deleted, 
+            p.deleted_at, 
+            p.cover_image, 
+            p.images, 
+            p.product_type, 
+            p.state, 
+            p.local_pickup, 
+            p.number_of_sales, 
+            p.number_of_views, 
+            p.number_of_views_in_last_week, 
+            p.created_at, 
+            p.updated_at
+            FROM products p
+            ORDER BY RANDOM()
+            LIMIT ${limit};
+            `;
 
-        return products;
+        const formattedProducts = randomProducts.map((product) => ({
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            slug: product.slug,
+            buyPrice: product.buy_price,
+            price: product.price,
+            stock: product.stock,
+            barcode: product.barcode,
+            sku: product.sku,
+            isAvailable: product.is_available,
+            rating: product.rating,
+            isDeleted: product.is_deleted,
+            deletedAt: product.deleted_at,
+            coverImage: product.cover_image,
+            images: product.images || [],
+            productType: product.product_type,
+            state: product.state,
+            localPickup: product.local_pickup,
+            numberOfSales: product.number_of_sales,
+            numberOfViews: product.number_of_views,
+            numberOfViewsInLastWeek: product.number_of_views_in_last_week,
+            createdAt: product.created_at,
+            updatedAt: product.updated_at,
+            recommendationId: product.recommendationId,
+        }));
+
+        return formattedProducts;
     }
 }
