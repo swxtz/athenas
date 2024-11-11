@@ -2,6 +2,7 @@ import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { Cron } from "@nestjs/schedule";
 import { PrismaService } from "src/prisma/prisma.service";
 import { RecommendationValuesService } from "src/recommendation-values/recommendation-values.service";
+import { GetRecommendedProductsQuery } from "./querys/get-recommended-products.query";
 
 @Injectable()
 export class OdinService {
@@ -188,5 +189,17 @@ export class OdinService {
                 weeklyRecomendation: 500,
             },
         });
+    }
+
+    async getRecommendedProducts(query: GetRecommendedProductsQuery) {
+        const count = await this.prisma.product.count();
+        const randomNumberProduct = Math.floor(Math.random() * count);
+
+        const products = await this.prisma.product.findMany({
+            skip: randomNumberProduct,
+            take: query.limit || 30,
+        });
+
+        return products;
     }
 }

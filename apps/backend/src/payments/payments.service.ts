@@ -207,6 +207,13 @@ export class PaymentsService {
                 },
             });
 
+            if (!user) {
+                throw new HttpException(
+                    { message: "Verifique se vc esta logado" },
+                    401,
+                );
+            }
+
             const order = await this.prisma.buyOrder.update({
                 where: { id: body.orderBuyId },
                 data: {
