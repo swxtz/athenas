@@ -27,14 +27,16 @@ export default async function CheckoutPage() {
 
         <div className="flex gap-8">
           <div className="w-[40.625rem]">
-            <div className="mt-4 w-fit mx-auto">
+            <div className="mt-4">
               <h2 className="text-xl text-zinc-700 mb-3">
                 Selecione um método de pagamento{" "}
               </h2>
               <PaymentMethod />
             </div>
 
-            <div className="mt-4 w-fit">
+            <Separator className="my-4"/>
+
+            <div className=" w-fit">
               <h2 className="text-xl text-zinc-700 mb-3">
                 Selecione a opção de frete
               </h2>
