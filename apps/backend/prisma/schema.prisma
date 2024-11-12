@@ -40,6 +40,8 @@ model User {
 enum UserType {
   consumer
   admim
+  moderator
+  developer
 }
 
 model UserAddress {
