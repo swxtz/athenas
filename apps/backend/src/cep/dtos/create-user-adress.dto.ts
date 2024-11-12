@@ -1,8 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import { IsNotEmpty, IsOptional, IsInt, IsNumber } from "class-validator";
+import { IsNotEmpty, IsOptional } from "class-validator";
 
-export class CreateUserAdressDTO {
+export class CreateUserAddressDTO {
     @ApiProperty()
     cep: string;
 

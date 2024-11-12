@@ -32,7 +32,7 @@ model User {
   ShoppingCart         ShoppingCart[]
   BuyOrder             BuyOrder[]
   paymentNotifications PaymentNotification[]
-  UserAdress           UserAdress[]
+  UserAdress           UserAddress[]
 
   @@map("users")
 }
@@ -42,7 +42,7 @@ enum UserType {
   admim
 }
 
-model UserAdress {
+model UserAddress {
   id     String @id @default(cuid())
   userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])
