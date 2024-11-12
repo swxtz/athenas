@@ -8,10 +8,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
-import sedexLogo from "@/images/freight/sedex.png";
-import jtLogo from "@/images/freight/jt.svg";
-import totalExpressLogo from "@/images/freight/total-express.svg";
 import { useQueryState } from "nuqs";
+import { useQueryGetUserCeps } from "@/hooks/queries/get-user-ceps";
+import { Skeleton } from "@/components/ui/skeleton";
+import { GetCep } from "./get-cep";
 
 const formSchema = z.object({
   freight: z.enum(["sedex", "jt", "totalexpress"], {
@@ -23,10 +23,29 @@ type FormSchema = z.infer<typeof formSchema>;
 
 export function FreightSelect() {
   const [freight, setFreight] = useQueryState("freight");
+  const { data: cep, isLoading } = useQueryGetUserCeps();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
+
+  if (isLoading) {
+    return (
+      <div className="w-[600px] flex flex-col gap-3">
+        <Skeleton className="w-full h-24" />
+        <Skeleton className="w-full h-24" />
+        <Skeleton className="w-full h-24" />
+      </div>
+    );
+  }
+
+  if(cep.length === 0) {
+    return (
+      <div className="">
+        <GetCep />
+      </div>
+    );
+  }
 
   const today = new Date();
   const twoDaysFromNow = new Date(today);
@@ -40,7 +59,5 @@ export function FreightSelect() {
     }
   }
 
-  return (
-    <h1></h1>
-  );
+  return <h1></h1>;
 }

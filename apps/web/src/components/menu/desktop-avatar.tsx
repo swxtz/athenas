@@ -21,7 +21,7 @@ export function DesktopAvatar() {
       <PopoverTrigger asChild>
         <Button className="py-8 px-2 flex gap-4" variant={"ghost"}>
           <Avatar />
-          <span>{data.name}</span>
+          <span>{data && data.name}</span>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="h-fit py-4">
