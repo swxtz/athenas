@@ -3,6 +3,8 @@ import { JwtService } from "@nestjs/jwt";
 import { Prisma } from "@prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
+import { calculateFreightUserDTO } from "./dtos/calculate-freight-dto";
+import axios from "axios";
 
 interface JWTBearerTokenPayLoad {
     id: string;
@@ -24,7 +26,10 @@ export class FreightService {
 
     private logger = new Logger();
 
-    async calculateFreight(rawtoken: string) {
+    async calculateFreight(
+        productsDTO: calculateFreightUserDTO,
+        rawtoken: string,
+    ) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
@@ -32,90 +37,41 @@ export class FreightService {
                 await this.jwt.verifyAsync(token);
 
             if (!jwtpayload) {
-                throw new HttpException(
-                    {
-                        message: "Token inválido",
-                    },
-                    401,
-                );
+                throw new HttpException({ message: "Token inválido" }, 401);
             }
 
             const user = await this.prisma.user.findFirst({
                 where: { id: jwtpayload.id },
-                select: {
-                    id: true,
-                    email: true,
-                },
+                select: { id: true, email: true },
             });
 
             if (!user) {
-                throw new HttpException(
-                    {
-                        message: "JWT Inválido",
-                    },
-                    401,
-                );
+                throw new HttpException({ message: "JWT Inválido" }, 401);
             }
 
             try {
-                // Recuperando o carrinho de compras e os produtos
-                const shoppingcartuser =
-                    await this.prisma.shoppingCart.findFirst({
-                        where: { userId: user.id },
-                        select: { id: true },
+                const productDimensions =
+                    await this.prisma.productDimensions.findMany({
+                        where: {
+                            productId: {
+                                in: productsDTO.products,
+                            },
+                        },
                     });
 
-                if (!shoppingcartuser) {
+                if (productDimensions.length !== productsDTO.products.length) {
+                    const missingIds = productsDTO.products.filter(
+                        (id) =>
+                            !productDimensions.some(
+                                (dim) => dim.productId === id,
+                            ),
+                    );
+
                     throw new Error(
-                        "Carrinho de compras não encontrado para esse usuário.",
+                        `Dimensões não encontradas para os produtos: ${missingIds.join(", ")}`,
                     );
                 }
 
-                const products = await this.prisma.shoppingCartProduct.findMany(
-                    {
-                        where: { shoppingCartId: shoppingcartuser.id },
-                    },
-                );
-
-                if (products.length === 0) {
-                    throw new Error(
-                        "Nenhum produto encontrado no carrinho de compras.",
-                    );
-                }
-
-                // Variável para armazenar as promessas de criação de dimensões
-                const dimensionsPromises = [];
-
-                // Loop para criar dimensões para cada produto dentro do carrinho
-                for (const product of products) {
-                    const dimensionData = {
-                        productId: product.productId, // Relacionando as dimensões com o produto
-                        height: 1, // Valor fixo para altura (pode ser ajustado conforme necessário)
-                        width: 1, // Valor fixo para largura
-                        length: 1, // Valor fixo para comprimento
-                        weight: 1, // Valor fixo para peso
-                    };
-
-                    // Criando as dimensões para o produto e armazenando a promessa
-                    const createDimensionPromise =
-                        this.prisma.productDimensions.create({
-                            data: dimensionData,
-                        });
-
-                    // Adicionando a promessa à lista
-                    dimensionsPromises.push(createDimensionPromise);
-                }
-
-                // Aguardando a criação de todas as dimensões
-                const createdDimensions = await Promise.all(dimensionsPromises);
-
-                // Exibindo as dimensões criadas (apenas para teste)
-                console.log(
-                    "Dimensões criadas para os produtos:",
-                    createdDimensions,
-                );
-
-                // Agora você pode continuar com o cálculo de frete, por exemplo:
                 let totalWeight = 0;
                 let totalHeight = 0;
                 let totalWidth = 0;
@@ -123,40 +79,45 @@ export class FreightService {
 
                 const productsForApi = [];
 
-                // Usando as dimensões criadas para calcular o frete
-                for (let i = 0; i < createdDimensions.length; i++) {
-                    const dim = createdDimensions[i];
-                    const product = products[i];
+                for (let i = 0; i < productsDTO.products.length; i++) {
+                    const productDTO = productsDTO.products[i];
+                    const dimension = productDimensions.find(
+                        (dim) => dim.productId === productDTO,
+                    );
 
-                    // Acumulando o peso e as dimensões
-                    totalWeight += dim.weight;
-                    totalHeight += dim.height;
-                    totalWidth += dim.width;
-                    totalLength += dim.length;
+                    if (!dimension) {
+                        throw new Error(
+                            `Dimensões não encontradas para o produto ${productDTO}`,
+                        );
+                    }
 
-                    // Adicionando o produto à lista para a API de frete
+                    totalWeight += dimension.weight;
+                    totalHeight += dimension.height;
+                    totalWidth += dimension.width;
+                    totalLength += dimension.length;
+
                     productsForApi.push({
                         quantity: 1,
-                        height: dim.height,
-                        width: dim.width,
-                        length: dim.length,
-                        weight: dim.weight,
+                        height: dimension.height,
+                        width: dimension.width,
+                        length: dimension.length,
+                        weight: dimension.weight,
                     });
                 }
 
-                // Preparando os dados para enviar na requisição
-                const options = {
+                const response = await axios.request({
                     method: "POST",
+                    url: "https://sandbox.superfrete.com/api/v0/calculator",
                     headers: {
                         accept: "application/json",
                         "User-Agent":
                             "Nome e versão da aplicação (email para contato técnico)",
                         "content-type": "application/json",
                     },
-                    body: JSON.stringify({
-                        from: { postal_code: "08060140" }, // CEP de origem
-                        to: { postal_code: "20020050" }, // CEP de destino
-                        services: "1,2,17", // Serviços disponíveis (ajuste conforme necessário)
+                    data: {
+                        from: { postal_code: "01153000" },
+                        to: { postal_code: productsDTO.cep },
+                        services: "1,2,17",
                         options: {
                             own_hand: false,
                             receipt: false,
@@ -164,57 +125,54 @@ export class FreightService {
                             use_insurance_value: false,
                         },
                         package: {
-                            height: totalHeight, // Soma das alturas
-                            width: totalWidth, // Soma das larguras
-                            length: totalLength, // Soma dos comprimentos
-                            weight: totalWeight, // Peso total de todos os produtos
+                            height: totalHeight,
+                            width: totalWidth,
+                            length: totalLength,
+                            weight: totalWeight,
                         },
-                        products: productsForApi, // Lista de todos os produtos com suas dimensões
-                    }),
-                };
-
-                // Enviando a requisição para a API de frete
-                const response = await fetch(
-                    "https://sandbox.superfrete.com/api/v0/calculator",
-                    options,
-                );
-                const result = await response.json();
-
-                // Exibindo o resultado da API de frete
-                console.log(result);
+                        products: productsForApi,
+                    },
+                });
+                console.log(response.data);
+                return response.data;
             } catch (err) {
-                console.error("Erro durante o processamento:", err);
+                console.error("Erro durante o processamento:", err.message);
+                throw new HttpException({ message: err.message }, 500);
             }
         } catch (err) {
-            if (err instanceof Prisma.PrismaClientKnownRequestError) {
-                console.log(err.name);
-                if (
-                    err.name === "NotFoundError" &&
-                    err.message === "No User found"
-                ) {
-                    this.logger.warn(`User not find`);
-                    throw new HttpException(
-                        {
-                            message:
-                                "Usuário não existe, tente relogar na aplicação",
-                        },
-                        401,
-                    );
-                }
-            }
-
-            if (err instanceof HttpException) {
-                throw err;
-            }
-
-            this.logger.error(err);
-            console.error(err);
-            throw new HttpException(
-                {
-                    message: "Ocorreu um erro interno",
-                },
-                500,
-            );
+            console.error("Erro no token ou na autenticação:", err.message);
+            throw new HttpException({ message: err.message }, 401);
         }
+    }
+    catch(err) {
+        if (err instanceof Prisma.PrismaClientKnownRequestError) {
+            console.log(err.name);
+            if (
+                err.name === "NotFoundError" &&
+                err.message === "No User found"
+            ) {
+                this.logger.warn(`User not find`);
+                throw new HttpException(
+                    {
+                        message:
+                            "Usuário não existe, tente relogar na aplicação",
+                    },
+                    401,
+                );
+            }
+        }
+
+        if (err instanceof HttpException) {
+            throw err;
+        }
+
+        this.logger.error(err);
+        console.error(err);
+        throw new HttpException(
+            {
+                message: "Ocorreu um erro interno",
+            },
+            500,
+        );
     }
 }

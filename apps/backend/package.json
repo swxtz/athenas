@@ -26,6 +26,7 @@
     "clean:db": "node dist/prisma/clean.js"
   },
   "dependencies": {
+    "@api/superfrete": "file:.api/apis/superfrete",
     "@aws-sdk/client-s3": "^3.687.0",
     "@aws-sdk/s3-request-presigner": "^3.687.0",
     "@azure/communication-email": "^1.0.0",
