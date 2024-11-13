@@ -14,7 +14,6 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import InputMask from "react-input-mask";
 
 const formSchema = z.object({
   cep: z.string(),
