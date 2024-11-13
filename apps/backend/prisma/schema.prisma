@@ -58,6 +58,8 @@ model UserAddress {
   complement   String  @map("complement")
   apartment    Boolean @map("apartment")
   apBlock      String  @map("ap_block")
+
+  @@map("user_adress")
 }
 
 model Product {
@@ -102,8 +104,23 @@ model Product {
   Category            Category[]
   BuyOrderProducts    BuyOrderProducts[]
   ShoppingCartProduct ShoppingCartProduct[]
+  ProductDimensions   ProductDimensions?
 
   @@map("products")
+}
+
+model ProductDimensions {
+  id        String @id @default(cuid())
+  productId String @unique @map("product_id")
+
+  product Product @relation(fields: [productId], references: [id])
+
+  height Int @map("height")
+  width  Int @map("width")
+  length Int @map("length")
+  weight Int @map("weight")
+
+  @@map("product_dimensions")
 }
 
 model Promotion {
@@ -142,6 +159,8 @@ model FreightCompanies {
   name              String @unique @map("name")
   kmPrice           Int    @map("km_price")
   companyPictureUrl String @map("company_picture_url")
+
+  @@map("freight_companies")
 }
 
 // recomendation engine
@@ -223,6 +242,8 @@ model ShoppingCartProduct {
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("shopping_cart_product")
 }
 
 model Category {

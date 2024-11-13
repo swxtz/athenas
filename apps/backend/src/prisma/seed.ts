@@ -52,6 +52,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p1.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p2 = await prisma.product.create({
         data: {
             name: products[1].name,
@@ -81,6 +91,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p2.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p2.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -116,6 +136,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p3.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p4 = await prisma.product.create({
         data: {
             name: products[3].name,
@@ -145,6 +175,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p4.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p4.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -180,6 +220,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p5.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p6 = await prisma.product.create({
         data: {
             name: products[5].name,
@@ -209,6 +259,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p6.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p6.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -246,6 +306,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p7.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p8 = await prisma.product.create({
         data: {
             name: products[7].name,
@@ -275,6 +345,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p8.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p8.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -310,6 +390,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p9.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p10 = await prisma.product.create({
         data: {
             name: products[9].name,
@@ -339,6 +429,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p10.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p10.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -374,6 +474,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p11.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p12 = await prisma.product.create({
         data: {
             name: products[11].name,
@@ -403,6 +513,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p12.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p12.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -440,6 +560,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p13.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p14 = await prisma.product.create({
         data: {
             name: products[13].name,
@@ -469,6 +599,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p14.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p14.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -504,6 +644,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p15.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p16 = await prisma.product.create({
         data: {
             name: products[15].name,
@@ -533,6 +683,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p16.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p16.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -568,6 +728,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p17.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p18 = await prisma.product.create({
         data: {
             name: products[17].name,
@@ -597,6 +767,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p18.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p18.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -634,6 +814,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p19.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p20 = await prisma.product.create({
         data: {
             name: products[19].name,
@@ -663,6 +853,15 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p20.id,
+        },
+    });
+    await prisma.productDimensions.create({
+        data: {
+            productId: p20.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -698,6 +897,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p21.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p22 = await prisma.product.create({
         data: {
             name: products[21].name,
@@ -727,6 +936,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p22.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p22.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -762,6 +981,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p23.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p24 = await prisma.product.create({
         data: {
             name: products[23].name,
@@ -791,6 +1020,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p24.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p24.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -828,6 +1067,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p25.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p26 = await prisma.product.create({
         data: {
             name: products[25].name,
@@ -857,6 +1106,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p26.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p26.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -892,6 +1151,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p27.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p28 = await prisma.product.create({
         data: {
             name: products[27].name,
@@ -921,6 +1190,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p28.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p28.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -956,6 +1235,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p29.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p30 = await prisma.product.create({
         data: {
             name: products[29].name,
@@ -988,6 +1277,16 @@ async function seed() {
         },
     });
 
+    await prisma.productDimensions.create({
+        data: {
+            productId: p30.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
+        },
+    });
+
     const p31 = await prisma.product.create({
         data: {
             name: products[30].name,
@@ -1011,6 +1310,22 @@ async function seed() {
                     type: products[30].type,
                 },
             },
+        },
+    });
+
+    await prisma.recommendation.create({
+        data: {
+            productId: p31.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p31.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
@@ -1044,6 +1359,16 @@ async function seed() {
     await prisma.recommendation.create({
         data: {
             productId: p32.id,
+        },
+    });
+
+    await prisma.productDimensions.create({
+        data: {
+            productId: p32.id,
+            height: 2,
+            weight: 2,
+            length: 2,
+            width: 2,
         },
     });
 
