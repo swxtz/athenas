@@ -11,21 +11,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { api } from "@/lib/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryState } from "nuqs";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { set, z } from "zod";
 
 const formSchema = z.object({
   cep: z.string(),
 });
 
 export function GetCep() {
+  const [cep, setCep] = useQueryState("cep");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(data) {
-    console.log(data);
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    setCep(data.cep);
   }
 
   return (
@@ -51,7 +54,9 @@ export function GetCep() {
               </FormItem>
             )}
           />
-          <Button type="submit" variant={"primary"}>Calcular frete</Button>
+          <Button type="submit" variant={"primary"}>
+            Calcular frete
+          </Button>
         </form>
       </Form>
     </div>
