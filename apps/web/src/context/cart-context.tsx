@@ -2,7 +2,7 @@
 
 import { createContext, Dispatch, ReactNode, useEffect, useReducer } from "react";
 
-type Item = {
+export type Item = {
   id: string;
   quantity: number;
   price: number;

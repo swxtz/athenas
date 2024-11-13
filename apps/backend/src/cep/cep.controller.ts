@@ -14,7 +14,7 @@ import {
 import { CepService } from "./cep.service";
 import { ApiTags } from "@nestjs/swagger";
 import { ValidateCepDTO } from "./dtos/validate-cep.dto";
-import { CreateUserAdressDTO } from "./dtos/create-user-adress.dto";
+import { CreateUserAddressDTO } from "./dtos/create-user-adress.dto";
 import { AuthGuard } from "src/auth/auth.guard";
 import { DeleteUserAdressParam } from "./params/delete-user-adress.params";
 
@@ -28,19 +28,19 @@ export class CepController {
         return this.cepService.validateCEP(param);
     }
 
-    @Post("create-user-adress")
+    @Post("create-user-address")
     @UseGuards(AuthGuard)
     async createUserAdress(
-        @Body(new ValidationPipe()) body: CreateUserAdressDTO,
+        @Body(new ValidationPipe()) body: CreateUserAddressDTO,
         @Headers("authorization") token: string,
     ) {
-        return this.cepService.createUserAdress(body, token);
+        return this.cepService.createUserAddress(body, token);
     }
 
-    @Get("get-user-adress")
+    @Get("get-user-address")
     @UseGuards(AuthGuard)
     async getUserAdress(@Headers("authorization") token: string) {
-        return this.cepService.getUserAdress(token);
+        return this.cepService.getUserAddress(token);
     }
 
     @Delete("/delete-product/:id")
@@ -52,15 +52,15 @@ export class CepController {
         params: DeleteUserAdressParam,
         @Headers("authorization") token: string,
     ) {
-        return this.cepService.deleteUserAdress(token, params);
+        return this.cepService.deleteUserAddress(token, params);
     }
 
-    @Delete("delete-all-user-adress")
+    @Delete("delete-all-user-address")
     @HttpCode(200)
     @UseGuards(AuthGuard)
     async deleteManyProductInShoppingCart(
         @Headers("authorization") token: string,
     ) {
-        return this.cepService.deleteAllUserAdress(token);
+        return this.cepService.deleteAllUserAddress(token);
     }
 }

@@ -6,7 +6,7 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { UtilsService } from "src/utils/utils.service";
 import { JwtService } from "@nestjs/jwt";
 import { Prisma } from "@prisma/client";
-import { CreateUserAdressDTO } from "./dtos/create-user-adress.dto";
+import { CreateUserAddressDTO } from "./dtos/create-user-adress.dto";
 import { DeleteUserAdressParam } from "./params/delete-user-adress.params";
 
 interface JWTBearerTokenPayLoad {
@@ -43,7 +43,7 @@ export class CepService {
         return viacepResponse.data;
     }
 
-    async createUserAdress(body: CreateUserAdressDTO, rawtoken) {
+    async createUserAddress(body: CreateUserAddressDTO, rawtoken) {
         const token = this.utils.removeBearer(rawtoken);
         console.log(body.cep);
 
@@ -85,7 +85,7 @@ export class CepService {
                     message: "CEP inválido",
                 };
             }
-            const useradressdata = {
+            const useraddressdata = {
                 userId: jwtpayload.id,
                 city: viacepResponse.data.localidade,
                 street: viacepResponse.data.logradouro,
@@ -97,10 +97,10 @@ export class CepService {
                 apBlock: null,
             };
             if (body.apartment) {
-                useradressdata.apBlock = body.apBlock;
+                useraddressdata.apBlock = body.apBlock;
             }
-            const userAddress = await this.prisma.userAdress.create({
-                data: { cep: body.cep, ...useradressdata },
+            const userAddress = await this.prisma.userAddress.create({
+                data: { cep: body.cep, ...useraddressdata },
             });
 
             return {
@@ -140,7 +140,7 @@ export class CepService {
         }
     }
 
-    async getUserAdress(rawtoken) {
+    async getUserAddress(rawtoken) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
@@ -173,11 +173,11 @@ export class CepService {
                 );
             }
 
-            const userAdress = await this.prisma.userAdress.findMany({
+            const userAddress = await this.prisma.userAddress.findMany({
                 where: { userId: jwtpayload.id },
             });
 
-            return userAdress;
+            return userAddress;
         } catch (err) {
             if (err instanceof Prisma.PrismaClientKnownRequestError) {
                 console.log(err.name);
@@ -211,7 +211,7 @@ export class CepService {
         }
     }
 
-    async deleteUserAdress(rawtoken, params: DeleteUserAdressParam) {
+    async deleteUserAddress(rawtoken, params: DeleteUserAdressParam) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
@@ -244,7 +244,7 @@ export class CepService {
                 );
             }
 
-            await this.prisma.userAdress.delete({
+            await this.prisma.userAddress.delete({
                 where: { id: params.id },
             });
         } catch (err) {
@@ -279,7 +279,7 @@ export class CepService {
             );
         }
     }
-    async deleteAllUserAdress(rawtoken) {
+    async deleteAllUserAddress(rawtoken) {
         const token = this.utils.removeBearer(rawtoken);
 
         try {
@@ -312,7 +312,7 @@ export class CepService {
                 );
             }
 
-            await this.prisma.userAdress.deleteMany({
+            await this.prisma.userAddress.deleteMany({
                 where: {
                     userId: jwtpayload.id,
                 },
