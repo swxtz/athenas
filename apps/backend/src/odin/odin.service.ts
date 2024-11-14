@@ -5,6 +5,7 @@ import { RecommendationValuesService } from "src/recommendation-values/recommend
 import { GetRecommendedProductsQuery } from "./queries/get-recommended-products.query";
 import { SearchProductsQuery } from "./queries/search-products.dto";
 import { Prisma } from "@prisma/client";
+import { IncrementClickOrganicProduct } from "./dtos/increment-click-organic-product.dto";
 
 @Injectable()
 export class OdinService {
@@ -165,6 +166,96 @@ export class OdinService {
             where: { productId },
             data: { sales: product.sales - this.recommendationValues.sale },
         });
+    }
+
+    async incrementClickOrganicProduct(param: IncrementClickOrganicProduct) {
+        try {
+            const product = await this.prisma.product.findFirst({
+                where: {
+                    id: param.id,
+                },
+                select: {
+                    id: true,
+                    Recommendation: {
+                        select: {
+                            id: true,
+                        },
+                    },
+                },
+            });
+
+            if (!product) {
+                this.logger.error(
+                    `Product with id ${param.id} not found, in increment click organic product`,
+                );
+                throw new HttpException(
+                    {
+                        message: "Produto não encontrado",
+                    },
+                    404,
+                );
+            }
+
+            const recommendation = await this.prisma.recommendation.update({
+                where: { id: product.Recommendation.id },
+                data: {
+                    dailyRecomendation: {
+                        increment:
+                            this.recommendationValues.clickOrganicProductValue,
+                    },
+                    weeklyRecomendation: {
+                        increment:
+                            this.recommendationValues.clickOrganicProductValue,
+                    },
+                },
+
+                select: {
+                    dailyRecomendation: true,
+                    weeklyRecomendation: true,
+                },
+            });
+
+            if (!recommendation) {
+                this.logger.error(
+                    `Recommendation with id ${param.id} not found, in increment click organic product`,
+                );
+                throw new HttpException(
+                    {
+                        message: "Produto não encontrado",
+                    },
+                    404,
+                );
+            }
+        } catch (err) {
+            if (err instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(err.name);
+                if (
+                    err.name === "NotFoundError" &&
+                    err.message === "No product find"
+                ) {
+                    this.logger.warn(`Product not find`);
+                    throw new HttpException(
+                        {
+                            message: "Produto procurado não existe",
+                        },
+                        401,
+                    );
+                }
+            }
+
+            if (err instanceof HttpException) {
+                throw err;
+            }
+
+            this.logger.error(err);
+            console.error(err);
+            throw new HttpException(
+                {
+                    message: "Ocorreu um erro interno",
+                },
+                500,
+            );
+        }
     }
 
     @Cron("0 0 0 * * *")

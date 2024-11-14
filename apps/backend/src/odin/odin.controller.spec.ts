@@ -165,4 +165,43 @@ describe("OdinController", () => {
             expect(products).toEqual(sortedProducts);
         });
     });
+
+    describe("incrementClickOrganicProduct", () => {
+        it("should not be possible to update the value of a product with a non-existent id", async () => {
+            const id = uuid();
+
+            const response = await request(app.getHttpServer()).get(
+                `/odin/increment-click-organic-product/${id}`,
+            );
+
+            expect(response.statusCode).toBe(404);
+            expect(response.body.message).toBe(
+                `Cannot GET /odin/increment-click-organic-product/${id}`,
+            );
+        });
+
+        it("should be possible to update the value of a product with an existing id", async () => {
+            const getProducts = await request(app.getHttpServer()).get(
+                "/products/get-best-sellers",
+            );
+
+            const id = getProducts.body.data[0].id;
+
+            const response = await request(app.getHttpServer()).put(
+                `/odin/increment-click-organic-product/${id}`,
+            );
+
+            expect(response.statusCode).toBe(204);
+        });
+
+        it("should not be possible to update the value of a product with an invalid id", async () => {
+            const id = "e82b4286-9d11-4e36-893a-50d9f52e";
+
+            const response = await request(app.getHttpServer()).put(
+                `/odin/increment-click-organic-product/${id}`,
+            );
+
+            expect(response.statusCode).toBe(400);
+        });
+    });
 });
