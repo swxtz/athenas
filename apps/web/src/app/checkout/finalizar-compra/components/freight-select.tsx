@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,8 +9,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { FreightCard } from "./freight-card";
 import { Label } from "@/components/ui/label";
 import { parseAsInteger, useQueryState } from "nuqs";
-import { Item } from "@/context/cart-context";
-
 import sedexLogo from "@/images/freight/sedex.png";
 import jtLogo from "@/images/freight/jt.svg";
 import totalLogo from "@/images/freight/total-express.svg";
@@ -26,60 +25,30 @@ function getRandomValue() {
 
 type FormSchema = z.infer<typeof formSchema>;
 
-interface Product {
-  id: string;
-}
-
-function mapItemsToProducts(items: Item[] | undefined): Product[] {
-  return items!.map((item) => ({ id: item.id }));
-}
-
 export function FreightSelect() {
   const [freight, setFreight] = useQueryState("freight");
-
   const [sedex, setSedex] = useQueryState("sedex", parseAsInteger);
   const [jt, setJt] = useQueryState("jt", parseAsInteger);
   const [total, setTotal] = useQueryState("total", parseAsInteger);
-
-  // Chama o hook fora de qualquer condição
+  const isMounted = useRef(false);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
 
-  if (!sedex) {
-    setSedex(getRandomValue() * 100);
-  }
+  useEffect(() => {
+    isMounted.current = true;
 
-  if(!jt) {
-    setJt(getRandomValue() * 100);
-  }
+    if (isMounted.current) {
+      if (!sedex) setSedex(getRandomValue() * 100);
+      if (!jt) setJt(getRandomValue() * 100);
+      if (!total) setTotal(getRandomValue() * 100);
+    }
 
-  if(!total) {
-    setTotal(getRandomValue() * 100);
-  }
-
-  // if (!isMounted) {
-  //   return null;
-  // }
-
-  // if (isLoading) {
-  //   return (
-  //     <div className="w-[600px] flex flex-col gap-3">
-  //       <Skeleton className="w-full h-24" />
-  //       <Skeleton className="w-full h-24" />
-  //       <Skeleton className="w-full h-24" />
-  //     </div>
-  //   );
-  // }
-
-  // if (!cepQuery) {
-  //   return (
-  //     <div className="">
-  //       <GetCep />
-  //     </div>
-  //   );
-  // }
+    return () => {
+      isMounted.current = false;
+    };
+  }, [sedex, jt, total]);
 
   const today = new Date();
   const twoDaysFromNow = new Date(today);

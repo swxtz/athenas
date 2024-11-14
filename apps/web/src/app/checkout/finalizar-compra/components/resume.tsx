@@ -38,7 +38,7 @@ export function Resume() {
       <div className="max-h-[500px] overflow-y-auto scrollbar scrollbar-thumb-zinc-700/50 scrollbar-w-2 scrollbar-thumb-rounded-full ">
         {context?.state.items.length === 0 && <EmptyCart />}
         {context?.state.items.map((item) => (
-          <ResumeCard key={cuid()} productId={item.id} />
+          <ResumeCard key={cuid()} productId={item.id} productQuantity={item.quantity} />
         ))}
       </div>
 

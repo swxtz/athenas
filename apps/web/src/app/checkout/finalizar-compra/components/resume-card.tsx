@@ -10,11 +10,12 @@ import { useEffect, useState } from "react";
 
 interface ResumeCard {
   productId: string;
+  productQuantity: number;
 }
 
-export function ResumeCard({ productId }: ResumeCard) {
+export function ResumeCard({ productId, productQuantity }: ResumeCard) {
   const { data, isLoading, error } = useQueryGetProductById(productId);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity] = useState(productQuantity || 1);
 
   const context = useCart();
   const [isMounted, setIsMounted] = useState(false);

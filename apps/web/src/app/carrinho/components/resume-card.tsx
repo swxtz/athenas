@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useQueryGetProductById } from "@/hooks/queries/get-product-by-id";
 import { useCart } from "@/hooks/use-cart";
 import { convertToReal } from "@/utils/convert-to-real";
@@ -10,11 +11,12 @@ import { useEffect, useState } from "react";
 
 interface ResumeCard {
   productId: string;
+  productQuantity: number;
 }
 
-export function ResumeCard({ productId }: ResumeCard) {
+export function ResumeCard({ productId, productQuantity }: ResumeCard) {
   const { data, isLoading, error } = useQueryGetProductById(productId);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(productQuantity || 1);
 
   const context = useCart();
   const [isMounted, setIsMounted] = useState(false);
@@ -24,7 +26,7 @@ export function ResumeCard({ productId }: ResumeCard) {
   }, []);
 
   if (!isMounted) {
-    return null;
+    return <Skeleton className="w-4/5 my-3 h-16 mx-auto" />;
   }
 
   function handleRemoveProduct() {
