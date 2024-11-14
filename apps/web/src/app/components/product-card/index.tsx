@@ -8,6 +8,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { number } from "zod";
+import { useMutationIncrementClickOrganicProductValue } from "@/hooks/mutations/increment-click-organic-product-value";
+import { api } from "@/lib/axios";
 
 export interface IProductCard {
   name: string;
@@ -31,21 +33,36 @@ export function ProductCard({
   const convertedPrice = convertToReal(price / 100);
   const isDesktop = useMediaQuery(768);
 
-  function calculateTotalWithInterest(numInstallments: number | undefined, interestRate: number, productValue: number) {
+  const { mutate } = useMutationIncrementClickOrganicProductValue();
+
+  function calculateTotalWithInterest(
+    numInstallments: number | undefined,
+    interestRate: number,
+    productValue: number
+  ) {
     if (!numInstallments) {
       numInstallments = 1;
     }
 
     // Convert the interest rate from percentage to decimal
     const interestDecimal = interestRate / 100;
-  
+
     // Calculate the value of each installment with interest
     const installmentValue = productValue / numInstallments;
-  
+
     // Calculate the total value with simple interest
-    const totalValue = installmentValue * numInstallments * (1 + interestDecimal);
-  
+    const totalValue =
+      installmentValue * numInstallments * (1 + interestDecimal);
+
     return totalValue / numInstallments;
+  }
+
+  function handleClickLink() {
+    api
+      .put(`/odin/increment-click-organic-product/${productId}`)
+      .then((res) => {
+        console.log(res);
+      });
   }
 
   return (
@@ -77,12 +94,20 @@ export function ProductCard({
                 className="text-sm font-roboto "
               />
 
-              <span className="text-green-500 text-xs font-roboto">Frete ou retirada</span>
+              <span className="text-green-500 text-xs font-roboto">
+                Frete ou retirada
+              </span>
 
               <span>
                 {isPayable && (
                   <span className="text-xs font-montserrat font-medium">
-                    {`Em ${numberOfInstallments}x de ${convertToReal(calculateTotalWithInterest(numberOfInstallments, fees, price) / 100)} sem juros`}
+                    {`Em ${numberOfInstallments}x de ${convertToReal(
+                      calculateTotalWithInterest(
+                        numberOfInstallments,
+                        fees,
+                        price
+                      ) / 100
+                    )} sem juros`}
                   </span>
                 )}
               </span>
