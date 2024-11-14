@@ -9,7 +9,7 @@ export class OdinService {
     constructor(private prisma: PrismaService) {}
 
     private logger = new Logger(OdinService.name);
-    private recommedationValues = RecommendationValuesService;
+    private recommendationValues = RecommendationValuesService;
 
     async getScoreById(productId: string) {
         const product = await this.prisma.recommendation.findUnique({
@@ -78,11 +78,11 @@ export class OdinService {
             where: { productId },
             data: {
                 likes: {
-                    increment: this.recommedationValues.likeValue,
+                    increment: this.recommendationValues.likeValue,
                 },
 
                 dailyLikes: {
-                    increment: this.recommedationValues.likeValue,
+                    increment: this.recommendationValues.likeValue,
                 },
             },
         });
@@ -99,7 +99,9 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { likes: product.likes - this.recommedationValues.likeValue },
+            data: {
+                likes: product.likes - this.recommendationValues.likeValue,
+            },
         });
     }
 
@@ -114,7 +116,7 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { views: product.views + this.recommedationValues.view },
+            data: { views: product.views + this.recommendationValues.view },
         });
     }
 
@@ -129,7 +131,7 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { views: product.views - this.recommedationValues.view },
+            data: { views: product.views - this.recommendationValues.view },
         });
     }
 
@@ -144,7 +146,7 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { sales: product.sales + this.recommedationValues.sale },
+            data: { sales: product.sales + this.recommendationValues.sale },
         });
     }
 
@@ -159,7 +161,7 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { sales: product.sales - this.recommedationValues.sale },
+            data: { sales: product.sales - this.recommendationValues.sale },
         });
     }
 
