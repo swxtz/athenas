@@ -124,4 +124,45 @@ describe("OdinController", () => {
             expect(res.body.score).toEqual(500);
         });
     });
+
+    describe("searchProduct", () => {
+        it("should return products based on user search", async () => {
+            const SearchReturn = await request(app.getHttpServer()).get(
+                "/odin/search-products?search=ketchup",
+            );
+            expect(SearchReturn.body).toBeInstanceOf(Object);
+            expect(SearchReturn.body.data.length).toBeGreaterThan(0);
+            expect(SearchReturn.body.data).toBeInstanceOf(Array);
+            expect(SearchReturn.body.message).toBe(
+                "Produtos encontrados com base na sua pesquisa:",
+            );
+        });
+        it("should return products based on the proximity of the user's search", async () => {
+            const SearchReturn = await request(app.getHttpServer()).get(
+                "/odin/search-products?search=ket",
+            );
+            expect(SearchReturn.body).toBeInstanceOf(Object);
+            expect(SearchReturn.body.data.length).toBeGreaterThan(0);
+            expect(SearchReturn.body.data).toBeInstanceOf(Array);
+            expect(SearchReturn.body.data[0].name).toMatch(/Ketchup/i);
+            expect(SearchReturn.body.message).toBe(
+                "Produtos encontrados com base na sua pesquisa:",
+            );
+        });
+
+        it("should return products sorted by numberOfSales in descending order", async () => {
+            const SearchReturn = await request(app.getHttpServer()).get(
+                "/odin/search-products?search=ketchup",
+            );
+            expect(SearchReturn.body).toBeInstanceOf(Object);
+            expect(SearchReturn.body.data.length).toBeGreaterThan(0);
+            expect(SearchReturn.body.data).toBeInstanceOf(Array);
+
+            const products = SearchReturn.body.data;
+            const sortedProducts = [...products].sort(
+                (a, b) => b.numberOfSales - a.numberOfSales,
+            );
+            expect(products).toEqual(sortedProducts);
+        });
+    });
 });

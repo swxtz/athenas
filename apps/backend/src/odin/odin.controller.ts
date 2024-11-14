@@ -13,6 +13,7 @@ import { GetScoreByIdDTO } from "./dtos/get-score-by-id.dto";
 import { GetScoreBySlugDTO } from "./dtos/get-score-by-slug.dto";
 import { incrementLikeDTO } from "./dtos/increment-like.dto";
 import { GetRecommendedProductsQuery } from "./queries/get-recommended-products.query";
+import { SearchProductsQuery } from "./queries/search-products.dto";
 
 @Controller("odin")
 @ApiTags("Odin")
@@ -37,6 +38,13 @@ export class OdinController {
         query?: GetRecommendedProductsQuery,
     ) {
         return this.odinService.getRecommendedProducts(query);
+    }
+
+    @Get("search-products")
+    async searchProducts(
+        @Query(new ValidationPipe()) query: SearchProductsQuery,
+    ) {
+        return this.odinService.searchProducts(query);
     }
 
     @Post("increment-like/:id")
