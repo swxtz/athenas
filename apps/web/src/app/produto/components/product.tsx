@@ -21,6 +21,9 @@ import { ProductDisplayDesktop } from "./product-display-desktop";
 import { QuantityButton } from "@/app/carrinho/components/quantity-button";
 import { BestSellers } from "@/app/components/best-sellers/index";
 import { CardPurchaseFreight } from "./card-purchase-freight";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@/components/ui/toast";
+import Link from "next/link";
 
 interface ProductCardProps {
   slug: string;
@@ -30,6 +33,7 @@ export function Product({ slug }: ProductCardProps) {
   const cartContext = useCart();
   const isDesktop = useMediaQuery(768);
   const { data, isLoading, error } = useQueryGetProductBySlug(slug);
+  const { toast } = useToast();
 
 
 
@@ -42,6 +46,14 @@ export function Product({ slug }: ProductCardProps) {
         item: { id: data.id, quantity: 1, price: data.price },
       });
     }
+
+    toast({
+      title: "Produto adicionado ao carrinho",
+      description: "Você acabou de adicionar um novo item ao carrinho.",
+      variant: "success",
+      action: <ToastAction altText="Ver carrinho"><Link href="/carrinho">Ver Carrinho</Link></ToastAction>,
+    });
+
   }
 
   return (
@@ -108,8 +120,8 @@ export function Product({ slug }: ProductCardProps) {
                     />
                   </div>
                   <div className="  flex flex-col gap-2 text-zinc-600 leading-tight">
-                    <p className="text-2xl font-semibold"> DESCRIÇÃO DO PRODUTO</p>
-                    <p className="text-sm  text-justify  "> 
+                    <p className="text-2xl font-semibold">DESCRIÇÃO DO PRODUTO</p>
+                    <p className="text-sm  text-justify"> 
                     pão de 73g é macio e leve, ideal para hambúrgueres. Com 12 unidades por embalagem, oferece praticidade para lanchonetes e eventos. Seu sabor delicado realça os recheios, tornando cada lanche mais saboroso.
                     Perfeito para diversas preparações, é a escolha ideal para quem busca qualidade e versatilidade em suas refeições. Experimente e eleve seus lanches a um novo nível!
                     </p>
