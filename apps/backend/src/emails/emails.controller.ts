@@ -13,4 +13,11 @@ export class EmailsController {
     ) {
         return this.EmailsService.sendAccountVerificationEmail(body);
     }
+
+    @Post("resend-authentication-email")
+    async resendAuthenticationEmail(
+        @Body() body: sendAccountVerificationEmailDTO,
+    ) {
+        return this.EmailsService.resendAccountVerificationEmail(body);
+    }
 }
