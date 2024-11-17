@@ -35,6 +35,12 @@ export class AuthController {
     async verifyEmail(@Body() body: VerifyEmailDTO) {
         return this.authService.verifyEmail(body.token);
     }
+    @Post("resend-account-verification-email")
+    @UsePipes(new ValidationPipe({ transform: true }))
+    async resendVeificationEmail(@Body() body: GetEmailForResetPasswordDTO) {
+        return this.authService.resendVeificationEmail(body);
+    }
+
     @Get("get-email-for-reset-password")
     @UsePipes(new ValidationPipe({ transform: true }))
     async getemailresetpass(@Body() body: GetEmailForResetPasswordDTO) {

@@ -20,6 +20,6 @@ export class sendAccountVerificationEmailDTO {
     name: string;
 
     @ApiProperty()
-    @IsNotEmpty()
+    @IsOptional()
     link: string;
 }

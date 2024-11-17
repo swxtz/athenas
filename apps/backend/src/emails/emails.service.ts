@@ -1,4 +1,4 @@
-import { HttpException, Injectable, Logger } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { sendAccountVerificationEmailDTO } from "./dtos/send-account-verification-email.dto";
 import { validate } from "class-validator";
@@ -17,7 +17,7 @@ export class EmailsService {
     private logger = new Logger();
 
     private connString = this.config.getOrThrow("AZURE_EMAIL_CONN_STRING");
-    private emailClient = new EmailClient(this.connString);
+    private emailClient = new EmailClient("endpoint=https://comservice-athenas-dev.unitedstates.communication.azure.com/;accesskey=7RCbcb2MOSdZFN0qMHPvHF7oMYj9jVVxWSFikSK5EAsJ9Pv6aYiHJQQJ99AKACULyCpT4xQSAAAAAZCSaKcN");
 
     async sendAccountVerificationEmail(
         emailDTO: sendAccountVerificationEmailDTO,
@@ -160,67 +160,8 @@ export class EmailsService {
     async resendAccountVerificationEmail(
         emailDTO: sendAccountVerificationEmailDTO,
     ) {
-        const errors = await validate(emailDTO);
-
-        if (errors.length > 0) {
-            throw new Error(`Validation failed! ${errors}`);
-        }
-
-        const webUrl = this.config.getOrThrow("WEB_URL");
-
-        const user = await this.prisma.user.findFirst({
-            where: { email: emailDTO.to },
-            select: {
-                emailVerified: true,
-                id: true,
-                email: true,
-                name: true,
-            },
-        });
-
-        if (!user) {
-            this.logger.warn(
-                `the user with the email: ${emailDTO.to}, don't exist`,
-            );
-            throw new HttpException(
-                {
-                    message: `o usuário com o email: ${emailDTO.to}, não existe`,
-                },
-                404,
-            );
-        }
-
-        const payload = {
-            id: user.id,
-            email: user.email,
-        };
-
-        const token = await this.jwt.signAsync(payload, {
-            expiresIn: 60 * 10,
-        });
-
-        const url = `${webUrl}/auth/verificar-email?token=${token}`;
-
-        this.resendAccountVerificationEmail({
-            from: "",
-            to: user.email,
-            name: user.name,
-            link: url,
-        });
-        this.logger.debug(`Confirm email JWT: ${url}`);
-
-        if (user.emailVerified) {
-            this.logger.warn(
-                `the user with the email: ${emailDTO.to}, is already verified`,
-            );
-            throw new HttpException(
-                {
-                    message: `o usuário com o email: ${emailDTO.to}, já está verificado`,
-                },
-                400,
-            );
-        }
-
+        console.log(emailDTO);
+        console.log("KKKKKK");
         const message = {
             senderAddress:
                 "<DoNotReply@9bdc846e-c9d5-4b90-a327-29924bdc6855.azurecomm.net>",
@@ -321,18 +262,22 @@ export class EmailsService {
                 ],
             },
         };
-
+        console.log("KKKKKK");
+        console.log(this.emailClient);
         const poller = await this.emailClient.beginSend(message);
-
+        console.log("Poller object:", poller);
+        console.log("Initial poller state:", poller.getOperationState());
+        console.log(poller.getOperationState().isCancelled);
+        console.log("KKKKKK");
         if (!poller.getOperationState().isStarted) {
             throw "Poller was not started.";
         }
+        console.log("KKKKKK");
 
         let timeElapsed = 0;
         while (!poller.isDone()) {
             poller.poll();
             console.log("Email send polling in progress");
-
             await new Promise((resolve) => setTimeout(resolve, 10 * 1000));
             timeElapsed += 10;
 
