@@ -50,7 +50,7 @@ export function ProductCard({ productId, productQuantity }: ProductCardProps) {
   }, [quantity]);
 
   return (
-    <div className="container h-[150px] md:h-[220px] w-full py-8 md:py-0 md:mt-9 flex flex-row gap-8 border-b-2 border-[#F9A84D]/20">
+    <div className="md:container h-[150px] md:min-h-[220px] w-[150px] md:w-full py-8 md:py-0 md:mt-9 flex flex-row gap-8 border-b-2 border-[#F9A84D]/20 pb-12">
       {isLoading && <Skeleton className="h-[150px] w-full rounded-xl" />}
       {error && <Skeleton className="h-[150px] w-full rounded-xl" />}
 
@@ -71,9 +71,9 @@ export function ProductCard({ productId, productQuantity }: ProductCardProps) {
         <ProductCardMobile
           name={data?.name || ""}
           coverImage={data?.coverImage || ""}
+          slug={data?.slug || ""}
           price={data?.price || 0}
           quantity={quantity}
-          slug={data?.slug || ""}
           handleDecrementQuantity={handleDecrementQuantity}
           handleIncrementQuantity={handleIncrementQuantity}
           handleRemoveProduct={handleRemoveProduct}
