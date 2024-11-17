@@ -1,7 +1,6 @@
 import { HttpException, Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { sendAccountVerificationEmailDTO } from "./dtos/send-account-verification-email.dto";
-import { render } from "@react-email/render";
 import { validate } from "class-validator";
 import { EmailClient, KnownEmailSendStatus } from "@azure/communication-email";
 import { PrismaService } from "src/prisma/prisma.service";
@@ -15,10 +14,10 @@ export class EmailsService {
         private jwt: JwtService,
     ) {}
 
-    private generateEmail = (template) => {
-        return render(template);
-    };
     private logger = new Logger();
+
+    private connString = this.config.getOrThrow("AZURE_EMAIL_CONN_STRING");
+    private emailClient = new EmailClient(this.connString);
 
     async sendAccountVerificationEmail(
         emailDTO: sendAccountVerificationEmailDTO,
@@ -29,9 +28,6 @@ export class EmailsService {
             throw new Error(`Validation failed! ${errors}`);
         }
 
-        const connString = this.config.getOrThrow("AZURE_EMAIL_CONN_STRING");
-
-        const emailClient = new EmailClient(connString);
         const message = {
             senderAddress:
                 "<DoNotReply@9bdc846e-c9d5-4b90-a327-29924bdc6855.azurecomm.net>",
@@ -133,7 +129,7 @@ export class EmailsService {
             },
         };
 
-        const poller = await emailClient.beginSend(message);
+        const poller = await this.emailClient.beginSend(message);
 
         if (!poller.getOperationState().isStarted) {
             throw "Poller was not started.";
@@ -326,7 +322,7 @@ export class EmailsService {
             },
         };
 
-        const poller = await emailClient.beginSend(message);
+        const poller = await this.emailClient.beginSend(message);
 
         if (!poller.getOperationState().isStarted) {
             throw "Poller was not started.";
