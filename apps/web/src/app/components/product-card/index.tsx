@@ -57,13 +57,13 @@ export function ProductCard({
     return totalValue / numInstallments;
   }
 
-  function handleClickLink() {
-    api
-      .put(`/odin/increment-click-organic-product/${productId}`)
-      .then((res) => {
-        console.log(res);
-      });
-  }
+  // function handleClickLink() {
+  //   api
+  //     .put(`/odin/increment-click-organic-product/${productId}`)
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // }
 
   return (
     <>

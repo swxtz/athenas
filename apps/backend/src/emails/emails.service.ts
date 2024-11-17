@@ -3,7 +3,6 @@ import { ConfigService } from "@nestjs/config";
 import { sendAccountVerificationEmailDTO } from "./dtos/send-account-verification-email.dto";
 import { render } from "@react-email/render";
 import { validate } from "class-validator";
-import { MailerService } from "@nestjs-modules/mailer";
 import { EmailClient, KnownEmailSendStatus } from "@azure/communication-email";
 import { PrismaService } from "src/prisma/prisma.service";
 import { JwtService } from "@nestjs/jwt";
@@ -12,7 +11,6 @@ import { JwtService } from "@nestjs/jwt";
 export class EmailsService {
     constructor(
         private config: ConfigService,
-        private mailer: MailerService,
         private prisma: PrismaService,
         private jwt: JwtService,
     ) {}
@@ -31,9 +29,9 @@ export class EmailsService {
             throw new Error(`Validation failed! ${errors}`);
         }
 
-        const emailClient = new EmailClient(
-            "endpoint=https://comservice-athenas-dev.unitedstates.communication.azure.com/;accesskey=7RCbcb2MOSdZFN0qMHPvHF7oMYj9jVVxWSFikSK5EAsJ9Pv6aYiHJQQJ99AKACULyCpT4xQSAAAAAZCSaKcN",
-        );
+        const connString = this.config.getOrThrow("AZURE_EMAIL_CONN_STRING");
+
+        const emailClient = new EmailClient(connString);
         const message = {
             senderAddress:
                 "<DoNotReply@9bdc846e-c9d5-4b90-a327-29924bdc6855.azurecomm.net>",
@@ -227,9 +225,6 @@ export class EmailsService {
             );
         }
 
-        const emailClient = new EmailClient(
-            "endpoint=https://comservice-athenas-dev.unitedstates.communication.azure.com/;accesskey=7RCbcb2MOSdZFN0qMHPvHF7oMYj9jVVxWSFikSK5EAsJ9Pv6aYiHJQQJ99AKACULyCpT4xQSAAAAAZCSaKcN",
-        );
         const message = {
             senderAddress:
                 "<DoNotReply@9bdc846e-c9d5-4b90-a327-29924bdc6855.azurecomm.net>",
