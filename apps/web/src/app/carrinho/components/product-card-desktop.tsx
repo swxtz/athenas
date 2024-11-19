@@ -33,10 +33,10 @@ export function ProductCardDesktop({
   handleRemoveProduct,
 }: ProductCardDesktopProps) {
   return (
-    <div className="container h-[180px] w-full mt-9 flex flex-row gap-8">
+    <div className="h-[180px] w-full flex flex-row gap-8">
       {isLoading && <Skeleton className="h-[150px] w-full rounded-xl" />}
 
-      <div className="flex w-full flex-row gap-4 ">
+      <div className="flex w-full justify-center flex-row gap-4">
         <Image
           src={coverImage}
           alt={name}
