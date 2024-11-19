@@ -175,34 +175,6 @@ export class AuthService {
         });
 
         console.log(token);
-
-        const transporter = nodemailer.createTransport({
-            host: this.configService.getOrThrow("SMTP_HOST"),
-            port: this.configService.getOrThrow("SMTP_PORT"),
-            secure: true, // true para 465, false para outros
-            auth: {
-                user: this.configService.getOrThrow("SMTP_USER"),
-                pass: this.configService.getOrThrow("SMTP_PASS"),
-            },
-        });
-
-        // Configuração do email
-        const mailOptions = {
-            from: "onboarding@resend.dev", // remetente
-            to: body.email, // destinatário
-            subject: "Redefinição de Senha",
-            text: `Você solicitou a redefinição de sua senha. Use o seguinte token: ${token}`,
-            html: `<p>Você solicitou a redefinição de sua senha. Use o seguinte token: <strong>${token}</strong></p>`, // HTML
-        };
-
-        // Enviando o email
-        try {
-            await transporter.sendMail(mailOptions);
-            console.log("Email enviado com sucesso");
-        } catch (error) {
-            console.error("Erro ao enviar email:", error);
-            throw new HttpException("Erro ao enviar email", 500);
-        }
     }
 
     async resetPassword(body: ResetPasswordDTO) {

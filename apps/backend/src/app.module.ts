@@ -21,11 +21,8 @@ import { BuysNotificationsModule } from "./buys-notifications/buys-notifications
 import { EventsModule } from "./events/events.module";
 import { SearchModule } from "./search/search.module";
 import { EmailsModule } from "./emails/emails.module";
-import { MailerModule } from "@nestjs-modules/mailer";
-import { ReactAdapter } from "@webtre/nestjs-mailer-react-adapter";
 import { PaymentsModule } from "./payments/payments.module";
 import { FreightCompaniesModule } from "./freight-companies/freight-companies.module";
-import { EmailtestModule } from "./emailtest/emailtest.module";
 import { FreightModule } from "./freight/freight.module";
 
 @Module({
@@ -53,24 +50,8 @@ import { FreightModule } from "./freight/freight.module";
         EventsModule,
         SearchModule,
         EmailsModule,
-        MailerModule.forRoot({
-            transport: {
-                host: "smtp.resend.com",
-                port: 465,
-                secure: true,
-                auth: {
-                    user: "resend",
-                    pass: "re_HTZaFmzr_L1NRF9hQd8xYQyRmV3GURYFA",
-                },
-            },
-            template: {
-                dir: __dirname + "/templates",
-                adapter: new ReactAdapter(),
-            },
-        }),
         PaymentsModule,
         FreightCompaniesModule,
-        EmailtestModule,
         FreightModule,
     ],
     controllers: [],
