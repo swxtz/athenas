@@ -12,6 +12,7 @@ import { ConvertedImage } from "./interfaces/converted-image.interface";
 import { GetRandomProductsQuery } from "./querys/get-products-randomly.query";
 import { GetProductsNotAvailableQuery } from "./querys/get-products-not-available.dto";
 import { GetBestSellersQuery } from "./querys/get-bests-sellers.dto";
+import { GetProductImageQuery } from "./querys/get-product-image.query";
 
 // interface JWTBearerTokenPayload {
 //     id: string;
@@ -346,5 +347,23 @@ export class ProductsService {
         });
 
         return products;
+    }
+
+    async getProductImage(query: GetProductImageQuery) {
+        const product = await this.prisma.product.findFirst({
+            where: { slug: query.slug },
+            select: { coverImage: true },
+        });
+
+        if (!product) {
+            throw new HttpException(
+                {
+                    message: "Produto não encontrado",
+                },
+                404,
+            );
+        }
+
+        return product;
     }
 }

@@ -24,6 +24,7 @@ import { GetProductsDeletedQuery } from "./querys/get-products-deleted.query";
 import { GetBestSellersQuery } from "./querys/get-bests-sellers.dto";
 import { GetRandomProductsQuery } from "./querys/get-products-randomly.query";
 import { GetProductsNotAvailableQuery } from "./querys/get-products-not-available.dto";
+import { GetProductImageQuery } from "./querys/get-product-image.query";
 
 @ApiTags("Products")
 @Controller("products")
@@ -107,5 +108,13 @@ export class ProductsController {
         query?: GetRandomProductsQuery,
     ) {
         return this.productsService.getRandomProducts(query);
+    }
+
+    @Get("get-product-image")
+    async getProductImage(
+        @Query(new ValidationPipe({ transform: true }))
+        query?: GetProductImageQuery,
+    ) {
+        return this.productsService.getProductImage(query);
     }
 }
