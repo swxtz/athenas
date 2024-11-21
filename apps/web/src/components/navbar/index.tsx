@@ -19,12 +19,16 @@ import Link from "next/link";
 import { LuUser } from "react-icons/lu";
 import { Separator } from "../ui/separator";
 import type { ActiveLinkProps } from "../active-link";
-import { useState } from "react";
-import { Searchbar } from "@/app/components/searchbar";
+import { useEffect, useState } from "react";
 import { MobileMenu } from "../menu/mobile-menu";
 import { DesktopMenu } from "../menu/desktop-menu";
 import { Categories } from "./categories";
 import { Button } from "../ui/button";
+import { setCookie } from "nookies";
+import { useDebounce } from "@/hooks/use-debounce";
+import { api } from "@/lib/axios";
+import { AutoComplete } from "../searchbar";
+import { redirect } from "next/navigation";
 
 const links: ActiveLinkProps[] = [
   { href: "/", children: "Home", icon: <Home /> },
@@ -32,7 +36,38 @@ const links: ActiveLinkProps[] = [
   { href: "/contato", children: "Contato", icon: <Phone /> },
 ];
 
+async function handleGetSearchValue(search: string) {
+  const res = await api.get(`/odin/search-products?search=${search}`);
+  return res.data;
+}
+
 export function Navbar() {
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState("");
+  const [options, setOptions] = useState([]);
+
+  const debouncedSearchValue = useDebounce(searchValue, 500);
+
+  useEffect(() => {
+    if (!debouncedSearchValue) {
+      return;
+    }
+
+    handleGetSearchValue(debouncedSearchValue).then((res) => {
+      const formattedOptions = res.data.map((option: any) => ({
+        label: option.name,
+        value: option.slug,
+      }));
+      setOptions(formattedOptions);
+    });
+  }, [debouncedSearchValue]);
+
+  useEffect(() => {
+    if(selectedValue) {
+      redirect(`/produto/${selectedValue}`);
+    }
+  }, [selectedValue]);
+
   return (
     <nav className="fixed top-0 left-0 bg-white w-full h-20 self-center md:h-32 flex flex-col border-b-1 z-50">
       <div className="flex w-full items-center container justify-between p-2">
@@ -60,18 +95,37 @@ export function Navbar() {
         {/* logo */}
 
         <div className="items-center hidden md:w-2/6 px-4 md:flex flex-cow rounded-2xl border-2">
-          <button type="button">
+          {/* <button type="button">
             <IoSearch size={28} />
           </button>
           <input
             type="text"
-            className="pl-2 h-12 w-full"
-            placeholder="O que você precisa?"
+            className="pl-2 h-12 w-full outline-none"
+            placeholder="O que você precisa?adasdasdasda"
+            onChange={(e) => setSearchValue(e.target.value)}
+          /> */}
+          {/* <SearchBar  /> */}
+          <AutoComplete
+            selectedValue={selectedValue}
+            onSelectedValueChange={setSelectedValue}
+            searchValue={searchValue}
+            onSearchValueChange={setSearchValue}
+            items={options ?? []}
+            // Optional props
+            // isLoading={isLoading}
+            emptyMessage="No items found."
+            placeholder="Search items..."
+            
           />
+          )
         </div>
         {/* pesquisa */}
         <div className="flex-row items-center flex">
-          <Button variant={"ghost"} className="flex justify-center items-center p-2 mr-2" asChild>
+          <Button
+            variant={"ghost"}
+            className="flex justify-center items-center p-2 mr-2"
+            asChild
+          >
             <Link href="/carrinho" className="">
               <TbShoppingBagHeart size={28} className="" />
             </Link>
