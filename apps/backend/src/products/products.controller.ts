@@ -110,6 +110,7 @@ export class ProductsController {
         return this.productsService.getRandomProducts(query);
     }
 
+    @SkipThrottle()
     @Get("get-product-image")
     async getProductImage(
         @Query(new ValidationPipe({ transform: true }))
