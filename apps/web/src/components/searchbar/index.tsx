@@ -14,6 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverAnchor, PopoverContent } from "@/components/ui/popover";
 import { Skeleton } from "@/components/ui/skeleton";
+import Image from "next/image";
+import { CommandDisplay } from "./command-display";
 
 type Props<T extends string> = {
   selectedValue: T;
@@ -33,8 +35,8 @@ export function AutoComplete<T extends string>({
   onSearchValueChange,
   items,
   isLoading,
-  emptyMessage = "No items.",
-  placeholder = "Search...",
+  emptyMessage = "Oq voce precisa",
+  placeholder = "Buscando...",
 }: Props<T>) {
   const [open, setOpen] = useState(false);
 
@@ -75,7 +77,7 @@ export function AutoComplete<T extends string>({
     <div className="flex items-center">
       <Popover open={open} onOpenChange={setOpen}>
         <Command shouldFilter={false}>
-          <PopoverAnchor asChild>
+          <PopoverAnchor asChild className="w-96">
             <CommandPrimitive.Input
               asChild
               value={searchValue}
@@ -100,7 +102,7 @@ export function AutoComplete<T extends string>({
                 e.preventDefault();
               }
             }}
-            className="w-[--radix-popover-trigger-width] p-0"
+            className="w-[--radix-popover-trigger-width] p-0 h-fit"
           >
             <CommandList>
               {isLoading && (
@@ -118,7 +120,9 @@ export function AutoComplete<T extends string>({
                       value={option.value}
                       onMouseDown={(e) => e.preventDefault()}
                       onSelect={onSelectItem}
+                      className="py-4"
                     >
+                      <CommandDisplay slug={option.value} name={option.label}/>
                       <Check
                         className={cn(
                           "mr-2 h-4 w-4",

@@ -45,6 +45,7 @@ export function Navbar() {
   const [searchValue, setSearchValue] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
   const [options, setOptions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const debouncedSearchValue = useDebounce(searchValue, 500);
 
@@ -94,14 +95,13 @@ export function Navbar() {
         </Link>
         {/* logo */}
 
-        <div className="items-center hidden md:w-2/6 px-4 md:flex flex-cow rounded-2xl border-2">
+        <div className="items-center hidden md:w-2/6 px-4 md:flex flex-cow">
           {/* <button type="button">
             <IoSearch size={28} />
           </button>
           <input
             type="text"
             className="pl-2 h-12 w-full outline-none"
-            placeholder="O que você precisa?adasdasdasda"
             onChange={(e) => setSearchValue(e.target.value)}
           /> */}
           {/* <SearchBar  /> */}
@@ -112,13 +112,13 @@ export function Navbar() {
             onSearchValueChange={setSearchValue}
             items={options ?? []}
             // Optional props
-            // isLoading={isLoading}
-            emptyMessage="No items found."
-            placeholder="Search items..."
+            isLoading={loading}
+            emptyMessage="Digite o nome de um produto"
+            placeholder="O que você precisa?"
             
           />
-          )
-        </div>
+          
+        </div> 
         {/* pesquisa */}
         <div className="flex-row items-center flex">
           <Button
