@@ -16,8 +16,10 @@ export class EmailsService {
 
     private logger = new Logger();
 
-    private connString = this.config.getOrThrow("AZURE_EMAIL_CONN_STRING");
-    private emailClient = new EmailClient("endpoint=https://comservice-athenas-dev.unitedstates.communication.azure.com/;accesskey=7RCbcb2MOSdZFN0qMHPvHF7oMYj9jVVxWSFikSK5EAsJ9Pv6aYiHJQQJ99AKACULyCpT4xQSAAAAAZCSaKcN");
+    private connString = this.config.getOrThrow<string>(
+        "AZURE_EMAIL_CONN_STRING",
+    );
+    private emailClient = new EmailClient(this.connString);
 
     async sendAccountVerificationEmail(
         emailDTO: sendAccountVerificationEmailDTO,

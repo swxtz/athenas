@@ -24,11 +24,15 @@ import { EmailsModule } from "./emails/emails.module";
 import { PaymentsModule } from "./payments/payments.module";
 import { FreightCompaniesModule } from "./freight-companies/freight-companies.module";
 import { FreightModule } from "./freight/freight.module";
+import { EnvService } from "./env/env.service";
+import { EnvModule } from "./env/env.module";
+import { envSchema } from "./env/env";
 
 @Module({
     imports: [
         PrismaModule,
         ConfigModule.forRoot({
+            validate: (env) => envSchema.parse(env),
             isGlobal: true,
         }),
         UsersModule,
@@ -53,7 +57,9 @@ import { FreightModule } from "./freight/freight.module";
         PaymentsModule,
         FreightCompaniesModule,
         FreightModule,
+        EnvModule,
     ],
     controllers: [],
+    providers: [EnvService],
 })
 export class AppModule {}
