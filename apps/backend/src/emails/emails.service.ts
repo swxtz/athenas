@@ -162,8 +162,6 @@ export class EmailsService {
     async resendAccountVerificationEmail(
         emailDTO: sendAccountVerificationEmailDTO,
     ) {
-        console.log(emailDTO);
-        console.log("KKKKKK");
         const message = {
             senderAddress:
                 "<DoNotReply@9bdc846e-c9d5-4b90-a327-29924bdc6855.azurecomm.net>",
@@ -264,17 +262,14 @@ export class EmailsService {
                 ],
             },
         };
-        console.log("KKKKKK");
         console.log(this.emailClient);
         const poller = await this.emailClient.beginSend(message);
         console.log("Poller object:", poller);
         console.log("Initial poller state:", poller.getOperationState());
         console.log(poller.getOperationState().isCancelled);
-        console.log("KKKKKK");
         if (!poller.getOperationState().isStarted) {
             throw "Poller was not started.";
         }
-        console.log("KKKKKK");
 
         let timeElapsed = 0;
         while (!poller.isDone()) {

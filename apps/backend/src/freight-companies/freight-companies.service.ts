@@ -32,7 +32,7 @@ export class FreightCompaniesService {
         };
     }
 
-    async uploadSharpImage(file: Buffer, fileName: string, mimetype: string) {
+    async uploadSharpImage(file: Buffer, fileName: string) {
         const image = await sharp(file).webp().resize(640, 360).toBuffer();
         const S3 = new S3Client({
             endpoint:
@@ -51,7 +51,7 @@ export class FreightCompaniesService {
             ContentType: "image/webp",
             Body: image,
         });
-        const res = await S3.send(putobjectcommand);
+        await S3.send(putobjectcommand);
 
         const url = `https://pub-f16310d577f84110a51cd066a6670be5.r2.dev/freight-companies/${fileName}`;
         console.log(url);
@@ -64,9 +64,5 @@ export class FreightCompaniesService {
             expiresIn: 604800,
         });
         console.log(urlsigned);
-        const getobjectcommand = new GetObjectCommand({
-            Bucket: "athenas-dev",
-            Key: "teste",
-        });
     }
 }
