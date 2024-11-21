@@ -3,6 +3,7 @@
 import { api } from "@/lib/axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Skeleton } from "../ui/skeleton";
 
 interface CommandDisplayProps {
   slug: string;
@@ -23,14 +24,14 @@ export function CommandDisplay({ slug, name }: CommandDisplayProps) {
 
   useEffect(() => {
     getProductImage(slug).then((res) => {
-      console.log(res);
       setImage(res.coverImage);
     });
   }, [slug]);
 
   return (
     <div className="">
-      <Image src={image} alt={name} width={40} height={40}  />
+      {!image && <Skeleton className="w-10 h-10" />}
+      {image && <Image src={image} alt={name} width={40} height={40} className="object-contain"/>}
     </div>
   );
 }
