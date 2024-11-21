@@ -3,13 +3,16 @@ import { Cron } from "@nestjs/schedule";
 import { PrismaService } from "src/prisma/prisma.service";
 import { RecommendationValuesService } from "src/recommendation-values/recommendation-values.service";
 import { GetRecommendedProductsQuery } from "./queries/get-recommended-products.query";
+import { SearchProductsQuery } from "./queries/search-products.dto";
+import { Prisma } from "@prisma/client";
+import { IncrementClickOrganicProduct } from "./dtos/increment-click-organic-product.dto";
 
 @Injectable()
 export class OdinService {
     constructor(private prisma: PrismaService) {}
 
     private logger = new Logger(OdinService.name);
-    private recommedationValues = RecommendationValuesService;
+    private recommendationValues = RecommendationValuesService;
 
     async getScoreById(productId: string) {
         const product = await this.prisma.recommendation.findUnique({
@@ -78,11 +81,11 @@ export class OdinService {
             where: { productId },
             data: {
                 likes: {
-                    increment: this.recommedationValues.likeValue,
+                    increment: this.recommendationValues.likeValue,
                 },
 
                 dailyLikes: {
-                    increment: this.recommedationValues.likeValue,
+                    increment: this.recommendationValues.likeValue,
                 },
             },
         });
@@ -99,7 +102,9 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { likes: product.likes - this.recommedationValues.likeValue },
+            data: {
+                likes: product.likes - this.recommendationValues.likeValue,
+            },
         });
     }
 
@@ -114,7 +119,7 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { views: product.views + this.recommedationValues.view },
+            data: { views: product.views + this.recommendationValues.view },
         });
     }
 
@@ -129,7 +134,7 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { views: product.views - this.recommedationValues.view },
+            data: { views: product.views - this.recommendationValues.view },
         });
     }
 
@@ -144,7 +149,7 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { sales: product.sales + this.recommedationValues.sale },
+            data: { sales: product.sales + this.recommendationValues.sale },
         });
     }
 
@@ -159,8 +164,98 @@ export class OdinService {
 
         await this.prisma.recommendation.update({
             where: { productId },
-            data: { sales: product.sales - this.recommedationValues.sale },
+            data: { sales: product.sales - this.recommendationValues.sale },
         });
+    }
+
+    async incrementClickOrganicProduct(param: IncrementClickOrganicProduct) {
+        try {
+            const product = await this.prisma.product.findFirst({
+                where: {
+                    id: param.id,
+                },
+                select: {
+                    id: true,
+                    Recommendation: {
+                        select: {
+                            id: true,
+                        },
+                    },
+                },
+            });
+
+            if (!product) {
+                this.logger.error(
+                    `Product with id ${param.id} not found, in increment click organic product`,
+                );
+                throw new HttpException(
+                    {
+                        message: "Produto não encontrado",
+                    },
+                    404,
+                );
+            }
+
+            const recommendation = await this.prisma.recommendation.update({
+                where: { id: product.Recommendation.id },
+                data: {
+                    dailyRecomendation: {
+                        increment:
+                            this.recommendationValues.clickOrganicProductValue,
+                    },
+                    weeklyRecomendation: {
+                        increment:
+                            this.recommendationValues.clickOrganicProductValue,
+                    },
+                },
+
+                select: {
+                    dailyRecomendation: true,
+                    weeklyRecomendation: true,
+                },
+            });
+
+            if (!recommendation) {
+                this.logger.error(
+                    `Recommendation with id ${param.id} not found, in increment click organic product`,
+                );
+                throw new HttpException(
+                    {
+                        message: "Produto não encontrado",
+                    },
+                    404,
+                );
+            }
+        } catch (err) {
+            if (err instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(err.name);
+                if (
+                    err.name === "NotFoundError" &&
+                    err.message === "No product find"
+                ) {
+                    this.logger.warn(`Product not find`);
+                    throw new HttpException(
+                        {
+                            message: "Produto procurado não existe",
+                        },
+                        401,
+                    );
+                }
+            }
+
+            if (err instanceof HttpException) {
+                throw err;
+            }
+
+            this.logger.error(err);
+            console.error(err);
+            throw new HttpException(
+                {
+                    message: "Ocorreu um erro interno",
+                },
+                500,
+            );
+        }
     }
 
     @Cron("0 0 0 * * *")
@@ -252,5 +347,62 @@ export class OdinService {
         }));
 
         return formattedProducts;
+    }
+
+    async searchProducts(query: SearchProductsQuery) {
+        try {
+            const searchResult = await this.prisma.product.findMany({
+                where: {
+                    isDeleted: false,
+                    name: {
+                        contains: query.search,
+                        mode: "insensitive",
+                    },
+                },
+                take: 10,
+                orderBy: {
+                    numberOfSales: "desc",
+                },
+            });
+            if (searchResult.length <= 0) {
+                return {
+                    message: `Produto não encontrado com o nome: ${query.search}`,
+                };
+            }
+
+            return {
+                message: "Produtos encontrados com base na sua pesquisa:",
+                data: searchResult,
+            };
+        } catch (err) {
+            if (err instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(err.name);
+                if (
+                    err.name === "NotFoundError" &&
+                    err.message === "No product find"
+                ) {
+                    this.logger.warn(`Product not find`);
+                    throw new HttpException(
+                        {
+                            message: "Produto procurado não existe",
+                        },
+                        401,
+                    );
+                }
+            }
+
+            if (err instanceof HttpException) {
+                throw err;
+            }
+
+            this.logger.error(err);
+            console.error(err);
+            throw new HttpException(
+                {
+                    message: "Ocorreu um erro interno",
+                },
+                500,
+            );
+        }
     }
 }

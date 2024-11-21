@@ -1,8 +1,10 @@
 import {
     Controller,
     Get,
+    HttpCode,
     Param,
     Post,
+    Put,
     Query,
     UsePipes,
     ValidationPipe,
@@ -13,6 +15,8 @@ import { GetScoreByIdDTO } from "./dtos/get-score-by-id.dto";
 import { GetScoreBySlugDTO } from "./dtos/get-score-by-slug.dto";
 import { incrementLikeDTO } from "./dtos/increment-like.dto";
 import { GetRecommendedProductsQuery } from "./queries/get-recommended-products.query";
+import { SearchProductsQuery } from "./queries/search-products.dto";
+import { IncrementClickOrganicProduct } from "./dtos/increment-click-organic-product.dto";
 
 @Controller("odin")
 @ApiTags("Odin")
@@ -39,9 +43,26 @@ export class OdinController {
         return this.odinService.getRecommendedProducts(query);
     }
 
+    @Get("search-products")
+    async searchProducts(
+        @Query(new ValidationPipe()) query: SearchProductsQuery,
+    ) {
+        return this.odinService.searchProducts(query);
+    }
+
     @Post("increment-like/:id")
     @UsePipes(new ValidationPipe({ transform: true }))
     async incrementLike(@Param() param: incrementLikeDTO) {
         return this.odinService.incrementLikeValue(param.id);
+    }
+
+    @Put("increment-click-organic-product/:id")
+    @HttpCode(204)
+    @UsePipes(new ValidationPipe({ transform: true }))
+    async incrementClickOrganicProduct(
+        @Param()
+        param: IncrementClickOrganicProduct,
+    ) {
+        return this.odinService.incrementClickOrganicProduct(param);
     }
 }

@@ -7,7 +7,12 @@ import { CategorySection } from "./components/category-section";
 import { Categories } from "./components/categories";
 import { BannerMain } from "./components/banner-main";
 import { InformationsCard } from "./components/cards-informations";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "RN Distribuidora | Pagina inicial",
+  description: "E-commerce da RN Distribuidora",
+};
 
 async function getProducts() {
   const res = await api.get("/categories/all");

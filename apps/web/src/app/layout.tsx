@@ -52,8 +52,8 @@ export default function RootLayout({
                   <div className="">
                     <Navbar />
                   </div>
-                  <main className="">
-                    <div className="flex min-h-screen flex-col justify-between">
+                  <main className="w-full">
+                    <div className="flex min-h-screen flex-col justify-between w-full">
                       {children}
                       <Footer />
                     </div>

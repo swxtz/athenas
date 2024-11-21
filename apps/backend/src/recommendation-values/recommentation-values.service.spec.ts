@@ -38,5 +38,11 @@ describe("RecommendationValuesService", () => {
         it("should return self search value", () => {
             expect(RecommendationValuesService.selfSearchValue).toBe(0.75);
         });
+
+        it("should return organic click product value", () => {
+            expect(RecommendationValuesService.clickOrganicProductValue).toBe(
+                0.3,
+            );
+        });
     });
 });

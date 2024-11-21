@@ -28,6 +28,8 @@ A tabela de pontos reseta para o valor base de 500 todo mês para manter um equi
 | *Recompra*                   | *0.60* |
 | *Curtida*                    | *0.30* |
 | *Pesquisa por conta própria* | *0.75* |
+| *Click organico*             | *0.3*  |
+|                              |        |
 
 ## Valores negativos
 | Ação                         | Pontos |

@@ -5,7 +5,6 @@ import { ArgonService } from "src/argon/argon.service";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { VerifyEmailResponse } from "./response/verify-email.response";
-import { ResetPasswordDTO } from "./dtos/reset-password.dto";
 import { GetEmailForResetPasswordDTO } from "./dtos/get-email-for-reset-password.dto";
 import { EmailsService } from "src/emails/emails.service";
 
@@ -33,6 +32,8 @@ export class AuthService {
     ) {}
 
     private logger = new Logger(AuthService.name);
+
+    private JWTSecret = this.configService.getOrThrow("JWT_SECRET");
 
     async signIn(login: LoginDTO) {
         const user = await this.prisma.user.findFirst({
@@ -172,37 +173,63 @@ export class AuthService {
         });
 
         console.log(token);
+    }
 
-        const transporter = nodemailer.createTransport({
-            host: this.configService.getOrThrow("SMTP_HOST"),
-            port: this.configService.getOrThrow("SMTP_PORT"),
-            secure: true, // true para 465, false para outros
-            auth: {
-                user: this.configService.getOrThrow("SMTP_USER"),
-                pass: this.configService.getOrThrow("SMTP_PASS"),
+    async resendVeificationEmail(emailDTO: GetEmailForResetPasswordDTO) {
+        const user = await this.prisma.user.findFirst({
+            where: { email: emailDTO.email },
+            select: {
+                emailVerified: true,
+                id: true,
+                email: true,
+                name: true,
             },
         });
 
-        // Configuração do email
-        const mailOptions = {
-            from: "onboarding@resend.dev", // remetente
-            to: body.email, // destinatário
-            subject: "Redefinição de Senha",
-            text: `Você solicitou a redefinição de sua senha. Use o seguinte token: ${token}`,
-            html: `<p>Você solicitou a redefinição de sua senha. Use o seguinte token: <strong>${token}</strong></p>`, // HTML
+        if (!user) {
+            this.logger.warn(
+                `the user with the email: ${emailDTO.email}, don't exist`,
+            );
+            throw new HttpException(
+                {
+                    message: `o usuário com o email: ${emailDTO.email}, não existe`,
+                },
+                404,
+            );
+        }
+
+        if (user.emailVerified) {
+            this.logger.warn(
+                `the user with the email: ${emailDTO.email}, is already verified`,
+            );
+            throw new HttpException(
+                {
+                    message: `o usuário com o email: ${emailDTO.email}, já está verificado`,
+                },
+                400,
+            );
+        }
+
+        const webUrl = this.configService.getOrThrow("WEB_URL");
+
+        const payload = {
+            id: user.id,
+            email: user.email,
         };
 
-        // Enviando o email
-        try {
-            await transporter.sendMail(mailOptions);
-            console.log("Email enviado com sucesso");
-        } catch (error) {
-            console.error("Erro ao enviar email:", error);
-            throw new HttpException("Erro ao enviar email", 500);
-        }
-    }
+        const token = await this.jwtService.signAsync(payload, {
+            expiresIn: 60 * 10,
+            secret: this.JWTSecret,
+        });
 
-    async resetPassword(body: ResetPasswordDTO) {
-        const jwtIsValid = await this.jwtIsValid(body.token);
+        const url = `${webUrl}/auth/verificar-email?token=${token}`;
+
+        this.emailsService.resendAccountVerificationEmail({
+            from: "",
+            to: user.email,
+            name: user.name,
+            link: url,
+        });
+        this.logger.debug(`Confirm email JWT: ${url}`);
     }
 }

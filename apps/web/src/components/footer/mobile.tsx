@@ -29,7 +29,7 @@ export const socialMedias: SocialMedias[] = [
 
 export function MobileFooter() {
   return (
-    <div className="flex flex-col justify-between items-center shadow-md w-screen">
+    <div className="flex flex-col justify-between items-center shadow-md w-full">
       <div className="lg:px-24 py-8 bg-white container w-full flex flex-col gap-8 items-center justify-between">
         <Link href="/" className="mx-auto">
           <Image

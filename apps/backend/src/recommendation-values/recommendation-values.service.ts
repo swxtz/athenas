@@ -7,6 +7,7 @@ export class RecommendationValuesService {
     private static reBuy = 0.6;
     private static like = 0.3;
     private static selfSearch = 0.75;
+    private static clickOrganicProduct = 0.3;
 
     public static get view() {
         return this.viewValue;
@@ -26,5 +27,9 @@ export class RecommendationValuesService {
 
     public static get selfSearchValue() {
         return this.selfSearch;
+    }
+
+    public static get clickOrganicProductValue() {
+        return this.clickOrganicProduct;
     }
 }

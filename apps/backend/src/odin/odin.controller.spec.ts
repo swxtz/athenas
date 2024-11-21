@@ -124,4 +124,84 @@ describe("OdinController", () => {
             expect(res.body.score).toEqual(500);
         });
     });
+
+    describe("searchProduct", () => {
+        it("should return products based on user search", async () => {
+            const SearchReturn = await request(app.getHttpServer()).get(
+                "/odin/search-products?search=ketchup",
+            );
+            expect(SearchReturn.body).toBeInstanceOf(Object);
+            expect(SearchReturn.body.data.length).toBeGreaterThan(0);
+            expect(SearchReturn.body.data).toBeInstanceOf(Array);
+            expect(SearchReturn.body.message).toBe(
+                "Produtos encontrados com base na sua pesquisa:",
+            );
+        });
+        it("should return products based on the proximity of the user's search", async () => {
+            const SearchReturn = await request(app.getHttpServer()).get(
+                "/odin/search-products?search=ket",
+            );
+            expect(SearchReturn.body).toBeInstanceOf(Object);
+            expect(SearchReturn.body.data.length).toBeGreaterThan(0);
+            expect(SearchReturn.body.data).toBeInstanceOf(Array);
+            expect(SearchReturn.body.data[0].name).toMatch(/Ketchup/i);
+            expect(SearchReturn.body.message).toBe(
+                "Produtos encontrados com base na sua pesquisa:",
+            );
+        });
+
+        it("should return products sorted by numberOfSales in descending order", async () => {
+            const SearchReturn = await request(app.getHttpServer()).get(
+                "/odin/search-products?search=ketchup",
+            );
+            expect(SearchReturn.body).toBeInstanceOf(Object);
+            expect(SearchReturn.body.data.length).toBeGreaterThan(0);
+            expect(SearchReturn.body.data).toBeInstanceOf(Array);
+
+            const products = SearchReturn.body.data;
+            const sortedProducts = [...products].sort(
+                (a, b) => b.numberOfSales - a.numberOfSales,
+            );
+            expect(products).toEqual(sortedProducts);
+        });
+    });
+
+    describe("incrementClickOrganicProduct", () => {
+        it("should not be possible to update the value of a product with a non-existent id", async () => {
+            const id = uuid();
+
+            const response = await request(app.getHttpServer()).get(
+                `/odin/increment-click-organic-product/${id}`,
+            );
+
+            expect(response.statusCode).toBe(404);
+            expect(response.body.message).toBe(
+                `Cannot GET /odin/increment-click-organic-product/${id}`,
+            );
+        });
+
+        it("should be possible to update the value of a product with an existing id", async () => {
+            const getProducts = await request(app.getHttpServer()).get(
+                "/products/get-best-sellers",
+            );
+
+            const id = getProducts.body.data[0].id;
+
+            const response = await request(app.getHttpServer()).put(
+                `/odin/increment-click-organic-product/${id}`,
+            );
+
+            expect(response.statusCode).toBe(204);
+        });
+
+        it("should not be possible to update the value of a product with an invalid id", async () => {
+            const id = "e82b4286-9d11-4e36-893a-50d9f52e";
+
+            const response = await request(app.getHttpServer()).put(
+                `/odin/increment-click-organic-product/${id}`,
+            );
+
+            expect(response.statusCode).toBe(400);
+        });
+    });
 });

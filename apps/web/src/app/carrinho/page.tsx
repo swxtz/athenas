@@ -9,13 +9,15 @@ export const metadata: Metadata = {
 };
 export default function ShoppingCartPage() {
   return (
-    <div className="mx-20 mt-36 md:mt-48 mb-24">
+    <div className="mx-8 md:mx-20 mt-36 md:mt-48 mb-24">
       <h1 className="font-medium text-2xl">Meu carrinho</h1>
 
       <Disclaimer />
       <div className="flex flex-row gap-14">
         <Products />
-        <Resume />
+        <div className="hidden md:flex">
+          <Resume />
+        </div>
       </div>
     </div>
   );

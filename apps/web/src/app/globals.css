@@ -1,8 +1,7 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
-  
 @layer base {
   :root {
     --background: 0 0% 95%;
@@ -31,7 +30,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
   }
- 
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -60,18 +59,24 @@
   }
 }
 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
+  .nav-container {
+    @apply mt-32 md:mt-48 mb-48;
   }
   
-  @layer utilities {
-    .product-card-border:nth-of-type(n+2) {
-      @apply border-t-2 border-[#F9A84D]/20;
-    }
+}
+
+@layer utilities {
+  .product-card-border:nth-of-type(n + 2) {
+    @apply border-t-2 border-[#F9A84D]/20;
   }
+}
+
+

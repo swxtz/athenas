@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useMutationCreateUser } from "@/hooks/mutations/create-user";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -37,6 +38,9 @@ export function RegisterForm() {
 
   function handleSubmit(values: FormValues) {
     mutate(values);
+    setTimeout(() => {
+      redirect(`/auth/verifique-seu-email?email=${encodeURI(values.email)}`);
+    }, 3000);
   }
 
   return (
