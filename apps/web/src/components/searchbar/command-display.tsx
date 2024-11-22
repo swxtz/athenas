@@ -31,7 +31,7 @@ export function CommandDisplay({ slug, name }: CommandDisplayProps) {
   return (
     <div className="">
       {!image && <Skeleton className="w-10 h-10" />}
-      {image && <Image src={image} alt={name} width={40} height={40} className="object-contain"/>}
+      {image && <Image src={image} alt={name} width={40} height={40} className="md:h-[50px] object-contain"/>}
     </div>
   );
 }

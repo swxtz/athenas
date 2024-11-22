@@ -104,7 +104,7 @@ export function AutoComplete<T extends string>({
             }}
             className="w-[--radix-popover-trigger-width] p-0 h-fit"
           >
-            <CommandList>
+            <CommandList className="overflow-y-auto scrollbar scrollbar-thumb-zinc-700/50 scrollbar-w-2 scrollbar-thumb-rounded-full">
               {isLoading && (
                 <CommandPrimitive.Loading>
                   <div className="p-1">
@@ -113,7 +113,7 @@ export function AutoComplete<T extends string>({
                 </CommandPrimitive.Loading>
               )}
               {items.length > 0 && !isLoading ? (
-                <CommandGroup>
+                <CommandGroup className="">
                   {items.map((option) => (
                     <CommandItem
                       key={option.value}
