@@ -71,7 +71,7 @@ export function Navbar() {
   }, [selectedValue]);
 
   return (
-    <nav className="fixed top-0 left-0 bg-white w-full h-20 self-center md:h-32 flex flex-col border-b-1 z-50">
+    <nav className="fixed top-0 left-0 bg-white w-full h-24 self-center md:h-32 flex flex-col border-b-1 z-50">
       <div className="flex w-full items-center container justify-between p-2">
         {/* <div className="">
           <Searchbar/>
@@ -137,7 +137,7 @@ export function Navbar() {
           {/* login */}
         </div>
       </div>
-      <div className="p-4 bg-white h-full border-b-1">
+      <div className="hidden md:flex p-4 bg-white h-full border-b-1">
         <div className="mt-4 hidden md:flex">
           <Categories />
         </div>
