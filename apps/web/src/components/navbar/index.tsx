@@ -29,6 +29,7 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { api } from "@/lib/axios";
 import { AutoComplete } from "../searchbar";
 import { redirect } from "next/navigation";
+import { MobileProfile } from "./mobile-profile";
 
 const links: ActiveLinkProps[] = [
   { href: "/", children: "Home", icon: <Home /> },
@@ -77,11 +78,9 @@ export function Navbar() {
         </div> */}
 
         <div className="flex items-center md:hidden ml-4">
-          <MobileMenu />
-          <div className="ml-2">
-            <Link href={"/auth/login"}>
-              <LuUser size={28} />
-            </Link>
+          <div className="">
+            {/* <MobileMenu /> */}
+            <MobileProfile />
           </div>
         </div>
 

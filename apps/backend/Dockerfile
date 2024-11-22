@@ -29,7 +29,7 @@ ENV AWS_SECRET_ACCESS_KEY="secret_access_key"
 ENV AWS_BUCKET_NAME="bucket_name"
 
 #ENDPOINTS
-ENV WEB_URL="http://localhost:3000"
+ENV WEB_URL="https://athenas-web.vercel.app"
 
 #ASAAS 
 ENV ASAAS_API_URL="https://sandbox.asaas.com/api"
