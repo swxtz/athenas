@@ -28,7 +28,7 @@ export function Categories() {
         data?.map((category) => (
           <div key={cuid()} className="mt-12">
             <CategorySection title={category.type} />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 lg:grid-cols-6  gap-y-4 md:gap-y-8 mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-8 md:gap-4 lg:grid-cols-6 gap-y-4 md:gap-y-8 mx-auto">
               {category.products.map((products) => (
                 <CategoryCard key={cuid()} productId={products.productId} />
               ))}

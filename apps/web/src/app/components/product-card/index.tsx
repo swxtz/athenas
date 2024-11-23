@@ -1,5 +1,5 @@
 "use client";
-
+// aqui
 import { TruncateText } from "@/components/ui/truncate-text";
 import { convertToReal } from "@/utils/convert-to-real";
 import type { StaticImport } from "next/dist/shared/lib/get-img-props";
