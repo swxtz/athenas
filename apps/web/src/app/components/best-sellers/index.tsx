@@ -29,22 +29,22 @@ export function BestSellers() {
           </div>
         )}
 
-        <div className="mt-6 flex">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-8 md:gap-4 lg:grid-cols-6 gap-y-4 md:gap-y-8 mx-auto">
-            {/* Tipar */}
-            {data?.data.map((product: any) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-8 md:gap-4 lg:grid-cols-6 gap-y-4 md:gap-y-8 mx-auto">
+          {/* Tipar */}
+          {data?.data.map((product: any) => (
+            <div className="mt-6 mx-auto flex" key={cuid()}>
               <ProductCard
-                key={cuid()}
                 name={product.name}
                 image={product.coverImage}
-                price={product.price} 
+                price={product.price}
                 productLink={`/produto/${product.slug}`}
                 isPayable={true}
                 numberOfInstallments={3}
                 fees={1}
+                key={cuid()}
               />
-            ))}
-          </div>
+            </div>
+          ))}{" "}
         </div>
 
         <div className="" />
