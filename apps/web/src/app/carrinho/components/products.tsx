@@ -18,7 +18,7 @@ export function Products() {
   }
 
   return (
-    <div className="mt-9 bg-white rounded-[10px] w-[800px] md:min-w-[600px] md:w-full">
+    <div className="mt-9 bg-white rounded-[10px] w-fit md:min-w-[600px] md:w-full">
       <div className="container py-6 border-b-2  border-[#F9A84D]/20">
         <h2 className="font-semibold text-xl md:text-2xl font-inter text-brown-500">
           Carrinho de produtos
@@ -27,7 +27,11 @@ export function Products() {
 
       {context?.state.items.length === 0 && <EmptyCart />}
       {context?.state.items.map((item) => (
-        <ProductCard key={item.id} productId={item.id} productQuantity={item.quantity} />
+        <ProductCard
+          key={item.id}
+          productId={item.id}
+          productQuantity={item.quantity}
+        />
       ))}
     </div>
   );
