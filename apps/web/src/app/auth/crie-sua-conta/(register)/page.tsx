@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "RN Distribuidora | Crie sua conta",
-  description: "Ecommerce da RN Distribuidora",
+  description: "E-commerce da RN Distribuidora",
 };
 
 export default function RegisterPage() {

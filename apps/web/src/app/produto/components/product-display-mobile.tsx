@@ -17,6 +17,7 @@ interface ProductDescriptionProps {
   fees: number;
   numberOfInstallments: number;
   description: string;
+  addToCart: () => void;
 }
 
 export function ProductDisplayMobile({
@@ -26,6 +27,7 @@ export function ProductDisplayMobile({
   price,
   fees,
   numberOfInstallments,
+  addToCart
 }: ProductDescriptionProps) {
   return (
     <div className="bg-white min-h-screen min-w-screen">
@@ -97,7 +99,7 @@ export function ProductDisplayMobile({
             <Button className="bg-green-700 hover:bg-green-800">
               Compre agora
             </Button>
-            <Button variant={"outline"} className="">
+            <Button variant={"outline"} className="" onClick={addToCart}>
               Adicionar ao carrinho
             </Button>
           </div>
