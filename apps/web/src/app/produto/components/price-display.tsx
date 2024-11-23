@@ -28,10 +28,10 @@ export function PriceDisplay({
           {discount ? (
             <div className="flex flex-col gap-1">
               <span className="text-3xl text-zinc-700">
-                {convertToReal((price ?? 0) - discountAmount)}
+                {convertToReal((price ?? 0) / 100 - discountAmount)}
               </span>
               <span className="text-sm text-zinc-500 line-through">
-                {convertToReal(price ?? 0)}
+                {convertToReal((price ?? 0) / 100)}
               </span>
               {isPayable && (
                 <span className="text-sm text-zinc-500">
@@ -40,7 +40,7 @@ export function PriceDisplay({
                     calculateTotalWithInterest(
                       numberOfInstallments,
                       fees,
-                      (price ?? 0)
+                      ((price ?? 0) / 100)
                     )
                   )}{" "}
                   sem juros
@@ -50,7 +50,7 @@ export function PriceDisplay({
           ) : (
             <div className="flex flex-col gap-1">
               <span className="text-3xl text-zinc-700">
-                {convertToReal(price ?? 0)}
+                {convertToReal((price ?? 0) / 100)}
               </span>
               {isPayable && (
                 <span className="text-sm text-zinc-500">
@@ -59,7 +59,7 @@ export function PriceDisplay({
                     calculateTotalWithInterest(
                       numberOfInstallments,
                       fees,
-                      (price ?? 0)
+                      ((price ?? 0 )/ 100)
                     )
                   )}{" "}
                   sem juros
