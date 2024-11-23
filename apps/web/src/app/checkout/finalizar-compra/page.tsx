@@ -13,7 +13,6 @@ export default async function CheckoutPage() {
     redirect("/auth/login");
   }
 
-
   const today = new Date(); // Data atual
   const twoDaysFromNow = new Date(today); // Cria uma nova data a partir de hoje
 
@@ -25,16 +24,16 @@ export default async function CheckoutPage() {
       <div className="">
         <h1 className="font-medium text-2xl">Finalizar compra</h1>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col md:flex-row gap-8">
           <div className="w-[40.625rem]">
-            <div className="mt-4">
+            <div className="mt-4 w-fit md:w-full">
               <h2 className="text-xl text-zinc-700 mb-3">
                 Selecione um método de pagamento{" "}
               </h2>
               <PaymentMethod />
             </div>
 
-            <Separator className="my-4"/>
+            <Separator className="my-4" />
 
             <div className=" w-fit">
               <h2 className="text-xl text-zinc-700 mb-3">
@@ -49,7 +48,6 @@ export default async function CheckoutPage() {
           <div className="">
             <Resume />
           </div>
-
         </div>
       </div>
     </div>
