@@ -68,12 +68,12 @@ export function ProductDisplayMobile({
                         <Share2 />
                       </RWebShare>
                     </Button>
-                    <Button
+                    {/* <Button
                       className="w-fit h-fit p-3 rounded-full bg-black/70 hover:bg-black"
                       asChild
                     >
                       <Heart />
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </div>
@@ -105,11 +105,11 @@ export function ProductDisplayMobile({
           </div>
         </section>
 
-        <SectionDivisor />
+        {/* <SectionDivisor />
 
         <section className="container flex flex-col gap-4">
           <Zipcode />
-        </section>
+        </section> */}
 
         <SectionDivisor />
 
