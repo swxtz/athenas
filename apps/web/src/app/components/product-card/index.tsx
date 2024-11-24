@@ -19,6 +19,7 @@ export interface IProductCard {
   isPayable: boolean;
   numberOfInstallments?: number | undefined;
   fees: number;
+  productId: string;
 }
 
 export function ProductCard({
@@ -29,6 +30,7 @@ export function ProductCard({
   isPayable,
   fees,
   numberOfInstallments,
+  productId
 }: IProductCard) {
   const convertedPrice = convertToReal(price / 100);
   const isDesktop = useMediaQuery(768);
@@ -57,13 +59,13 @@ export function ProductCard({
     return totalValue / numInstallments;
   }
 
-  // function handleClickLink() {
-  //   api
-  //     .put(`/odin/increment-click-organic-product/${productId}`)
-  //     .then((res) => {
-  //       console.log(res);
-  //     });
-  // }
+  function handleClickLink() {
+    api
+      .put(`/odin/increment-click-organic-product/${productId}`)
+      .then((res) => {
+        console.log(res);
+      });
+  }
 
   return (
     <>
@@ -72,6 +74,7 @@ export function ProductCard({
           <Link
             href={productLink}
             className="bg-white rounded-[10px] md:rounded-xl shadow-md flex itens-center justify-center w-[150px] md:w-[200px] px-4 py-2 flex-col h-[350px]"
+            onClick={handleClickLink}
           >
             <div className="w-[75px] md:w-[100px] h-[180px] flex items-center justify-center mx-auto">
               <Image

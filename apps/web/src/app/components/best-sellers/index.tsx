@@ -37,6 +37,7 @@ export function BestSellers() {
                 name={product.name}
                 image={product.coverImage}
                 price={product.price}
+                productId={product.id}
                 productLink={`/produto/${product.slug}`}
                 isPayable={true}
                 numberOfInstallments={3}

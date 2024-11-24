@@ -41,10 +41,10 @@ export function SuccessMessage() {
         <div className="p-4 rounded-full bg-green-600 text-white">
           <ShoppingBag size={32}/>
         </div>
-        <h1 className="text-3xl font-semibold text-green-600 mt-4">
+        <h1 className="text-3xl font-semibold text-green-600 mt-4 text-center">
           Pagamento Realizado com Sucesso!
         </h1>
-        <p className="text-lg mt-2">
+        <p className="text-lg mt-2 text-center">
           O ID do seu pagamento é:{" "}
           <span className="font-bold">{paymentId}</span>
         </p>
