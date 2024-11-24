@@ -4,6 +4,7 @@ import { FreightSelect } from "./components/freight-select";
 import { PaymentMethod } from "./components/payment-method";
 import { Separator } from "@/components/ui/separator";
 import { Resume } from "./components/resume";
+import { MobileResume } from "./components/mobile-resume";
 
 export default async function CheckoutPage() {
   const session = await auth();
@@ -23,8 +24,8 @@ export default async function CheckoutPage() {
       <div className="">
         <h1 className="font-medium text-2xl">Finalizar compra</h1>
 
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="w-[40.625rem]">
+        <div className="flex flex-col md:flex-row gap-1 md:gap-8">
+          <div className="w-fit md:w-[40.625rem]">
             <div className="mt-4 w-fit md:w-full">
               <h2 className="text-xl text-zinc-700 mb-3">
                 Selecione um método de pagamento{" "}
@@ -32,7 +33,7 @@ export default async function CheckoutPage() {
               <PaymentMethod />
             </div>
 
-            <Separator className="my-4" />
+            <Separator className="hidden md:flex my-4" />
 
             <div className="">
               <h2 className="text-xl text-zinc-700 mb-3">

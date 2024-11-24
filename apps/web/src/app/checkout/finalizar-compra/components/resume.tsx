@@ -28,9 +28,9 @@ export function Resume() {
   }
 
   return (
-    <div className="mt-9 bg-white rounded-[10px] min-w-[519px] h-fit">
+    <div className="mt-9 bg-white rounded-[10px] w-fit md:min-w-[519px] h-fit">
       <div className="container py-6 border-b-2 border-[#F9A84D]/20">
-        <h2 className="font-semibold text-2xl font-inter text-brown-500">
+        <h2 className="font-semibold text-xl md:text-2xl font-inter text-brown-500">
           Carrinho de produtos
         </h2>
       </div>
