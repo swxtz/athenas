@@ -48,7 +48,7 @@ export function FreightSelect() {
     return () => {
       isMounted.current = false;
     };
-  }, [sedex, jt, total]);
+  }, [sedex, setSedex, jt, setJt, total, setTotal]);
 
   const today = new Date();
   const twoDaysFromNow = new Date(today);
@@ -63,7 +63,7 @@ export function FreightSelect() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(() => {})}>
+      <form onSubmit={form.handleSubmit(() => {})} className="w-fit">
         <FormField
           control={form.control}
           name="freight"

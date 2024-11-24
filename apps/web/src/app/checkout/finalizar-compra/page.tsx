@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import { FreightCard } from "./components/freight-card";
 import { auth } from "@/app/api/auth/[...nextauth]/providers";
 import { FreightSelect } from "./components/freight-select";
 import { PaymentMethod } from "./components/payment-method";
@@ -35,7 +34,7 @@ export default async function CheckoutPage() {
 
             <Separator className="my-4" />
 
-            <div className=" w-fit">
+            <div className="">
               <h2 className="text-xl text-zinc-700 mb-3">
                 Selecione a opção de frete
               </h2>
@@ -43,7 +42,7 @@ export default async function CheckoutPage() {
             </div>
           </div>
           <div className="flex">
-            <Separator orientation="vertical" className="h-[500px] my-auto" />
+            <Separator orientation="vertical" className="hidden md:flex h-[500px] my-auto" />
           </div>
           <div className="">
             <Resume />
