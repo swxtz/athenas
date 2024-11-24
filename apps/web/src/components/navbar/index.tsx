@@ -29,6 +29,7 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { api } from "@/lib/axios";
 import { AutoComplete } from "../searchbar";
 import { redirect } from "next/navigation";
+import { MobileProfile } from "./mobile-profile";
 
 const links: ActiveLinkProps[] = [
   { href: "/", children: "Home", icon: <Home /> },
@@ -70,18 +71,16 @@ export function Navbar() {
   }, [selectedValue]);
 
   return (
-    <nav className="fixed top-0 left-0 bg-white w-full h-20 self-center md:h-32 flex flex-col border-b-1 z-50">
+    <nav className="fixed top-0 left-0 bg-white w-full h-24 self-center md:h-32 flex flex-col border-b-1 z-50">
       <div className="flex w-full items-center container justify-between p-2">
         {/* <div className="">
           <Searchbar/>
         </div> */}
 
         <div className="flex items-center md:hidden ml-4">
-          <MobileMenu />
-          <div className="ml-2">
-            <Link href={"/auth/login"}>
-              <LuUser size={28} />
-            </Link>
+          <div className="">
+            {/* <MobileMenu /> */}
+            <MobileProfile />
           </div>
         </div>
 
@@ -138,7 +137,7 @@ export function Navbar() {
           {/* login */}
         </div>
       </div>
-      <div className="p-4 bg-white h-full border-b-1">
+      <div className="hidden md:flex p-4 bg-white h-full border-b-1">
         <div className="mt-4 hidden md:flex">
           <Categories />
         </div>

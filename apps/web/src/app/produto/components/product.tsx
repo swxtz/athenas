@@ -57,7 +57,7 @@ export function Product({ slug }: ProductCardProps) {
   }
 
   return (
-    <>
+    <> 
       {isLoading && <div>Carregando...</div>}
       {error && <div>Erro ao carregar o produto</div>}
 
@@ -69,6 +69,7 @@ export function Product({ slug }: ProductCardProps) {
           price={data?.price || 0}
           fees={12}
           numberOfInstallments={3}
+          addToCart={handleAddToCart}
         />
       ) : (
       //<ProductDisplayDesktop

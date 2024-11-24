@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { useMutationCreateUser } from "@/hooks/mutations/create-user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -34,13 +35,22 @@ export function RegisterForm() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
   });
-  const { mutate } = useMutationCreateUser();
+  const { mutate, isError } = useMutationCreateUser();
+
+  useEffect(() => {
+    console.log(isError);
+  }, [isError]);
 
   function handleSubmit(values: FormValues) {
     mutate(values);
-    setTimeout(() => {
-      redirect(`/auth/verifique-seu-email?email=${encodeURI(values.email)}`);
-    }, 3000);
+    
+    if (isError) {
+      setTimeout(() => {
+        redirect(`/auth/verifique-seu-email?email=${encodeURI(values.email)}`);
+      }, 3000);
+    }
+
+    return;
   }
 
   return (
@@ -52,13 +62,14 @@ export function RegisterForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="flex w-full" >Nome Completo</FormLabel>
+                <FormLabel className="flex w-full">Nome Completo</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="text" 
+                  <Input
+                    type="text"
                     className="h-10 rounded-none"
-                    placeholder="Nome e sobrenome" 
-                    {...field} />
+                    placeholder="Nome e sobrenome"
+                    {...field}
+                  />
                 </FormControl>
 
                 {form.formState.errors.name && (
@@ -77,11 +88,12 @@ export function RegisterForm() {
               <FormItem>
                 <FormLabel className="flex w-full">E-mail</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="email" 
-                    placeholder="" 
+                  <Input
+                    type="email"
+                    placeholder=""
                     className="h-10 rounded-none"
-                    {...field} />
+                    {...field}
+                  />
                 </FormControl>
 
                 {form.formState.errors.email && (
@@ -100,11 +112,12 @@ export function RegisterForm() {
               <FormItem>
                 <FormLabel className="flex w-full">Senha</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="password" 
-                    placeholder="••••••••" 
+                  <Input
+                    type="password"
+                    placeholder="••••••••"
                     className="h-10 rounded-none"
-                    {...field} />
+                    {...field}
+                  />
                 </FormControl>
 
                 {form.formState.errors.password && (
@@ -117,8 +130,11 @@ export function RegisterForm() {
           />
           <div className="w-full flex">
             <input type="checkbox" name="" id="" />
-            <p className="md:text-xs text-[10px] leading-3	 text-slate-400 flex m-1">Eu li e concordo com os Termos de Privacidade e estou ciente de como minhas informações serão utilizadas.</p>
-          </div>    
+            <p className="md:text-xs text-[10px] leading-3	 text-slate-400 flex m-1">
+              Eu li e concordo com os Termos de Privacidade e estou ciente de
+              como minhas informações serão utilizadas.
+            </p>
+          </div>
           <Button
             type="submit"
             variant={"primary"}
@@ -127,7 +143,6 @@ export function RegisterForm() {
             {" "}
             Criar conta{" "}
           </Button>
-          
         </div>
       </form>
     </Form>

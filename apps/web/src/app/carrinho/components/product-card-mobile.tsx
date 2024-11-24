@@ -28,10 +28,10 @@ export function ProductCardMobile({
   const linkToProduct = `/produto/${slug}`;
 
   return (
-    <div className="flex gap-4 w-full">
+    <div className="flex gap-4 w-full px-4">
       <Link
         href={linkToProduct}
-        className="flex items-center justify-center h-full"
+        className="flex items-center justify-center h-full w-[100px]"
       >
         <Image
           src={coverImage}

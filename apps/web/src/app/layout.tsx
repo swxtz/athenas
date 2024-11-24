@@ -19,7 +19,7 @@ import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
   title: "RN Distribuidora",
-  description: "Ecommerce da RN Distribuidora",
+  description: "E-commerce da RN Distribuidora",
 };
 
 export default function RootLayout({

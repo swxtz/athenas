@@ -46,7 +46,7 @@ export function ResumeCard({ productId, productQuantity }: ResumeCard) {
             className="w-[50px] h-[100px] object-contain rounded-x"
           />
           <div className="flex flex-col mb-4 justify-between w-full">
-            <h2 className="mt-2 text-sm text-brown-500">
+            <h2 className="text-sm font-medium  font-inter text-brown-500">
               {truncateText(data.name, 20)}
             </h2>
             <div className="flex flex-row justify-between items-center w-full">

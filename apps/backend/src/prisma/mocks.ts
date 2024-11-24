@@ -633,6 +633,237 @@ export class PrismaMocks {
                 type: "Queijos",
                 isDeleted: true,
             },
+            //Embalagens
+            {
+                name: "Embalagem Bandeja Multiuso De Papel Para Delivery E Porções Cor kraft Menu",
+                description:
+                    "A Bandeja Multiuso de Papel para Delivery e Porções, na cor kraft, é a solução ideal para transportar alimentos de forma prática e sustentável. Feita de papel resistente e reciclável, garante a integridade das porções durante o transporte. Perfeita para restaurantes e serviços de delivery, essa embalagem combina funcionalidade e respeito ao meio ambiente, mantendo os alimentos frescos e protegidos. Ideal para porções individuais ou pequenas refeições.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_909604-MLU74073227374_012024-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
+
+            {
+            name: "Caixa Embalagem Para Batata Frita Porção P (500 Unidades) Cor Preta Muito mais gostoso",
+            description:
+                "A Caixa Embalagem para Batata Frita Porção P (500 unidades), na cor preta, é perfeita para servir porções individuais de batata frita com praticidade e elegância. Resistente e ideal para manter a crocância e frescor dos alimentos, ela oferece a melhor apresentação para seu delivery ou atendimento. Embalagem de qualidade que transmite sofisticação e garante mais sabor ao seu produto.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_897592-MLU71080153903_082023-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Caixa Embalagem Para Batata Frita P - 500 Unidades Cor Branca",
+            description:
+                "A Caixa Embalagem para Batata Frita P (500 unidades), na cor branca, é ideal para porções individuais de batata frita. Feita com material resistente, mantém a crocância e qualidade dos alimentos durante o transporte. Perfeita para delivery e serviços de fast food, essa embalagem oferece praticidade e eficiência, garantindo uma apresentação limpa e elegante para seus produtos.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_928100-MLU71010461995_082023-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "100 Pçs Caixa Embalagem Delivery P Porção Batata Frita Preto",
+            description:
+                "A Caixa Embalagem Delivery P para Porção de Batata Frita (100 unidades) na cor preta é ideal para porções individuais. Feita com material resistente, ela mantém a crocância e frescor dos alimentos durante o transporte. Perfeita para delivery, essa embalagem oferece praticidade e um toque sofisticado, garantindo a melhor apresentação para seus produtos e a satisfação do cliente.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_619934-MLB80376089508_112024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "100 Caixa Box Delivery Porção Batatafrita Individual Al-g14f",
+            description:
+                "A Caixa Box Delivery para Porção de Batata Frita Individual (100 unidades), modelo AL-G14F, é ideal para o transporte de porções individuais de batata frita. Feita com material resistente, garante a manutenção da crocância e a apresentação adequada dos alimentos durante o delivery. Compacta e prática, é perfeita para serviços de fast food, garantindo qualidade e eficiência no armazenamento e transporte das porções. Ideal para empresas que buscam praticidade e resistência.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_611622-MLB43247728743_082020-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Embalagem Batata Frita Viagem Delivery M Modelo Giz 50 Un",
+            description:
+                "A Embalagem para Batata Frita Viagem Delivery M (50 unidades), modelo Giz, é ideal para transportar porções de batata frita de forma segura e prática. Com design eficiente, mantém os alimentos frescos e crocantes durante o transporte. A embalagem é perfeita para delivery, oferecendo praticidade e resistência, além de garantir uma apresentação atrativa e funcional. Ideal para negócios de fast food e serviços de entrega rápidos.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_989915-MLB79749768465_102024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Barquinha Churrasco,porções,batata Frita,burguer-100unidades",
+            description:
+                "A Barquinha para Churrasco, Porções, Batata Frita e Burguer (100 unidades) é uma embalagem prática e resistente, ideal para porções individuais de diferentes tipos de alimentos. Seu design em formato de barquinha garante fácil manuseio e transporte, mantendo a qualidade dos alimentos durante o delivery. Perfeita para negócios de fast food e serviços de entrega, proporcionando uma apresentação atrativa e funcional para uma variedade de pratos.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_722921-MLB73968133949_012024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Embalagem Bandeja Multiuso Para Porções E Delivery",
+            description:
+                "A Embalagem Bandeja Multiuso para Porções e Delivery é ideal para o transporte seguro e prático de alimentos, mantendo a qualidade e frescor das porções durante a entrega. Feita de material resistente, é perfeita para diferentes tipos de alimentos, como batatas fritas, hambúrgueres e churrasco. Seu design funcional facilita o manuseio, e sua versatilidade a torna ideal para estabelecimentos de fast food e delivery, oferecendo uma solução eficiente e de qualidade.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_874853-MLB70323060452_072023-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Embalagem Cone Batata Frita E Porções G Várias Cores 100un Cor Verde",
+            description:
+                "A Embalagem Cone para Batata Frita e Porções G (100 unidades) na cor verde é perfeita para servir porções de batata frita e outros alimentos de forma prática e charmosa. Feita com material resistente, ela mantém a crocância e qualidade dos alimentos. Ideal para estabelecimentos de fast food e delivery, essa embalagem oferece uma apresentação atrativa e funcional, destacando-se em diversas ocasiões e combinando com diferentes estilos de alimentos.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_921567-MLU75151430557_032024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Caixa Embalagem Para Batata Frita P - 1000 Unidades",
+            description:
+                "A Caixa Embalagem para Batata Frita P (1000 unidades) é uma solução prática e econômica para o transporte de porções de batata frita. Feita com material resistente, ela garante a integridade e crocância dos alimentos durante o delivery. Ideal para fast foods e serviços de entrega, essa embalagem oferece eficiência e praticidade, atendendo a grandes volumes de pedidos com qualidade e confiança. Perfeita para manter a apresentação e o sabor das porções de batata frita.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_664398-MLB53461917566_012023-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "100 Pçs Caixa Embalagem Delivery P Porção Batata Frita Black",
+            description:
+                "A Caixa Embalagem Delivery P para Porção de Batata Frita Black (100 unidades) é uma embalagem prática e resistente, ideal para o transporte de batata frita e outros alimentos. Com design elegante e sofisticado na cor preta, ela mantém a crocância e qualidade das porções durante o delivery. Perfeita para fast food e serviços de entrega, oferece uma excelente apresentação e garante segurança no manuseio e transporte das porções. Ideal para empresas que buscam qualidade e eficiência.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_755772-MLB76195856112_052024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
         ];
 
         return products;

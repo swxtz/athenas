@@ -12,14 +12,14 @@ interface FreightCardProps extends HTMLAttributes<HTMLLabelElement> {
 
 export function FreightCard({ price, deliveryDate, logo }: FreightCardProps) {
   return (
-    <div className="px-4 py-5 bg-white rounded w-[600px]">
+    <div className="px-4 py-5 bg-white rounded w-fit md:w-[600px]">
       <div className="flex items-start justify-between">
         <div className="flex gap-4">
           <div className="flex flex-col gap-1">
-            <span className="text-black font-medium text-1xl">
+            <span className="text-black font-medium text-sm md:text-1xl">
               {convertToReal(price / 100)}
             </span>
-            <span>
+            <span className="text-xs">
               Receba até: {getDeliveryInfo(deliveryDate.toDateString())}
             </span>
           </div>
