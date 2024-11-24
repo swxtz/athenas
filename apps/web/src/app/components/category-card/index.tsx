@@ -35,6 +35,7 @@ export function CategoryCard({ productId }: ProductCardProps) {
             isPayable={true}
             numberOfInstallments={3}
             fees={1}
+            productId={data.id}
           />
         )}
       </div>

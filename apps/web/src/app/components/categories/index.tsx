@@ -5,7 +5,6 @@ import { Loader2 } from "lucide-react";
 import { CategorySection } from "../category-section";
 import { cuid } from "@/utils/cuid";
 import { CategoryCard } from "../category-card";
-import { products } from "@/data/best-sellers";
 
 export function Categories() {
   const { data, isLoading, error } = useQueryGetCategoriesProducts();
