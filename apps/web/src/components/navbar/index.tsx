@@ -138,7 +138,7 @@ export function Navbar() {
         </div>
       </div>
       <div className="hidden md:flex p-4 bg-white h-full border-b-1">
-        <div className="mt-4 hidden md:flex">
+        <div className="mt-4 hidden md:flex mx-auto">
           <Categories />
         </div>
       </div>
