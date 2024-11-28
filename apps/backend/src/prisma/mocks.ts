@@ -864,6 +864,111 @@ export class PrismaMocks {
             state: "available",
             type: "Embalagens",
         },
+
+        {
+            name: "Saco Semi Kraft Delivery Sos Hamburguer 12x9x26 C/ 1000 Un.",
+            description:
+                "Ecologicamente correto, papel 100% kraft , muito bonito e resistente. Da segurança, beleza, charme no transporte do seu produto. Valoriza o produto e a prestação de serviço da venda de sua loja.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_978259-MLB51426922630_092022-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Papel Acoplado Para Lanche Hamburguer Delivery 500 unidades Cor Preto",
+            description:
+                "PAPEL ACOPLADO HAMBURGUER E LANCHES COM 500 UNIDADES: Impressão qualificada; Quando embrulhado, o desenho de hambúrguer fica perfeitamente centralizado em seu lanche; Retém boa parte da gordura; Excelente relação custo-benefício.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_636195-MLU73944828381_012024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "100 Pçs Embalagem Hamburguer Lanches Delivery M Black Frases",
+            description:
+                "Embalagem p/ Hamburguer/CheeseBurguer e Lanches Artesanal Ideal para Lanchonetes, Hamburguerias, Food Frucks e Fast Food em geral Produzido em papel fundo branco (proprio para contato com alimento) excelente qualidade e resistencia.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_656379-MLB51587445582_092022-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Embalagem Térmica Para Lanches - 1000 Unidades",
+            description:
+                "Fechamento Inteligente: Com fita adesiva auto colante para um fechamento seguro e rápido. Furo de Vazão de Vapor: Mantém a textura ideal do seu lanche, evitando que ele amoleça ou perca sua qualidade.Manutenção da Temperatura: Suas propriedades térmicas conservam o lanche na temperatura ideal por 30 a 40 minutos após o embalo. Design Prático e Seguro: Ideal para delivery de lanches e sanduíches, garantindo que seu produto chegue nas melhores condições ao consumidor. Especificações de Alta Qualidade: Feita com matéria-prima premium e máquinas de última geração. As soldas reforçadas e barreiras de proteção mantêm temperatura, sabor e aroma intactos.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_837210-MLB73664362048_012024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+        
+        {
+            name: "Papel Acoplado Kraft Hambúrguer Burguer Genérico, 500 Unds Como Segurar Seu Burger",
+            description:
+                "O papel Acoplado Kraft possui ótima consistência pelo uso de gramatura de 35 g/m2, proporcionando firmeza ao embrulho dos alimentos. A película plástica torna o papel impermeável, evitando vazamentos e oferecendo estilo com sua cor kraft natural e linhas douradas, ideal para uma apresentação rústica ao servir.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_978259-MLU74965211335_032024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        }, 
         ];
 
         return products;
