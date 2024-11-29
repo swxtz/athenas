@@ -97,7 +97,7 @@ export function TotalPrice({ itens }: TotalPriceProps) {
 
     const destination = `/checkout/pagamento?payment=${encodeURIComponent(
       payment
-    )}&freight=${encodeURIComponent(freight)}&order_id=${encodeURIComponent(
+    )}&order_id=${encodeURIComponent(
       res.data.data.buyOrderId
     )}`;
 
