@@ -101,6 +101,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Molhos",
             },
+
             {
                 name: "Ketchup Cepêra",
                 description:
@@ -110,6 +111,186 @@ export class PrismaMocks {
                 stock: 100,
                 coverImage:
                     "https://http2.mlstatic.com/D_NQ_NP_770885-MLB73177688727_112023-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Molho Para Salada Junior Caesar Queijo Parmesão 232g - 236ml",
+                description:
+                    "Molho para salada Caesar com queijo parmesão; Sabor tradicional de queijo e ervas aromáticas. O Molho Caesar Junior é cremoso e adiciona sofisticação às saladas; Dica: Este molho é realçado quando acompanhado de croutons!",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_664463-MLU74220782095_012024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Italian Junior Molho Para Salada Sem Glúten Em Frasco 255 G",
+                description:
+                    "Dê um toque genuinamente italiano para suas saladas com o molho Italian Junior. Feito com especiarias tradicionais e à base de vinagrete, o molho italian agrega sabor e requinte com acidez equilibrada.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_769993-MLU77817464449_072024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Junior Molho Parmesão 250gr frasco 250,5ml",
+                description:
+                    "Transforme suas saladas com o sabor autêntico e irresistível do Molho Parmesão Junior. Com 250ml de puro prazer gastronômico, este molho é a combinação perfeita para quem aprecia a riqueza do queijo parmesão em cada garfada. Enriquecido com ingredientes selecionados, este molho da linha Kerry - Junior é a escolha certa para elevar o nível das suas refeições.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_934629-MLA75682504617_042024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "3 Molho Parmesão Junior Kerry 250g Frasco 250,5ml",
+                description:
+                    "Como o próprio nome diz, o molho Parmesan Junior é feito à base de queijo Parmesão de qualidade e ervas aromáticas selecionadas. É a escolha certa quando se quer textura cremosa e sabor intenso.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_966012-MLB73782196992_012024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Molho De Tomate Desidratado Junior Linha Profissional 1,04kg",
+                description:
+                    "Ingredientes: Tomate, cebola e alho em pó, açúcar, amido modificado, flocos de batata, sal, maltodextrina, óleo vegetal de girassol, estabilizante carboximetilcelulose sódica, corante oleoresina de páprica, antiumectante dióxido de silício e aromatizante; NÃO CONTÉM GLÚTEN. ALÉRGICOS: PODE CONTER DERIVADO DE SOJA.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_613068-MLU78138097047_082024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Ketchup Junior em sachê caixa com 182 unidades 8g cada",
+                description:
+                    "O Ketchup Junior em sachê é a opção prática e deliciosa para levar o sabor irresistível do ketchup para qualquer lugar. Ideal para porções individuais, cada sachê contém 8g de ketchup, perfeito para acompanhar lanches, batatas fritas, hambúrgueres e outros petiscos. Embalado em uma caixa com 182 unidades, é a escolha perfeita para estabelecimentos de fast food, buffets, escolas, e eventos, proporcionando praticidade, higiene e porções na medida certa. Com o sabor inconfundível e a qualidade que você já conhece, o Ketchup Junior oferece conveniência e muito sabor em cada sachê.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_764488-MLB52161835822_102022-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Molho Junior Sachê Pimenta Caixa 252un Levemente Picante",
+                description:
+                    "O Molho de Pimenta Vermelha Junior realça o sabor dos pratos, lanches e salgados com um toque picante. Equilibrado em picância, é ideal para quem aprecia uma alimentação com mais sabor.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_808946-MLB52161451956_102022-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Heinz ketchup pacote 2kg",
+                description:
+                    "Transforme seus pratos com o inconfundível Ketchup Heinz 2Kg! Feito com tomates selecionados, especialmente cultivados para serem menos aquosos e mais polpudos, garantindo um ketchup espesso, rico e naturalmente vermelho, sem adição de corantes, emulsificantes ou conservantes. Desde 1934, a Heinz domina a arte de produzir tomates de qualidade, resultando em um produto líder no mercado brasileiro e preferido pelos consumidores. Este é o ketchup que dá aquele toque especial, seja no seu restaurante ou na sua casa!",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_700067-MLU72537368668_112023-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Maionese Hellmann's Sachê 800g Embalagem Econômica",
+                description:
+                    "A Maionese Hellmann's em sachê de 800g é a escolha perfeita para quem busca praticidade e economia sem abrir mão do sabor. Com a qualidade única da marca Hellmann's, esta embalagem econômica oferece o sabor cremoso e irresistível da maionese, ideal para acompanhar sanduíches, saladas, batatas fritas e muito mais. Seu formato em sachê facilita o uso controlado, evitando desperdícios e garantindo a porção ideal a cada aplicação. Perfeita para lanchonetes, restaurantes, food trucks ou para quem busca praticidade no dia a dia, a Maionese Hellmann's traz a consistência e o sabor que todos adoram, com a conveniência de uma embalagem grande e fácil de armazenar.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_665994-MLU74111694942_012024-O.webp",
                 buyPrice: 1000,
                 isAvailable: true,
                 localPickup: true,
@@ -163,6 +344,26 @@ export class PrismaMocks {
             },
 
             {
+                name: "Batata Palito Pré-frita Congelada 7mm Bem Brasil 4Kg",
+                description:
+                    "Batata Palito Pré-frita Congelada 7mm Bem Brasil 4Kg",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-7mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
                 name: "Lamb Weston® Corte Fino 7 mm",
                 description: "Lamb Weston® Corte Fino 7 mm",
                 barcode: "123456789",
@@ -182,9 +383,28 @@ export class PrismaMocks {
             },
 
             {
-                name: "Batata Congelada Lamb Weston Tradicional 9MM 2,5Kg",
+                name: "Batata Congelada Lamb Weston Tradicional",
                 description:
-                    "Batata Congelada Lamb Weston Tradicional 9MM 2,5Kg",
+                    "Batata Congelada Lamb Weston Tradicional",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://cdn.shopify.com/s/files/1/0579/9742/6861/files/image-removebg-preview_18_0dc0c323-1b2c-45a2-888a-59e953e595f3.png?v=1685130398",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+            {
+                name: "Batata Congelada Tradicional 9MM 2,5Kg",
+                description:
+                    "Batata Congelada  Tradicional 9MM 2,5Kg",
                 barcode: "123456789",
                 price: 3154,
                 buyPrice: 1000,
@@ -219,6 +439,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Batatas",
             },
+
             {
                 name: "Batata Palito Pré-frita Congelada 9mm Bem Brasil 2Kgs",
                 description:
@@ -239,11 +460,210 @@ export class PrismaMocks {
                 type: "Batatas",
             },
 
+            {
+                name: "Batata Palito Pré-frita Congelada 15mm Bem Brasil 2Kgs",
+                description:
+                    "Batata Palito Pré-frita Congelada 15mm Bem Brasil 2Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito Pré-frita Congelada 9mm Bem Brasil 5Kgs",
+                description:
+                    "Batata Palito Pré-frita Congelada 9mm Bem Brasil 5Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito Pré-frita Congelada 9mm 5Kgs",
+                description:
+                    "Batata Palito Pré-frita Congelada 9mm 5Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito 5Kgs",
+                description:
+                    "Batata Palito 5Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito Congelada Bem Brasil 5Kgs",
+                description:
+                    "Batata Palito Congelada Bem Brasil 5Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito Congelada Bem Brasil 2Kgs",
+                description:
+                    "Batata Palito Congelada Bem Brasil 2Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Brazil Stealth Fries",
+                description: "Brazil Stealth Fries",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://lambweston.scene7.com/is/image/lambweston/Stealth_Fries_9mm_Spanish_Box_LowRes?$ProductImage$",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
             // Hambuguéres
             {
                 name: "Hambúrguer Tradicional 56g – Caixa com 36 Unidades",
                 description:
                     "Hambúrguer Tradicional 56g – Caixa com 36 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-tradicional-56g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Tradicional 56g – Caixa com 50 Unidades",
+                description:
+                    "Hambúrguer Tradicional 56g – Caixa com 50 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-tradicional-56g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Tradicional 56g – Caixa com 100 Unidades",
+                description:
+                    "Hambúrguer Tradicional 56g – Caixa com 100 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-tradicional-56g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Tradicional 75g – Caixa com 100 Unidades",
+                description:
+                    "Hambúrguer Tradicional 75g – Caixa com 100 Unidades",
                 barcode: "123456789",
                 price: 4525,
                 buyPrice: 1000,
@@ -282,6 +702,66 @@ export class PrismaMocks {
 
             {
                 name: "Hambúrguer Sabor Picanha 90g – Caixa com 36 Unidades",
+                description:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 90g – Caixa com 100 Unidades",
+                description:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 90g – Caixa com 75 Unidades",
+                description:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 90g ",
                 description:
                     "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
                 barcode: "123456789",
@@ -360,7 +840,180 @@ export class PrismaMocks {
                 type: "Hambugueres",
             },
 
+            {
+                name: "Hambúrguer Sabor Picanha 120gss Caixa com 100 Unidadess",
+                description:
+                    "Hambúrguer Sabor Picanha 120g – Caixa com 100 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-120g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 75g Caixa com 100 Unidadess",
+                description:
+                    "Hambúrguer Sabor Picanha 75g – Caixa com 100 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-120g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 120gs",
+                description:
+                    "Hambúrguer Sabor Picanha",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-120g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
             // Pães
+            {
+                name: "Pão para Hambúrguer Original sem Glúten Jasmine Pacote 300g",
+                description: "Amido modificado, amido (mandioca e ou milho e ou batata), gordura de palma, extrato de malte sem glúten, açúcar demerara, sal, espessantes hidroxipropilmetilcelulose, goma xantana e goma guar, emulsificantes lecitina de soja e estearoil-2-lactil lactato de sódio, conservante propionato de cálcio e aroma.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_905174-MLU74135902382_012024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão para Hambúrguer Original",
+                description: "Amido modificado, amido (mandioca e ou milho e ou batata), gordura de palma, extrato de malte sem glúten, açúcar demerara, sal, espessantes hidroxipropilmetilcelulose, goma xantana e goma guar, emulsificantes lecitina de soja e estearoil-2-lactil lactato de sódio, conservante propionato de cálcio e aroma.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_905174-MLU74135902382_012024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão para Hambúrguer Original sem Glúten Jasmine Pacote 500g",
+                description: "Amido modificado, amido (mandioca e ou milho e ou batata), gordura de palma, extrato de malte sem glúten, açúcar demerara, sal, espessantes hidroxipropilmetilcelulose, goma xantana e goma guar, emulsificantes lecitina de soja e estearoil-2-lactil lactato de sódio, conservante propionato de cálcio e aroma.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_905174-MLU74135902382_012024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão Para Hambúrguer Bauducco",
+                description: "Cada pacote contém pães embalados individualmente, mantendo a frescura e o sabor até o momento de servir. A linha de pães Bauducco é conhecida por sua variedade e excelência, e este pão de hambúrguer não é exceção. Ideal para quem busca praticidade sem abrir mão da qualidade, ele é a escolha certa para acompanhar churrascos, encontros com amigos ou até mesmo para uma refeição rápida e saborosa no dia a dia.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_922996-MLA79693895273_102024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão Para Hambúrguer Bauducco Pacote - 200g",
+                description: "Cada pacote de 200g contém pães embalados individualmente, mantendo a frescura e o sabor até o momento de servir. A linha de pães Bauducco é conhecida por sua variedade e excelência, e este pão de hambúrguer não é exceção. Ideal para quem busca praticidade sem abrir mão da qualidade, ele é a escolha certa para acompanhar churrascos, encontros com amigos ou até mesmo para uma refeição rápida e saborosa no dia a dia.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_922996-MLA79693895273_102024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão Para Hambúrguer Bauducco Pacote - 500g",
+                description: "Cada pacote de 500g contém pães embalados individualmente, mantendo a frescura e o sabor até o momento de servir. A linha de pães Bauducco é conhecida por sua variedade e excelência, e este pão de hambúrguer não é exceção. Ideal para quem busca praticidade sem abrir mão da qualidade, ele é a escolha certa para acompanhar churrascos, encontros com amigos ou até mesmo para uma refeição rápida e saborosa no dia a dia.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_922996-MLA79693895273_102024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
 
             {
                 name: "Pão de Hambúrguer Mônaco G CT BIMBO QSR 12x73g",
@@ -400,6 +1053,43 @@ export class PrismaMocks {
                 type: "Pães",
             },
 
+            {
+                name: "Pão de Hambúrguer Mônaco ",
+                description: "Pão de Hambúrguer Mônaco ",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Pao-de-Hamburguer-Monaco-G-CT-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão de Hambúrguer Brioche",
+                description: "Pão de Hambúrguer Brioche ",
+                barcode: "123456789",
+                price: 5625,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/03/Pao-de-Hamburguer-Brioche-MAX-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
             {
                 name: "Pão de Hambúrguer Brioche 4″ CT BIMBO QSR 15x64g",
                 description: "Pão de Hambúrguer Brioche 4″ CT BIMBO QSR 15x64g",
@@ -456,9 +1146,29 @@ export class PrismaMocks {
                 state: "available",
                 type: "Pães",
             },
+
             {
                 name: "Pão de Hambúrguer Riviera G CT BIMBO QSR 15x50gs",
                 description: "Pão de Hambúrguer Riviera G CT BIMBO QSR 15x50g",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/03/Pao-de-Hamburguer-Riviera-G-CT-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão de Hambúrguer Riviera G CT BIMBO",
+                description: "Pão de Hambúrguer Riviera G CT BIMBO",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -495,6 +1205,102 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
+            {
+                name: "Queijo Parmesão Fatiado Bloco 2,27Kg – Polenghi",
+                description: "Queijo Parmesão Fatiado Bloco 2,27Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+
+            {
+                name: "Queijo Prata Fatiado Bloco 2,27Kg – Polenghi",
+                description: "Queijo Prata Fatiado Bloco 2,27Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+
+            {
+                name: "Queijo Prata Fatiado ",
+                description: "Queijo Prata Fatiado",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+
+            {
+                name: "Queijo Parmesão Fatiado ",
+                description: "Queijo Parmesão Fatiado ",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+            
+            {
+                name: "Queijo Cheddar Fatiado ",
+                description: "Queijo Cheddar Fatiado ",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+
             {
                 name: "Queijo Mussarela Fatiado Bloco 2,735Kggg Polenghi",
                 description:
@@ -514,6 +1320,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
             {
                 name: " Mussarela Fatiado Bloco 2,735Kg Polenghi",
                 description:
@@ -533,6 +1340,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
             {
                 name: "Queijo Mussarela Fatiado Bloco 2,735Kgsqr Polenghi",
                 description:
@@ -552,6 +1360,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
             {
                 name: "Queijo Mussarela Fatiado Bloco Polenghi",
                 description:
@@ -571,6 +1380,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
             {
                 name: "Queijo Mussarela Bloco 2,7Kg Polenghi",
                 description:
@@ -591,9 +1401,7 @@ export class PrismaMocks {
                 type: "Queijos",
             },
 
-            // produtos para testes unitarios do /buys
-
-            {
+             {
                 name: "Queijo Mussarela Bloco 2,7Kg Polenghis",
                 description:
                     "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
@@ -617,6 +1425,48 @@ export class PrismaMocks {
                 name: "Queijo Mussarela Bloco 2,7Kg Polenghid",
                 description:
                     "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "unavailable",
+                type: "Queijos",
+                isDeleted: true,
+            },
+            
+            {
+                name: "Queijo Provolone Bloco 2,7Kg Polenghid",
+                description:
+                    "Queijo Provolone Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "unavailable",
+                type: "Queijos",
+                isDeleted: true,
+            },
+
+            {
+                name: "Queijo Provolone Fatiado",
+                description:
+                    "Queijo Provolone Fatiado",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
