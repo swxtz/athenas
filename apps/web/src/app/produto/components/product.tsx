@@ -141,9 +141,9 @@ export function Product({ slug }: ProductCardProps) {
                         </div>
                       </div>
                     </div>
-                    <div>
+                    {/* <div>
                       <CardPurchaseFreight />
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

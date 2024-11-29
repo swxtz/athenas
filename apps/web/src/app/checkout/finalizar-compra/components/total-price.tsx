@@ -46,15 +46,6 @@ export function TotalPrice({ itens }: TotalPriceProps) {
       return;
     }
 
-    if (!freight) {
-      toast({
-        title: "Selecione uma forma de frete",
-        variant: "destructive",
-      });
-
-      return;
-    }
-
     if (!session?.data?.token) {
       toast({
         title: "Token não encontrado ou sessão não iniciada.",
