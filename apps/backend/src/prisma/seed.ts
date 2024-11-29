@@ -16,47 +16,51 @@ const users = new PrismaMocks().users();
 async function seed() {
     const argon = new ArgonService();
 
-    for (const product of products) {
-        const createdProduct = await prisma.product.create({
-            data: {
-                name: product.name,
-                description: product.description,
-                barcode: product.barcode,
-                price: product.price,
-                stock: product.stock,
-                coverImage: product.coverImage,
-                buyPrice: product.buyPrice,
-                isAvailable: product.isAvailable,
-                localPickup: product.localPickup,
-                numberOfSales: product.numberOfSales,
-                numberOfViews: product.numberOfViews,
-                numberOfViewsInLastWeek: product.numberOfViewsInLastWeek,
-                productType: product.productType,
-                state: product.state,
-                slug: utils.createProductSlug(product.name),
-                Category: {
-                    create: {
-                        type: product.type,
+    try {
+        for (const product of products) {
+            const createdProduct = await prisma.product.create({
+                data: {
+                    name: product.name,
+                    description: product.description,
+                    barcode: product.barcode,
+                    price: product.price,
+                    stock: product.stock,
+                    coverImage: product.coverImage,
+                    buyPrice: product.buyPrice,
+                    isAvailable: product.isAvailable,
+                    localPickup: product.localPickup,
+                    numberOfSales: product.numberOfSales,
+                    numberOfViews: product.numberOfViews,
+                    numberOfViewsInLastWeek: product.numberOfViewsInLastWeek,
+                    productType: product.productType,
+                    state: product.state,
+                    slug: utils.createProductSlug(product.name),
+                    Category: {
+                        create: {
+                            type: product.type,
+                        },
                     },
                 },
-            },
-        });
+            });
 
-        await prisma.recommendation.create({
-            data: {
-                productId: createdProduct.id,
-            },
-        });
+            await prisma.recommendation.create({
+                data: {
+                    productId: createdProduct.id,
+                },
+            });
 
-        await prisma.productDimensions.create({
-            data: {
-                productId: createdProduct.id,
-                height: 2,
-                weight: 2,
-                length: 2,
-                width: 2,
-            },
-        });
+            await prisma.productDimensions.create({
+                data: {
+                    productId: createdProduct.id,
+                    height: 2,
+                    weight: 2,
+                    length: 2,
+                    width: 2,
+                },
+            });
+        }
+    } catch (e) {
+        console.log(e);
     }
 
     const availableProducts = await prisma.product.findMany({

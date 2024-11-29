@@ -101,6 +101,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Molhos",
             },
+
             {
                 name: "Ketchup Cepêra",
                 description:
@@ -110,6 +111,186 @@ export class PrismaMocks {
                 stock: 100,
                 coverImage:
                     "https://http2.mlstatic.com/D_NQ_NP_770885-MLB73177688727_112023-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Molho Para Salada Junior Caesar Queijo Parmesão 232g - 236ml",
+                description:
+                    "Molho para salada Caesar com queijo parmesão; Sabor tradicional de queijo e ervas aromáticas. O Molho Caesar Junior é cremoso e adiciona sofisticação às saladas; Dica: Este molho é realçado quando acompanhado de croutons!",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_664463-MLU74220782095_012024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Italian Junior Molho Para Salada Sem Glúten Em Frasco 255 G",
+                description:
+                    "Dê um toque genuinamente italiano para suas saladas com o molho Italian Junior. Feito com especiarias tradicionais e à base de vinagrete, o molho italian agrega sabor e requinte com acidez equilibrada.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_769993-MLU77817464449_072024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Junior Molho Parmesão 250gr frasco 250,5ml",
+                description:
+                    "Transforme suas saladas com o sabor autêntico e irresistível do Molho Parmesão Junior. Com 250ml de puro prazer gastronômico, este molho é a combinação perfeita para quem aprecia a riqueza do queijo parmesão em cada garfada. Enriquecido com ingredientes selecionados, este molho da linha Kerry - Junior é a escolha certa para elevar o nível das suas refeições.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_934629-MLA75682504617_042024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "3 Molho Parmesão Junior Kerry 250g Frasco 250,5ml",
+                description:
+                    "Como o próprio nome diz, o molho Parmesan Junior é feito à base de queijo Parmesão de qualidade e ervas aromáticas selecionadas. É a escolha certa quando se quer textura cremosa e sabor intenso.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_966012-MLB73782196992_012024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Molho De Tomate Desidratado Junior Linha Profissional 1,04kg",
+                description:
+                    "Ingredientes: Tomate, cebola e alho em pó, açúcar, amido modificado, flocos de batata, sal, maltodextrina, óleo vegetal de girassol, estabilizante carboximetilcelulose sódica, corante oleoresina de páprica, antiumectante dióxido de silício e aromatizante; NÃO CONTÉM GLÚTEN. ALÉRGICOS: PODE CONTER DERIVADO DE SOJA.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_613068-MLU78138097047_082024-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Ketchup Junior em sachê caixa com 182 unidades 8g cada",
+                description:
+                    "O Ketchup Junior em sachê é a opção prática e deliciosa para levar o sabor irresistível do ketchup para qualquer lugar. Ideal para porções individuais, cada sachê contém 8g de ketchup, perfeito para acompanhar lanches, batatas fritas, hambúrgueres e outros petiscos. Embalado em uma caixa com 182 unidades, é a escolha perfeita para estabelecimentos de fast food, buffets, escolas, e eventos, proporcionando praticidade, higiene e porções na medida certa. Com o sabor inconfundível e a qualidade que você já conhece, o Ketchup Junior oferece conveniência e muito sabor em cada sachê.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_764488-MLB52161835822_102022-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Molho Junior Sachê Pimenta Caixa 252un Levemente Picante",
+                description:
+                    "O Molho de Pimenta Vermelha Junior realça o sabor dos pratos, lanches e salgados com um toque picante. Equilibrado em picância, é ideal para quem aprecia uma alimentação com mais sabor.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_808946-MLB52161451956_102022-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Heinz ketchup pacote 2kg",
+                description:
+                    "Transforme seus pratos com o inconfundível Ketchup Heinz 2Kg! Feito com tomates selecionados, especialmente cultivados para serem menos aquosos e mais polpudos, garantindo um ketchup espesso, rico e naturalmente vermelho, sem adição de corantes, emulsificantes ou conservantes. Desde 1934, a Heinz domina a arte de produzir tomates de qualidade, resultando em um produto líder no mercado brasileiro e preferido pelos consumidores. Este é o ketchup que dá aquele toque especial, seja no seu restaurante ou na sua casa!",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_700067-MLU72537368668_112023-O.webp",
+                buyPrice: 1000,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1005,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Molhos",
+            },
+
+            {
+                name: "Maionese Hellmann's Sachê 800g Embalagem Econômica",
+                description:
+                    "A Maionese Hellmann's em sachê de 800g é a escolha perfeita para quem busca praticidade e economia sem abrir mão do sabor. Com a qualidade única da marca Hellmann's, esta embalagem econômica oferece o sabor cremoso e irresistível da maionese, ideal para acompanhar sanduíches, saladas, batatas fritas e muito mais. Seu formato em sachê facilita o uso controlado, evitando desperdícios e garantindo a porção ideal a cada aplicação. Perfeita para lanchonetes, restaurantes, food trucks ou para quem busca praticidade no dia a dia, a Maionese Hellmann's traz a consistência e o sabor que todos adoram, com a conveniência de uma embalagem grande e fácil de armazenar.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_665994-MLU74111694942_012024-O.webp",
                 buyPrice: 1000,
                 isAvailable: true,
                 localPickup: true,
@@ -163,6 +344,26 @@ export class PrismaMocks {
             },
 
             {
+                name: "Batata Palito Pré-frita Congelada 7mm Bem Brasil 4Kg",
+                description:
+                    "Batata Palito Pré-frita Congelada 7mm Bem Brasil 4Kg",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-7mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
                 name: "Lamb Weston® Corte Fino 7 mm",
                 description: "Lamb Weston® Corte Fino 7 mm",
                 barcode: "123456789",
@@ -182,9 +383,28 @@ export class PrismaMocks {
             },
 
             {
-                name: "Batata Congelada Lamb Weston Tradicional 9MM 2,5Kg",
+                name: "Batata Congelada Lamb Weston Tradicional",
                 description:
-                    "Batata Congelada Lamb Weston Tradicional 9MM 2,5Kg",
+                    "Batata Congelada Lamb Weston Tradicional",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://cdn.shopify.com/s/files/1/0579/9742/6861/files/image-removebg-preview_18_0dc0c323-1b2c-45a2-888a-59e953e595f3.png?v=1685130398",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+            {
+                name: "Batata Congelada Tradicional 9MM 2,5Kg",
+                description:
+                    "Batata Congelada  Tradicional 9MM 2,5Kg",
                 barcode: "123456789",
                 price: 3154,
                 buyPrice: 1000,
@@ -219,6 +439,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Batatas",
             },
+
             {
                 name: "Batata Palito Pré-frita Congelada 9mm Bem Brasil 2Kgs",
                 description:
@@ -239,11 +460,210 @@ export class PrismaMocks {
                 type: "Batatas",
             },
 
+            {
+                name: "Batata Palito Pré-frita Congelada 15mm Bem Brasil 2Kgs",
+                description:
+                    "Batata Palito Pré-frita Congelada 15mm Bem Brasil 2Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito Pré-frita Congelada 9mm Bem Brasil 5Kgs",
+                description:
+                    "Batata Palito Pré-frita Congelada 9mm Bem Brasil 5Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito Pré-frita Congelada 9mm 5Kgs",
+                description:
+                    "Batata Palito Pré-frita Congelada 9mm 5Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito 5Kgs",
+                description:
+                    "Batata Palito 5Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito Congelada Bem Brasil 5Kgs",
+                description:
+                    "Batata Palito Congelada Bem Brasil 5Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Batata Palito Congelada Bem Brasil 2Kgs",
+                description:
+                    "Batata Palito Congelada Bem Brasil 2Kg",
+                barcode: "123456789",
+                price: 2674,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Batata-Palito-Pre-frita-Congelada-9mm-Bem-Brasil-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
+            {
+                name: "Brazil Stealth Fries",
+                description: "Brazil Stealth Fries",
+                barcode: "123456789",
+                price: 3154,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://lambweston.scene7.com/is/image/lambweston/Stealth_Fries_9mm_Spanish_Box_LowRes?$ProductImage$",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Batatas",
+            },
+
             // Hambuguéres
             {
                 name: "Hambúrguer Tradicional 56g – Caixa com 36 Unidades",
                 description:
                     "Hambúrguer Tradicional 56g – Caixa com 36 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-tradicional-56g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Tradicional 56g – Caixa com 50 Unidades",
+                description:
+                    "Hambúrguer Tradicional 56g – Caixa com 50 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-tradicional-56g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Tradicional 56g – Caixa com 100 Unidades",
+                description:
+                    "Hambúrguer Tradicional 56g – Caixa com 100 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-tradicional-56g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Tradicional 75g – Caixa com 100 Unidades",
+                description:
+                    "Hambúrguer Tradicional 75g – Caixa com 100 Unidades",
                 barcode: "123456789",
                 price: 4525,
                 buyPrice: 1000,
@@ -282,6 +702,66 @@ export class PrismaMocks {
 
             {
                 name: "Hambúrguer Sabor Picanha 90g – Caixa com 36 Unidades",
+                description:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 90g – Caixa com 100 Unidades",
+                description:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 90g – Caixa com 75 Unidades",
+                description:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 90g ",
                 description:
                     "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-90g-768x576.png",
                 barcode: "123456789",
@@ -360,7 +840,180 @@ export class PrismaMocks {
                 type: "Hambugueres",
             },
 
+            {
+                name: "Hambúrguer Sabor Picanha 120gss Caixa com 100 Unidadess",
+                description:
+                    "Hambúrguer Sabor Picanha 120g – Caixa com 100 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-120g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 75g Caixa com 100 Unidadess",
+                description:
+                    "Hambúrguer Sabor Picanha 75g – Caixa com 100 Unidades",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-120g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
+            {
+                name: "Hambúrguer Sabor Picanha 120gs",
+                description:
+                    "Hambúrguer Sabor Picanha",
+                barcode: "123456789",
+                price: 4525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://brasa.com.br/wp-content/uploads/2022/05/caixa-branca-picanha-120g-768x576.png",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Hambugueres",
+            },
+
             // Pães
+            {
+                name: "Pão para Hambúrguer Original sem Glúten Jasmine Pacote 300g",
+                description: "Amido modificado, amido (mandioca e ou milho e ou batata), gordura de palma, extrato de malte sem glúten, açúcar demerara, sal, espessantes hidroxipropilmetilcelulose, goma xantana e goma guar, emulsificantes lecitina de soja e estearoil-2-lactil lactato de sódio, conservante propionato de cálcio e aroma.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_905174-MLU74135902382_012024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão para Hambúrguer Original",
+                description: "Amido modificado, amido (mandioca e ou milho e ou batata), gordura de palma, extrato de malte sem glúten, açúcar demerara, sal, espessantes hidroxipropilmetilcelulose, goma xantana e goma guar, emulsificantes lecitina de soja e estearoil-2-lactil lactato de sódio, conservante propionato de cálcio e aroma.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_905174-MLU74135902382_012024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão para Hambúrguer Original sem Glúten Jasmine Pacote 500g",
+                description: "Amido modificado, amido (mandioca e ou milho e ou batata), gordura de palma, extrato de malte sem glúten, açúcar demerara, sal, espessantes hidroxipropilmetilcelulose, goma xantana e goma guar, emulsificantes lecitina de soja e estearoil-2-lactil lactato de sódio, conservante propionato de cálcio e aroma.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_905174-MLU74135902382_012024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão Para Hambúrguer Bauducco",
+                description: "Cada pacote contém pães embalados individualmente, mantendo a frescura e o sabor até o momento de servir. A linha de pães Bauducco é conhecida por sua variedade e excelência, e este pão de hambúrguer não é exceção. Ideal para quem busca praticidade sem abrir mão da qualidade, ele é a escolha certa para acompanhar churrascos, encontros com amigos ou até mesmo para uma refeição rápida e saborosa no dia a dia.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_922996-MLA79693895273_102024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão Para Hambúrguer Bauducco Pacote - 200g",
+                description: "Cada pacote de 200g contém pães embalados individualmente, mantendo a frescura e o sabor até o momento de servir. A linha de pães Bauducco é conhecida por sua variedade e excelência, e este pão de hambúrguer não é exceção. Ideal para quem busca praticidade sem abrir mão da qualidade, ele é a escolha certa para acompanhar churrascos, encontros com amigos ou até mesmo para uma refeição rápida e saborosa no dia a dia.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_922996-MLA79693895273_102024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão Para Hambúrguer Bauducco Pacote - 500g",
+                description: "Cada pacote de 500g contém pães embalados individualmente, mantendo a frescura e o sabor até o momento de servir. A linha de pães Bauducco é conhecida por sua variedade e excelência, e este pão de hambúrguer não é exceção. Ideal para quem busca praticidade sem abrir mão da qualidade, ele é a escolha certa para acompanhar churrascos, encontros com amigos ou até mesmo para uma refeição rápida e saborosa no dia a dia.",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_922996-MLA79693895273_102024-O.webp",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
 
             {
                 name: "Pão de Hambúrguer Mônaco G CT BIMBO QSR 12x73g",
@@ -400,6 +1053,43 @@ export class PrismaMocks {
                 type: "Pães",
             },
 
+            {
+                name: "Pão de Hambúrguer Mônaco ",
+                description: "Pão de Hambúrguer Mônaco ",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/08/Pao-de-Hamburguer-Monaco-G-CT-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão de Hambúrguer Brioche",
+                description: "Pão de Hambúrguer Brioche ",
+                barcode: "123456789",
+                price: 5625,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/03/Pao-de-Hamburguer-Brioche-MAX-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
             {
                 name: "Pão de Hambúrguer Brioche 4″ CT BIMBO QSR 15x64g",
                 description: "Pão de Hambúrguer Brioche 4″ CT BIMBO QSR 15x64g",
@@ -456,9 +1146,29 @@ export class PrismaMocks {
                 state: "available",
                 type: "Pães",
             },
+
             {
                 name: "Pão de Hambúrguer Riviera G CT BIMBO QSR 15x50gs",
                 description: "Pão de Hambúrguer Riviera G CT BIMBO QSR 15x50g",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2021/03/Pao-de-Hamburguer-Riviera-G-CT-BIMBO-QSR-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Pães",
+            },
+
+            {
+                name: "Pão de Hambúrguer Riviera G CT BIMBO",
+                description: "Pão de Hambúrguer Riviera G CT BIMBO",
                 barcode: "123456789",
                 price: 3525,
                 buyPrice: 1000,
@@ -495,6 +1205,102 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
+            {
+                name: "Queijo Parmesão Fatiado Bloco 2,27Kg – Polenghi",
+                description: "Queijo Parmesão Fatiado Bloco 2,27Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+
+            {
+                name: "Queijo Prata Fatiado Bloco 2,27Kg – Polenghi",
+                description: "Queijo Prata Fatiado Bloco 2,27Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+
+            {
+                name: "Queijo Prata Fatiado ",
+                description: "Queijo Prata Fatiado",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+
+            {
+                name: "Queijo Parmesão Fatiado ",
+                description: "Queijo Parmesão Fatiado ",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+            
+            {
+                name: "Queijo Cheddar Fatiado ",
+                description: "Queijo Cheddar Fatiado ",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/chedar-com-sombra-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Queijos",
+            },
+
             {
                 name: "Queijo Mussarela Fatiado Bloco 2,735Kggg Polenghi",
                 description:
@@ -514,6 +1320,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
             {
                 name: " Mussarela Fatiado Bloco 2,735Kg Polenghi",
                 description:
@@ -533,6 +1340,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
             {
                 name: "Queijo Mussarela Fatiado Bloco 2,735Kgsqr Polenghi",
                 description:
@@ -552,6 +1360,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
             {
                 name: "Queijo Mussarela Fatiado Bloco Polenghi",
                 description:
@@ -571,6 +1380,7 @@ export class PrismaMocks {
                 state: "available",
                 type: "Queijos",
             },
+
             {
                 name: "Queijo Mussarela Bloco 2,7Kg Polenghi",
                 description:
@@ -591,9 +1401,7 @@ export class PrismaMocks {
                 type: "Queijos",
             },
 
-            // produtos para testes unitarios do /buys
-
-            {
+             {
                 name: "Queijo Mussarela Bloco 2,7Kg Polenghis",
                 description:
                     "Queijo Mussarela Fatiado Bloco 2,735Kg – Polenghi",
@@ -633,6 +1441,48 @@ export class PrismaMocks {
                 type: "Queijos",
                 isDeleted: true,
             },
+            
+            {
+                name: "Queijo Provolone Bloco 2,7Kg Polenghid",
+                description:
+                    "Queijo Provolone Bloco 2,735Kg – Polenghi",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "unavailable",
+                type: "Queijos",
+                isDeleted: true,
+            },
+
+            {
+                name: "Queijo Provolone Fatiado",
+                description:
+                    "Queijo Provolone Fatiado",
+                barcode: "123456789",
+                price: 3525,
+                buyPrice: 1000,
+                stock: 100,
+                coverImage:
+                    "https://www.riosoftice.com.br/wp-content/uploads/2019/05/mussarela-fatiada-polenghi-510x510.jpg",
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "unavailable",
+                type: "Queijos",
+                isDeleted: true,
+            },
             //Embalagens
             {
                 name: "Embalagem Bandeja Multiuso De Papel Para Delivery E Porções Cor kraft Menu",
@@ -656,193 +1506,193 @@ export class PrismaMocks {
             },
 
             {
-            name: "Caixa Embalagem Para Batata Frita Porção P (500 Unidades) Cor Preta Muito mais gostoso",
-            description:
-                "A Caixa Embalagem para Batata Frita Porção P (500 unidades), na cor preta, é perfeita para servir porções individuais de batata frita com praticidade e elegância. Resistente e ideal para manter a crocância e frescor dos alimentos, ela oferece a melhor apresentação para seu delivery ou atendimento. Embalagem de qualidade que transmite sofisticação e garante mais sabor ao seu produto.",
-            barcode: "123456789",
-            price: 2284,
-            stock: 100,
-            coverImage:
-                "https://http2.mlstatic.com/D_NQ_NP_897592-MLU71080153903_082023-O.webp",
-            buyPrice: 1000,
-            isDeleted: false,
-            isAvailable: true,
-            localPickup: true,
-            numberOfSales: 1000,
-            numberOfViews: 1000,
-            numberOfViewsInLastWeek: 1000,
-            productType: "others",
-            state: "available",
-            type: "Embalagens",
-        },
+                name: "Caixa Embalagem Para Batata Frita Porção P (500 Unidades) Cor Preta Muito mais gostoso",
+                description:
+                    "A Caixa Embalagem para Batata Frita Porção P (500 unidades), na cor preta, é perfeita para servir porções individuais de batata frita com praticidade e elegância. Resistente e ideal para manter a crocância e frescor dos alimentos, ela oferece a melhor apresentação para seu delivery ou atendimento. Embalagem de qualidade que transmite sofisticação e garante mais sabor ao seu produto.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_897592-MLU71080153903_082023-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
 
-        {
-            name: "Caixa Embalagem Para Batata Frita P - 500 Unidades Cor Branca",
-            description:
-                "A Caixa Embalagem para Batata Frita P (500 unidades), na cor branca, é ideal para porções individuais de batata frita. Feita com material resistente, mantém a crocância e qualidade dos alimentos durante o transporte. Perfeita para delivery e serviços de fast food, essa embalagem oferece praticidade e eficiência, garantindo uma apresentação limpa e elegante para seus produtos.",
-            barcode: "123456789",
-            price: 2284,
-            stock: 100,
-            coverImage:
-                "https://http2.mlstatic.com/D_NQ_NP_928100-MLU71010461995_082023-O.webp",
-            buyPrice: 1000,
-            isDeleted: false,
-            isAvailable: true,
-            localPickup: true,
-            numberOfSales: 1000,
-            numberOfViews: 1000,
-            numberOfViewsInLastWeek: 1000,
-            productType: "others",
-            state: "available",
-            type: "Embalagens",
-        },
+            {
+                name: "Caixa Embalagem Para Batata Frita P - 500 Unidades Cor Branca",
+                description:
+                    "A Caixa Embalagem para Batata Frita P (500 unidades), na cor branca, é ideal para porções individuais de batata frita. Feita com material resistente, mantém a crocância e qualidade dos alimentos durante o transporte. Perfeita para delivery e serviços de fast food, essa embalagem oferece praticidade e eficiência, garantindo uma apresentação limpa e elegante para seus produtos.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_928100-MLU71010461995_082023-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
 
-        {
-            name: "100 Pçs Caixa Embalagem Delivery P Porção Batata Frita Preto",
-            description:
-                "A Caixa Embalagem Delivery P para Porção de Batata Frita (100 unidades) na cor preta é ideal para porções individuais. Feita com material resistente, ela mantém a crocância e frescor dos alimentos durante o transporte. Perfeita para delivery, essa embalagem oferece praticidade e um toque sofisticado, garantindo a melhor apresentação para seus produtos e a satisfação do cliente.",
-            barcode: "123456789",
-            price: 2284,
-            stock: 100,
-            coverImage:
-                "https://http2.mlstatic.com/D_NQ_NP_619934-MLB80376089508_112024-O.webp",
-            buyPrice: 1000,
-            isDeleted: false,
-            isAvailable: true,
-            localPickup: true,
-            numberOfSales: 1000,
-            numberOfViews: 1000,
-            numberOfViewsInLastWeek: 1000,
-            productType: "others",
-            state: "available",
-            type: "Embalagens",
-        },
+            {
+                name: "100 Pçs Caixa Embalagem Delivery P Porção Batata Frita Preto",
+                description:
+                    "A Caixa Embalagem Delivery P para Porção de Batata Frita (100 unidades) na cor preta é ideal para porções individuais. Feita com material resistente, ela mantém a crocância e frescor dos alimentos durante o transporte. Perfeita para delivery, essa embalagem oferece praticidade e um toque sofisticado, garantindo a melhor apresentação para seus produtos e a satisfação do cliente.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_619934-MLB80376089508_112024-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
 
-        {
-            name: "100 Caixa Box Delivery Porção Batatafrita Individual Al-g14f",
-            description:
-                "A Caixa Box Delivery para Porção de Batata Frita Individual (100 unidades), modelo AL-G14F, é ideal para o transporte de porções individuais de batata frita. Feita com material resistente, garante a manutenção da crocância e a apresentação adequada dos alimentos durante o delivery. Compacta e prática, é perfeita para serviços de fast food, garantindo qualidade e eficiência no armazenamento e transporte das porções. Ideal para empresas que buscam praticidade e resistência.",
-            barcode: "123456789",
-            price: 2284,
-            stock: 100,
-            coverImage:
-                "https://http2.mlstatic.com/D_NQ_NP_611622-MLB43247728743_082020-O.webp",
-            buyPrice: 1000,
-            isDeleted: false,
-            isAvailable: true,
-            localPickup: true,
-            numberOfSales: 1000,
-            numberOfViews: 1000,
-            numberOfViewsInLastWeek: 1000,
-            productType: "others",
-            state: "available",
-            type: "Embalagens",
-        },
+            {
+                name: "100 Caixa Box Delivery Porção Batatafrita Individual Al-g14f",
+                description:
+                    "A Caixa Box Delivery para Porção de Batata Frita Individual (100 unidades), modelo AL-G14F, é ideal para o transporte de porções individuais de batata frita. Feita com material resistente, garante a manutenção da crocância e a apresentação adequada dos alimentos durante o delivery. Compacta e prática, é perfeita para serviços de fast food, garantindo qualidade e eficiência no armazenamento e transporte das porções. Ideal para empresas que buscam praticidade e resistência.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_611622-MLB43247728743_082020-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
 
-        {
-            name: "Embalagem Batata Frita Viagem Delivery M Modelo Giz 50 Un",
-            description:
-                "A Embalagem para Batata Frita Viagem Delivery M (50 unidades), modelo Giz, é ideal para transportar porções de batata frita de forma segura e prática. Com design eficiente, mantém os alimentos frescos e crocantes durante o transporte. A embalagem é perfeita para delivery, oferecendo praticidade e resistência, além de garantir uma apresentação atrativa e funcional. Ideal para negócios de fast food e serviços de entrega rápidos.",
-            barcode: "123456789",
-            price: 2284,
-            stock: 100,
-            coverImage:
-                "https://http2.mlstatic.com/D_NQ_NP_989915-MLB79749768465_102024-O.webp",
-            buyPrice: 1000,
-            isDeleted: false,
-            isAvailable: true,
-            localPickup: true,
-            numberOfSales: 1000,
-            numberOfViews: 1000,
-            numberOfViewsInLastWeek: 1000,
-            productType: "others",
-            state: "available",
-            type: "Embalagens",
-        },
+            {
+                name: "Embalagem Batata Frita Viagem Delivery M Modelo Giz 50 Un",
+                description:
+                    "A Embalagem para Batata Frita Viagem Delivery M (50 unidades), modelo Giz, é ideal para transportar porções de batata frita de forma segura e prática. Com design eficiente, mantém os alimentos frescos e crocantes durante o transporte. A embalagem é perfeita para delivery, oferecendo praticidade e resistência, além de garantir uma apresentação atrativa e funcional. Ideal para negócios de fast food e serviços de entrega rápidos.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_989915-MLB79749768465_102024-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
 
-        {
-            name: "Barquinha Churrasco,porções,batata Frita,burguer-100unidades",
-            description:
-                "A Barquinha para Churrasco, Porções, Batata Frita e Burguer (100 unidades) é uma embalagem prática e resistente, ideal para porções individuais de diferentes tipos de alimentos. Seu design em formato de barquinha garante fácil manuseio e transporte, mantendo a qualidade dos alimentos durante o delivery. Perfeita para negócios de fast food e serviços de entrega, proporcionando uma apresentação atrativa e funcional para uma variedade de pratos.",
-            barcode: "123456789",
-            price: 2284,
-            stock: 100,
-            coverImage:
-                "https://http2.mlstatic.com/D_NQ_NP_722921-MLB73968133949_012024-O.webp",
-            buyPrice: 1000,
-            isDeleted: false,
-            isAvailable: true,
-            localPickup: true,
-            numberOfSales: 1000,
-            numberOfViews: 1000,
-            numberOfViewsInLastWeek: 1000,
-            productType: "others",
-            state: "available",
-            type: "Embalagens",
-        },
+            {
+                name: "Barquinha Churrasco,porções,batata Frita,burguer-100unidades",
+                description:
+                    "A Barquinha para Churrasco, Porções, Batata Frita e Burguer (100 unidades) é uma embalagem prática e resistente, ideal para porções individuais de diferentes tipos de alimentos. Seu design em formato de barquinha garante fácil manuseio e transporte, mantendo a qualidade dos alimentos durante o delivery. Perfeita para negócios de fast food e serviços de entrega, proporcionando uma apresentação atrativa e funcional para uma variedade de pratos.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_722921-MLB73968133949_012024-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
 
-        {
-            name: "Embalagem Bandeja Multiuso Para Porções E Delivery",
-            description:
-                "A Embalagem Bandeja Multiuso para Porções e Delivery é ideal para o transporte seguro e prático de alimentos, mantendo a qualidade e frescor das porções durante a entrega. Feita de material resistente, é perfeita para diferentes tipos de alimentos, como batatas fritas, hambúrgueres e churrasco. Seu design funcional facilita o manuseio, e sua versatilidade a torna ideal para estabelecimentos de fast food e delivery, oferecendo uma solução eficiente e de qualidade.",
-            barcode: "123456789",
-            price: 2284,
-            stock: 100,
-            coverImage:
-                "https://http2.mlstatic.com/D_NQ_NP_874853-MLB70323060452_072023-O.webp",
-            buyPrice: 1000,
-            isDeleted: false,
-            isAvailable: true,
-            localPickup: true,
-            numberOfSales: 1000,
-            numberOfViews: 1000,
-            numberOfViewsInLastWeek: 1000,
-            productType: "others",
-            state: "available",
-            type: "Embalagens",
-        },
+            {
+                name: "Embalagem Bandeja Multiuso Para Porções E Delivery",
+                description:
+                    "A Embalagem Bandeja Multiuso para Porções e Delivery é ideal para o transporte seguro e prático de alimentos, mantendo a qualidade e frescor das porções durante a entrega. Feita de material resistente, é perfeita para diferentes tipos de alimentos, como batatas fritas, hambúrgueres e churrasco. Seu design funcional facilita o manuseio, e sua versatilidade a torna ideal para estabelecimentos de fast food e delivery, oferecendo uma solução eficiente e de qualidade.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_874853-MLB70323060452_072023-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
 
-        {
-            name: "Embalagem Cone Batata Frita E Porções G Várias Cores 100un Cor Verde",
-            description:
-                "A Embalagem Cone para Batata Frita e Porções G (100 unidades) na cor verde é perfeita para servir porções de batata frita e outros alimentos de forma prática e charmosa. Feita com material resistente, ela mantém a crocância e qualidade dos alimentos. Ideal para estabelecimentos de fast food e delivery, essa embalagem oferece uma apresentação atrativa e funcional, destacando-se em diversas ocasiões e combinando com diferentes estilos de alimentos.",
-            barcode: "123456789",
-            price: 2284,
-            stock: 100,
-            coverImage:
-                "https://http2.mlstatic.com/D_NQ_NP_921567-MLU75151430557_032024-O.webp",
-            buyPrice: 1000,
-            isDeleted: false,
-            isAvailable: true,
-            localPickup: true,
-            numberOfSales: 1000,
-            numberOfViews: 1000,
-            numberOfViewsInLastWeek: 1000,
-            productType: "others",
-            state: "available",
-            type: "Embalagens",
-        },
+            {
+                name: "Embalagem Cone Batata Frita E Porções G Várias Cores 100un Cor Verde",
+                description:
+                    "A Embalagem Cone para Batata Frita e Porções G (100 unidades) na cor verde é perfeita para servir porções de batata frita e outros alimentos de forma prática e charmosa. Feita com material resistente, ela mantém a crocância e qualidade dos alimentos. Ideal para estabelecimentos de fast food e delivery, essa embalagem oferece uma apresentação atrativa e funcional, destacando-se em diversas ocasiões e combinando com diferentes estilos de alimentos.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_921567-MLU75151430557_032024-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
 
-        {
-            name: "Caixa Embalagem Para Batata Frita P - 1000 Unidades",
-            description:
-                "A Caixa Embalagem para Batata Frita P (1000 unidades) é uma solução prática e econômica para o transporte de porções de batata frita. Feita com material resistente, ela garante a integridade e crocância dos alimentos durante o delivery. Ideal para fast foods e serviços de entrega, essa embalagem oferece eficiência e praticidade, atendendo a grandes volumes de pedidos com qualidade e confiança. Perfeita para manter a apresentação e o sabor das porções de batata frita.",
-            barcode: "123456789",
-            price: 2284,
-            stock: 100,
-            coverImage:
-                "https://http2.mlstatic.com/D_NQ_NP_664398-MLB53461917566_012023-O.webp",
-            buyPrice: 1000,
-            isDeleted: false,
-            isAvailable: true,
-            localPickup: true,
-            numberOfSales: 1000,
-            numberOfViews: 1000,
-            numberOfViewsInLastWeek: 1000,
-            productType: "others",
-            state: "available",
-            type: "Embalagens",
-        },
+            {
+                name: "Caixa Embalagem Para Batata Frita P - 1000 Unidades",
+                description:
+                    "A Caixa Embalagem para Batata Frita P (1000 unidades) é uma solução prática e econômica para o transporte de porções de batata frita. Feita com material resistente, ela garante a integridade e crocância dos alimentos durante o delivery. Ideal para fast foods e serviços de entrega, essa embalagem oferece eficiência e praticidade, atendendo a grandes volumes de pedidos com qualidade e confiança. Perfeita para manter a apresentação e o sabor das porções de batata frita.",
+                barcode: "123456789",
+                price: 2284,
+                stock: 100,
+                coverImage:
+                    "https://http2.mlstatic.com/D_NQ_NP_664398-MLB53461917566_012023-O.webp",
+                buyPrice: 1000,
+                isDeleted: false,
+                isAvailable: true,
+                localPickup: true,
+                numberOfSales: 1000,
+                numberOfViews: 1000,
+                numberOfViewsInLastWeek: 1000,
+                productType: "others",
+                state: "available",
+                type: "Embalagens",
+            },
 
         {
             name: "100 Pçs Caixa Embalagem Delivery P Porção Batata Frita Black",
@@ -864,6 +1714,111 @@ export class PrismaMocks {
             state: "available",
             type: "Embalagens",
         },
+
+        {
+            name: "Saco Semi Kraft Delivery Sos Hamburguer 12x9x26 C/ 1000 Un.",
+            description:
+                "Ecologicamente correto, papel 100% kraft , muito bonito e resistente. Da segurança, beleza, charme no transporte do seu produto. Valoriza o produto e a prestação de serviço da venda de sua loja.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_978259-MLB51426922630_092022-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Papel Acoplado Para Lanche Hamburguer Delivery 500 unidades Cor Preto",
+            description:
+                "PAPEL ACOPLADO HAMBURGUER E LANCHES COM 500 UNIDADES: Impressão qualificada; Quando embrulhado, o desenho de hambúrguer fica perfeitamente centralizado em seu lanche; Retém boa parte da gordura; Excelente relação custo-benefício.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_636195-MLU73944828381_012024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "100 Pçs Embalagem Hamburguer Lanches Delivery M Black Frases",
+            description:
+                "Embalagem p/ Hamburguer/CheeseBurguer e Lanches Artesanal Ideal para Lanchonetes, Hamburguerias, Food Frucks e Fast Food em geral Produzido em papel fundo branco (proprio para contato com alimento) excelente qualidade e resistencia.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_656379-MLB51587445582_092022-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+
+        {
+            name: "Embalagem Térmica Para Lanches - 1000 Unidades",
+            description:
+                "Fechamento Inteligente: Com fita adesiva auto colante para um fechamento seguro e rápido. Furo de Vazão de Vapor: Mantém a textura ideal do seu lanche, evitando que ele amoleça ou perca sua qualidade.Manutenção da Temperatura: Suas propriedades térmicas conservam o lanche na temperatura ideal por 30 a 40 minutos após o embalo. Design Prático e Seguro: Ideal para delivery de lanches e sanduíches, garantindo que seu produto chegue nas melhores condições ao consumidor. Especificações de Alta Qualidade: Feita com matéria-prima premium e máquinas de última geração. As soldas reforçadas e barreiras de proteção mantêm temperatura, sabor e aroma intactos.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_837210-MLB73664362048_012024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        },
+        
+        {
+            name: "Papel Acoplado Kraft Hambúrguer Burguer Genérico, 500 Unds Como Segurar Seu Burger",
+            description:
+                "O papel Acoplado Kraft possui ótima consistência pelo uso de gramatura de 35 g/m2, proporcionando firmeza ao embrulho dos alimentos. A película plástica torna o papel impermeável, evitando vazamentos e oferecendo estilo com sua cor kraft natural e linhas douradas, ideal para uma apresentação rústica ao servir.",
+            barcode: "123456789",
+            price: 2284,
+            stock: 100,
+            coverImage:
+                "https://http2.mlstatic.com/D_NQ_NP_978259-MLU74965211335_032024-O.webp",
+            buyPrice: 1000,
+            isDeleted: false,
+            isAvailable: true,
+            localPickup: true,
+            numberOfSales: 1000,
+            numberOfViews: 1000,
+            numberOfViewsInLastWeek: 1000,
+            productType: "others",
+            state: "available",
+            type: "Embalagens",
+        }, 
         ];
 
         return products;

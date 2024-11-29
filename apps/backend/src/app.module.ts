@@ -27,6 +27,7 @@ import { FreightModule } from "./freight/freight.module";
 import { EnvService } from "./env/env.service";
 import { EnvModule } from "./env/env.module";
 import { envSchema } from "./env/env";
+import { HealthcheckModule } from "./healthcheck/healthcheck.module";
 
 @Module({
     imports: [
@@ -58,6 +59,7 @@ import { envSchema } from "./env/env";
         FreightCompaniesModule,
         FreightModule,
         EnvModule,
+        HealthcheckModule,
     ],
     controllers: [],
     providers: [EnvService],

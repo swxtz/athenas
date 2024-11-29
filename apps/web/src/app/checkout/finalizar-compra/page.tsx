@@ -35,12 +35,12 @@ export default async function CheckoutPage() {
 
             <Separator className="hidden md:flex my-4" />
 
-            <div className="">
+            {/* <div className="">
               <h2 className="text-xl text-zinc-700 mb-3">
                 Selecione a opção de frete
               </h2>
               <FreightSelect />
-            </div>
+            </div> */}
           </div>
           <div className="flex">
             <Separator orientation="vertical" className="hidden md:flex h-[500px] my-auto" />

@@ -46,15 +46,6 @@ export function TotalPrice({ itens }: TotalPriceProps) {
       return;
     }
 
-    if (!freight) {
-      toast({
-        title: "Selecione uma forma de frete",
-        variant: "destructive",
-      });
-
-      return;
-    }
-
     if (!session?.data?.token) {
       toast({
         title: "Token não encontrado ou sessão não iniciada.",
@@ -106,7 +97,7 @@ export function TotalPrice({ itens }: TotalPriceProps) {
 
     const destination = `/checkout/pagamento?payment=${encodeURIComponent(
       payment
-    )}&freight=${encodeURIComponent(freight)}&order_id=${encodeURIComponent(
+    )}&order_id=${encodeURIComponent(
       res.data.data.buyOrderId
     )}`;
 
